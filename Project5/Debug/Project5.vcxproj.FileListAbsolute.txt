@@ -1,0 +1,6 @@
+D:\projects\training\Project5\Project5\Debug\Project5.vcxproj.AssemblyReference.cache
+D:\projects\training\Project5\Project5\Debug\Project5.vcxproj.SuggestedBindingRedirects.cache
+D:\projects\training\Project5\Project5\Debug\Project5.MyForm.resources
+D:\projects\training\Project5\Project5\Debug\Project5.vcxproj.GenerateResource.cache
+D:\projects\training\Project5\Project5\Debug\Project5.Ressource.resources
+D:\projects\training\Project5\Project5\Debug\Project5.MyUserControl.resources

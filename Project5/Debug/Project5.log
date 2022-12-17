@@ -1,0 +1,7 @@
+﻿  MyForm.cpp
+D:\projects\training\Project5\Project5\MyForm.h(315,8): warning C4101: 'j' : variable locale non référencée
+D:\projects\training\Project5\Project5\MyForm.h(314,8): warning C4101: 'i' : variable locale non référencée
+  MyUserControl.cpp
+  Génération de code en cours...
+  jsoncpp.obj : module MSIL détecté ; liens incrémentiels désactivés pour MSIL ; édition de liens complète en cours
+  Project5.vcxproj -> D:\projects\training\Project5\Debug\Project5.exe
