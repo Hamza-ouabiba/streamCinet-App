@@ -3,4 +3,4 @@ D:\projects\training\Project5\Project5\Debug\Project5.vcxproj.SuggestedBindingRe
 D:\projects\training\Project5\Project5\Debug\Project5.MyForm.resources
 D:\projects\training\Project5\Project5\Debug\Project5.vcxproj.GenerateResource.cache
 D:\projects\training\Project5\Project5\Debug\Project5.Ressource.resources
-D:\projects\training\Project5\Project5\Debug\Project5.MyUserControl.resources
+D:\projects\training\Project5\Project5\Debug\Project5.Dashboard.resources

@@ -1,16 +1,8 @@
 #pragma once
-#include<string>
 using namespace System;
-using namespace System::ComponentModel;
-using namespace System::Collections;
 using namespace System::Windows::Forms;
 using namespace System::Data;
-using namespace System::Drawing;
-
-using namespace std;
 using namespace System::Drawing::Imaging;
-using namespace System;
-using namespace System::Windows::Forms;
 namespace Project5 {
 	/// <summary>
 	/// Description résumée de MyUserControl

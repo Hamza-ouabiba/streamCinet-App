@@ -1,5 +1,5 @@
+  Project5.Dashboard.resources - Embedded, ContainedInManifestFile, 
   Project5.MyForm.resources - Embedded, ContainedInManifestFile, 
-  Project5.MyUserControl.resources - Embedded, ContainedInManifestFile, 
   Project5.Ressource.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly Project5, Version=0.0.*, Culture=Langue indifférente (Pays indifférent): 
@@ -19,6 +19,14 @@ Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c5619
 Class Project5.MyUserControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
     Void .ctor(Int32, System.Drawing.Image, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Mani: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    getInformations(Int32, basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, FlowLayoutPanel, basic_string<char\,std::char_traits<char>\,std::allocator<char> >*): PrivateScope, Public, HideBySig
+    DownloadImage(String): PrivateScope, Public, HideBySig
+Class Project5.Dashboard: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.UserControl
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class Project5.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

@@ -1,29 +1,13 @@
 #pragma once
 #include <curl/curl.h>
 #include"json/json.h"
-
-#include <iostream>
-#include<string>
 #include <msclr/marshal_cppstd.h>
 #include "MyUserControl.h"
-#define CURL_STATICLIB
+#include "Dashboard.h"
 using namespace std;
 using namespace System::Drawing::Imaging;
 using namespace System;
 using namespace System::Windows::Forms;
-namespace
-{
-	std::size_t callback(
-		const char* in,
-		std::size_t size,
-		std::size_t num,
-		std::string* out)
-	{
-		const std::size_t totalBytes(size * num);
-		out->append(in, totalBytes);
-		return totalBytes;
-	}
-}
 namespace Project5 {
 
 	using namespace System;
@@ -63,17 +47,27 @@ namespace Project5 {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel1;
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ seriesBtn;
+
+	private: System::Windows::Forms::Button^ moviesBtn;
+
 	private: System::Windows::Forms::Button^ button5;
 	private: System::Windows::Forms::Panel^ panel2;
 	private: System::Windows::Forms::Button^ button8;
 	private: System::Windows::Forms::Button^ button7;
 	private: System::Windows::Forms::Button^ button6;
+	private: System::Windows::Forms::Panel^ panelContent;
+
+
+
+
+	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel3;
+
+
 
 	protected:
 	private:
@@ -92,19 +86,22 @@ namespace Project5 {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->seriesBtn = (gcnew System::Windows::Forms::Button());
+			this->moviesBtn = (gcnew System::Windows::Forms::Button());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
-			this->button6 = (gcnew System::Windows::Forms::Button());
-			this->button7 = (gcnew System::Windows::Forms::Button());
 			this->button8 = (gcnew System::Windows::Forms::Button());
+			this->button7 = (gcnew System::Windows::Forms::Button());
+			this->button6 = (gcnew System::Windows::Forms::Button());
+			this->panelContent = (gcnew System::Windows::Forms::Panel());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->flowLayoutPanel3 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
+			this->panelContent->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// label3
@@ -115,6 +112,7 @@ namespace Project5 {
 			this->label3->Size = System::Drawing::Size(44, 16);
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"label3";
+			this->label3->UseWaitCursor = true;
 			// 
 			// label2
 			// 
@@ -124,6 +122,7 @@ namespace Project5 {
 			this->label2->Size = System::Drawing::Size(44, 16);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"label2";
+			this->label2->UseWaitCursor = true;
 			// 
 			// label1
 			// 
@@ -133,72 +132,71 @@ namespace Project5 {
 			this->label1->Size = System::Drawing::Size(44, 16);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"label1";
-			// 
-			// flowLayoutPanel1
-			// 
-			this->flowLayoutPanel1->AutoScroll = true;
-			this->flowLayoutPanel1->Location = System::Drawing::Point(247, 93);
-			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
-			this->flowLayoutPanel1->Size = System::Drawing::Size(1723, 331);
-			this->flowLayoutPanel1->TabIndex = 3;
-			this->flowLayoutPanel1->WrapContents = false;
+			this->label1->UseWaitCursor = true;
 			// 
 			// panel1
 			// 
 			this->panel1->Controls->Add(this->button5);
 			this->panel1->Controls->Add(this->button4);
 			this->panel1->Controls->Add(this->button3);
-			this->panel1->Controls->Add(this->button2);
-			this->panel1->Controls->Add(this->button1);
-			this->panel1->Location = System::Drawing::Point(3, 93);
+			this->panel1->Controls->Add(this->seriesBtn);
+			this->panel1->Controls->Add(this->moviesBtn);
+			this->panel1->Location = System::Drawing::Point(-5, 93);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(244, 824);
+			this->panel1->Size = System::Drawing::Size(252, 950);
 			this->panel1->TabIndex = 4;
-			// 
-			// button4
-			// 
-			this->button4->Location = System::Drawing::Point(13, 214);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(214, 47);
-			this->button4->TabIndex = 3;
-			this->button4->Text = L"Popular";
-			this->button4->UseVisualStyleBackColor = true;
-			// 
-			// button3
-			// 
-			this->button3->Location = System::Drawing::Point(13, 149);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(214, 47);
-			this->button3->TabIndex = 2;
-			this->button3->Text = L"Latest";
-			this->button3->UseVisualStyleBackColor = true;
-			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(13, 81);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(214, 47);
-			this->button2->TabIndex = 1;
-			this->button2->Text = L"Series";
-			this->button2->UseVisualStyleBackColor = true;
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(13, 17);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(214, 47);
-			this->button1->TabIndex = 0;
-			this->button1->Text = L"Movies";
-			this->button1->UseVisualStyleBackColor = true;
+			this->panel1->UseWaitCursor = true;
 			// 
 			// button5
 			// 
-			this->button5->Location = System::Drawing::Point(13, 284);
+			this->button5->Location = System::Drawing::Point(23, 292);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(214, 47);
 			this->button5->TabIndex = 4;
 			this->button5->Text = L"Top Rated";
 			this->button5->UseVisualStyleBackColor = true;
+			this->button5->UseWaitCursor = true;
+			// 
+			// button4
+			// 
+			this->button4->Location = System::Drawing::Point(23, 226);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(214, 47);
+			this->button4->TabIndex = 3;
+			this->button4->Text = L"Popular";
+			this->button4->UseVisualStyleBackColor = true;
+			this->button4->UseWaitCursor = true;
+			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(23, 161);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(214, 47);
+			this->button3->TabIndex = 2;
+			this->button3->Text = L"Latest";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->UseWaitCursor = true;
+			// 
+			// seriesBtn
+			// 
+			this->seriesBtn->Location = System::Drawing::Point(23, 91);
+			this->seriesBtn->Name = L"seriesBtn";
+			this->seriesBtn->Size = System::Drawing::Size(214, 47);
+			this->seriesBtn->TabIndex = 1;
+			this->seriesBtn->Text = L"Series";
+			this->seriesBtn->UseVisualStyleBackColor = true;
+			this->seriesBtn->UseWaitCursor = true;
+			// 
+			// moviesBtn
+			// 
+			this->moviesBtn->Location = System::Drawing::Point(23, 18);
+			this->moviesBtn->Name = L"moviesBtn";
+			this->moviesBtn->Size = System::Drawing::Size(214, 47);
+			this->moviesBtn->TabIndex = 0;
+			this->moviesBtn->Text = L"Movies";
+			this->moviesBtn->UseVisualStyleBackColor = true;
+			this->moviesBtn->UseWaitCursor = true;
+			this->moviesBtn->Click += gcnew System::EventHandler(this, &MyForm::moviesBtn_Click);
 			// 
 			// panel2
 			// 
@@ -210,19 +208,21 @@ namespace Project5 {
 			this->panel2->Controls->Add(this->button6);
 			this->panel2->Location = System::Drawing::Point(3, 1);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(1719, 53);
+			this->panel2->Size = System::Drawing::Size(1485, 53);
 			this->panel2->TabIndex = 5;
+			this->panel2->UseWaitCursor = true;
 			// 
-			// button6
+			// button8
 			// 
-			this->button6->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button6->ForeColor = System::Drawing::Color::Transparent;
-			this->button6->Location = System::Drawing::Point(260, 3);
-			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(205, 50);
-			this->button6->TabIndex = 0;
-			this->button6->Text = L"Discovery";
-			this->button6->UseVisualStyleBackColor = true;
+			this->button8->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->button8->ForeColor = System::Drawing::Color::Transparent;
+			this->button8->Location = System::Drawing::Point(461, 3);
+			this->button8->Name = L"button8";
+			this->button8->Size = System::Drawing::Size(205, 50);
+			this->button8->TabIndex = 2;
+			this->button8->Text = L"Discovery";
+			this->button8->UseVisualStyleBackColor = true;
+			this->button8->UseWaitCursor = true;
 			// 
 			// button7
 			// 
@@ -236,27 +236,62 @@ namespace Project5 {
 			this->button7->TabIndex = 1;
 			this->button7->Text = L"StreamCinet";
 			this->button7->UseVisualStyleBackColor = true;
+			this->button7->UseWaitCursor = true;
 			// 
-			// button8
+			// button6
 			// 
-			this->button8->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button8->ForeColor = System::Drawing::Color::Transparent;
-			this->button8->Location = System::Drawing::Point(461, 3);
-			this->button8->Name = L"button8";
-			this->button8->Size = System::Drawing::Size(205, 50);
-			this->button8->TabIndex = 2;
-			this->button8->Text = L"Discovery";
-			this->button8->UseVisualStyleBackColor = true;
+			this->button6->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->button6->ForeColor = System::Drawing::Color::Transparent;
+			this->button6->Location = System::Drawing::Point(260, 3);
+			this->button6->Name = L"button6";
+			this->button6->Size = System::Drawing::Size(205, 50);
+			this->button6->TabIndex = 0;
+			this->button6->Text = L"Discovery";
+			this->button6->UseVisualStyleBackColor = true;
+			this->button6->UseWaitCursor = true;
+			// 
+			// panelContent
+			// 
+			this->panelContent->Controls->Add(this->label6);
+			this->panelContent->Controls->Add(this->flowLayoutPanel3);
+			this->panelContent->Location = System::Drawing::Point(253, 93);
+			this->panelContent->Name = L"panelContent";
+			this->panelContent->Size = System::Drawing::Size(1456, 1017);
+			this->panelContent->TabIndex = 6;
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label6->ForeColor = System::Drawing::SystemColors::ControlDark;
+			this->label6->Location = System::Drawing::Point(33, 847);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(133, 25);
+			this->label6->TabIndex = 5;
+			this->label6->Text = L"Latest Movies";
+			this->label6->UseWaitCursor = true;
+			// 
+			// flowLayoutPanel3
+			// 
+			this->flowLayoutPanel3->AutoScroll = true;
+			this->flowLayoutPanel3->Location = System::Drawing::Point(31, 893);
+			this->flowLayoutPanel3->Name = L"flowLayoutPanel3";
+			this->flowLayoutPanel3->Size = System::Drawing::Size(1408, 348);
+			this->flowLayoutPanel3->TabIndex = 4;
+			this->flowLayoutPanel3->UseWaitCursor = true;
+			this->flowLayoutPanel3->WrapContents = false;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->AutoScroll = true;
 			this->BackColor = System::Drawing::Color::Black;
 			this->ClientSize = System::Drawing::Size(1723, 1055);
+			this->Controls->Add(this->panelContent);
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
-			this->Controls->Add(this->flowLayoutPanel1);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
@@ -266,124 +301,36 @@ namespace Project5 {
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->panel1->ResumeLayout(false);
 			this->panel2->ResumeLayout(false);
+			this->panelContent->ResumeLayout(false);
+			this->panelContent->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
-		System::Drawing::Image^ DownloadImage(System::String^ _URL)
-		{
-			System::Drawing::Image^ _tmpImage = nullptr;
-
-			try
-			{
-				// Open a connection
-				System::Net::HttpWebRequest^ _HttpWebRequest = safe_cast<System::Net::HttpWebRequest^>(System::Net::HttpWebRequest::Create(_URL));
-
-				_HttpWebRequest->AllowWriteStreamBuffering = true;
-
-				// You can also specify additional header values like the user agent or the referer: (Optional)
-				_HttpWebRequest->UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)";
-				_HttpWebRequest->Referer = "http://www.google.com/";
-
-				// set timeout for 20 seconds (Optional)
-				//_HttpWebRequest->Timeout = 20000;
-
-				// Request response:
-				System::Net::WebResponse^ _WebResponse = _HttpWebRequest->GetResponse();
-
-				// Open data stream:
-				System::IO::Stream^ _WebStream = _WebResponse->GetResponseStream();
-				// convert webstream to image
-				_tmpImage = Image::FromStream(_WebStream);
-				// Cleanup
-				_WebResponse->Close();
-				_WebResponse->Close();
-			}
-			catch (Exception^ _Exception)
-			{
-				// Error
-				Console::WriteLine("Exception caught in process: {0}", _Exception->ToString());
-				return nullptr;
-			}
-
-			return _tmpImage;
-		}
 		
-		string removeQuotations(string input)
-		{
-			int i;
-			int j;
-			int length = input.length();
-			cout << "index of page inn function : "<<input;
-			return input;
-		}
-		void getInformations(int index,string page)
-		{
-			CURL* curl = curl_easy_init();
-			cout << page;
-			std::string url("https://api.themoviedb.org/3/search/movie?api_key=10f96818301b77e61d73d48aa20d81f9&query=a&page=" + page);
-			Json::Value ra;
-			curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-
-			// Don't bother trying IPv6, which would increase DNS resolution time.
-			curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
-
-			// Don't wait forever, time out after 10 seconds.
-			curl_easy_setopt(curl, CURLOPT_TIMEOUT, 10);
-
-			// Follow HTTP redirects if necessary.
-			curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-
-			// Response information.
-			long httpCode(0);
-			std::unique_ptr<std::string> httpData(new std::string());
-
-			// Hook up data handling function.
-			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, callback);
-
-			// Hook up data container (will be passed as the last parameter to the
-			// callback handling function).  Can be any pointer type, since it will
-			// internally be passed as a void pointer.
-			curl_easy_setopt(curl, CURLOPT_WRITEDATA, httpData.get());
-
-			// Run our HTTP GET command, capture the HTTP response code, and clean up.
-			curl_easy_perform(curl);
-			curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
-			curl_easy_cleanup(curl);
-
-			if (httpCode == 200)
-			{
-				// Response looks good - done using Curl now.  Try to parse the results
-				// and print them out.
-				//jsonData["results"][i]["original_title"]
-				Json::Value jsonData;
-				Json::Reader jsonReader;
-				stringstream ss;
-				string data;
-				string site = "https://image.tmdb.org/t/p/w500";
-				Json::StreamWriterBuilder builder;
-				builder["indentation"] = "";
-				if (jsonReader.parse(*httpData.get(), jsonData))
-				{
-						string title = jsonData["results"][index]["title"].toStyledString();
-						data = site + Json::writeString(builder, jsonData["results"][index]["poster_path"]);
-						data.erase(remove(data.begin(), data.end(), '"'), data.end());
-						System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(data);
-						label3->Text = unmanaged;
-
-						MyUserControl^ uc = gcnew MyUserControl(index, DownloadImage(unmanaged), msclr::interop::marshal_as<System::String^>(title));
-						this->flowLayoutPanel1->Controls->Add(uc);
-					///*Image^ image = Image::FromFile(unmanaged);
-					//panel1->BackgroundImage = image;*/
-				}
-			}
-		}
 #pragma endregion
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		Dashboard^ menu_ = gcnew Dashboard();
+		menu_->Dock = DockStyle::Fill;
+		this->panelContent->Controls->Clear();
+		this->panelContent->Controls->Add(menu_);
+	}
+	private: System::Void moviesBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		/*string discoverUrl = "https://api.themoviedb.org/3/discover/movie?api_key=10f96818301b77e61d73d48aa20d81f9&page=";
 		int indexPage;
-		
+		this->panelContent->Controls->Clear();
+		FlowLayoutPanel^ flowLayoutPanel1;
+		flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel);
+		flowLayoutPanel1->AutoScroll = true;
+		flowLayoutPanel1->Location = System::Drawing::Point(39, 37);
+		flowLayoutPanel1->Dock = DockStyle::Fill;
+		flowLayoutPanel1->Name = L"flowLayoutPanel1";
+		flowLayoutPanel1->Size = System::Drawing::Size(1397, 888);
+		flowLayoutPanel1->TabIndex = 3;
+		flowLayoutPanel1->WrapContents = true;
+		panelContent->Controls->Add(flowLayoutPanel1);
 		for (int i = 1;i <= 1;i++)
-		{  
+		{
 			for (int j = 1;j <= 19;j++)
 			{
 				stringstream ss;
@@ -392,11 +339,11 @@ namespace Project5 {
 				indexPage = i;
 				ss << indexPage;
 				ss >> indexStri;
-				getInformations(j, indexStri);
-				
+				getInformations(j, discoverUrl, indexStri,flowLayoutPanel1,"title");
+
 			}
-		}
+		}*/
 	}
-	};
+};
 	
 }
