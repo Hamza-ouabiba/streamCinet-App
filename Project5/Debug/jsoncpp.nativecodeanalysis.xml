@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\MT\Documents\code blocks\C++\OOP\Movie app\Stream-it\streamCinet-App\Project5\dist\</FILEPATH>
+      <FILENAME>jsoncpp.cpp</FILENAME>
+      <LINE>2553</LINE>
+      <COLUMN>20</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>Buffer overrun while writing to 'newString'.</DESCRIPTION>
+    <FUNCTION>Json::duplicateStringValue</FUNCTION>
+    <DECORATED>?duplicateStringValue@?A0x73a07054@Json@@$$FYAPADPBDI@Z</DECORATED>
+    <FUNCLINE>2541</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>C:\Users\MT\Documents\code blocks\C++\OOP\Movie app\Stream-it\streamCinet-App\Project5\dist\</FILEPATH>
+        <FILENAME>jsoncpp.cpp</FILENAME>
+        <LINE>2547</LINE>
+        <COLUMN>7</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>'length' is an Input to 'malloc' (declared at c:\program files (x86)\windows kits\10\include\10.0.19041.0\ucrt\corecrt_malloc.h:101)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\MT\Documents\code blocks\C++\OOP\Movie app\Stream-it\streamCinet-App\Project5\dist\</FILEPATH>
+        <FILENAME>jsoncpp.cpp</FILENAME>
+        <LINE>2544</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\MT\Documents\code blocks\C++\OOP\Movie app\Stream-it\streamCinet-App\Project5\dist\</FILEPATH>
+        <FILENAME>jsoncpp.cpp</FILENAME>
+        <LINE>2547</LINE>
+        <COLUMN>7</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'newString' is a 0 byte array</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\MT\Documents\code blocks\C++\OOP\Movie app\Stream-it\streamCinet-App\Project5\dist\</FILEPATH>
+        <FILENAME>jsoncpp.cpp</FILENAME>
+        <LINE>2548</LINE>
+        <COLUMN>16</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'newString==0' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\MT\Documents\code blocks\C++\OOP\Movie app\Stream-it\streamCinet-App\Project5\dist\</FILEPATH>
+        <FILENAME>jsoncpp.cpp</FILENAME>
+        <LINE>2552</LINE>
+        <COLUMN>8</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>'length' is an Input to 'memcpy' (declared at c:\program files\microsoft visual studio\2022\community\vc\tools\msvc\14.34.31933\include\vcruntime_string.h:43)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\MT\Documents\code blocks\C++\OOP\Movie app\Stream-it\streamCinet-App\Project5\dist\</FILEPATH>
+        <FILENAME>jsoncpp.cpp</FILENAME>
+        <LINE>2553</LINE>
+        <COLUMN>20</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid write to 'newString', (outside its writable range)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+</DEFECTS>

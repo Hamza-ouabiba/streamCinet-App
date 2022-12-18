@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="My_Library">
+      <UniqueIdentifier>{f2a48a4c-687d-4e12-8ca1-98709b840c6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="My_Library\Class">
+      <UniqueIdentifier>{e98909a8-7670-4fdd-984f-db0bfbe38e86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main_UserControl">
+      <UniqueIdentifier>{98c54d2a-43f3-4599-b85c-c124b3e5b69e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp">
@@ -21,14 +30,20 @@
     <ClCompile Include="dist\jsoncpp.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="MyLibrary.cpp">
+      <Filter>My_Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Movie_UC.cpp">
+      <Filter>My_Library</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassData.cpp">
+      <Filter>My_Library\Class</Filter>
+    </ClCompile>
     <ClCompile Include="MyUserControl.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClCompile>
-    <ClCompile Include="Dashboard.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Mani.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Display.cpp">
+      <Filter>Main_UserControl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,14 +59,20 @@
     <ClInclude Include="resource.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="MyLibrary.h">
+      <Filter>My_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Movie_UC.h">
+      <Filter>My_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassData.h">
+      <Filter>My_Library\Class</Filter>
+    </ClInclude>
     <ClInclude Include="MyUserControl.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Dashboard.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Mani.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="Display.h">
+      <Filter>Main_UserControl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
