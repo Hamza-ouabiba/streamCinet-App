@@ -3,7 +3,6 @@
 #include "json/json.h"
 #include "MyUserControl.h"
 #include <msclr/marshal_cppstd.h>
-#include "MyUserControl.h"
 namespace
 {
 	std::size_t callback(
@@ -25,65 +24,63 @@ using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
 
-
 public ref class Mani
 {
 public: 
 	Mani(){}
-	void getInformations(int index, string url_, string page, FlowLayoutPanel^ flowP, string type)
+	Json::Value getInformations( string url_ , string type)
 	{
-		CURL* curl = curl_easy_init();
-		std::string url(url_ + page);
-		Json::Value ra;
-		curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-
-		// Don't bother trying IPv6, which would increase DNS resolution time.
-		curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
-
-		// Don't wait forever, time out after 10 seconds.
-		curl_easy_setopt(curl, CURLOPT_TIMEOUT, 10);
-
-		// Follow HTTP redirects if necessary.
-		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-
-		// Response information.
-		long httpCode(0);
-		std::unique_ptr<std::string> httpData(new std::string());
-
-		// Hook up data handling function.
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, callback);
-
-		// Hook up data container (will be passed as the last parameter to the
-		// callback handling function).  Can be any pointer type, since it will
-		// internally be passed as a void pointer.
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, httpData.get());
-
-		// Run our HTTP GET command, capture the HTTP response code, and clean up.
-		curl_easy_perform(curl);
-		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
-		curl_easy_cleanup(curl);
-
-		if (httpCode == 200)
+		try
 		{
-			// Response looks good - done using Curl now.  Try to parse the results
-			// and print them out.
-			//jsonData["results"][i]["original_title"]
+			CURL* curl = curl_easy_init();
+			std::string url(url_);
 			Json::Value jsonData;
-			Json::Reader jsonReader;
-			stringstream ss;
-			string data;
-			string site = "https://image.tmdb.org/t/p/w500";
-			Json::StreamWriterBuilder builder;
-			builder["indentation"] = "";
-			if (jsonReader.parse(*httpData.get(), jsonData))
+			curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+
+			// Don't bother trying IPv6, which would increase DNS resolution time.
+			curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+
+			// Don't wait forever, time out after 10 seconds.
+			curl_easy_setopt(curl, CURLOPT_TIMEOUT, 10);
+
+			// Follow HTTP redirects if necessary.
+			curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+
+			// Response information.
+			long httpCode(0);
+			std::unique_ptr<std::string> httpData(new std::string());
+
+			// Hook up data handling function.
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, callback);
+
+			// Hook up data container (will be passed as the last parameter to the
+			// callback handling function).  Can be any pointer type, since it will
+			// internally be passed as a void pointer.
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, httpData.get());
+
+			// Run our HTTP GET command, capture the HTTP response code, and clean up.
+			curl_easy_perform(curl);
+			curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
+			curl_easy_cleanup(curl);
+
+			if (httpCode == 200)
 			{
-				string title = jsonData["results"][index][type].toStyledString();
-				data = site + Json::writeString(builder, jsonData["results"][index]["poster_path"]);
-				data.erase(remove(data.begin(), data.end(), '"'), data.end());
-				System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(data);
-				Project5::MyUserControl^ uc = gcnew Project5::MyUserControl(index, DownloadImage(unmanaged), msclr::interop::marshal_as<System::String^>(title));
-				flowP->Controls->Add(uc);
+				// Response looks good - done using Curl now.  Try to parse the results
+				// and print them out.
+				//jsonData["results"][i]["original_title"]
+
+				Json::Reader jsonReader;
+				stringstream ss;
+				string data;
+				Json::StreamWriterBuilder builder;
+				builder["indentation"] = "";
+				if (jsonReader.parse(*httpData.get(), jsonData));
 			}
+			return jsonData;
+		}
+		catch (System::Exception^ ex)
+		{
+			
 		}
 	}
 	System::Drawing::Image^ DownloadImage(System::String^ _URL)
@@ -123,6 +120,70 @@ public:
 		}
 
 		return _tmpImage;
+	}
+	int randomNumber()
+	{
+		srand(time(NULL));
+		return rand() % 20;
+	}
+	void ShowBackGroundImageDashBoard(string url_,Panel^ flowP,Label^ over)
+	{
+		CURL* curl = curl_easy_init();
+		std::string url(url_);
+		Json::Value ra;
+		curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+
+		// Don't bother trying IPv6, which would increase DNS resolution time.
+		curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+
+		// Don't wait forever, time out after 10 seconds.
+		curl_easy_setopt(curl, CURLOPT_TIMEOUT, 10);
+
+		// Follow HTTP redirects if necessary.
+		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+
+		// Response information.
+		long httpCode(0);
+		std::unique_ptr<std::string> httpData(new std::string());
+
+		// Hook up data handling function.
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, callback);
+
+		// Hook up data container (will be passed as the last parameter to the
+		// callback handling function).  Can be any pointer type, since it will
+		// internally be passed as a void pointer.
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, httpData.get());
+
+		// Run our HTTP GET command, capture the HTTP response code, and clean up.
+		curl_easy_perform(curl);
+		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
+		curl_easy_cleanup(curl);
+
+		if (httpCode == 200)
+		{
+			// Response looks good - done using Curl now.  Try to parse the results
+			// and print them out.
+			//jsonData["results"][i]["original_title"]
+			Json::Value jsonData;
+			Json::Reader jsonReader;
+			string data;
+			//changing size of image : with w1280
+			string site = "https://image.tmdb.org/t/p/w1280";
+			Json::StreamWriterBuilder builder;
+			string overview;
+			String^ overPase;
+			builder["indentation"] = "";
+			if (jsonReader.parse(*httpData.get(), jsonData))
+			{
+				data = site + Json::writeString(builder, jsonData["results"][randomNumber()]["backdrop_path"]);
+				data.erase(remove(data.begin(), data.end(), '"'), data.end());
+				System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(data);
+				flowP->BackgroundImage = DownloadImage(unmanaged);
+				overview = jsonData["results"][randomNumber()]["overview"].toStyledString();
+				overPase = msclr::interop::marshal_as<System::String^>(overview);
+				over->Text = overPase;
+			}
+		}
 	}
 };
 

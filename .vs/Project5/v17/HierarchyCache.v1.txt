@@ -3,9 +3,66 @@ i:{00000000-0000-0000-0000-000000000000}:Project5.sln
 ++Project5
 i:{00000000-0000-0000-0000-000000000000}:Project5
 ++Références
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:{99F1867F-07D6-4318-9D8C-9594ABE9B1BD}
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:{CA9CE4EB-A41E-4EBB-A093-5B3BFD7E07AF}
 ++Dépendances externes
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:{15914769-2C3D-430A-AB8B-22A299219EDA}
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:{E5B4104F-DD9C-46DC-B4F7-43604F1098AC}
+++Fichiers de ressources
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:Fichiers de ressources
+++Resource.rc
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\Resource.rc
+++Ressource.resx
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\Ressource.resx
+++Fichiers d'en-tête
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:Fichiers d'en-tête
+++DashBoard.h
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\DashBoard.h
+++DashBoard.resx
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\DashBoard.resx
+++DiscoverUser.h
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\DiscoverUser.h
+++json.h
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\dist\json\json.h
+e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\PROJECTS\TRAINING\PROJECT5\PROJECT5\INCLUDE\JSON\JSON.H
+++json-forwards.h
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\dist\json\json-forwards.h
+++Mani.h
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\Mani.h
+++MovieUc.h
+++MyForm.h
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\MyForm.h
+++MyForm.resx
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\MyForm.resx
+++MyUserControl.h
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\MyUserControl.h
+++resource.h
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\resource.h
+++Fichiers sources
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:Fichiers sources
+++DashBoard.cpp
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\DashBoard.cpp
+++DiscoverUser.cpp
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\DiscoverUser.cpp
+++jsoncpp.cpp
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\dist\jsoncpp.cpp
+++Mani.cpp
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\Mani.cpp
+++MovieUc.cpp
+++MyForm.cpp
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\MyForm.cpp
+++MyUserControl.cpp
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\MyUserControl.cpp
+++mscorlib
+e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\mscorlib.dll
+++System
+e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll
+++System.Data
+e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Data.dll
+++System.Drawing
+e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Drawing.dll
+++System.Windows.Forms
+e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Windows.Forms.dll
+++System.Xml
+e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Xml.dll
 ++__msvc_system_error_abi.hpp
 e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\PROGRAM FILES\MICROSOFT VISUAL STUDIO\2022\COMMUNITY\VC\TOOLS\MSVC\14.31.31103\INCLUDE\__MSVC_SYSTEM_ERROR_ABI.HPP
 ++__msvc_xlocinfo_types.hpp
@@ -193,8 +250,8 @@ e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\PROGRAM FILES (X86)\WINDOWS KITS\10\
 ++forwards.h
 e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\PROJECTS\TRAINING\PROJECT5\PROJECT5\INCLUDE\JSON\FORWARDS.H
 ++gcroot.h
-e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\PROGRAM FILES\MICROSOFT VISUAL STUDIO\2022\COMMUNITY\VC\TOOLS\MSVC\14.31.31103\INCLUDE\GCROOT.H
 e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\PROGRAM FILES\MICROSOFT VISUAL STUDIO\2022\COMMUNITY\VC\TOOLS\MSVC\14.31.31103\INCLUDE\MSCLR\GCROOT.H
+e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\PROGRAM FILES\MICROSOFT VISUAL STUDIO\2022\COMMUNITY\VC\TOOLS\MSVC\14.31.31103\INCLUDE\GCROOT.H
 ++guiddef.h
 e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\SHARED\GUIDDEF.H
 ++handleapi.h
@@ -245,9 +302,6 @@ e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\PROGRAM FILES (X86)\WINDOWS KITS\10\
 e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UM\JOBAPI2.H
 ++joystickapi.h
 e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UM\JOYSTICKAPI.H
-++json.h
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\dist\json\json.h
-e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\PROJECTS\TRAINING\PROJECT5\PROJECT5\INCLUDE\JSON\JSON.H
 ++json_features.h
 e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\PROJECTS\TRAINING\PROJECT5\PROJECT5\INCLUDE\JSON\JSON_FEATURES.H
 ++kernelspecs.h
@@ -306,8 +360,6 @@ e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\PROGRAM FILES (X86)\REFERENCE ASSEMB
 e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UM\MSXML.H
 ++multi.h
 e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\CURL-7.70.0\BUILDS\LIBCURL-VC-X86-RELEASE-STATIC-IPV6-SSPI-WINSSL\INCLUDE\CURL\MULTI.H
-++MyUserControl.h
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\MyUserControl.h
 ++namedpipeapi.h
 e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UM\NAMEDPIPEAPI.H
 ++namespaceapi.h
@@ -676,48 +728,16 @@ e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\PROGRAM FILES\MICROSOFT VISUAL STUDI
 e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\PROGRAM FILES\MICROSOFT VISUAL STUDIO\2022\COMMUNITY\VC\TOOLS\MSVC\14.31.31103\INCLUDE\YVALS_CORE.H
 ++zmmintrin.h
 e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\PROGRAM FILES\MICROSOFT VISUAL STUDIO\2022\COMMUNITY\VC\TOOLS\MSVC\14.31.31103\INCLUDE\ZMMINTRIN.H
-++Fichiers de ressources
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:Fichiers de ressources
-++Resource.rc
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\Resource.rc
-++Ressource.resx
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\Ressource.resx
-++Fichiers d'en-tête
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:Fichiers d'en-tête
-++Dashboard.h
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\Dashboard.h
-++Dashboard.resx
-++json-forwards.h
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\dist\json\json-forwards.h
-++ManipulateData.h
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\ManipulateData.h
-++MyForm.h
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\MyForm.h
-++MyForm.resx
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\MyForm.resx
-++resource.h
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\resource.h
-++Fichiers sources
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:Fichiers sources
-++Dashboard.cpp
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\Dashboard.cpp
-++jsoncpp.cpp
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\dist\jsoncpp.cpp
-++ManipulateData.cpp
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\ManipulateData.cpp
-++MyForm.cpp
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\MyForm.cpp
-++MyUserControl.cpp
-i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\MyUserControl.cpp
-++mscorlib
-e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\mscorlib.dll
-++System
-e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll
-++System.Data
-e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Data.dll
-++System.Drawing
-e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Drawing.dll
-++System.Windows.Forms
-e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Windows.Forms.dll
-++System.Xml
-e:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Xml.dll
+++DiscoverUser.resx
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\DiscoverUser.resx
+++MovieUc.resx
+++MovieSerie.h
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\MovieSerie.h
+++MovieSerie.cpp
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\MovieSerie.cpp
+++ViewMovie.cpp
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\ViewMovie.cpp
+++ViewMovie.h
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\ViewMovie.h
+++ViewMovie.resx
+i:{170de228-0ba9-4a7f-a84f-efd60ac0cadd}:D:\projects\training\Project5\Project5\ViewMovie.resx

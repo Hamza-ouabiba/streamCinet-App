@@ -3,7 +3,8 @@
 #include"json/json.h"
 #include <msclr/marshal_cppstd.h>
 #include "MyUserControl.h"
-#include "Dashboard.h"
+#include "DashBoard.h"
+#include "DiscoverUser.h"
 using namespace std;
 using namespace System::Drawing::Imaging;
 using namespace System;
@@ -22,6 +23,7 @@ namespace Project5 {
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
+		Mani^ l = gcnew Mani();
 	public:
 		MyForm(void)
 		{
@@ -42,33 +44,19 @@ namespace Project5 {
 				delete components;
 			}
 		}
-
 	protected:
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Panel^ panel1;
-	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Button^ seriesBtn;
 
-	private: System::Windows::Forms::Button^ moviesBtn;
 
-	private: System::Windows::Forms::Button^ button5;
 	private: System::Windows::Forms::Panel^ panel2;
-	private: System::Windows::Forms::Button^ button8;
-	private: System::Windows::Forms::Button^ button7;
-	private: System::Windows::Forms::Button^ button6;
+	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ libraryBtn;
+	private: System::Windows::Forms::Button^ menuBtn;
+
+	private: System::Windows::Forms::Button^ discoverBtn;
 	private: System::Windows::Forms::Panel^ panelContent;
-
-
-
-
-	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel3;
-
-
-
 	protected:
 	private:
 		/// <summary>
@@ -86,22 +74,13 @@ namespace Project5 {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->button5 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->seriesBtn = (gcnew System::Windows::Forms::Button());
-			this->moviesBtn = (gcnew System::Windows::Forms::Button());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
-			this->button8 = (gcnew System::Windows::Forms::Button());
-			this->button7 = (gcnew System::Windows::Forms::Button());
-			this->button6 = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->libraryBtn = (gcnew System::Windows::Forms::Button());
+			this->menuBtn = (gcnew System::Windows::Forms::Button());
+			this->discoverBtn = (gcnew System::Windows::Forms::Button());
 			this->panelContent = (gcnew System::Windows::Forms::Panel());
-			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->flowLayoutPanel3 = (gcnew System::Windows::Forms::FlowLayoutPanel());
-			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
-			this->panelContent->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// label3
@@ -134,164 +113,96 @@ namespace Project5 {
 			this->label1->Text = L"label1";
 			this->label1->UseWaitCursor = true;
 			// 
-			// panel1
-			// 
-			this->panel1->Controls->Add(this->button5);
-			this->panel1->Controls->Add(this->button4);
-			this->panel1->Controls->Add(this->button3);
-			this->panel1->Controls->Add(this->seriesBtn);
-			this->panel1->Controls->Add(this->moviesBtn);
-			this->panel1->Location = System::Drawing::Point(-5, 93);
-			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(252, 950);
-			this->panel1->TabIndex = 4;
-			this->panel1->UseWaitCursor = true;
-			// 
-			// button5
-			// 
-			this->button5->Location = System::Drawing::Point(23, 292);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(214, 47);
-			this->button5->TabIndex = 4;
-			this->button5->Text = L"Top Rated";
-			this->button5->UseVisualStyleBackColor = true;
-			this->button5->UseWaitCursor = true;
-			// 
-			// button4
-			// 
-			this->button4->Location = System::Drawing::Point(23, 226);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(214, 47);
-			this->button4->TabIndex = 3;
-			this->button4->Text = L"Popular";
-			this->button4->UseVisualStyleBackColor = true;
-			this->button4->UseWaitCursor = true;
-			// 
-			// button3
-			// 
-			this->button3->Location = System::Drawing::Point(23, 161);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(214, 47);
-			this->button3->TabIndex = 2;
-			this->button3->Text = L"Latest";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->UseWaitCursor = true;
-			// 
-			// seriesBtn
-			// 
-			this->seriesBtn->Location = System::Drawing::Point(23, 91);
-			this->seriesBtn->Name = L"seriesBtn";
-			this->seriesBtn->Size = System::Drawing::Size(214, 47);
-			this->seriesBtn->TabIndex = 1;
-			this->seriesBtn->Text = L"Series";
-			this->seriesBtn->UseVisualStyleBackColor = true;
-			this->seriesBtn->UseWaitCursor = true;
-			// 
-			// moviesBtn
-			// 
-			this->moviesBtn->Location = System::Drawing::Point(23, 18);
-			this->moviesBtn->Name = L"moviesBtn";
-			this->moviesBtn->Size = System::Drawing::Size(214, 47);
-			this->moviesBtn->TabIndex = 0;
-			this->moviesBtn->Text = L"Movies";
-			this->moviesBtn->UseVisualStyleBackColor = true;
-			this->moviesBtn->UseWaitCursor = true;
-			this->moviesBtn->Click += gcnew System::EventHandler(this, &MyForm::moviesBtn_Click);
-			// 
 			// panel2
 			// 
-			this->panel2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->panel2->BackColor = System::Drawing::Color::Black;
-			this->panel2->Controls->Add(this->button8);
-			this->panel2->Controls->Add(this->button7);
-			this->panel2->Controls->Add(this->button6);
-			this->panel2->Location = System::Drawing::Point(3, 1);
+			this->panel2->BackColor = System::Drawing::Color::Transparent;
+			this->panel2->Controls->Add(this->button1);
+			this->panel2->Controls->Add(this->libraryBtn);
+			this->panel2->Controls->Add(this->menuBtn);
+			this->panel2->Controls->Add(this->discoverBtn);
+			this->panel2->Dock = System::Windows::Forms::DockStyle::Top;
+			this->panel2->Location = System::Drawing::Point(0, 0);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(1485, 53);
-			this->panel2->TabIndex = 5;
-			this->panel2->UseWaitCursor = true;
+			this->panel2->Size = System::Drawing::Size(1333, 50);
+			this->panel2->TabIndex = 6;
 			// 
-			// button8
+			// button1
 			// 
-			this->button8->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button8->ForeColor = System::Drawing::Color::Transparent;
-			this->button8->Location = System::Drawing::Point(461, 3);
-			this->button8->Name = L"button8";
-			this->button8->Size = System::Drawing::Size(205, 50);
-			this->button8->TabIndex = 2;
-			this->button8->Text = L"Discovery";
-			this->button8->UseVisualStyleBackColor = true;
-			this->button8->UseWaitCursor = true;
-			// 
-			// button7
-			// 
-			this->button7->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button7->ForeColor = System::Drawing::Color::MediumBlue;
-			this->button7->Location = System::Drawing::Point(0, 0);
-			this->button7->Name = L"button7";
-			this->button7->Size = System::Drawing::Size(205, 50);
-			this->button7->TabIndex = 1;
-			this->button7->Text = L"StreamCinet";
-			this->button7->UseVisualStyleBackColor = true;
-			this->button7->UseWaitCursor = true;
+			this->button1->ForeColor = System::Drawing::Color::Gold;
+			this->button1->Location = System::Drawing::Point(662, 0);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(205, 53);
+			this->button1->TabIndex = 7;
+			this->button1->Text = L"Calendar";
+			this->button1->UseVisualStyleBackColor = true;
 			// 
-			// button6
+			// libraryBtn
 			// 
-			this->button6->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button6->ForeColor = System::Drawing::Color::Transparent;
-			this->button6->Location = System::Drawing::Point(260, 3);
-			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(205, 50);
-			this->button6->TabIndex = 0;
-			this->button6->Text = L"Discovery";
-			this->button6->UseVisualStyleBackColor = true;
-			this->button6->UseWaitCursor = true;
+			this->libraryBtn->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->libraryBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->libraryBtn->ForeColor = System::Drawing::Color::Gold;
+			this->libraryBtn->Location = System::Drawing::Point(461, 0);
+			this->libraryBtn->Name = L"libraryBtn";
+			this->libraryBtn->Size = System::Drawing::Size(205, 53);
+			this->libraryBtn->TabIndex = 2;
+			this->libraryBtn->Text = L"My Library";
+			this->libraryBtn->UseVisualStyleBackColor = true;
+			// 
+			// menuBtn
+			// 
+			this->menuBtn->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->menuBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->menuBtn->ForeColor = System::Drawing::Color::Yellow;
+			this->menuBtn->Location = System::Drawing::Point(0, 0);
+			this->menuBtn->Name = L"menuBtn";
+			this->menuBtn->Size = System::Drawing::Size(205, 50);
+			this->menuBtn->TabIndex = 1;
+			this->menuBtn->Text = L"StreamCinet";
+			this->menuBtn->UseVisualStyleBackColor = true;
+			this->menuBtn->Click += gcnew System::EventHandler(this, &MyForm::menuBtn_Click);
+			// 
+			// discoverBtn
+			// 
+			this->discoverBtn->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->discoverBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->discoverBtn->ForeColor = System::Drawing::Color::Gold;
+			this->discoverBtn->Location = System::Drawing::Point(260, 0);
+			this->discoverBtn->Name = L"discoverBtn";
+			this->discoverBtn->Size = System::Drawing::Size(205, 53);
+			this->discoverBtn->TabIndex = 0;
+			this->discoverBtn->Text = L"Discovery";
+			this->discoverBtn->UseVisualStyleBackColor = true;
+			this->discoverBtn->Click += gcnew System::EventHandler(this, &MyForm::discoverBtn_Click_1);
 			// 
 			// panelContent
 			// 
-			this->panelContent->Controls->Add(this->label6);
-			this->panelContent->Controls->Add(this->flowLayoutPanel3);
-			this->panelContent->Location = System::Drawing::Point(253, 93);
+			this->panelContent->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->panelContent->AutoScroll = true;
+			this->panelContent->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->panelContent->Location = System::Drawing::Point(3, 57);
 			this->panelContent->Name = L"panelContent";
-			this->panelContent->Size = System::Drawing::Size(1456, 1017);
+			this->panelContent->Size = System::Drawing::Size(1330, 500);
 			this->panelContent->TabIndex = 6;
-			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label6->ForeColor = System::Drawing::SystemColors::ControlDark;
-			this->label6->Location = System::Drawing::Point(33, 847);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(133, 25);
-			this->label6->TabIndex = 5;
-			this->label6->Text = L"Latest Movies";
-			this->label6->UseWaitCursor = true;
-			// 
-			// flowLayoutPanel3
-			// 
-			this->flowLayoutPanel3->AutoScroll = true;
-			this->flowLayoutPanel3->Location = System::Drawing::Point(31, 893);
-			this->flowLayoutPanel3->Name = L"flowLayoutPanel3";
-			this->flowLayoutPanel3->Size = System::Drawing::Size(1408, 348);
-			this->flowLayoutPanel3->TabIndex = 4;
-			this->flowLayoutPanel3->UseWaitCursor = true;
-			this->flowLayoutPanel3->WrapContents = false;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScroll = true;
+			this->AutoScrollMargin = System::Drawing::Size(2, 10);
+			this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->BackColor = System::Drawing::Color::Black;
-			this->ClientSize = System::Drawing::Size(1723, 1055);
-			this->Controls->Add(this->panelContent);
+			this->ClientSize = System::Drawing::Size(1333, 599);
 			this->Controls->Add(this->panel2);
-			this->Controls->Add(this->panel1);
+			this->Controls->Add(this->panelContent);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
@@ -299,50 +210,31 @@ namespace Project5 {
 			this->Text = L"MyForm";
 			this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
-			this->panel1->ResumeLayout(false);
 			this->panel2->ResumeLayout(false);
-			this->panelContent->ResumeLayout(false);
-			this->panelContent->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
-		
 #pragma endregion
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
-		Dashboard^ menu_ = gcnew Dashboard();
-		menu_->Dock = DockStyle::Fill;
+		DashBoard^ menu_ = gcnew DashBoard();
 		this->panelContent->Controls->Clear();
+		menu_->Dock = DockStyle::Fill;
 		this->panelContent->Controls->Add(menu_);
 	}
 	private: System::Void moviesBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		/*string discoverUrl = "https://api.themoviedb.org/3/discover/movie?api_key=10f96818301b77e61d73d48aa20d81f9&page=";
-		int indexPage;
+	}
+	private: System::Void discoverBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		
+	}
+	private: System::Void discoverBtn_Click_1(System::Object^ sender, System::EventArgs^ e) {
+		DiscoverUser^ du = gcnew DiscoverUser();
 		this->panelContent->Controls->Clear();
-		FlowLayoutPanel^ flowLayoutPanel1;
-		flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel);
-		flowLayoutPanel1->AutoScroll = true;
-		flowLayoutPanel1->Location = System::Drawing::Point(39, 37);
-		flowLayoutPanel1->Dock = DockStyle::Fill;
-		flowLayoutPanel1->Name = L"flowLayoutPanel1";
-		flowLayoutPanel1->Size = System::Drawing::Size(1397, 888);
-		flowLayoutPanel1->TabIndex = 3;
-		flowLayoutPanel1->WrapContents = true;
-		panelContent->Controls->Add(flowLayoutPanel1);
-		for (int i = 1;i <= 1;i++)
-		{
-			for (int j = 1;j <= 19;j++)
-			{
-				stringstream ss;
-				string indexStri;
-				cout << "index page = " << i;
-				indexPage = i;
-				ss << indexPage;
-				ss >> indexStri;
-				getInformations(j, discoverUrl, indexStri,flowLayoutPanel1,"title");
-
-			}
-		}*/
+		du->Dock = DockStyle::Fill;
+		this->panelContent->Controls->Add(du);
+	}
+	private: System::Void menuBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		MyForm_Load(sender, e);
 	}
 };
 	

@@ -1,4 +1,7 @@
 #pragma once
+#include "Movie.h"
+#include "ViewMovie.h"
+#include "Serie.h"
 using namespace System;
 using namespace System::Windows::Forms;
 using namespace System::Data;
@@ -9,21 +12,47 @@ namespace Project5 {
 	/// </summary>
 	public ref class MyUserControl : public System::Windows::Forms::UserControl
 	{
+	private:
+		Movie^ movie_;
+		Serie^ serie_;
 		int index;
-		String^ title;
 	public:
-		MyUserControl(int index,System::Drawing::Image^ image_,String^ title)
+		
+		MyUserControl(int index,Movie^ movie)
 		{
 			InitializeComponent();
-			this->button1->BackgroundImage = image_;
-			this->button1->Text = title;
+			this->movie_ = movie;
 			this->index = index;
-			this->title = title;
+			this->button1->BackgroundImage = movie->GetPoster();
+			this->button1->Text = movie->GetTitle();
+			serie_ = gcnew Serie();
+			serie_->SetName("");
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
 		}
-
+		MyUserControl(int index, Serie^ serie)
+		{
+			InitializeComponent();
+			this->serie_ = serie;
+			this->index = index;
+			this->button1->BackgroundImage = serie->GetPoster();
+			this->button1->Text = serie->GetName();
+			movie_ = gcnew Movie();
+			movie_->SetTitle("");
+			//
+			//TODO: ajoutez ici le code du constructeur
+			//
+		}
+	public: 
+		void setMovieTitle(String^ title)
+		{
+			this->movie_->SetTitle(title);
+		}
+		void setSerieTitle(String^ Name)
+		{
+			this->serie_->SetName(Name);
+		}
 	protected:
 		/// <summary>
 		/// Nettoyage des ressources utilisées.
@@ -83,8 +112,16 @@ namespace Project5 {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		MessageBox::Show(this->title);
-
+		if (movie_->GetTitle() != "")
+		{
+			ViewMovie^ vm = gcnew ViewMovie(this->movie_);
+			vm->Show();
+		}
+		else
+		{
+			ViewMovie^ vs = gcnew ViewMovie(this->serie_);
+			vs->Show();
+		}
 	}
 	};
 }
