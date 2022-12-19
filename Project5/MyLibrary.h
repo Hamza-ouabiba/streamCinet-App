@@ -115,6 +115,7 @@ namespace Project5 {
 			// 
 			// flowLayoutPanel1
 			// 
+			this->flowLayoutPanel1->AutoScroll = true;
 			this->flowLayoutPanel1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->flowLayoutPanel1->Location = System::Drawing::Point(0, 59);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
@@ -124,8 +125,7 @@ namespace Project5 {
 			// 
 			// MyLibrary
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Inherit;
 			this->Controls->Add(this->flowLayoutPanel1);
 			this->Controls->Add(this->panel1);
 			this->Name = L"MyLibrary";

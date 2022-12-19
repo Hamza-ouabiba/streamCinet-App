@@ -1,1 +1,6 @@
-﻿  Project5.vcxproj -> C:\Users\MT\Documents\code blocks\C++\OOP\Movie app\Stream-it\streamCinet-App\Debug\Project5.exe
+﻿  Display.cpp
+  MyForm.cpp
+C:\Users\MT\Documents\code blocks\C++\OOP\Movie app\Stream-it\streamCinet-App\Project5\MyLibrary.h(156,40): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  ClassData.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  Project5.vcxproj -> C:\Users\MT\Documents\code blocks\C++\OOP\Movie app\Stream-it\streamCinet-App\Debug\Project5.exe

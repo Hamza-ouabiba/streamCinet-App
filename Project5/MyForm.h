@@ -68,7 +68,7 @@ namespace Project5 {
 
 	private: System::Windows::Forms::Panel^ Main_Pannel;
 	private: System::Windows::Forms::Panel^ Display_Panel;
-	private: System::Windows::Forms::TableLayoutPanel^ tableLayoutPanel1;
+
 
 
 
@@ -98,19 +98,14 @@ namespace Project5 {
 			this->button7 = (gcnew System::Windows::Forms::Button());
 			this->button6 = (gcnew System::Windows::Forms::Button());
 			this->Main_Pannel = (gcnew System::Windows::Forms::Panel());
-			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->Display_Panel = (gcnew System::Windows::Forms::Panel());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
 			this->Main_Pannel->SuspendLayout();
-			this->tableLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// panel1
 			// 
-			this->panel1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
 			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(52)));
 			this->panel1->Controls->Add(this->button5);
@@ -118,10 +113,11 @@ namespace Project5 {
 			this->panel1->Controls->Add(this->button3);
 			this->panel1->Controls->Add(this->button2);
 			this->panel1->Controls->Add(this->button1);
-			this->panel1->Location = System::Drawing::Point(2, -1);
+			this->panel1->Dock = System::Windows::Forms::DockStyle::Left;
+			this->panel1->Location = System::Drawing::Point(0, 0);
 			this->panel1->Margin = System::Windows::Forms::Padding(2);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(156, 746);
+			this->panel1->Size = System::Drawing::Size(147, 741);
 			this->panel1->TabIndex = 4;
 			// 
 			// button5
@@ -131,7 +127,7 @@ namespace Project5 {
 			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button5->ForeColor = System::Drawing::Color::White;
-			this->button5->Location = System::Drawing::Point(9, 291);
+			this->button5->Location = System::Drawing::Point(2, 303);
 			this->button5->Margin = System::Windows::Forms::Padding(2);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(140, 38);
@@ -146,7 +142,7 @@ namespace Project5 {
 			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button4->ForeColor = System::Drawing::Color::White;
-			this->button4->Location = System::Drawing::Point(9, 234);
+			this->button4->Location = System::Drawing::Point(2, 246);
 			this->button4->Margin = System::Windows::Forms::Padding(2);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(140, 38);
@@ -161,7 +157,7 @@ namespace Project5 {
 			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button3->ForeColor = System::Drawing::Color::White;
-			this->button3->Location = System::Drawing::Point(9, 181);
+			this->button3->Location = System::Drawing::Point(2, 193);
 			this->button3->Margin = System::Windows::Forms::Padding(2);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(140, 38);
@@ -176,7 +172,7 @@ namespace Project5 {
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button2->ForeColor = System::Drawing::Color::White;
-			this->button2->Location = System::Drawing::Point(9, 126);
+			this->button2->Location = System::Drawing::Point(2, 138);
 			this->button2->Margin = System::Windows::Forms::Padding(2);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(140, 38);
@@ -191,7 +187,7 @@ namespace Project5 {
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button1->ForeColor = System::Drawing::Color::White;
-			this->button1->Location = System::Drawing::Point(9, 74);
+			this->button1->Location = System::Drawing::Point(2, 86);
 			this->button1->Margin = System::Windows::Forms::Padding(2);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(140, 38);
@@ -206,11 +202,11 @@ namespace Project5 {
 			this->panel2->Controls->Add(this->button8);
 			this->panel2->Controls->Add(this->button7);
 			this->panel2->Controls->Add(this->button6);
-			this->panel2->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->panel2->Location = System::Drawing::Point(2, 2);
+			this->panel2->Dock = System::Windows::Forms::DockStyle::Top;
+			this->panel2->Location = System::Drawing::Point(147, 0);
 			this->panel2->Margin = System::Windows::Forms::Padding(2);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(1345, 46);
+			this->panel2->Size = System::Drawing::Size(1079, 46);
 			this->panel2->TabIndex = 5;
 			// 
 			// button8
@@ -235,7 +231,7 @@ namespace Project5 {
 			this->button7->Location = System::Drawing::Point(0, 0);
 			this->button7->Margin = System::Windows::Forms::Padding(2);
 			this->button7->Name = L"button7";
-			this->button7->Size = System::Drawing::Size(154, 41);
+			this->button7->Size = System::Drawing::Size(142, 41);
 			this->button7->TabIndex = 1;
 			this->button7->Text = L"StreamCinet";
 			this->button7->UseVisualStyleBackColor = true;
@@ -258,39 +254,22 @@ namespace Project5 {
 			this->Main_Pannel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(52)));
 			this->Main_Pannel->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->Main_Pannel->Controls->Add(this->tableLayoutPanel1);
+			this->Main_Pannel->Controls->Add(this->Display_Panel);
+			this->Main_Pannel->Controls->Add(this->panel2);
 			this->Main_Pannel->Controls->Add(this->panel1);
 			this->Main_Pannel->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->Main_Pannel->Location = System::Drawing::Point(0, 0);
 			this->Main_Pannel->Name = L"Main_Pannel";
-			this->Main_Pannel->Size = System::Drawing::Size(1512, 786);
+			this->Main_Pannel->Size = System::Drawing::Size(1226, 741);
 			this->Main_Pannel->TabIndex = 7;
-			// 
-			// tableLayoutPanel1
-			// 
-			this->tableLayoutPanel1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->tableLayoutPanel1->ColumnCount = 1;
-			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				100)));
-			this->tableLayoutPanel1->Controls->Add(this->panel2, 0, 0);
-			this->tableLayoutPanel1->Controls->Add(this->Display_Panel, 0, 1);
-			this->tableLayoutPanel1->Location = System::Drawing::Point(163, -3);
-			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
-			this->tableLayoutPanel1->RowCount = 2;
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
-			this->tableLayoutPanel1->Size = System::Drawing::Size(1349, 785);
-			this->tableLayoutPanel1->TabIndex = 8;
 			// 
 			// Display_Panel
 			// 
 			this->Display_Panel->AutoScroll = true;
 			this->Display_Panel->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->Display_Panel->Location = System::Drawing::Point(3, 53);
+			this->Display_Panel->Location = System::Drawing::Point(147, 46);
 			this->Display_Panel->Name = L"Display_Panel";
-			this->Display_Panel->Size = System::Drawing::Size(1343, 729);
+			this->Display_Panel->Size = System::Drawing::Size(1079, 695);
 			this->Display_Panel->TabIndex = 7;
 			this->Display_Panel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel3_Paint);
 			// 
@@ -299,7 +278,7 @@ namespace Project5 {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->ClientSize = System::Drawing::Size(1512, 786);
+			this->ClientSize = System::Drawing::Size(1226, 741);
 			this->Controls->Add(this->Main_Pannel);
 			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"MyForm";
@@ -309,7 +288,6 @@ namespace Project5 {
 			this->panel1->ResumeLayout(false);
 			this->panel2->ResumeLayout(false);
 			this->Main_Pannel->ResumeLayout(false);
-			this->tableLayoutPanel1->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

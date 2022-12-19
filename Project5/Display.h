@@ -84,6 +84,7 @@ namespace Project5 {
 			// flowLayoutPanel1
 			// 
 			this->flowLayoutPanel1->AutoScroll = true;
+			this->flowLayoutPanel1->AutoSize = true;
 			this->flowLayoutPanel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(52)));
 			this->flowLayoutPanel1->Dock = System::Windows::Forms::DockStyle::Fill;
@@ -95,13 +96,15 @@ namespace Project5 {
 			// 
 			// Display
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Inherit;
+			this->AutoScroll = true;
+			this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->Controls->Add(this->flowLayoutPanel1);
 			this->Name = L"Display";
 			this->Size = System::Drawing::Size(1086, 714);
 			this->Load += gcnew System::EventHandler(this, &Display::Display_Load);
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 		System::Drawing::Image^ DownloadImage(System::String^ _URL)

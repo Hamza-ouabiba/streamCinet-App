@@ -19,10 +19,11 @@ namespace Project5 {
 	public:
 		bool Added;
 		Class_Movie^ Movie;
-		Movie_UC(Class_Movie^ MV) 
+		Movie_UC(Class_Movie^ MV ,bool stat) 
 		{
 			InitializeComponent();  
 			Movie = MV;
+			Added = stat;
 			this->Title_label->Text = Movie->GetTitle();
 			this->Overview_label->Text = Movie->GetOverview();
 			this->Rating_label->Text = Movie->GetRating().ToString();
@@ -288,7 +289,7 @@ namespace Project5 {
 			this->label10->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label10->ForeColor = System::Drawing::Color::White;
-			this->label10->Location = System::Drawing::Point(38, 396);
+			this->label10->Location = System::Drawing::Point(38, 382);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(89, 24);
 			this->label10->TabIndex = 12;
@@ -306,8 +307,9 @@ namespace Project5 {
 			this->Overview_label->ForeColor = System::Drawing::Color::White;
 			this->Overview_label->Location = System::Drawing::Point(70, 434);
 			this->Overview_label->Name = L"Overview_label";
-			this->Overview_label->Size = System::Drawing::Size(0, 28);
+			this->Overview_label->Size = System::Drawing::Size(156, 28);
 			this->Overview_label->TabIndex = 13;
+			this->Overview_label->Text = L"qcssssssssssss";
 			this->Overview_label->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			// 
 			// Title_label
@@ -347,11 +349,11 @@ namespace Project5 {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(1151, 652);
 			this->panel1->TabIndex = 15;
+			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Movie_UC::panel1_Paint);
 			// 
 			// Movie_UC
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Inherit;
 			this->AutoSize = true;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
@@ -383,6 +385,8 @@ private: System::Void BtnLibrary_AddRemove_Click(System::Object^ sender, System:
 	}
 	
 
+}
+private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 }
 };
 }

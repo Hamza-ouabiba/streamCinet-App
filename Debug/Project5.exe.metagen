@@ -51,7 +51,7 @@ Class Class_Serie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class Project5.Movie_UC: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
-    Void .ctor(Class_Movie): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Class_Movie, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
     Boolean Added : Public
     Class_Movie Movie : Public
@@ -64,6 +64,7 @@ Class Project5.MyUserControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
   Fields:
     Class_Movie Movie : Public
     System.Windows.Forms.Panel f : Public
+    Boolean Added : Public
 Class Project5.Display: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
     Void .ctor(System.Windows.Forms.Panel): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
