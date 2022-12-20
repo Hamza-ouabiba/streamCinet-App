@@ -1,4 +1,12 @@
-﻿  DiscoverUser.cpp
+﻿  DashBoard.cpp
+D:\projects\training\Project5\Project5\Mani.h(77,53): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+D:\projects\training\Project5\Project5\Mani.h(81,29): warning C4101: 'ex' : variable locale non référencée
+D:\projects\training\Project5\Project5\Mani.h(126,13): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+  DiscoverUser.cpp
+D:\projects\training\Project5\Project5\Mani.h(77,53): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+D:\projects\training\Project5\Project5\Mani.h(81,29): warning C4101: 'ex' : variable locale non référencée
+D:\projects\training\Project5\Project5\Mani.h(126,13): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+  Mani.cpp
 D:\projects\training\Project5\Project5\Mani.h(77,53): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
 D:\projects\training\Project5\Project5\Mani.h(81,29): warning C4101: 'ex' : variable locale non référencée
 D:\projects\training\Project5\Project5\Mani.h(126,13): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données

@@ -76,7 +76,7 @@ Class Mani: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     getInformations(Value*, basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, basic_string<char\,std::char_traits<char>\,std::allocator<char> >*): PrivateScope, Public, HideBySig
     DownloadImage(String): PrivateScope, Public, HideBySig
     randomNumber(): PrivateScope, Public, HideBySig
-    ShowBackGroundImageDashBoard(basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, Panel, Label): PrivateScope, Public, HideBySig
+    ShowBackGroundImageDashBoard(basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, Panel, RichTextBox): PrivateScope, Public, HideBySig
 Class Project5.DashBoard: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

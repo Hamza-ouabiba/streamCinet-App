@@ -40,9 +40,10 @@ namespace Project5 {
 	private: System::Windows::Forms::FlowLayoutPanel^ movie;
 	private: System::Windows::Forms::FlowLayoutPanel^ serie;
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Label^ overview;
+
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::RichTextBox^ overview;
 	protected:
 	protected:
 	protected:
@@ -64,12 +65,12 @@ namespace Project5 {
 		void InitializeComponent(void)
 		{
 			this->imagePanel = (gcnew System::Windows::Forms::Panel());
-			this->overview = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->movie = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->serie = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->overview = (gcnew System::Windows::Forms::RichTextBox());
 			this->imagePanel->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -82,20 +83,8 @@ namespace Project5 {
 			this->imagePanel->Controls->Add(this->button1);
 			this->imagePanel->Location = System::Drawing::Point(6, 3);
 			this->imagePanel->Name = L"imagePanel";
-			this->imagePanel->Size = System::Drawing::Size(1471, 549);
+			this->imagePanel->Size = System::Drawing::Size(1450, 576);
 			this->imagePanel->TabIndex = 3;
-			// 
-			// overview
-			// 
-			this->overview->AutoSize = true;
-			this->overview->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->overview->ForeColor = System::Drawing::SystemColors::Control;
-			this->overview->Location = System::Drawing::Point(135, 281);
-			this->overview->Name = L"overview";
-			this->overview->Size = System::Drawing::Size(53, 20);
-			this->overview->TabIndex = 1;
-			this->overview->Text = L"label1";
 			// 
 			// button1
 			// 
@@ -114,18 +103,18 @@ namespace Project5 {
 			// 
 			this->movie->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->movie->Location = System::Drawing::Point(6, 577);
+			this->movie->Location = System::Drawing::Point(6, 612);
 			this->movie->Name = L"movie";
-			this->movie->Size = System::Drawing::Size(1474, 277);
+			this->movie->Size = System::Drawing::Size(1453, 277);
 			this->movie->TabIndex = 4;
 			// 
 			// serie
 			// 
 			this->serie->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->serie->Location = System::Drawing::Point(6, 884);
+			this->serie->Location = System::Drawing::Point(6, 940);
 			this->serie->Name = L"serie";
-			this->serie->Size = System::Drawing::Size(1474, 277);
+			this->serie->Size = System::Drawing::Size(1453, 277);
 			this->serie->TabIndex = 5;
 			// 
 			// label1
@@ -134,7 +123,7 @@ namespace Project5 {
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::SystemColors::Control;
-			this->label1->Location = System::Drawing::Point(29, 555);
+			this->label1->Location = System::Drawing::Point(20, 582);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(62, 20);
 			this->label1->TabIndex = 6;
@@ -146,11 +135,24 @@ namespace Project5 {
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::SystemColors::Control;
-			this->label2->Location = System::Drawing::Point(34, 854);
+			this->label2->Location = System::Drawing::Point(28, 898);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(57, 20);
 			this->label2->TabIndex = 7;
 			this->label2->Text = L"Series";
+			// 
+			// overview
+			// 
+			this->overview->BackColor = System::Drawing::Color::Black;
+			this->overview->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->overview->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->overview->ForeColor = System::Drawing::Color::White;
+			this->overview->Location = System::Drawing::Point(122, 290);
+			this->overview->Name = L"overview";
+			this->overview->Size = System::Drawing::Size(772, 202);
+			this->overview->TabIndex = 1;
+			this->overview->Text = L"";
 			// 
 			// DashBoard
 			// 
@@ -164,10 +166,9 @@ namespace Project5 {
 			this->Controls->Add(this->movie);
 			this->Controls->Add(this->serie);
 			this->Name = L"DashBoard";
-			this->Size = System::Drawing::Size(1477, 1070);
+			this->Size = System::Drawing::Size(1456, 1070);
 			this->Load += gcnew System::EventHandler(this, &DashBoard::DashBoard_Load);
 			this->imagePanel->ResumeLayout(false);
-			this->imagePanel->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

@@ -126,7 +126,7 @@ public:
 		srand(time(NULL));
 		return rand() % 20;
 	}
-	void ShowBackGroundImageDashBoard(string url_,Panel^ flowP,Label^ over)
+	void ShowBackGroundImageDashBoard(string url_,Panel^ flowP,RichTextBox^ over)
 	{
 		CURL* curl = curl_easy_init();
 		std::string url(url_);
