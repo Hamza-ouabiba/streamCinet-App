@@ -21,7 +21,6 @@ namespace Project5 {
 		
 		Class_Movie^ Movie = gcnew Class_Movie();
 		Panel^ f;
-		bool Added;
 		MyUserControl(Class_Movie^ MV,Panel ^f)
 		{
 			InitializeComponent();
@@ -98,8 +97,9 @@ namespace Project5 {
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		f->Controls->Clear();
-		Movie_UC ^UC = gcnew Movie_UC(Movie,Added);
+		Movie_UC ^UC = gcnew Movie_UC(Movie);
 		f->Controls->Add(UC);	
+		UC->Dock = DockStyle::Fill;
 	}
 	};
 }

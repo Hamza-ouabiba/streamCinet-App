@@ -247,6 +247,7 @@ namespace Project5 {
 			this->button6->TabIndex = 0;
 			this->button6->Text = L"Discovery";
 			this->button6->UseVisualStyleBackColor = true;
+			this->button6->Click += gcnew System::EventHandler(this, &MyForm::button6_Click);
 			// 
 			// Main_Pannel
 			// 
@@ -265,8 +266,9 @@ namespace Project5 {
 			// 
 			// Display_Panel
 			// 
-			this->Display_Panel->AutoScroll = true;
-			this->Display_Panel->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->Display_Panel->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->Display_Panel->Location = System::Drawing::Point(147, 46);
 			this->Display_Panel->Name = L"Display_Panel";
 			this->Display_Panel->Size = System::Drawing::Size(1079, 695);
@@ -311,7 +313,7 @@ namespace Project5 {
 		this->Display_Panel->Controls->Clear();
 		Display^ UC = gcnew Display(Display_Panel);
 		this->Display_Panel->Controls->Add(UC);
-	 
+		UC->Dock = DockStyle::Fill;
 		
 	}
 	 
@@ -324,6 +326,14 @@ private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e
 		this->Display_Panel->Controls->Clear();
 		MyLibrary^ UC = gcnew MyLibrary(Display_Panel);
 		this->Display_Panel->Controls->Add(UC);
+		UC->Dock = DockStyle::Fill;
+}
+private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->Display_Panel->Controls->Clear();
+		Display^ UC = gcnew Display(Display_Panel);
+		this->Display_Panel->Controls->Add(UC);
+		UC->Dock = DockStyle::Fill;
 }
 };
 	

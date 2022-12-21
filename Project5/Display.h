@@ -6,9 +6,10 @@
 #include <iostream>
 #include<string>
 #include <msclr/marshal_cppstd.h>
-#include"ClassData.h"
-#include"MyUserControl.h"
+#include"ClassData.h" 
 #include <msclr/marshal.h>
+#include "MyUserControl.h"
+ 
 #define CURL_STATICLIB
 using namespace System;
 using namespace System::Configuration;
@@ -97,8 +98,6 @@ namespace Project5 {
 			// Display
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Inherit;
-			this->AutoScroll = true;
-			this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->Controls->Add(this->flowLayoutPanel1);
 			this->Name = L"Display";
 			this->Size = System::Drawing::Size(1086, 714);
@@ -157,7 +156,7 @@ namespace Project5 {
 		{
 			CURL* curl = curl_easy_init();
 			//cout << page;
-			std::string url("https://api.themoviedb.org/3/movie/popular?api_key=10f96818301b77e61d73d48aa20d81f9&page&page=" + page);
+			std::string url("https://api.themoviedb.org/3/movie/popular?api_key=10f96818301b77e61d73d48aa20d81f9&page" + page);
 			Json::Value ra;
 			curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 
@@ -243,14 +242,117 @@ namespace Project5 {
 			}
 		}
 #pragma endregion
+
+	///Add Catgory:
+	/*void AddCatgory() {
+
+			/*
+			//Image^ Img = Movie->GetPoster();
+			//FileStream^ File = gcnew FileStream(Img->ToString(), FileMode::Open, FileAccess::Read);
+			//BinaryReader^ Br = gcnew BinaryReader(File);
+			//MessageBox::Show(Br->ReadBytes((int)File->Length)->ToString());
+		 
+			try {
+				int id;
+				String^ category;
+				SqlConnection conx("Data Source = HB\\SQLEXPRESS; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+
+				for (int index = 1; index <= 19; index++) {
+
+					CURL* curl = curl_easy_init();
+					//cout << page;
+					std::string url("https://api.themoviedb.org/3/genre/movie/list?api_key=10f96818301b77e61d73d48aa20d81f9");
+					Json::Value ra;
+					curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+
+					// Don't bother trying IPv6, which would increase DNS resolution time.
+					curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+
+					// Don't wait forever, time out after 10 seconds.
+					curl_easy_setopt(curl, CURLOPT_TIMEOUT, 10);
+
+					// Follow HTTP redirects if necessary.
+					curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+
+					// Response information.
+					long httpCode(0);
+					std::unique_ptr<std::string> httpData(new std::string());
+
+					// Hook up data handling function.
+					curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, callback);
+
+					// Hook up data container (will be passed as the last parameter to the
+					// callback handling function).  Can be any pointer type, since it will
+					// internally be passed as a void pointer.
+					curl_easy_setopt(curl, CURLOPT_WRITEDATA, httpData.get());
+
+					// Run our HTTP GET command, capture the HTTP response code, and clean up.
+					curl_easy_perform(curl);
+					curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
+					curl_easy_cleanup(curl);
+
+					if (httpCode == 200)
+					{
+						// Response looks good - done using Curl now.  Try to parse the results
+						// and print them out.
+						//jsonData["results"][i]["original_title"]
+						Json::Value jsonData;
+						Json::Reader jsonReader;
+						stringstream ss;
+						string data;
+				 
+
+						Class_Movie^ Movie = gcnew Class_Movie();
+						Json::StreamWriterBuilder builder;
+						builder["indentation"] = "";
+						if (jsonReader.parse(*httpData.get(), jsonData))
+						{
+							id = jsonData["genres"][index]["id"].asInt();
+
+							string title = jsonData["genres"][index]["name"].toStyledString();
+							title.erase(remove(title.begin(), title.end(), '"'));
+							category = msclr::interop::marshal_as<System::String^>(title);
+
+						}
+						/////////////////////////////////////////////////////////////////////////////////
+						
+						String^ Query = "INSERT INTO CATEGORY(ID_API,CATEGORY) VALUES(@ID_API,@CATEGORY); ";
+						SqlCommand Command(Query, % conx);
+						Command.Parameters->AddWithValue("@CATEGORY", category);
+						Command.Parameters->AddWithValue("@ID_API", id);
+						conx.Open();
+						Command.ExecuteNonQuery();
+						conx.Close();
+
+					 
+						//Bitmap^ bitmap = gcnew Bitmap(Movie->GetPoster());
+						//Command.Parameters->AddWithValue("@POSTER", bitmap);
+						//bitmap = gcnew Bitmap(Movie->GetBakcDrop());
+						//Command.Parameters->AddWithValue("@BACKDROP",bitmap);
+						 
+
+					}
+
+
+
+				}
+
+
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show(ex->Message);
+			}
+		}*/
 	private: System::Void flowLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
 	private: System::Void Display_Load(System::Object^ sender, System::EventArgs^ e) {
 		int indexPage;
+ 
 		for (int i = 1; i <= 1; i++)
 		{
 			for (int j = 1; j <= 19; j++)
 			{
+			
 				stringstream ss;
 				string indexStri;
 				//cout << "index page = " << i;

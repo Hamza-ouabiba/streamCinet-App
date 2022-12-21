@@ -22,6 +22,9 @@
     <Filter Include="Main_UserControl">
       <UniqueIdentifier>{98c54d2a-43f3-4599-b85c-c124b3e5b69e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="My_Library\icons">
+      <UniqueIdentifier>{ea2dd633-c786-4eaf-b7aa-fb5cb9bb1aec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp">
@@ -44,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="Display.cpp">
       <Filter>Main_UserControl</Filter>
+    </ClCompile>
+    <ClCompile Include="MainClass.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -74,15 +80,8 @@
     <ClInclude Include="Display.h">
       <Filter>Main_UserControl</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Resource.rc">
-      <Filter>Fichiers de ressources</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Ressource.resx">
-      <Filter>Fichiers de ressources</Filter>
-    </EmbeddedResource>
+    <ClInclude Include="MainClass.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

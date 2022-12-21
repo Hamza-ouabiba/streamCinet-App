@@ -108,9 +108,9 @@ namespace Project5 {
 			this->comboBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(962, 16);
+			this->comboBox1->Location = System::Drawing::Point(954, 16);
 			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(155, 28);
+			this->comboBox1->Size = System::Drawing::Size(163, 28);
 			this->comboBox1->TabIndex = 2;
 			// 
 			// flowLayoutPanel1
@@ -153,7 +153,7 @@ namespace Project5 {
 					Movie->SetTitle(Read["TITLE"]->ToString());
 					Movie->SetOverview(Read["OVERVIEW"]->ToString());
 					Movie->SetRealease_Date(Convert::ToDateTime(Read["RELEASE_DATE"]->ToString()));
-					Movie->SetRating(Convert::ToDouble(Read["Rating"]->ToString()));
+					Movie->SetRating((float)Convert::ToDouble(Read["Rating"]->ToString()));
 
 					MyUserControl^ UC = gcnew MyUserControl(Movie, flowLayoutPanel1);
 					this->flowLayoutPanel1->Controls->Add(UC);

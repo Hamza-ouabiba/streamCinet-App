@@ -3,7 +3,6 @@
   Project5.MyForm.resources - Embedded, ContainedInManifestFile, 
   Project5.MyLibrary.resources - Embedded, ContainedInManifestFile, 
   Project5.MyUserControl.resources - Embedded, ContainedInManifestFile, 
-  Project5.Ressource.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly Project5, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
 	hash=SHA1, flags=PublicKey
@@ -26,9 +25,11 @@ Class Class_Movie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Interfaces:
     System.IDisposable
   Methods:
+    ExistInDataBase(Int32, String): PrivateScope, Public, HideBySig
     GetIdMovie(): PrivateScope, Public, HideBySig
     GetIdApi(): PrivateScope, Public, HideBySig
     GetRating(): PrivateScope, Public, HideBySig
+    GetExist(): PrivateScope, Public, HideBySig
     GetTitle(): PrivateScope, Public, HideBySig
     GetOverview(): PrivateScope, Public, HideBySig
     GetRealease_Date(): PrivateScope, Public, HideBySig
@@ -42,16 +43,38 @@ Class Class_Movie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetRealease_Date(DateTime): PrivateScope, Public, HideBySig
     SetPoster(Image): PrivateScope, Public, HideBySig
     SetBakcDrop(Image): PrivateScope, Public, HideBySig
+    SetExist(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class Class_Serie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(Int32, Int32, System.String, System.String, System.String, Single, System.DateTime, System.Drawing.Image, System.Drawing.Image): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Class_Serie): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
     System.IDisposable
   Methods:
+    ExistInDataBase(Int32, String): PrivateScope, Public, HideBySig
+    GetIdSerie(): PrivateScope, Public, HideBySig
+    GetIdApi(): PrivateScope, Public, HideBySig
+    GetRating(): PrivateScope, Public, HideBySig
+    GetExist(): PrivateScope, Public, HideBySig
+    GetTitle(): PrivateScope, Public, HideBySig
+    GetOverview(): PrivateScope, Public, HideBySig
+    GetRealease_Date(): PrivateScope, Public, HideBySig
+    GetPoster(): PrivateScope, Public, HideBySig
+    GetBakcDrop(): PrivateScope, Public, HideBySig
+    SetIdMovie(Int32): PrivateScope, Public, HideBySig
+    SetIdApi(Int32): PrivateScope, Public, HideBySig
+    SetExist(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetRating(Single): PrivateScope, Public, HideBySig
+    SetTitle(String): PrivateScope, Public, HideBySig
+    SetOverview(String): PrivateScope, Public, HideBySig
+    SetRealease_Date(DateTime): PrivateScope, Public, HideBySig
+    SetPoster(Image): PrivateScope, Public, HideBySig
+    SetBakcDrop(Image): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class Project5.Movie_UC: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
-    Void .ctor(Class_Movie, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Class_Movie): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
     Boolean Added : Public
     Class_Movie Movie : Public
@@ -64,7 +87,6 @@ Class Project5.MyUserControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
   Fields:
     Class_Movie Movie : Public
     System.Windows.Forms.Panel f : Public
-    Boolean Added : Public
 Class Project5.Display: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
     Void .ctor(System.Windows.Forms.Panel): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
