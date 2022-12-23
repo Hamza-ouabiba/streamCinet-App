@@ -1,8 +1,13 @@
-﻿  Display.cpp
+﻿  ClassData.cpp
+  DataBase.cpp
+  Display.cpp
+  jsoncpp.cpp
+  MainClass.cpp
   Movie_UC.cpp
   MyForm.cpp
   MyLibrary.cpp
   MyUserControl.cpp
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
   Generating Code...
   ClassData.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   Project5.vcxproj -> C:\Users\MT\Documents\code blocks\C++\OOP\Movie app\Stream-it\streamCinet-App\x64\Debug\Project5.exe
