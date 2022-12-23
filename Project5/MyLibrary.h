@@ -1,5 +1,8 @@
 #pragma once
+#include <array>
+#using <System.dll>
 #include "ClassData.h" 
+#include "MainClass.h" 
 #include"MyUserControl.h"
 using namespace System;
 using namespace System::ComponentModel;
@@ -8,8 +11,9 @@ using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Data::SqlClient;
 using namespace System::Drawing;
-
-
+using namespace System::Drawing::Imaging;
+using namespace System::IO;
+using namespace std;
 namespace Project5 {
 
 	/// <summary>
@@ -19,14 +23,28 @@ namespace Project5 {
 	{
 	public:
 		Panel^ Display_Panel;
-		MyLibrary(Panel ^P)
+		MyLibrary(Panel^ P)
 		{
 			InitializeComponent();
 			Display_Panel = P;
 			//TODO: Add the constructor code here
 			//
 		}
+		System::Drawing::Image^ ConvertByteToImage(unsigned char Data) {
 
+			MemoryStream^ ms = gcnew MemoryStream(Data);
+			try {
+				return Image::FromStream(ms);;
+			}
+			catch (Exception^ e)
+			{
+				Console::WriteLine(e->Message);
+			}
+			finally {
+				ms->Close();
+			}
+			return nullptr;
+		}
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -51,7 +69,7 @@ namespace Project5 {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -111,7 +129,7 @@ namespace Project5 {
 			this->comboBox1->Location = System::Drawing::Point(954, 16);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(163, 28);
-			this->comboBox1->TabIndex = 2;
+			this->comboBox1->TabIndex = 2; 
 			// 
 			// flowLayoutPanel1
 			// 
@@ -137,11 +155,11 @@ namespace Project5 {
 		}
 #pragma endregion
 		void DisplayMovies() {
-			try {
-				SqlConnection conx("Data Source = HB\\SQLEXPRESS; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-				
-				String ^Query = "SELECT *FROM MOVIE ;";
-				SqlCommand Cmd(Query, %conx);
+		 
+				SqlConnection conx(MainClass::ConnectionString());
+
+				String^ Query = "SELECT *FROM MOVIE ;";
+				SqlCommand Cmd(Query, % conx);
 				conx.Open();
 				SqlDataReader^ Read = Cmd.ExecuteReader();
 				this->flowLayoutPanel1->Controls->Clear();
@@ -155,23 +173,62 @@ namespace Project5 {
 					Movie->SetRealease_Date(Convert::ToDateTime(Read["RELEASE_DATE"]->ToString()));
 					Movie->SetRating((float)Convert::ToDouble(Read["Rating"]->ToString()));
 
-					MyUserControl^ UC = gcnew MyUserControl(Movie, flowLayoutPanel1);
-					this->flowLayoutPanel1->Controls->Add(UC);
+					// Create a MemoryStream to hold the image data
+					MemoryStream^ ms = gcnew MemoryStream(Read->GetSqlBinary(6).Value);
+					// Load the image data into a Bitmap object
+					Bitmap^ image = gcnew Bitmap(ms);
+					Movie->SetPoster(image);
 
-				}
-				 
-			}
-			catch (Exception^ ex) {
-				MessageBox::Show(ex->Message);
+					ms = gcnew MemoryStream(Read->GetSqlBinary(7).Value);
+					// Load the image data into a Bitmap object
+					image = gcnew Bitmap(ms);
+					Movie->SetBakcDrop(image);
+
+
+					//array<Byte>^ _ImageData;
+					// _ImageData = safe_cast<std::array<Byte>^>(Read["POSTER"]);
+					//static_cast<unsigned char>
+						//_MemoryStream = gcnew MemoryStream(Convert::ToByte(Read["BACKDROP"]));
+						//image = gcnew Bitmap(_MemoryStream);
+					//MemoryStream^ _MemoryStream = gcnew System::IO::MemoryStream(_ImageData);
+					//_ImageData = System::Drawing::Image::FromStream(_MemoryStream);
+
+					/*
+
+					Type^ type = Read->GetFieldType(6);
+					String^ typeName = type->ToString();
+					MessageBox::Show(typeName);
+
+					if (!Convert::IsDBNull(Read["POSTER"]) && !Convert::IsDBNull(Read["BACKDROP"])) {
+
+					//	MemoryStream^ _MemoryStream = gcnew MemoryStream(Convert::ToBase64CharArray(Read["POSTER"]));
+					//	Bitmap^ image = gcnew Bitmap(_MemoryStream);
+					//	Movie->SetPoster(image);
+
+					//_ImageData = System::Drawing::Image::FromStream(_MemoryStream);
+						//Movie->SetPoster(image);
+
+						//_MemoryStream = gcnew MemoryStream(Convert::ToBase64String(Read["BACKDROP"]));
+						//image = gcnew Bitmap(_MemoryStream);
+						//Movie->SetBakcDrop(image);
+					}*/
+					
+					MyUserControl^ UC = gcnew MyUserControl(Movie, Display_Panel);
+					this->flowLayoutPanel1->Controls->Add(UC);
+		 
 			}
 		}
 	private: System::Void flowLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
-private: System::Void BtnMovie_Click(System::Object^ sender, System::EventArgs^ e) {
-	 DisplayMovies();
-}
-private: System::Void MyLibrary_Load(System::Object^ sender, System::EventArgs^ e) {
-	 DisplayMovies();
-}
+	private: System::Void BtnMovie_Click(System::Object^ sender, System::EventArgs^ e) {
+		DisplayMovies();
+	}
+	private: System::Void MyLibrary_Load(System::Object^ sender, System::EventArgs^ e) {
+		DisplayMovies();
+
+	}
+
+
+	 
 };
 }

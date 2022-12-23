@@ -19,7 +19,7 @@ namespace Project5 {
 	{
 	public:
 		
-		Class_Movie^ Movie = gcnew Class_Movie();
+		Class_Movie^ Movie;
 		Panel^ f;
 		MyUserControl(Class_Movie^ MV,Panel ^f)
 		{
@@ -100,6 +100,7 @@ namespace Project5 {
 		Movie_UC ^UC = gcnew Movie_UC(Movie);
 		f->Controls->Add(UC);	
 		UC->Dock = DockStyle::Fill;
+		
 	}
 	};
 }

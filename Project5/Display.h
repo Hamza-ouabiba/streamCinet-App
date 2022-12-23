@@ -6,10 +6,21 @@
 #include <iostream>
 #include<string>
 #include <msclr/marshal_cppstd.h>
-#include"ClassData.h" 
-#include <msclr/marshal.h>
+#include"ClassData.h"  
 #include "MyUserControl.h"
  
+#include <iostream>
+#include <string>
+#include <sstream>
+
+#using <System.Net.Http.dll>
+#using <mscorlib.dll>
+#using <System.Runtime.InteropServices.dll>
+
+using namespace System;
+using namespace System::Runtime::InteropServices;
+using namespace System::Net::Http;
+
 #define CURL_STATICLIB
 using namespace System;
 using namespace System::Configuration;
@@ -145,15 +156,24 @@ namespace Project5 {
 			return _tmpImage;
 		}
 
-		string removeQuotations(string input)
+		/*
+		System::String ^GetData() {
+				// Set the API endpoint and required parameters
+				String^ url = "https://api.themoviedb.org/3/movie/436270?api_key=10f96818301b77e61d73d48aa20d81f9";
+
+				// Create a WebClient object and send a GET request to the API
+				WebClient^ client = gcnew WebClient();
+				String ^ response;
+				std::unique_ptr<std::string> response(new std::string());
+				  response = client->DownloadString(url); 
+
+				return response;
+		}*/
+ 
+		MyUserControl ^getInformations(int index, string jsonString2)
 		{
 
-			int length = input.length();
-			//cout << "index of page inn function : "<<input;
-			return input;
-		}
-		void getInformations(int index, string page)
-		{
+			/*
 			CURL* curl = curl_easy_init();
 			//cout << page;
 			std::string url("https://api.themoviedb.org/3/movie/popular?api_key=10f96818301b77e61d73d48aa20d81f9&page" + page);
@@ -186,7 +206,10 @@ namespace Project5 {
 			curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
 			curl_easy_cleanup(curl);
 
-			if (httpCode == 200)
+
+			*/
+
+			if (true)
 			{
 				// Response looks good - done using Curl now.  Try to parse the results
 				// and print them out.
@@ -198,10 +221,14 @@ namespace Project5 {
 				string site = "https://image.tmdb.org/t/p/w500";
 
 				Class_Movie^ Movie = gcnew Class_Movie();
+
 				Json::StreamWriterBuilder builder;
 				builder["indentation"] = "";
-				if (jsonReader.parse(*httpData.get(), jsonData))
+
+
+				if (jsonReader.parse(jsonString2, jsonData))
 				{
+
 					Movie->SetIdApi(jsonData["results"][index]["id"].asInt());
 					Movie->SetRating(jsonData["results"][index]["vote_average"].asFloat());
 
@@ -234,12 +261,13 @@ namespace Project5 {
 					Movie->SetBakcDrop(DownloadImage(unmanaged));
 
 					MyUserControl^ UC = gcnew MyUserControl(Movie, Display_Panel);
-					this->flowLayoutPanel1->Controls->Add(UC);
-
+					return UC;
+					
 					///*Image^ image = Image::FromFile(unmanaged);
 					//panel1->BackgroundImage = image;*/
 				}
 			}
+			return nullptr;
 		}
 #pragma endregion
 
@@ -350,16 +378,26 @@ namespace Project5 {
  
 		for (int i = 1; i <= 1; i++)
 		{
-			for (int j = 1; j <= 19; j++)
+			/// <summary>
+			/// ::::////////////////HttpClient////////////////////////////////////////////////
+			/// 
+			HttpClient^ client = gcnew HttpClient();
+			HttpResponseMessage^ response = client->GetAsync("https://api.themoviedb.org/3/movie/popular?api_key=10f96818301b77e61d73d48aa20d81f9&page=1")->Result;
+
+			String^ jsonString = response->Content->ReadAsStringAsync()->Result;
+
+			std::string jsonString2 = msclr::interop::marshal_as<std::string>(jsonString);
+
+			/// ::::////////////////////////////////////////////////////////////////
+			for (int j = 0; j <= 19; j++)
 			{
-			
 				stringstream ss;
 				string indexStri;
 				//cout << "index page = " << i;
 				indexPage = i;
 				ss << indexPage;
 				ss >> indexStri;
-				getInformations(j, indexStri);
+				this->flowLayoutPanel1->Controls->Add(getInformations(j, jsonString2));
 
 			}
 		}

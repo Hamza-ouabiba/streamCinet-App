@@ -18,6 +18,10 @@ Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=
 	hash=None, flags=None
 Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
+Assembly System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Assembly System.Runtime.InteropServices, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
 Class Class_Movie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(Int32, Int32, System.String, System.String, Single, System.DateTime, System.Drawing.Image, System.Drawing.Image): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(Class_Movie): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -32,6 +36,7 @@ Class Class_Movie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     GetExist(): PrivateScope, Public, HideBySig
     GetTitle(): PrivateScope, Public, HideBySig
     GetOverview(): PrivateScope, Public, HideBySig
+    GetTrailer(): PrivateScope, Public, HideBySig
     GetRealease_Date(): PrivateScope, Public, HideBySig
     GetPoster(): PrivateScope, Public, HideBySig
     GetBakcDrop(): PrivateScope, Public, HideBySig
@@ -42,6 +47,7 @@ Class Class_Movie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetOverview(String): PrivateScope, Public, HideBySig
     SetRealease_Date(DateTime): PrivateScope, Public, HideBySig
     SetPoster(Image): PrivateScope, Public, HideBySig
+    SetTrailer(String): PrivateScope, Public, HideBySig
     SetBakcDrop(Image): PrivateScope, Public, HideBySig
     SetExist(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
@@ -76,7 +82,6 @@ Class Project5.Movie_UC: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
     Void .ctor(Class_Movie): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
-    Boolean Added : Public
     Class_Movie Movie : Public
   Methods:
     RemoveFromDataBase(): PrivateScope, Public, HideBySig
@@ -97,6 +102,8 @@ Class Project5.MyLibrary: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(System.Windows.Forms.Panel): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
     System.Windows.Forms.Panel Display_Panel : Public
+  Methods:
+    ConvertByteToImage(Byte): PrivateScope, Public, HideBySig
 Class Project5.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

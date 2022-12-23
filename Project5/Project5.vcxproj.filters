@@ -49,7 +49,10 @@
       <Filter>Main_UserControl</Filter>
     </ClCompile>
     <ClCompile Include="MainClass.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>My_Library\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="DataBase.cpp">
+      <Filter>My_Library\Class</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -81,7 +84,10 @@
       <Filter>Main_UserControl</Filter>
     </ClInclude>
     <ClInclude Include="MainClass.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>My_Library\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="DataBase.h">
+      <Filter>My_Library\Class</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,14 @@
 #pragma once
-#include "ClassData.h" 
-#include<string> 
+
+#include "MainClass.h"  
+#include "ClassData.h"  
+#include<string>   
+#include <msclr/marshal_windows.h>
+#include"json/json.h"  
+#using <System.Net.Http.dll>
+#using <mscorlib.dll>
+#using <System.Runtime.InteropServices.dll>
+
 using namespace std;
 using namespace System;
 using namespace System::ComponentModel;
@@ -11,17 +19,17 @@ using namespace System::Drawing::Imaging;
 using namespace System::Drawing;
 using namespace System::Data::SqlClient;
 using namespace System::IO;
- 
+using namespace System::Runtime::InteropServices;
+using namespace System::Net::Http;
+
 namespace Project5 {
 
-	/// <summary>
-	/// Summary for Movie
-	/// </summary>
+	 
 	public ref class Movie_UC : public System::Windows::Forms::UserControl
 	{
 	 
 	public:
-		bool Added;
+	 
 		Class_Movie^ Movie;
 		Movie_UC(Class_Movie^ MV)
 		{
@@ -38,12 +46,16 @@ namespace Project5 {
 		}
 		void RemoveFromDataBase() {
 			try {
-				SqlConnection conx("Data Source = HB\\SQLEXPRESS; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+				
+				SqlConnection conx(MainClass::ConnectionString());
 				conx.Open();
 				String^ Query = "DELETE FROM MOVIE where ID_API = @ID_API;";
 				SqlCommand Command(Query, % conx);
 				Command.Parameters->AddWithValue("@ID_API", Movie->GetIdApi());
 				Command.ExecuteNonQuery();
+				conx.Close();
+
+				Movie->SetExist(false);
 			}
 			catch (Exception^ ex) {
 				MessageBox::Show(ex->Message);
@@ -57,24 +69,46 @@ namespace Project5 {
 			MessageBox::Show(Br->ReadBytes((int)File->Length)->ToString());
 			*/
 			try {
-				SqlConnection conx("Data Source = HB\\SQLEXPRESS; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+				SqlConnection conx(MainClass::ConnectionString());
 				conx.Open();
-				String^ Query = "INSERT INTO MOVIE(ID_API,TITLE,rating,RELEASE_DATE,OVERVIEW) VALUES(@ID_API,@TITLE,@rating,@RELEASE_DATE,@OVERVIEW); ";
+				String^ Query = "INSERT INTO MOVIE(ID_API,TITLE,rating,RELEASE_DATE,OVERVIEW,POSTER,BACKDROP) VALUES(@ID_API,@TITLE,@rating,@RELEASE_DATE,@OVERVIEW,@POSTER,@BACKDROP); ";
 				SqlCommand Command(Query, % conx);
 				Command.Parameters->AddWithValue("@TITLE", Movie->GetTitle());
 				Command.Parameters->AddWithValue("@ID_API", Movie->GetIdApi());
 				Command.Parameters->AddWithValue("@rating", Movie->GetRating());
+				Command.Parameters->AddWithValue("@RELEASE_DATE", Movie->GetRealease_Date());
+				Command.Parameters->AddWithValue("@OVERVIEW", Movie->GetOverview());
 
+				MemoryStream^ ms ;
+				try {
+					ms = gcnew MemoryStream();
+					Movie->GetPoster()->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+					Command.Parameters->AddWithValue("@POSTER", ms->ToArray());
+
+					ms = gcnew MemoryStream();
+					Movie->GetBakcDrop()->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+					Command.Parameters->AddWithValue("@BACKDROP", ms->ToArray());
+
+				}
+				finally {
+					ms->Close();
+				}
+				
+
+				Command.ExecuteNonQuery();
+				conx.Close();
+				Movie->SetExist(true);
 				/*
+				* 
+				unsigned char  data [length];
+					ms->Read(data, 0, length);
 				Bitmap^ bitmap = gcnew Bitmap(Movie->GetPoster());
 				Command.Parameters->AddWithValue("@POSTER", bitmap);
 				bitmap = gcnew Bitmap(Movie->GetBakcDrop());
 				Command.Parameters->AddWithValue("@BACKDROP",bitmap);
 				*/
 
-				Command.Parameters->AddWithValue("@RELEASE_DATE", Movie->GetRealease_Date());
-				Command.Parameters->AddWithValue("@OVERVIEW", Movie->GetOverview());
-				Command.ExecuteNonQuery();
+				
 			}
 			catch (Exception^ ex) {
 				MessageBox::Show(ex->Message);
@@ -374,6 +408,9 @@ namespace Project5 {
 
 		}
 #pragma endregion
+
+
+
 	private: System::Void Movie_Load(System::Object^ sender, System::EventArgs^ e) {
 		if (Movie->GetExist()) {
 
@@ -397,7 +434,6 @@ namespace Project5 {
 			BtnLibrary_AddRemove->Image = Image::FromFile("icons\\add.png");
 			//BtnLibrary_AddRemove->ImageAlign = ImageAlign::MiddleLeft;
 
-			Movie->SetExist(false);
 		}
 		else {
 			AddToDataBase();
@@ -405,7 +441,6 @@ namespace Project5 {
 			BtnLibrary_AddRemove->Text = "Remove from Library";
 			BtnLibrary_AddRemove->Image = Image::FromFile("icons\\remove.png");
 
-			Movie->SetExist(true);
 		}
 
 
@@ -413,10 +448,77 @@ namespace Project5 {
 	private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
 
-	 
+
+    void getInformations()
+		   {
+
+			   /// <summary>
+			   /// ::::////////////////HttpClient////////////////////////////////////////////////
+			   /// 
+			   HttpClient^ client = gcnew HttpClient();
+			   HttpResponseMessage^ response = client->GetAsync("https://api.themoviedb.org/3/movie/0525/videos?api_key=10f96818301b77e61d73d48aa20d81f9")->Result;
+
+			   String^ jsonString = response->Content->ReadAsStringAsync()->Result;
+
+			   std::string jsonString2 = msclr::interop::marshal_as<std::string>(jsonString);
+
+			   /// ::::////////////////////////////////////////////////////////////////
+
+			   if (response->IsSuccessStatusCode)
+			   {
+				   // Response looks good - done using Curl now.  Try to parse the results
+				   // and print them out.
+				   //jsonData["results"][i]["original_title"]
+				   Json::Value jsonData;
+				   Json::Reader jsonReader;
+				   stringstream ss;
+				   string data;
+				   string site = "https://image.tmdb.org/t/p/w500";
+
+				   Class_Movie^ Movie = gcnew Class_Movie();
+
+				   Json::StreamWriterBuilder builder;
+				   builder["indentation"] = "";
+
+
+				   if (jsonReader.parse(jsonString2, jsonData))
+				   {
+					   for (int index = 0; index <= 4; index++)
+					   {
+
+						   string type = jsonData["results"][index]["type"].toStyledString();
+						   type.erase(remove(type.begin(), type.end(), '"'));
+
+						   MessageBox::Show(msclr::interop::marshal_as<System::String^>(type));
+						   if (type == "Trailer") {
+
+							   string key = jsonData["results"][index]["key"].toStyledString();
+							   key.erase(remove(key.begin(), key.end(), '"'));
+
+							   Movie->SetTrailer(msclr::interop::marshal_as<System::String^>(key));
+							   MessageBox::Show(Movie->GetTrailer());
+							   break;
+						   }
+					   }
+
+
+
+				   }
+			   }
+		   }
+	
 	private: System::Void BtnTrailer_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	 
+	
+		if (Movie->GetTrailer() == nullptr) {
+			getInformations();
+		}
+		else {
+			MessageBox::Show(Movie->GetTrailer());
+		}
+	
+	}	
 
-	}	};
+
+};
 };

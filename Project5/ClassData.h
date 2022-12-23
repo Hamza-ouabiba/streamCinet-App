@@ -1,8 +1,8 @@
 #pragma once
-#include <string>
-#include"ClassData.h"
+#include <string> 
 #include"MainClass.h"
-
+#include"DataBase.h"
+#include <msclr/marshal_cppstd.h>
 
 using namespace::std;
 using namespace System;
@@ -20,6 +20,7 @@ using namespace System::Data::SqlClient;
 		int id_Api;
 		float Rating;
 		String^ title;
+		String^ Trailer;
 		String^ Overview;
 		DateTime Realease_Date;
 		Image^ Poster;
@@ -40,7 +41,7 @@ using namespace System::Data::SqlClient;
 			this->Poster = MV->Poster;
 			this->BakcDrop = MV->BakcDrop;
 
-			this->Exist = ExistInDataBase(MV->id_Api, "select TITLE from MOVIE where ID_API = @ID_API ;");
+			this->Exist = DataBase::Search_Movie(this->id_Api);
 		}
 		Class_Movie(int id_Movie, int id_Api, String^ title, String^ Overview, float Rating, DateTime Realease_Date, Image^ Poster, Image^ BakcDrop)
 		{
@@ -53,28 +54,9 @@ using namespace System::Data::SqlClient;
 			this->Poster = Poster;
 			this->BakcDrop = BakcDrop;
 	
-			this->Exist = ExistInDataBase(this->id_Api,"select TITLE from MOVIE where ID_API = @ID_API ;");
+			this->Exist = DataBase::Search_Movie(this->id_Api);
 		}
-		bool  ExistInDataBase(int id_Api, String^ Query) {
-			try {
-				SqlConnection conx("Data Source = HB\\SQLEXPRESS; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-				conx.Open();
-				SqlCommand Command(Query, % conx);
-				Command.Parameters->AddWithValue("@ID_API", id_Api);
-				SqlDataReader^ Read = Command.ExecuteReader();
-				if (Read->HasRows) {
-					return true;
-				}
-				return false;
-				conx.Close();
-			}
-			catch (Exception^ ex) {
-				return false;
-				MessageBox::Show(ex->Message);
-
-			}
-
-		}
+		 
 		~Class_Movie() {
 		}
 		//Get
@@ -98,6 +80,9 @@ using namespace System::Data::SqlClient;
 		String^ GetOverview() {
 			return Overview;
 		}
+		String^ GetTrailer() {
+			return Trailer;
+		}
 		
 		DateTime GetRealease_Date() {
 			return this->Realease_Date;
@@ -115,7 +100,7 @@ using namespace System::Data::SqlClient;
 		}
 		void SetIdApi(int id) {
 			this->id_Api = id;
-			this->Exist = ExistInDataBase(this->id_Api, "select TITLE from MOVIE where ID_API = @ID_API");
+			this->Exist = DataBase::Search_Movie(this->id_Api);
 		}
 		void SetRating(float rating) {
 			this->Rating = rating;
@@ -132,11 +117,14 @@ using namespace System::Data::SqlClient;
 		void SetPoster(Image^ img){
 			this->Poster = img;
 		}
+		void SetTrailer(String^ trailer){
+			this->Trailer = trailer;
+		}
 		void SetBakcDrop(Image^ img) {
 			this->BakcDrop = img;
 		}
-		void SetExist(bool Exits) {
-			this->Exist = Exits;
+		void SetExist(bool Exist) {
+			this->Exist = Exist;
 		}
 	};
 
@@ -169,7 +157,7 @@ using namespace System::Data::SqlClient;
 			this->Poster = Serie->Poster;
 			this->BakcDrop = Serie->BakcDrop;
 
-			this->Exist = ExistInDataBase(Serie->id_Api, "select TITLE from SERIE where ID_API = @ID_API ;");
+			this->Exist = DataBase::Search_Serie(this->id_Api);
 		}
 		Class_Serie(int id_Serie, int id_Api, String^ Name, String^ Overview, String^ Country, float Rating, DateTime Realease_Date, Image^ Poster, Image^ BakcDrop)
 		{
@@ -183,28 +171,9 @@ using namespace System::Data::SqlClient;
 			this->Poster = Poster;
 			this->BakcDrop = BakcDrop;
 
-			this->Exist = ExistInDataBase(this->id_Api, "select TITLE from SERIE where ID_API = @ID_API");
+			this->Exist = DataBase::Search_Serie(this->id_Api);
 		}
-		bool  ExistInDataBase(int id_Api, String^ Query) {
-			try {
-				SqlConnection conx("Data Source = HB\\SQLEXPRESS; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-				conx.Open();
-				SqlCommand Command(Query, % conx);
-				Command.Parameters->AddWithValue("@ID_API", id_Api);
-				SqlDataReader^ Read = Command.ExecuteReader();
-				if (Read->HasRows) {
-					return true;
-				}
-				return false;
-				conx.Close();
-			}
-			catch (Exception^ ex) {
-				return false;
-				MessageBox::Show(ex->Message);
-
-			}
-
-		}
+		
 		~Class_Serie() {
 		}
 
@@ -246,10 +215,10 @@ using namespace System::Data::SqlClient;
 		}
 		void SetIdApi(int id_Api) {
 			this->id_Api = id_Api;
-			this->Exist = ExistInDataBase(this->id_Api, "select TITLE from SERIE where ID_API = @ID_API");
+			this->Exist = DataBase::Search_Serie(this->id_Api);
 		}
-		void SetExist(bool Exits) {
-			this->Exist = Exits;
+		void SetExist(bool Exist) {
+			this->Exist = Exist;
 		}
 		void SetRating(float rating) {
 			this->Rating = rating;
@@ -272,5 +241,5 @@ using namespace System::Data::SqlClient;
 
 	};
  
-
+	
 	
