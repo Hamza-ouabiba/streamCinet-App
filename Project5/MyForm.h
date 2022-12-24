@@ -8,6 +8,10 @@
 #include"MyUserControl.h"
 #include "Display.h" 
 #include "MyLibrary.h"
+#include <chrono>
+
+
+using namespace std::chrono;
 using namespace std;
 using namespace System::Drawing::Imaging;
 using namespace System;
@@ -306,14 +310,26 @@ namespace Project5 {
 
 		HWND console = FindWindow(L"ConsoleWindowClass", path);
 
+
 		if (IsWindow(console)) {
 			ShowWindow(console, SW_HIDE);
 		}
+
+		/// ::::////////////////////////////////////////////////////////////////
+		high_resolution_clock::time_point start = high_resolution_clock::now();
 
 		this->Display_Panel->Controls->Clear();
 		Display^ UC = gcnew Display(Display_Panel);
 		this->Display_Panel->Controls->Add(UC);
 		UC->Dock = DockStyle::Fill;
+
+		// Stop the timer
+		high_resolution_clock::time_point end = high_resolution_clock::now();
+
+		// Calculate the elapsed time
+		duration<double> elapsedTime = duration_cast<duration<double>>(end - start);
+		// Print the elapsed time
+		MessageBox::Show(elapsedTime.count() + " seconds");
 		
 	}
 	 

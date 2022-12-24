@@ -21,3 +21,11 @@ C:\Users\MT\Documents\code blocks\C++\OOP\Movie app\Stream-it\streamCinet-App\Pr
 C:\Users\MT\Documents\code blocks\C++\OOP\Movie app\Stream-it\streamCinet-App\Project5\Debug\Project5.MyLibrary.resources
 C:\Users\MT\Documents\code blocks\C++\OOP\Movie app\Stream-it\streamCinet-App\Project5\Debug\Project5.MyUserControl.resources
 C:\Users\MT\Documents\code blocks\C++\OOP\Movie app\Stream-it\streamCinet-App\Project5\Debug\Project5.vcxproj.GenerateResource.cache
+C:\Users\MT\Documents\code blocks\C++\streamCinet-App\Project5\Debug\Project5.vcxproj.AssemblyReference.cache
+C:\Users\MT\Documents\code blocks\C++\streamCinet-App\Project5\Debug\Project5.vcxproj.SuggestedBindingRedirects.cache
+C:\Users\MT\Documents\code blocks\C++\streamCinet-App\Project5\Debug\Project5.Display.resources
+C:\Users\MT\Documents\code blocks\C++\streamCinet-App\Project5\Debug\Project5.Movie_UC.resources
+C:\Users\MT\Documents\code blocks\C++\streamCinet-App\Project5\Debug\Project5.MyForm.resources
+C:\Users\MT\Documents\code blocks\C++\streamCinet-App\Project5\Debug\Project5.MyLibrary.resources
+C:\Users\MT\Documents\code blocks\C++\streamCinet-App\Project5\Debug\Project5.MyUserControl.resources
+C:\Users\MT\Documents\code blocks\C++\streamCinet-App\Project5\Debug\Project5.vcxproj.GenerateResource.cache

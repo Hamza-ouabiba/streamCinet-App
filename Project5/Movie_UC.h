@@ -475,7 +475,7 @@ namespace Project5 {
 			this->label10->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label10->ForeColor = System::Drawing::Color::White;
-			this->label10->Location = System::Drawing::Point(40, 410);
+			this->label10->Location = System::Drawing::Point(38, 419);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(89, 24);
 			this->label10->TabIndex = 12;
@@ -483,20 +483,17 @@ namespace Project5 {
 			// 
 			// Overview_label
 			// 
-			this->Overview_label->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left)
+			this->Overview_label->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->Overview_label->AutoSize = true;
 			this->Overview_label->BackColor = System::Drawing::Color::Transparent;
 			this->Overview_label->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Overview_label->ForeColor = System::Drawing::Color::White;
-			this->Overview_label->Location = System::Drawing::Point(71, 462);
+			this->Overview_label->Location = System::Drawing::Point(42, 462);
 			this->Overview_label->Name = L"Overview_label";
-			this->Overview_label->Size = System::Drawing::Size(156, 28);
+			this->Overview_label->Size = System::Drawing::Size(1051, 118);
 			this->Overview_label->TabIndex = 13;
 			this->Overview_label->Text = L"qcssssssssssss";
-			this->Overview_label->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			// 
 			// Title_label
 			// 

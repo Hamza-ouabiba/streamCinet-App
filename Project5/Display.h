@@ -331,9 +331,10 @@ namespace Project5 {
 #pragma endregion
 
 	///Add Catgory:
-	/*void AddCatgory() {
+	/*
+	void AddCatgory() {
 
-			/*
+			 
 			//Image^ Img = Movie->GetPoster();
 			//FileStream^ File = gcnew FileStream(Img->ToString(), FileMode::Open, FileAccess::Read);
 			//BinaryReader^ Br = gcnew BinaryReader(File);
@@ -348,7 +349,7 @@ namespace Project5 {
 
 					CURL* curl = curl_easy_init();
 					//cout << page;
-					std::string url("https://api.themoviedb.org/3/genre/movie/list?api_key=10f96818301b77e61d73d48aa20d81f9");
+					std::string url("https://api.themoviedb.org/3/genre/tv/list?api_key=10f96818301b77e61d73d48aa20d81f9");
 					Json::Value ra;
 					curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 
@@ -389,7 +390,7 @@ namespace Project5 {
 						string data;
 				 
 
-						Class_Movie^ Movie = gcnew Class_Movie();
+					 
 						Json::StreamWriterBuilder builder;
 						builder["indentation"] = "";
 						if (jsonReader.parse(*httpData.get(), jsonData))
@@ -403,7 +404,7 @@ namespace Project5 {
 						}
 						/////////////////////////////////////////////////////////////////////////////////
 						
-						String^ Query = "INSERT INTO CATEGORY(ID_API,CATEGORY) VALUES(@ID_API,@CATEGORY); ";
+						String^ Query = "INSERT INTO CATEGORY_SERIE(ID_API,CATEGORY) VALUES(@ID_API,@CATEGORY); ";
 						SqlCommand Command(Query, % conx);
 						Command.Parameters->AddWithValue("@CATEGORY", category);
 						Command.Parameters->AddWithValue("@ID_API", id);

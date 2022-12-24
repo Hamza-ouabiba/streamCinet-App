@@ -130,13 +130,17 @@ namespace Project5 {
 		this->panel1->Name = L"panel1";
 		this->panel1->Size = System::Drawing::Size(1155, 59);
 		this->panel1->TabIndex = 2;
+		this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyLibrary::panel1_Paint);
 		// 
 		// textBox1
 		// 
+		this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
+		this->textBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			static_cast<System::Byte>(0)));
 		this->textBox1->Location = System::Drawing::Point(585, 15);
 		this->textBox1->Multiline = true;
 		this->textBox1->Name = L"textBox1";
-		this->textBox1->Size = System::Drawing::Size(182, 28);
+		this->textBox1->Size = System::Drawing::Size(224, 28);
 		this->textBox1->TabIndex = 3;
 		this->textBox1->TextChanged += gcnew System::EventHandler(this, &MyLibrary::textBox1_TextChanged);
 		// 
@@ -146,9 +150,9 @@ namespace Project5 {
 		this->comboBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
 		this->comboBox1->FormattingEnabled = true;
-		this->comboBox1->Location = System::Drawing::Point(954, 16);
+		this->comboBox1->Location = System::Drawing::Point(945, 16);
 		this->comboBox1->Name = L"comboBox1";
-		this->comboBox1->Size = System::Drawing::Size(163, 28);
+		this->comboBox1->Size = System::Drawing::Size(172, 28);
 		this->comboBox1->TabIndex = 2;
 		this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &MyLibrary::comboBox1_SelectedIndexChanged);
 		// 
@@ -178,14 +182,15 @@ namespace Project5 {
 #pragma endregion
 	 
 	void loadCategory_Movie() {
-		String^ queryString = "SELECT CATEGORY FROM CATEGORY ;";
+		String^ queryString = "SELECT * FROM CATEGORY ;";
 
 		SqlCommand^ command = gcnew SqlCommand(queryString, conx);
 
 		conx->Open();
 
 		SqlDataReader^ reader = command->ExecuteReader();
-
+		comboBox1->Items->Clear();
+		comboBox1->Items->Add("All");
 		while (reader->Read())
 		{
 			comboBox1->Items->Add(reader["CATEGORY"]->ToString());
@@ -193,13 +198,15 @@ namespace Project5 {
 		conx->Close();
 	}
 	void loadCategory_Serie() {
-		String^ queryString = "SELECT CATEGORY FROM CATEGORY ;";
+		String^ queryString = "SELECT CATEGORY FROM CATEGORY_SERIE ;";
 
 		SqlCommand^ command = gcnew SqlCommand(queryString, conx);
 
 		conx->Open();
 
 		SqlDataReader^ reader = command->ExecuteReader();
+		comboBox1->Items->Clear();
+		comboBox1->Items->Add("All");
 
 		while (reader->Read())
 		{
@@ -266,8 +273,19 @@ namespace Project5 {
 		String^ Query = "SELECT *FROM MOVIE where TITLE like '" + textBox1->Text + "%'; ";
 		GetMoviesByQuery( Query);
 	}
-
-	// Search Serie :
+	void MovieByCategory()
+	{
+		String^ Query2 = "SELECT ID_MOVIE FROM MOVIECATEGORY where ID_CATEGORY = (select ID_CATEGORY from CATEGORY where CATEGORY like '"+ comboBox1->Text + "%' )"; 
+		String^ Query = "SELECT *FROM MOVIE where ID_MOVIE = any("+ Query2 +") ";
+		GetMoviesByQuery(Query);
+	}
+	void MovieByCategoryAndTitle()
+	{
+		String^ Query2 = "SELECT ID_MOVIE FROM MOVIECATEGORY where  ID_CATEGORY = (select ID_CATEGORY from CATEGORY where CATEGORY like '" + comboBox1->Text + "%' )";
+		String^ Query = "SELECT *FROM MOVIE where TITLE like '" + textBox1->Text + "%' and ID_MOVIE = any(" + Query2 + ") ";
+		GetMoviesByQuery(Query);
+	}
+	// Search Serie :::::::::////////////////////////////////////////////////////////////////
 	bool Exist_Serie(int id_Api) { 
 		return DataBase::Exist_Serie(id_Api);
 	}
@@ -325,7 +343,18 @@ namespace Project5 {
 		String^ Query = "SELECT *FROM SERIE where TITLE like '" + textBox1->Text + "%'; ";
 		GetSeriesByQuery(Query);
 	}
-
+	void SerieByCategory()
+	{
+		String^ Query2 = "SELECT ID_SERIE FROM SERIECATEGORY where ID_CATEGORY = (select ID_CATEGORY from CATEGORY_SERIE where CATEGORY like '" + comboBox1->Text + "%' )";
+		String^ Query = "SELECT *FROM SERIE where ID_SERIE = any(" + Query2 + ") ";
+		GetSeriesByQuery(Query);
+	}
+	void SerieByCategoryAndTitle()
+	{
+		String^ Query2 = "SELECT ID_SERIE FROM SERIECATEGORY where  ID_CATEGORY = (select ID_CATEGORY from CATEGORY where CATEGORY like '" + comboBox1->Text + "%' )";
+		String^ Query = "SELECT *FROM SERIE where TITLE like '" + textBox1->Text + "%' and ID_SERIE = any(" + Query2 + ") ";
+		GetSeriesByQuery(Query);
+	}
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -333,30 +362,94 @@ namespace Project5 {
 	}
 	private: System::Void BtnMovie_Click(System::Object^ sender, System::EventArgs^ e) {
 		Movie = true;
+		loadCategory_Movie();
 		All_Movies();
+		comboBox1->SelectedIndex = 0;
 	}
 	private: System::Void MyLibrary_Load(System::Object^ sender, System::EventArgs^ e) {
 		Movie = true;
 		loadCategory_Movie();
 		All_Movies();
+		comboBox1->SelectedIndex = 0;
 	}
  
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 
 	if (textBox1->Text) {
 		if (Movie){
-			MovieByTitle();
+			if (comboBox1->SelectedIndex == 0) {
+				MovieByTitle();
+			}
+			else {
+				MovieByCategoryAndTitle();
+			}
 		}
 		else {
 			SerieByTitle();
 		}	
 	}
+	else {
+		if (Movie) {
+			if (comboBox1->SelectedIndex == 0) {
+				All_Movies();
+			}
+			else {
+				MovieByCategory();
+			}
+		}
+		else {
+			All_Series();
+		}
+	}
 }
 private: System::Void BtnSeries_Click(System::Object^ sender, System::EventArgs^ e) {
 		Movie = false;
+		loadCategory_Serie();
 		All_Series();
+		comboBox1->SelectedIndex = 0;
 }
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+
+	if(comboBox1->SelectedIndex != 0) {
+		if (Movie) {
+			if (textBox1->Text == "") {
+				MovieByCategory();
+			}
+			else {
+				MovieByCategoryAndTitle();
+			}
+		}
+		else{
+			if (textBox1->Text == "") {
+				SerieByCategory();
+			}
+			else {
+				SerieByCategoryAndTitle();
+			}
+		
+		}
+	}
+	else {
+		if (Movie) {
+			if (textBox1->Text) {
+				MovieByTitle();
+			}
+			else {
+				All_Movies();
+			}
+		}
+		else {
+			if (textBox1->Text) {
+				SerieByTitle();
+			}
+			else {
+				All_Series();
+			}
+		}
+	}
+	
+}
+private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 }
 };
 }
