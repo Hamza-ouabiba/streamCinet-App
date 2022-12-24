@@ -18,14 +18,26 @@ namespace Project5 {
 	public ref class MyUserControl : public System::Windows::Forms::UserControl
 	{
 	public:
-		
+
 		Class_Movie^ Movie;
+		Class_Serie^ Serie;
 		Panel^ f;
+		MyUserControl(void)
+		{}
 		MyUserControl(Class_Movie^ MV,Panel ^f)
 		{
 			InitializeComponent();
 			Movie = gcnew Class_Movie(MV);
 			this->f = f; 
+			//
+			//TODO: Add the constructor code here
+			//
+		}
+		MyUserControl(Class_Serie^ Serie, Panel^ f)
+		{
+			InitializeComponent();
+			Serie = gcnew Class_Serie(Serie);
+			this->f = f;
 			//
 			//TODO: Add the constructor code here
 			//
@@ -92,14 +104,34 @@ namespace Project5 {
 		}
 #pragma endregion
 	private: System::Void MyUserControl_Load(System::Object^ sender, System::EventArgs^ e) {
-		this->button1->BackgroundImage = Movie->GetPoster();
-		this->button1->Text = Movie->GetTitle();
+
+		if (Movie) {
+
+			this->button1->BackgroundImage = Movie->GetPoster();
+			this->button1->Text = Movie->GetTitle();
+
+		}
+		else if(Serie) {
+			this->button1->BackgroundImage = Serie->GetPoster();
+			this->button1->Text = Serie->GetTitle();
+
+		}
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		f->Controls->Clear();
-		Movie_UC ^UC = gcnew Movie_UC(Movie);
-		f->Controls->Add(UC);	
-		UC->Dock = DockStyle::Fill;
+		
+
+		if (Movie) {
+			f->Controls->Clear();
+			Movie_UC^ UC = gcnew Movie_UC(Movie);
+			f->Controls->Add(UC);
+			UC->Dock = DockStyle::Fill;
+		}
+		else {
+			f->Controls->Clear();
+			Movie_UC^ UC = gcnew Movie_UC(Serie);
+			f->Controls->Add(UC);
+			UC->Dock = DockStyle::Fill;
+		}
 		
 	}
 	};

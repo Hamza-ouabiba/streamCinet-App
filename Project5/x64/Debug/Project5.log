@@ -1,8 +1,8 @@
 ﻿  ClassData.cpp
   DataBase.cpp
+  DataBaseConnection.cpp
   Display.cpp
   jsoncpp.cpp
-  MainClass.cpp
   Movie_UC.cpp
   MyForm.cpp
   MyLibrary.cpp

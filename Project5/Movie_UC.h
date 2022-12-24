@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MainClass.h"  
+#include "DataBaseConnection.h"  
 #include "ClassData.h"  
 #include<string>   
 #include <msclr/marshal_windows.h>
@@ -30,7 +30,8 @@ namespace Project5 {
 	 
 	public:
 	 
-		Class_Movie^ Movie;
+		Class_Movie^ Movie = nullptr;
+		Class_Serie^ Serie = nullptr;
 		Movie_UC(Class_Movie^ MV)
 		{
 			InitializeComponent();
@@ -44,14 +45,27 @@ namespace Project5 {
 			//TODO: Add the constructor code here
 			//
 		}
-		void RemoveFromDataBase() {
+		Movie_UC(Class_Serie^ Serie)
+		{
+			InitializeComponent();
+			this->Serie = Serie;
+			this->Title_label->Text = Serie->GetTitle();
+			this->Overview_label->Text = Serie->GetOverview();
+			this->Rating_label->Text = Serie->GetRating().ToString();
+			this->Date_label->Text = Serie->GetRealease_Date().ToString();
+			this->panel1->BackgroundImage = Serie->GetBakcDrop();
+			//
+			//TODO: Add the constructor code here
+			//
+		}
+		void RemoveFromDataBase_Serie() {
 			try {
 				
-				SqlConnection conx(MainClass::ConnectionString());
+				SqlConnection conx(DataBaseConnection::ConnectionString());
 				conx.Open();
-				String^ Query = "DELETE FROM MOVIE where ID_API = @ID_API;";
+				String^ Query = "DELETE FROM SERIE where ID_API = @ID_API;";
 				SqlCommand Command(Query, % conx);
-				Command.Parameters->AddWithValue("@ID_API", Movie->GetIdApi());
+				Command.Parameters->AddWithValue("@ID_API", Serie->GetIdApi());
 				Command.ExecuteNonQuery();
 				conx.Close();
 
@@ -61,7 +75,7 @@ namespace Project5 {
 				MessageBox::Show(ex->Message);
 			}
 		}
-		void AddToDataBase() {
+		void AddToDataBase_Serie() {
 			/*
 			Image^ Img = Movie->GetPoster();
 			FileStream^ File = gcnew FileStream(Img->ToString(), FileMode::Open, FileAccess::Read);
@@ -69,24 +83,27 @@ namespace Project5 {
 			MessageBox::Show(Br->ReadBytes((int)File->Length)->ToString());
 			*/
 			try {
-				SqlConnection conx(MainClass::ConnectionString());
+				SqlConnection conx(DataBaseConnection::ConnectionString());
 				conx.Open();
-				String^ Query = "INSERT INTO MOVIE(ID_API,TITLE,rating,RELEASE_DATE,OVERVIEW,POSTER,BACKDROP) VALUES(@ID_API,@TITLE,@rating,@RELEASE_DATE,@OVERVIEW,@POSTER,@BACKDROP); ";
+				String^ Query = "INSERT INTO SERIE(ID_API,TITLE,RATING,RELEASE_DATE,OVERVIEW,POSTER,BACKDROP,COUNTRY) VALUES(@ID_API,@TITLE,@RATING,@RELEASE_DATE,@OVERVIEW,@POSTER,@BACKDROP,@COUNTRY); ";
 				SqlCommand Command(Query, % conx);
-				Command.Parameters->AddWithValue("@TITLE", Movie->GetTitle());
-				Command.Parameters->AddWithValue("@ID_API", Movie->GetIdApi());
-				Command.Parameters->AddWithValue("@rating", Movie->GetRating());
-				Command.Parameters->AddWithValue("@RELEASE_DATE", Movie->GetRealease_Date());
-				Command.Parameters->AddWithValue("@OVERVIEW", Movie->GetOverview());
+				Command.Parameters->AddWithValue("@TITLE", Serie->GetTitle());
+				Command.Parameters->AddWithValue("@ID_API", Serie->GetIdApi());
+				Command.Parameters->AddWithValue("@RATING", Serie->GetRating());
+				Command.Parameters->AddWithValue("@RELEASE_DATE", Serie->GetRealease_Date());
+				Command.Parameters->AddWithValue("@OVERVIEW", Serie->GetOverview());
+				Command.Parameters->AddWithValue("@POSTER", Serie->GetPoster());
+				Command.Parameters->AddWithValue("@BACKDROP", Serie->GetBakcDrop());
+				Command.Parameters->AddWithValue("@COUNTRY", Serie->GetCountry());
 
 				MemoryStream^ ms ;
 				try {
 					ms = gcnew MemoryStream();
-					Movie->GetPoster()->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+					Serie->GetPoster()->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
 					Command.Parameters->AddWithValue("@POSTER", ms->ToArray());
 
 					ms = gcnew MemoryStream();
-					Movie->GetBakcDrop()->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+					Serie->GetBakcDrop()->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
 					Command.Parameters->AddWithValue("@BACKDROP", ms->ToArray());
 
 				}
@@ -97,7 +114,7 @@ namespace Project5 {
 
 				Command.ExecuteNonQuery();
 				conx.Close();
-				Movie->SetExist(true);
+				Serie->SetExist(true);
 				/*
 				* 
 				unsigned char  data [length];
@@ -117,6 +134,135 @@ namespace Project5 {
 
 		}
 	 
+
+		void RemoveFromDataBase_Movie() {
+			try {
+
+				SqlConnection conx(DataBaseConnection::ConnectionString());
+				conx.Open();
+				String^ Query = "DELETE FROM MOVIE where ID_API = @ID_API;";
+				SqlCommand Command(Query, % conx);
+				Command.Parameters->AddWithValue("@ID_API", Movie->GetIdApi());
+				Command.ExecuteNonQuery();
+				conx.Close();
+
+				Movie->SetExist(false);
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show(ex->Message);
+			}
+		}
+	 
+		///:::::::::://////:::::::::://////:::::::::://////::::::::::///
+
+		void AddCategory(int idApiCategory) {
+			try {
+				SqlConnection conx(DataBaseConnection::ConnectionString());
+				conx.Open();
+				String^ Query = "INSERT INTO MOVIECATEGORY(ID_CATEGORY,ID_MOVIE) VALUES((select ID_CATEGORY from CATEGORY where ID_API=@ID_API),(SELECT MAX(ID_MOVIE) from MOVIE) ); ";
+				SqlCommand Command(Query, % conx);
+				Command.Parameters->AddWithValue("@ID_API", idApiCategory); 
+
+				Command.ExecuteNonQuery();
+				conx.Close();
+				Movie->SetExist(true);
+
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show(ex->Message);
+			}
+		}
+		void AddCategoryMovie(int idApiMovie) {
+
+			String^ Url = "https://api.themoviedb.org/3/movie/"+ idApiMovie +"?api_key=10f96818301b77e61d73d48aa20d81f9";
+			HttpClient^ client = gcnew HttpClient();
+			HttpResponseMessage^ response = client->GetAsync(Url)->Result;
+
+			String^ jsonString = response->Content->ReadAsStringAsync()->Result;
+
+			std::string jsonString2 = msclr::interop::marshal_as<std::string>(jsonString);
+
+			/// ::::////////////////////////////////////////////////////////////////
+
+			if (response->IsSuccessStatusCode)
+			{
+				// Response looks good - done using Curl now.  Try to parse the results
+				// and print them out.
+				//jsonData["results"][i]["original_title"]
+				Json::Value jsonData;
+				Json::Reader jsonReader;
+				stringstream ss;
+				string data; 
+
+				Class_Movie^ Movie = gcnew Class_Movie();
+
+				Json::StreamWriterBuilder builder;
+				builder["indentation"] = "";
+
+
+				if (jsonReader.parse(jsonString2, jsonData))
+				{
+					for (int i = 0; i < 3; i++)
+					{
+						int idcategory = jsonData["genres"][i]["id"].asInt();
+						if (idcategory) {
+							AddCategory(idcategory);
+						}
+						else {
+							break;
+						}
+						
+					}
+						
+
+				}
+			}
+			
+		}
+
+		///:::::::::://////:::::::::://////:::::::::://////::::::::::///
+		void AddToDataBase_Movie() {
+		
+			 
+			try {
+				SqlConnection conx(DataBaseConnection::ConnectionString());
+				conx.Open();
+				String^ Query = "INSERT INTO MOVIE(ID_API,TITLE,RATING,RELEASE_DATE,OVERVIEW,POSTER,BACKDROP) VALUES(@ID_API,@TITLE,@RATING,@RELEASE_DATE,@OVERVIEW,@POSTER,@BACKDROP); ";
+				SqlCommand Command(Query, % conx);
+				Command.Parameters->AddWithValue("@TITLE", Movie->GetTitle());
+				Command.Parameters->AddWithValue("@ID_API", Movie->GetIdApi());
+				Command.Parameters->AddWithValue("@RATING", Movie->GetRating());
+				Command.Parameters->AddWithValue("@RELEASE_DATE", Movie->GetRealease_Date());
+				Command.Parameters->AddWithValue("@OVERVIEW", Movie->GetOverview());
+
+				MemoryStream^ ms;
+				try {
+					ms = gcnew MemoryStream();
+					Movie->GetPoster()->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+					Command.Parameters->AddWithValue("@POSTER", ms->ToArray());
+
+					ms = gcnew MemoryStream();
+					Movie->GetBakcDrop()->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+					Command.Parameters->AddWithValue("@BACKDROP", ms->ToArray());
+
+				}
+				finally {
+					ms->Close();
+				}
+				Command.ExecuteNonQuery();
+				AddCategoryMovie(Movie->GetIdApi());
+
+				conx.Close();
+				Movie->SetExist(true);
+
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show(ex->Message);
+			}
+
+
+		}
+
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -427,19 +573,35 @@ namespace Project5 {
 
 	private: System::Void BtnLibrary_AddRemove_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		if (Movie->GetExist()) {
-			RemoveFromDataBase();
+		if (Movie) {
 
-			BtnLibrary_AddRemove->Text = "Add To Library";
-			BtnLibrary_AddRemove->Image = Image::FromFile("icons\\add.png");
+			if (Movie->GetExist()) {
+				RemoveFromDataBase_Movie();
+				BtnLibrary_AddRemove->Text = "Add To Library";
+				BtnLibrary_AddRemove->Image = Image::FromFile("icons\\add.png");
+			}
+			else {
+				AddToDataBase_Movie();
+
+				BtnLibrary_AddRemove->Text = "Remove from Library";
+				BtnLibrary_AddRemove->Image = Image::FromFile("icons\\remove.png");
+			}
+			
 			//BtnLibrary_AddRemove->ImageAlign = ImageAlign::MiddleLeft;
 
 		}
 		else {
-			AddToDataBase();
+			if (Serie->GetExist()) {
+				RemoveFromDataBase_Serie();
+				BtnLibrary_AddRemove->Text = "Add To Library";
+				BtnLibrary_AddRemove->Image = Image::FromFile("icons\\add.png");
+			}
+			else {
+				AddToDataBase_Serie();
 
-			BtnLibrary_AddRemove->Text = "Remove from Library";
-			BtnLibrary_AddRemove->Image = Image::FromFile("icons\\remove.png");
+				BtnLibrary_AddRemove->Text = "Remove from Library";
+				BtnLibrary_AddRemove->Image = Image::FromFile("icons\\remove.png");
+			}
 
 		}
 
@@ -480,7 +642,7 @@ namespace Project5 {
 				   Json::StreamWriterBuilder builder;
 				   builder["indentation"] = "";
 
-
+				   
 				   if (jsonReader.parse(jsonString2, jsonData))
 				   {
 					   for (int index = 0; index <= 4; index++)

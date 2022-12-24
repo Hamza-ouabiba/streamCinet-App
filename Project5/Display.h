@@ -170,7 +170,7 @@ namespace Project5 {
 				return response;
 		}*/
  
-		MyUserControl ^getInformations(int index, string jsonString2)
+		MyUserControl ^getInformations_Movie(int index, string jsonString2)
 		{
 
 			/*
@@ -211,9 +211,7 @@ namespace Project5 {
 
 			if (true)
 			{
-				// Response looks good - done using Curl now.  Try to parse the results
-				// and print them out.
-				//jsonData["results"][i]["original_title"]
+				 
 				Json::Value jsonData;
 				Json::Reader jsonReader;
 				stringstream ss;
@@ -265,6 +263,67 @@ namespace Project5 {
 					
 					///*Image^ image = Image::FromFile(unmanaged);
 					//panel1->BackgroundImage = image;*/
+				}
+			}
+			return nullptr;
+		}
+
+		MyUserControl^ getInformations_Serie(int index, string jsonString2)
+		{
+			if (true)
+			{
+
+				Json::Value jsonData;
+				Json::Reader jsonReader;
+				stringstream ss;
+				string data;
+				string site = "https://image.tmdb.org/t/p/w500";
+
+			
+
+				Json::StreamWriterBuilder builder;
+				builder["indentation"] = "";
+
+
+				if (jsonReader.parse(jsonString2, jsonData))
+				{
+					Class_Serie^ Serie = gcnew Class_Serie();
+
+					Serie->SetIdApi(jsonData["results"][index]["id"].asInt());
+					Serie->SetRating(jsonData["results"][index]["vote_average"].asFloat());
+
+					string title = jsonData["results"][index]["name"].toStyledString();
+					title.erase(remove(title.begin(), title.end(), '"'));
+					Serie->SetTitle(msclr::interop::marshal_as<System::String^>(title));
+
+					string overview = jsonData["results"][index]["overview"].toStyledString();
+					overview.erase(remove(overview.begin(), overview.end(), '"'));
+					Serie->SetOverview(msclr::interop::marshal_as<System::String^>(overview));
+					
+					string origin_country = jsonData["results"][index]["origin_country"].toStyledString();
+					origin_country.erase(remove(origin_country.begin(), origin_country.end(), '"'));
+					Serie->SetCountry(msclr::interop::marshal_as<System::String^>(origin_country));
+
+
+					string date = jsonData["results"][index]["first_air_date"].toStyledString();
+					date.erase(remove(date.begin(), date.end(), '"'));
+					Serie->SetRealease_Date(DateTime::Parse(msclr::interop::marshal_as<System::String^>(date)));
+
+					data = site + Json::writeString(builder, jsonData["results"][index]["poster_path"]);
+					data.erase(remove(data.begin(), data.end(), '"'), data.end());
+					System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(data);
+
+					Serie->SetPoster(DownloadImage(unmanaged));
+
+					data = site + Json::writeString(builder, jsonData["results"][index]["backdrop_path"]);
+					data.erase(remove(data.begin(), data.end(), '"'), data.end());
+					unmanaged = msclr::interop::marshal_as<System::String^>(data);
+
+					Serie->SetBakcDrop(DownloadImage(unmanaged));
+
+					MyUserControl^ UC = gcnew MyUserControl(Serie, Display_Panel);
+
+					return UC; 
 				}
 			}
 			return nullptr;
@@ -397,7 +456,7 @@ namespace Project5 {
 				indexPage = i;
 				ss << indexPage;
 				ss >> indexStri;
-				this->flowLayoutPanel1->Controls->Add(getInformations(j, jsonString2));
+				this->flowLayoutPanel1->Controls->Add(getInformations_Movie(j, jsonString2));
 
 			}
 		}

@@ -39,20 +39,20 @@
     <ClCompile Include="Movie_UC.cpp">
       <Filter>My_Library</Filter>
     </ClCompile>
-    <ClCompile Include="ClassData.cpp">
-      <Filter>My_Library\Class</Filter>
-    </ClCompile>
     <ClCompile Include="MyUserControl.cpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClCompile>
     <ClCompile Include="Display.cpp">
       <Filter>Main_UserControl</Filter>
     </ClCompile>
-    <ClCompile Include="MainClass.cpp">
-      <Filter>My_Library\Class</Filter>
+    <ClCompile Include="DataBaseConnection.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="DataBase.cpp">
-      <Filter>My_Library\Class</Filter>
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassData.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -83,11 +83,14 @@
     <ClInclude Include="Display.h">
       <Filter>Main_UserControl</Filter>
     </ClInclude>
-    <ClInclude Include="MainClass.h">
-      <Filter>My_Library\Class</Filter>
-    </ClInclude>
     <ClInclude Include="DataBase.h">
       <Filter>My_Library\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="DataBaseConnection.h">
+      <Filter>My_Library\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Class.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

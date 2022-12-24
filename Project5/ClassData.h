@@ -1,17 +1,14 @@
 #pragma once
 #include <string> 
-#include"MainClass.h"
-#include"DataBase.h"
 #include <msclr/marshal_cppstd.h>
+#include "DataBase.h"
 
 using namespace::std;
 using namespace System;
 using namespace Drawing;
 using namespace System::Windows::Forms;
 using namespace System::Data::SqlClient;
-
-
-
+ 
 	public ref class Class_Movie
 	{
 	private:
@@ -27,6 +24,7 @@ using namespace System::Data::SqlClient;
 		Image^ BakcDrop;
 
 	public:
+		 
 		Class_Movie() {
 		 
 		}
@@ -40,8 +38,8 @@ using namespace System::Data::SqlClient;
 			this->Realease_Date = MV->Realease_Date;
 			this->Poster = MV->Poster;
 			this->BakcDrop = MV->BakcDrop;
-
-			this->Exist = DataBase::Search_Movie(this->id_Api);
+		 
+			this->Exist = DataBase::Exist_Movie(this->id_Api);
 		}
 		Class_Movie(int id_Movie, int id_Api, String^ title, String^ Overview, float Rating, DateTime Realease_Date, Image^ Poster, Image^ BakcDrop)
 		{
@@ -54,7 +52,7 @@ using namespace System::Data::SqlClient;
 			this->Poster = Poster;
 			this->BakcDrop = BakcDrop;
 	
-			this->Exist = DataBase::Search_Movie(this->id_Api);
+			this->Exist = DataBase::Exist_Movie(this->id_Api);
 		}
 		 
 		~Class_Movie() {
@@ -100,7 +98,8 @@ using namespace System::Data::SqlClient;
 		}
 		void SetIdApi(int id) {
 			this->id_Api = id;
-			this->Exist = DataBase::Search_Movie(this->id_Api);
+
+			this->Exist = DataBase::Exist_Movie(this->id_Api);
 		}
 		void SetRating(float rating) {
 			this->Rating = rating;
@@ -134,7 +133,7 @@ using namespace System::Data::SqlClient;
 		bool Exist;//Exists In DataBase
 		int id_Serie;
 		int id_Api;
-		String^ Name;
+		String^ title;
 		String^ Overview;
 		String^ Country;
 		float Rating;
@@ -150,20 +149,21 @@ using namespace System::Data::SqlClient;
 
 			this->id_Serie = Serie->id_Serie;
 			this->id_Api = Serie->id_Api;
-			this->Name = Serie->Name;
+			this->title = Serie->title;
 			this->Overview = Serie->Overview;
 			this->Rating = Serie->Rating;
 			this->Realease_Date = Serie->Realease_Date;
 			this->Poster = Serie->Poster;
 			this->BakcDrop = Serie->BakcDrop;
+			this->Country = Serie->Country;
 
-			this->Exist = DataBase::Search_Serie(this->id_Api);
+			this->Exist = DataBase::Exist_Serie(this->id_Api);
 		}
-		Class_Serie(int id_Serie, int id_Api, String^ Name, String^ Overview, String^ Country, float Rating, DateTime Realease_Date, Image^ Poster, Image^ BakcDrop)
+		Class_Serie(int id_Serie, int id_Api, String^ title, String^ Overview, String^ Country, float Rating, DateTime Realease_Date, Image^ Poster, Image^ BakcDrop)
 		{
 			this->id_Serie = id_Serie;
 			this->id_Api = id_Api;
-			this->Name = Name;
+			this->title = title;
 			this->Country = Country;
 			this->Overview = Overview;
 			this->Rating = Rating;
@@ -171,7 +171,7 @@ using namespace System::Data::SqlClient;
 			this->Poster = Poster;
 			this->BakcDrop = BakcDrop;
 
-			this->Exist = DataBase::Search_Serie(this->id_Api);
+			this->Exist = DataBase::Exist_Serie(this->id_Api);
 		}
 		
 		~Class_Serie() {
@@ -193,10 +193,13 @@ using namespace System::Data::SqlClient;
 		}
 
 		String^ GetTitle() {
-			return this->Name;
+			return this->title;
 		}
 		String^ GetOverview() {
 			return Overview;
+		}
+		String^ GetCountry() {
+			return this->Country;
 		}
 
 		DateTime GetRealease_Date() {
@@ -210,12 +213,12 @@ using namespace System::Data::SqlClient;
 		}
 
 		//Set
-		void SetIdMovie(int id_Serie) {
+		void SetIdSerie(int id_Serie) {
 			this->id_Serie = id_Serie;
 		}
 		void SetIdApi(int id_Api) {
 			this->id_Api = id_Api;
-			this->Exist = DataBase::Search_Serie(this->id_Api);
+			this->Exist = DataBase::Exist_Serie(this->id_Api);
 		}
 		void SetExist(bool Exist) {
 			this->Exist = Exist;
@@ -223,8 +226,11 @@ using namespace System::Data::SqlClient;
 		void SetRating(float rating) {
 			this->Rating = rating;
 		}
-		void SetTitle(String^ Name) {
-			this->Name = Name;
+		void SetTitle(String^ title) {
+			this->title = title;
+		}
+		void SetCountry(String^ Country) {
+			this->Country = Country;
 		}
 		void SetOverview(String^ Overview) {
 			this->Overview = Overview;
@@ -233,7 +239,7 @@ using namespace System::Data::SqlClient;
 			this->Realease_Date = Date;
 		}
 		void SetPoster(Image^ img) {
-			this->Poster = img;
+			this->Poster = img; 
 		}
 		void SetBakcDrop(Image^ img) {
 			this->BakcDrop = img;
