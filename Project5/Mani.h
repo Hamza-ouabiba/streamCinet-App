@@ -1,7 +1,8 @@
 #pragma once
 #include<curl/curl.h>
+#using <System.Net.Http.dll>
+#using <System.Drawing.dll>
 #include "json/json.h"
-#include "MyUserControl.h"
 #include <msclr/marshal_cppstd.h>
 namespace
 {
@@ -23,6 +24,8 @@ using namespace System::Collections;
 using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
+using namespace System::Net::Http;
+using namespace System::IO;
 
 public ref class Mani
 {
@@ -121,6 +124,26 @@ public:
 
 		return _tmpImage;
 	}
+	Image^ imageDown(String^ url_)
+	{
+		// Set up the HTTP client and send the request
+		 // Set up the HTTP client and send the request
+		HttpClient^ client = gcnew HttpClient();
+		HttpResponseMessage^ response = client->GetAsync(url_)->Result;
+
+		// Check the status code of the response
+		if (response->IsSuccessStatusCode)	
+		{
+			// Get the image data as a stream
+			Stream^ imageStream = response->Content->ReadAsStreamAsync()->Result;
+
+			// Create a new bitmap from the stream
+			Bitmap^ image = gcnew Bitmap(imageStream);
+
+			// Save the image to a file
+			return image->FromStream(imageStream);
+		}
+	}
 	int randomNumber()
 	{
 		srand(time(NULL));
@@ -178,7 +201,7 @@ public:
 				data = site + Json::writeString(builder, jsonData["results"][randomNumber()]["backdrop_path"]);
 				data.erase(remove(data.begin(), data.end(), '"'), data.end());
 				System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(data);
-				flowP->BackgroundImage = DownloadImage(unmanaged);
+				flowP->BackgroundImage = imageDown(unmanaged);
 				overview = jsonData["results"][randomNumber()]["overview"].toStyledString();
 				overPase = msclr::interop::marshal_as<System::String^>(overview);
 				over->Text = overPase;

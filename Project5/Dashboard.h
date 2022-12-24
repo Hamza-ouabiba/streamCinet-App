@@ -1,5 +1,8 @@
 #pragma once
 #include "Mani.h"
+#include "PosterImage.h"
+#include "Movie.h"
+#include "Serie.h"
 #include<iostream>
 using namespace System;
 using namespace System::ComponentModel;
@@ -16,15 +19,20 @@ namespace Project5 {
 	public ref class DashBoard : public System::Windows::Forms::UserControl
 	{
 		Mani^ l = gcnew Mani();
+		Panel^ panel;
 	public:
-		DashBoard(void)
+		DashBoard()
 		{
 			InitializeComponent();
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
 		}
-
+		DashBoard(Panel^ panelContent)
+		{
+			InitializeComponent();
+			this->panel = panelContent;
+		}
 	protected:
 		/// <summary>
 		/// Nettoyage des ressources utilisées.
@@ -65,12 +73,12 @@ namespace Project5 {
 		void InitializeComponent(void)
 		{
 			this->imagePanel = (gcnew System::Windows::Forms::Panel());
+			this->overview = (gcnew System::Windows::Forms::RichTextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->movie = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->serie = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->overview = (gcnew System::Windows::Forms::RichTextBox());
 			this->imagePanel->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -81,10 +89,23 @@ namespace Project5 {
 			this->imagePanel->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->imagePanel->Controls->Add(this->overview);
 			this->imagePanel->Controls->Add(this->button1);
-			this->imagePanel->Location = System::Drawing::Point(6, 3);
+			this->imagePanel->Location = System::Drawing::Point(6, 7);
 			this->imagePanel->Name = L"imagePanel";
-			this->imagePanel->Size = System::Drawing::Size(1450, 576);
+			this->imagePanel->Size = System::Drawing::Size(1387, 600);
 			this->imagePanel->TabIndex = 3;
+			// 
+			// overview
+			// 
+			this->overview->BackColor = System::Drawing::Color::Black;
+			this->overview->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->overview->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->overview->ForeColor = System::Drawing::Color::White;
+			this->overview->Location = System::Drawing::Point(122, 290);
+			this->overview->Name = L"overview";
+			this->overview->Size = System::Drawing::Size(772, 202);
+			this->overview->TabIndex = 1;
+			this->overview->Text = L"";
 			// 
 			// button1
 			// 
@@ -103,18 +124,18 @@ namespace Project5 {
 			// 
 			this->movie->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->movie->Location = System::Drawing::Point(6, 612);
+			this->movie->Location = System::Drawing::Point(41, 641);
 			this->movie->Name = L"movie";
-			this->movie->Size = System::Drawing::Size(1453, 277);
+			this->movie->Size = System::Drawing::Size(1390, 357);
 			this->movie->TabIndex = 4;
 			// 
 			// serie
 			// 
 			this->serie->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->serie->Location = System::Drawing::Point(6, 940);
+			this->serie->Location = System::Drawing::Point(43, 1046);
 			this->serie->Name = L"serie";
-			this->serie->Size = System::Drawing::Size(1453, 277);
+			this->serie->Size = System::Drawing::Size(1390, 367);
 			this->serie->TabIndex = 5;
 			// 
 			// label1
@@ -123,7 +144,7 @@ namespace Project5 {
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::SystemColors::Control;
-			this->label1->Location = System::Drawing::Point(20, 582);
+			this->label1->Location = System::Drawing::Point(12, 614);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(62, 20);
 			this->label1->TabIndex = 6;
@@ -135,38 +156,25 @@ namespace Project5 {
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::SystemColors::Control;
-			this->label2->Location = System::Drawing::Point(28, 898);
+			this->label2->Location = System::Drawing::Point(14, 1007);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(57, 20);
 			this->label2->TabIndex = 7;
 			this->label2->Text = L"Series";
-			// 
-			// overview
-			// 
-			this->overview->BackColor = System::Drawing::Color::Black;
-			this->overview->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->overview->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->overview->ForeColor = System::Drawing::Color::White;
-			this->overview->Location = System::Drawing::Point(122, 290);
-			this->overview->Name = L"overview";
-			this->overview->Size = System::Drawing::Size(772, 202);
-			this->overview->TabIndex = 1;
-			this->overview->Text = L"";
 			// 
 			// DashBoard
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScroll = true;
-			this->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->BackColor = System::Drawing::Color::Black;
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->imagePanel);
 			this->Controls->Add(this->movie);
 			this->Controls->Add(this->serie);
 			this->Name = L"DashBoard";
-			this->Size = System::Drawing::Size(1456, 1070);
+			this->Size = System::Drawing::Size(1393, 1083);
 			this->Load += gcnew System::EventHandler(this, &DashBoard::DashBoard_Load);
 			this->imagePanel->ResumeLayout(false);
 			this->ResumeLayout(false);
@@ -189,7 +197,6 @@ namespace Project5 {
 			{
 				if (type == "title")
 				{
-					cout << "creating movies";
 					//creating a movie object : 
 					Movie^ mv = gcnew Movie();
 					int id;
@@ -219,20 +226,20 @@ namespace Project5 {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(data);
 
-					mv->SetPoster(l->DownloadImage(unmanaged));
+					mv->SetPoster(l->imageDown(unmanaged));
 					data = backDrop_ + dataMovies["results"][i]["backdrop_path"].toStyledString();
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					unmanaged = msclr::interop::marshal_as<System::String^>(data);
 
-					mv->SetBakcDrop(l->DownloadImage(unmanaged));
+					mv->SetBakcDrop(l->imageDown(unmanaged));
 					
 					//adding a user Control related to this movie : 
-					MyUserControl^ movie_uc = gcnew MyUserControl(i, mv);
+					PosterImage ^ movie_uc = gcnew PosterImage(i, mv,this->panel);
 					this->movie->Controls->Add(movie_uc);
+					cout << "creating movies";
 				}
 				else if (type == "name")
 				{
-					cout << "creating series";
 					Serie^ serie = gcnew Serie();
 					int id;
 					string url_poster = poster_ + dataMovies["results"][i]["poster_path"].toStyledString();
@@ -259,16 +266,17 @@ namespace Project5 {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(data);
 
-					serie->SetPoster(l->DownloadImage(unmanaged));
+					serie->SetPoster(l->imageDown(unmanaged));
 
 					data = backDrop_ + dataMovies["results"][i]["backdrop_path"].toStyledString();
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					unmanaged = msclr::interop::marshal_as<System::String^>(data);
 
-					serie->SetBakcDrop(l->DownloadImage(unmanaged));
+					serie->SetBakcDrop(l->imageDown(unmanaged));
 					//adding a user Control related to this movie : 
-					MyUserControl^ serie_uc = gcnew MyUserControl(i, serie);
+					PosterImage^ serie_uc = gcnew PosterImage(i, serie,this->panel);
 					this->serie->Controls->Add(serie_uc);
+					cout << "creating series";
 				}
 			}
 		}

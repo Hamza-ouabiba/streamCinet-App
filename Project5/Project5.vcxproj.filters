@@ -13,30 +13,42 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ManipulateData">
+      <UniqueIdentifier>{bbf81335-4129-4e70-b599-900d4f687365}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClassMoviesSeries">
+      <UniqueIdentifier>{52d70e2d-8b24-43d3-be49-358bc5eabe8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="interface">
+      <UniqueIdentifier>{1720924b-c382-4961-8d73-0e158d28c997}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MyForm.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="dist\jsoncpp.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="MyUserControl.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="Mani.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>ManipulateData</Filter>
     </ClCompile>
-    <ClCompile Include="DiscoverUser.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Serie.cpp">
+      <Filter>ClassMoviesSeries</Filter>
     </ClCompile>
     <ClCompile Include="DashBoard.cpp">
+      <Filter>interface</Filter>
+    </ClCompile>
+    <ClCompile Include="MyForm.cpp">
+      <Filter>interface</Filter>
+    </ClCompile>
+    <ClCompile Include="DiscoverUser.cpp">
+      <Filter>interface</Filter>
+    </ClCompile>
+    <ClCompile Include="PosterImage.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="ViewMovie.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Serie.cpp">
+    <ClCompile Include="Library.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,25 +65,28 @@
     <ClInclude Include="resource.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="MyUserControl.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Mani.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="DiscoverUser.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="DashBoard.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Mani.h">
+      <Filter>ManipulateData</Filter>
+    </ClInclude>
     <ClInclude Include="Movie.h">
+      <Filter>ClassMoviesSeries</Filter>
+    </ClInclude>
+    <ClInclude Include="Serie.h">
+      <Filter>ClassMoviesSeries</Filter>
+    </ClInclude>
+    <ClInclude Include="PosterImage.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="ViewMovie.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Serie.h">
+    <ClInclude Include="Library.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

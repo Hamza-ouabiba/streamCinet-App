@@ -139,10 +139,11 @@
   <ItemGroup>
     <ClCompile Include="DashBoard.cpp" />
     <ClCompile Include="DiscoverUser.cpp" />
+    <ClCompile Include="Library.cpp" />
     <ClCompile Include="Mani.cpp" />
     <ClCompile Include="dist\jsoncpp.cpp" />
     <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="MyUserControl.cpp" />
+    <ClCompile Include="PosterImage.cpp" />
     <ClCompile Include="Serie.cpp" />
     <ClCompile Include="ViewMovie.cpp" />
   </ItemGroup>
@@ -153,6 +154,9 @@
     <ClInclude Include="DiscoverUser.h">
       <FileType>CppControl</FileType>
     </ClInclude>
+    <ClInclude Include="Library.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
     <ClInclude Include="Mani.h" />
     <ClInclude Include="dist\json\json-forwards.h" />
     <ClInclude Include="dist\json\json.h" />
@@ -160,11 +164,13 @@
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="MyUserControl.h" />
+    <ClInclude Include="PosterImage.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="Serie.h" />
     <ClInclude Include="ViewMovie.h">
-      <FileType>CppForm</FileType>
+      <FileType>CppControl</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -174,8 +180,14 @@
     <EmbeddedResource Include="DiscoverUser.resx">
       <DependentUpon>DiscoverUser.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Library.resx">
+      <DependentUpon>Library.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PosterImage.resx">
+      <DependentUpon>PosterImage.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressource.resx" />
     <EmbeddedResource Include="ViewMovie.resx">

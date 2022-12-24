@@ -2,7 +2,7 @@
 #include <curl/curl.h>
 #include"json/json.h"
 #include <msclr/marshal_cppstd.h>
-#include "MyUserControl.h"
+#include "PosterImage.h"
 #include "DashBoard.h"
 #include "DiscoverUser.h"
 using namespace std;
@@ -57,6 +57,8 @@ namespace Project5 {
 
 	private: System::Windows::Forms::Button^ discoverBtn;
 	private: System::Windows::Forms::Panel^ panelContent;
+
+
 	protected:
 	private:
 		/// <summary>
@@ -151,6 +153,7 @@ namespace Project5 {
 			this->libraryBtn->TabIndex = 2;
 			this->libraryBtn->Text = L"My Library";
 			this->libraryBtn->UseVisualStyleBackColor = true;
+			this->libraryBtn->Click += gcnew System::EventHandler(this, &MyForm::libraryBtn_Click);
 			// 
 			// menuBtn
 			// 
@@ -186,10 +189,11 @@ namespace Project5 {
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->panelContent->AutoScroll = true;
-			this->panelContent->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->panelContent->BackColor = System::Drawing::Color::Black;
+			this->panelContent->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->panelContent->Location = System::Drawing::Point(3, 57);
 			this->panelContent->Name = L"panelContent";
-			this->panelContent->Size = System::Drawing::Size(1330, 500);
+			this->panelContent->Size = System::Drawing::Size(1330, 537);
 			this->panelContent->TabIndex = 6;
 			// 
 			// MyForm
@@ -217,7 +221,7 @@ namespace Project5 {
 		}
 #pragma endregion
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
-		DashBoard^ menu_ = gcnew DashBoard();
+		DashBoard^ menu_ = gcnew DashBoard(this->panelContent);
 		this->panelContent->Controls->Clear();
 		menu_->Dock = DockStyle::Fill;
 		this->panelContent->Controls->Add(menu_);
@@ -228,7 +232,7 @@ namespace Project5 {
 		
 	}
 	private: System::Void discoverBtn_Click_1(System::Object^ sender, System::EventArgs^ e) {
-		DiscoverUser^ du = gcnew DiscoverUser();
+		DiscoverUser^ du = gcnew DiscoverUser(this->panelContent);
 		this->panelContent->Controls->Clear();
 		du->Dock = DockStyle::Fill;
 		this->panelContent->Controls->Add(du);
@@ -236,6 +240,9 @@ namespace Project5 {
 	private: System::Void menuBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		MyForm_Load(sender, e);
 	}
+private: System::Void libraryBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+
+}
 };
 	
 }
