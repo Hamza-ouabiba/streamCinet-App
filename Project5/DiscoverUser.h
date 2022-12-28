@@ -4,7 +4,10 @@
 #include "PosterImage.h"
 #include "Movie.h"
 #include<iostream>
+#include <windows.h> // required for Sleep function
+#include "ComboVal.h"
 using namespace System;
+using namespace System::Threading;
 using namespace System::ComponentModel;
 using namespace System::Collections;
 using namespace System::Windows::Forms;
@@ -21,7 +24,9 @@ namespace Project5 {
 	{
 	private:
 		Mani^ l = gcnew Mani();
-		Panel^ panel_;
+		static String^ locationUser;
+	private: System::Windows::Forms::ComboBox^ comboCat;
+		   Panel^ panel_;
 	public:
 		DiscoverUser(void)
 		{
@@ -80,6 +85,7 @@ namespace Project5 {
 		void InitializeComponent(void)
 		{
 			this->discoverMovie = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			this->comboCat = (gcnew System::Windows::Forms::ComboBox());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->ratedBtn = (gcnew System::Windows::Forms::Button());
 			this->popularBtn = (gcnew System::Windows::Forms::Button());
@@ -100,6 +106,18 @@ namespace Project5 {
 			this->discoverMovie->Name = L"discoverMovie";
 			this->discoverMovie->Size = System::Drawing::Size(1042, 734);
 			this->discoverMovie->TabIndex = 0;
+			// 
+			// comboCat
+			// 
+			this->comboCat->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->comboCat->FormattingEnabled = true;
+			this->comboCat->Location = System::Drawing::Point(258, 8);
+			this->comboCat->Name = L"comboCat";
+			this->comboCat->Size = System::Drawing::Size(459, 24);
+			this->comboCat->TabIndex = 12;
+			this->comboCat->SelectedIndexChanged += gcnew System::EventHandler(this, &DiscoverUser::comboCat_SelectedIndexChanged);
 			// 
 			// panel1
 			// 
@@ -154,23 +172,22 @@ namespace Project5 {
 			// 
 			// searchBtn
 			// 
-			this->searchBtn->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->searchBtn->Location = System::Drawing::Point(1262, 8);
+			this->searchBtn->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->searchBtn->Location = System::Drawing::Point(1229, 8);
 			this->searchBtn->Name = L"searchBtn";
-			this->searchBtn->Size = System::Drawing::Size(36, 32);
+			this->searchBtn->Size = System::Drawing::Size(69, 32);
 			this->searchBtn->TabIndex = 11;
+			this->searchBtn->Text = L"Search";
 			this->searchBtn->UseVisualStyleBackColor = true;
 			this->searchBtn->Click += gcnew System::EventHandler(this, &DiscoverUser::searchBtn_Click);
 			// 
 			// search
 			// 
-			this->search->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->search->Location = System::Drawing::Point(860, 8);
+			this->search->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->search->Location = System::Drawing::Point(773, 10);
 			this->search->Multiline = true;
 			this->search->Name = L"search";
-			this->search->Size = System::Drawing::Size(389, 30);
+			this->search->Size = System::Drawing::Size(450, 30);
 			this->search->TabIndex = 10;
 			// 
 			// DiscoverUser
@@ -178,10 +195,11 @@ namespace Project5 {
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Black;
+			this->Controls->Add(this->comboCat);
+			this->Controls->Add(this->discoverMovie);
 			this->Controls->Add(this->searchBtn);
 			this->Controls->Add(this->search);
 			this->Controls->Add(this->panel1);
-			this->Controls->Add(this->discoverMovie);
 			this->Name = L"DiscoverUser";
 			this->Size = System::Drawing::Size(1317, 790);
 			this->Load += gcnew System::EventHandler(this, &DiscoverUser::DiscoverUser_Load);
@@ -210,10 +228,13 @@ namespace Project5 {
 					int id;
 					string backN = dataMovies["results"][i]["backdrop_path"].toStyledString();
 					string postN = dataMovies["results"][i]["poster_path"].toStyledString();
+					string date = dataMovies["results"][i]["release_date"].toStyledString();
+					date.erase(remove(date.begin(), date.end(), '"'), date.end());
 					backN.erase(remove(backN.begin(), backN.end(), '"'), backN.end());
 					postN.erase(remove(postN.begin(), postN.end(), '"'), postN.end());
 					cout << "backN : "<<backN<<"postN"<<postN;
-					if (backN != "null" && postN != "null")
+					System::Threading::Thread::Sleep(10);
+					if (dataMovies["results"][i]["backdrop_path"].asString() != "" && dataMovies["results"][i]["poster_path"].asString() != "" && dataMovies["results"][i]["release_date"].asString() != "")
 					{
 						string url_poster = poster_ + dataMovies["results"][i]["poster_path"].toStyledString();
 						string backdrop_url = backDrop_ + dataMovies["results"][i]["backdrop_path"].toStyledString();
@@ -231,14 +252,11 @@ namespace Project5 {
 						string overview = dataMovies["results"][i]["overview"].toStyledString();
 						mv->SetOverview(msclr::interop::marshal_as<System::String^>(overview));
 
-
-						string date = dataMovies["results"][i]["release_date"].toStyledString();
-						mv->SetRealease_Date(msclr::interop::marshal_as<System::String^>(date));
-
-
+						mv->SetRealease_Date(Convert::ToDateTime(msclr::interop::marshal_as<System::String^>(date)));
 
 						string data = poster_ + dataMovies["results"][i]["poster_path"].toStyledString();
 						data.erase(remove(data.begin(), data.end(), '"'), data.end());
+						date = "";
 						System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(data);
 
 						mv->SetPoster(l->DownloadImage(unmanaged));
@@ -247,7 +265,7 @@ namespace Project5 {
 						unmanaged = msclr::interop::marshal_as<System::String^>(data);
 
 						mv->SetBakcDrop(l->DownloadImage(unmanaged));
-
+						mv->SetExist(DataBaseOperations::Search_Movie(mv->GetIdApi()));
 						//adding a user Control related to this movie : 
 						PosterImage^ movie_uc = gcnew PosterImage(i, mv,panel_);
 						this->discoverMovie->Controls->Add(movie_uc);
@@ -257,6 +275,7 @@ namespace Project5 {
 				{
 					Serie^ serie = gcnew Serie();
 					int id;
+					string date = dataMovies["results"][i]["first_air_date"].toStyledString();
 					string url_poster = poster_ + dataMovies["results"][i]["poster_path"].toStyledString();
 					string backdrop_url = backDrop_ + dataMovies["results"][i]["backdrop_path"].toStyledString();
 					//remove quotation marks because of JSON 
@@ -268,18 +287,23 @@ namespace Project5 {
 					serie->SetIdApi(id);
 
 					string title = dataMovies["results"][i][type].toStyledString();
+					title.erase(remove(title.begin(), title.end(), '"'), title.end());
 					serie->SetName(msclr::interop::marshal_as<System::String^>(title));
 
 					string overview = dataMovies["results"][i]["overview"].toStyledString();
+					overview.erase(remove(overview.begin(), overview.end(), '"'), overview.end());
 					serie->SetOverview(msclr::interop::marshal_as<System::String^>(overview));
 
 
-					string date = dataMovies["results"][i]["release_date"].toStyledString();
-					serie->SetRealease_Date(msclr::interop::marshal_as<System::String^>(date));
+					date.erase(remove(date.begin(), date.end(), '"'), date.end());
+					serie->SetRealease_Date(Convert::ToDateTime(msclr::interop::marshal_as<System::String^>(date)));
 
 					string data = poster_ + dataMovies["results"][i]["poster_path"].toStyledString();
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(data);
+
+					string country = dataMovies["results"][i]["origin_country"].toStyledString();
+					serie->SetCountry(msclr::interop::marshal_as<System::String^>(country));
 
 					serie->SetPoster(l->DownloadImage(unmanaged));
 
@@ -287,6 +311,7 @@ namespace Project5 {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					unmanaged = msclr::interop::marshal_as<System::String^>(data);
 
+					serie->SetExist(DataBaseOperations::Search_Serie(serie->GetIdApi()));
 					serie->SetBakcDrop(l->DownloadImage(unmanaged));
 					//adding a user Control related to this movie : 
 					PosterImage^ serie_uc = gcnew PosterImage(i, serie,panel_);
@@ -294,14 +319,60 @@ namespace Project5 {
 				}
 			}
 		}
+	private: string getCategorieNameById(string type,string idCat)
+	{
+		string url = "https://api.themoviedb.org/3/genre/movie/list?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
+		string name;
+		Json::Value dataCategories = l->getInformations(url, type);
+		for (int i = 0;i <= 19;i++)
+		{
+			if (idCat == dataCategories["genres"][i]["id"].toStyledString())
+				name = dataCategories["genres"][i]["name"].toStyledString();
+		}
+		name.erase(remove(name.begin(), name.end(), '"'), name.end());
+		return name;
+	}
+	private: void loadComboBoxCategories(string type,string url)
+	{
+		Json::Value dataMovies = l->getInformations(url, type);
+		
+		for (int i = 0;i <= 19;i++)
+		{
+			if (type == "title")
+			{
+				string categorieId = dataMovies["results"][i]["genre_ids"][0].toStyledString();
+				System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(getCategorieNameById(type,categorieId));
+				ComboVal^ cv = gcnew ComboVal();
+				cv->title = unmanaged;
+				cv->id = msclr::interop::marshal_as<System::String^>(categorieId);
+				this->comboCat->DisplayMember = "title";
+				this->comboCat->ValueMember = "id";
+				this->comboCat->Items->Add(cv);
+			}
+			else
+			{
+				string categorieId = dataMovies["results"][i]["genre_ids"][0].toStyledString();
+				System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(getCategorieNameById(type, categorieId));
+				ComboVal^ cv = gcnew ComboVal();
+				cv->title = unmanaged;
+				cv->id = msclr::interop::marshal_as<System::String^>(categorieId);
+				this->comboCat->DisplayMember = cv->title;
+				this->comboCat->ValueMember = cv->id;
+				this->comboCat->Items->Add(cv);
+			}
+		}
+	}
 #pragma endregion
 	private: System::Void DiscoverUser_Load(System::Object^ sender, System::EventArgs^ e) {
+
 		string urlDiscover_movies = "https://api.themoviedb.org/3/discover/movie?api_key=10f96818301b77e61d73d48aa20d81f9&page=";
 		ShowFlowPanel(urlDiscover_movies, "title");
+		loadComboBoxCategories("title",urlDiscover_movies);
 	}
 	private: System::Void seriesBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		string urlDiscover_series = "https://api.themoviedb.org/3/discover/tv?api_key=10f96818301b77e61d73d48aa20d81f9&page=";
 		ShowFlowPanel(urlDiscover_series, "name");
+		locationUser = "series";
 	}
 	private: System::Void popularBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		string urlDiscover_popular_m = "https://api.themoviedb.org/3/movie/popular?api_key=10f96818301b77e61d73d48aa20d81f9&page=";
@@ -309,12 +380,32 @@ namespace Project5 {
 	}
 	private: System::Void moviesBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		DiscoverUser_Load(sender, e);
+		locationUser = "movies";
 	}
 	private: System::Void searchBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		String^ urlSearch = "https://api.themoviedb.org/3/search/movie?api_key=10f96818301b77e61d73d48aa20d81f9&page=1&query=" + search->Text;
 		ShowFlowPanel(msclr::interop::marshal_as<std::string>(urlSearch), "title");
+		
 		/*urlSearch = "https://api.themoviedb.org/3/search/tv?api_key=10f96818301b77e61d73d48aa20d81f9&page=1&query=h" + search->Text;
 		ShowFlowPanel(msclr::interop::marshal_as<std::string>(urlSearch), "name");*/
 	}
+	private: void displayCategories(string url,string type)
+	{
+		if (type == "title")
+		{
+			string url = "https://api.themoviedb.org/3/genre/movie/list?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
+		}
+	}
+	private: System::Void comboCat_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+		String^ categorie = comboCat->SelectedValue->ToString();
+		MessageBox::Show(categorie);
+		//if user is in the movies section : 
+		if (locationUser == "movies")
+		{
+			string urlDiscover_movies = "https://api.themoviedb.org/3/discover/movie?api_key=10f96818301b77e61d73d48aa20d81f9&page=";
+			//getting each id of a movie and then test it to a particular id of category: 
+
+		}
+}
 };
 }

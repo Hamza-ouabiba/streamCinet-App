@@ -22,6 +22,21 @@
     <Filter Include="interface">
       <UniqueIdentifier>{1720924b-c382-4961-8d73-0e158d28c997}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Library">
+      <UniqueIdentifier>{63160960-672e-4b28-9452-abde1d46a2eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Discover">
+      <UniqueIdentifier>{ab381155-dec8-4d35-870d-2725664460c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NewFilter1">
+      <UniqueIdentifier>{172f939b-f777-4e82-a8af-7aa7c6f7f417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Calendar">
+      <UniqueIdentifier>{cea7affc-d147-4d23-89a6-53ed98a82dc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WatchLater">
+      <UniqueIdentifier>{13e9e489-2979-4559-9b90-96bb334a55d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dist\jsoncpp.cpp">
@@ -30,16 +45,10 @@
     <ClCompile Include="Mani.cpp">
       <Filter>ManipulateData</Filter>
     </ClCompile>
-    <ClCompile Include="Serie.cpp">
-      <Filter>ClassMoviesSeries</Filter>
-    </ClCompile>
     <ClCompile Include="DashBoard.cpp">
       <Filter>interface</Filter>
     </ClCompile>
     <ClCompile Include="MyForm.cpp">
-      <Filter>interface</Filter>
-    </ClCompile>
-    <ClCompile Include="DiscoverUser.cpp">
       <Filter>interface</Filter>
     </ClCompile>
     <ClCompile Include="PosterImage.cpp">
@@ -49,6 +58,36 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Library.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DiscoverUser.cpp">
+      <Filter>Discover</Filter>
+    </ClCompile>
+    <ClCompile Include="Serie.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Movie.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DataBaseOperations.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Calendar_uc.cpp">
+      <Filter>Calendar</Filter>
+    </ClCompile>
+    <ClCompile Include="DaysUserControl.cpp">
+      <Filter>Calendar</Filter>
+    </ClCompile>
+    <ClCompile Include="BlankUserControl.cpp">
+      <Filter>Calendar</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchForm.cpp">
+      <Filter>WatchLater</Filter>
+    </ClCompile>
+    <ClCompile Include="PosterPlanning.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ComboVal.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,12 +113,6 @@
     <ClInclude Include="Mani.h">
       <Filter>ManipulateData</Filter>
     </ClInclude>
-    <ClInclude Include="Movie.h">
-      <Filter>ClassMoviesSeries</Filter>
-    </ClInclude>
-    <ClInclude Include="Serie.h">
-      <Filter>ClassMoviesSeries</Filter>
-    </ClInclude>
     <ClInclude Include="PosterImage.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -87,6 +120,33 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Library.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Movie.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Serie.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="DataBaseOperations.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Calendar_uc.h">
+      <Filter>Calendar</Filter>
+    </ClInclude>
+    <ClInclude Include="DaysUserControl.h">
+      <Filter>Calendar</Filter>
+    </ClInclude>
+    <ClInclude Include="BlankUserControl.h">
+      <Filter>Calendar</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchForm.h">
+      <Filter>WatchLater</Filter>
+    </ClInclude>
+    <ClInclude Include="PosterPlanning.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="ComboVal.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

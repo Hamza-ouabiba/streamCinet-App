@@ -9,11 +9,12 @@ public ref class Serie
 private:
 	int id_Serie;
 	int id_Api;
+	bool existedata;
 	String^ Name;
 	String^ Overview;
 	String^ Country;
 	float Rating;
-	String^ Realease_Date;
+	DateTime Realease_Date;
 	Image^ Poster;
 	Image^ BakcDrop;
 public: 
@@ -21,7 +22,7 @@ public:
 	{
 
 	}
-	Serie(int id_Serie, int id_Api, String^ Name, String^ Overview, String^ Country, float Rating, String^ Realease_Date, Image^ Poster, Image^ BakcDrop)
+	Serie(int id_Serie, int id_Api, String^ Name, String^ Overview, String^ Country, float Rating, DateTime Realease_Date, Image^ Poster, Image^ BakcDrop)
 	{
 		this->id_Serie = id_Serie;
 		this->id_Api = id_Api;
@@ -35,6 +36,10 @@ public:
 	}
 	int GetIdSerie() {
 		return this->id_Serie;
+	}
+	bool GetExist()
+	{
+		return this->existedata;
 	}
 	int GetIdApi() {
 		return this->id_Api;
@@ -50,7 +55,7 @@ public:
 		return Overview;
 	}
 
-	String^ GetRealease_Date() {
+	DateTime GetRealease_Date() {
 		return this->Realease_Date;
 	}
 	Image^ GetPoster() {
@@ -59,7 +64,10 @@ public:
 	Image^ GetBakcDrop() {
 		return this->BakcDrop;
 	}
-
+	String^ GetCountry()
+	{
+		return this->Country;
+	}
 	//Set
 	void SetIdSerie(int id) {
 		this->id_Serie = id;
@@ -76,14 +84,22 @@ public:
 	void SetOverview(String^ Overview) {
 		this->Overview = Overview;
 	}
-	void SetRealease_Date(String^ Date) {
-		this->Realease_Date = Date;
+	void SetRealease_Date(DateTime date) {
+		this->Realease_Date = date;
 	}
 	void SetPoster(Image^ img) {
 		this->Poster = img;
 	}
 	void SetBakcDrop(Image^ img) {
 		this->BakcDrop = img;
+	}
+	void SetExist(bool value)
+	{
+		this->existedata = value;
+	}
+	void SetCountry(String^ country)
+	{
+		this->Country = country;
 	}
 };
 

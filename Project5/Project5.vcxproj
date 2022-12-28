@@ -137,18 +137,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BlankUserControl.cpp" />
+    <ClCompile Include="Calendar_uc.cpp" />
+    <ClCompile Include="ComboVal.cpp" />
     <ClCompile Include="DashBoard.cpp" />
+    <ClCompile Include="DataBaseOperations.cpp" />
+    <ClCompile Include="DaysUserControl.cpp" />
     <ClCompile Include="DiscoverUser.cpp" />
     <ClCompile Include="Library.cpp" />
     <ClCompile Include="Mani.cpp" />
     <ClCompile Include="dist\jsoncpp.cpp" />
+    <ClCompile Include="Movie.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="PosterImage.cpp" />
+    <ClCompile Include="PosterPlanning.cpp" />
     <ClCompile Include="Serie.cpp" />
     <ClCompile Include="ViewMovie.cpp" />
+    <ClCompile Include="WatchForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlankUserControl.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="Calendar_uc.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="ComboVal.h" />
     <ClInclude Include="DashBoard.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="DataBaseOperations.h" />
+    <ClInclude Include="DaysUserControl.h">
       <FileType>CppControl</FileType>
     </ClInclude>
     <ClInclude Include="DiscoverUser.h">
@@ -167,15 +186,30 @@
     <ClInclude Include="PosterImage.h">
       <FileType>CppControl</FileType>
     </ClInclude>
+    <ClInclude Include="PosterPlanning.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="Serie.h" />
     <ClInclude Include="ViewMovie.h">
       <FileType>CppControl</FileType>
     </ClInclude>
+    <ClInclude Include="WatchForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BlankUserControl.resx">
+      <DependentUpon>BlankUserControl.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calendar_uc.resx">
+      <DependentUpon>Calendar_uc.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DashBoard.resx">
       <DependentUpon>DashBoard.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DaysUserControl.resx">
+      <DependentUpon>DaysUserControl.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DiscoverUser.resx">
       <DependentUpon>DiscoverUser.h</DependentUpon>
@@ -192,6 +226,9 @@
     <EmbeddedResource Include="Ressource.resx" />
     <EmbeddedResource Include="ViewMovie.resx">
       <DependentUpon>ViewMovie.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WatchForm.resx">
+      <DependentUpon>WatchForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

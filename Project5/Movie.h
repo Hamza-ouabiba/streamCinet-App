@@ -12,9 +12,10 @@ private :
 	float Rating;
 	String^ title;
 	String^ Overview;
-	String^ Realease_Date;
+	DateTime Realease_Date;
 	Image^ Poster;
 	Image^ BakcDrop;
+	bool existData;
 public: 
 	Movie()
 	{
@@ -24,7 +25,7 @@ public:
 		this->title = "";
 		this->Overview = "";
 	}
-	Movie(int id_Movie, int id_Api, String^ title, String^ Overview, float Rating, String^ Realease_Date, Image^ Poster, Image^ BakcDrop)
+	/*Movie(int id_Movie, int id_Api, String^ title, String^ Overview, float Rating, DateTime Realease_Date, Image^ Poster, Image^ BakcDrop)
 	{
 		this->id_Movie = id_Movie;
 		this->id_Api = id_Api;
@@ -34,7 +35,8 @@ public:
 		this->Realease_Date = Realease_Date;
 		this->Poster = Poster;
 		this->BakcDrop = BakcDrop;
-	}
+		this->existData = 0;
+	}*/
 	int GetIdMovie() {
 		return this->id_Movie;
 	}
@@ -44,7 +46,10 @@ public:
 	float GetRating() {
 		return this->Rating;
 	}
-
+	bool GetExist()
+	{
+		return this->existData;
+	}
 	String^ GetTitle() {
 		return this->title;
 	}
@@ -52,7 +57,7 @@ public:
 		return Overview;
 	}
 
-	String^ GetRealease_Date() {
+	DateTime GetRealease_Date() {
 		return this->Realease_Date;
 	}
 	Image^ GetPoster() {
@@ -78,7 +83,7 @@ public:
 	void SetOverview(String^ Overview) {
 		this->Overview = Overview;
 	}
-	void SetRealease_Date(String^ Date) {
+	void SetRealease_Date(DateTime Date) {
 		this->Realease_Date = Date;
 	}
 	void SetPoster(Image^ img) {
@@ -86,6 +91,10 @@ public:
 	}
 	void SetBakcDrop(Image^ img) {
 		this->BakcDrop = img;
+	}
+	void SetExist(bool value)
+	{
+		this->existData = value;
 	}
 };
 

@@ -6,6 +6,7 @@
 #include<iostream>
 using namespace System;
 using namespace System::ComponentModel;
+using namespace System::Threading;
 using namespace System::Collections;
 using namespace System::Windows::Forms;
 using namespace System::Data;
@@ -19,7 +20,8 @@ namespace Project5 {
 	public ref class DashBoard : public System::Windows::Forms::UserControl
 	{
 		Mani^ l = gcnew Mani();
-		Panel^ panel;
+	private: System::Windows::Forms::RichTextBox^ overview;
+		   Panel^ panel;
 	public:
 		DashBoard()
 		{
@@ -51,7 +53,7 @@ namespace Project5 {
 
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::RichTextBox^ overview;
+
 	protected:
 	protected:
 	protected:
@@ -73,39 +75,25 @@ namespace Project5 {
 		void InitializeComponent(void)
 		{
 			this->imagePanel = (gcnew System::Windows::Forms::Panel());
-			this->overview = (gcnew System::Windows::Forms::RichTextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->movie = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->serie = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->overview = (gcnew System::Windows::Forms::RichTextBox());
 			this->imagePanel->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// imagePanel
 			// 
-			this->imagePanel->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->imagePanel->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->imagePanel->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->imagePanel->Controls->Add(this->overview);
 			this->imagePanel->Controls->Add(this->button1);
-			this->imagePanel->Location = System::Drawing::Point(6, 7);
+			this->imagePanel->Dock = System::Windows::Forms::DockStyle::Top;
+			this->imagePanel->Location = System::Drawing::Point(0, 0);
 			this->imagePanel->Name = L"imagePanel";
-			this->imagePanel->Size = System::Drawing::Size(1387, 600);
+			this->imagePanel->Size = System::Drawing::Size(1351, 600);
 			this->imagePanel->TabIndex = 3;
-			// 
-			// overview
-			// 
-			this->overview->BackColor = System::Drawing::Color::Black;
-			this->overview->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->overview->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->overview->ForeColor = System::Drawing::Color::White;
-			this->overview->Location = System::Drawing::Point(122, 290);
-			this->overview->Name = L"overview";
-			this->overview->Size = System::Drawing::Size(772, 202);
-			this->overview->TabIndex = 1;
-			this->overview->Text = L"";
 			// 
 			// button1
 			// 
@@ -126,7 +114,7 @@ namespace Project5 {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->movie->Location = System::Drawing::Point(41, 641);
 			this->movie->Name = L"movie";
-			this->movie->Size = System::Drawing::Size(1390, 357);
+			this->movie->Size = System::Drawing::Size(1327, 357);
 			this->movie->TabIndex = 4;
 			// 
 			// serie
@@ -135,7 +123,7 @@ namespace Project5 {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->serie->Location = System::Drawing::Point(43, 1046);
 			this->serie->Name = L"serie";
-			this->serie->Size = System::Drawing::Size(1390, 367);
+			this->serie->Size = System::Drawing::Size(1327, 367);
 			this->serie->TabIndex = 5;
 			// 
 			// label1
@@ -162,6 +150,19 @@ namespace Project5 {
 			this->label2->TabIndex = 7;
 			this->label2->Text = L"Series";
 			// 
+			// overview
+			// 
+			this->overview->BackColor = System::Drawing::Color::Black;
+			this->overview->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->overview->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->overview->ForeColor = System::Drawing::Color::White;
+			this->overview->Location = System::Drawing::Point(122, 290);
+			this->overview->Name = L"overview";
+			this->overview->Size = System::Drawing::Size(772, 202);
+			this->overview->TabIndex = 1;
+			this->overview->Text = L"";
+			// 
 			// DashBoard
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -174,7 +175,7 @@ namespace Project5 {
 			this->Controls->Add(this->movie);
 			this->Controls->Add(this->serie);
 			this->Name = L"DashBoard";
-			this->Size = System::Drawing::Size(1393, 1083);
+			this->Size = System::Drawing::Size(1351, 1083);
 			this->Load += gcnew System::EventHandler(this, &DashBoard::DashBoard_Load);
 			this->imagePanel->ResumeLayout(false);
 			this->ResumeLayout(false);
@@ -211,6 +212,7 @@ namespace Project5 {
 					mv->SetIdApi(id);
 
 					string title = dataMovies["results"][i][type].toStyledString();
+					title.erase(remove(title.begin(), title.end(), '"'), title.end());
 					mv->SetTitle(msclr::interop::marshal_as<System::String^>(title));
 
 					string overview = dataMovies["results"][i]["overview"].toStyledString();
@@ -218,8 +220,8 @@ namespace Project5 {
 
 
 					string date = dataMovies["results"][i]["release_date"].toStyledString();
-					mv->SetRealease_Date(msclr::interop::marshal_as<System::String^>(date));
-
+					date.erase(remove(date.begin(), date.end(), '"'), date.end());
+					mv->SetRealease_Date(Convert::ToDateTime(msclr::interop::marshal_as<System::String^>(date)));
 
 
 					string data = poster_ + dataMovies["results"][i]["poster_path"].toStyledString();
@@ -232,7 +234,7 @@ namespace Project5 {
 					unmanaged = msclr::interop::marshal_as<System::String^>(data);
 
 					mv->SetBakcDrop(l->imageDown(unmanaged));
-					
+					mv->SetExist(DataBaseOperations::Search_Movie(mv->GetIdApi()));
 					//adding a user Control related to this movie : 
 					PosterImage ^ movie_uc = gcnew PosterImage(i, mv,this->panel);
 					this->movie->Controls->Add(movie_uc);
@@ -253,18 +255,23 @@ namespace Project5 {
 					serie->SetIdApi(id);
 
 					string title = dataMovies["results"][i][type].toStyledString();
+					title.erase(remove(title.begin(), title.end(), '"'), title.end());
 					serie->SetName(msclr::interop::marshal_as<System::String^>(title));
 
 					string overview = dataMovies["results"][i]["overview"].toStyledString();
 					serie->SetOverview(msclr::interop::marshal_as<System::String^>(overview));
 
 
-					string date = dataMovies["results"][i]["release_date"].toStyledString();
-					serie->SetRealease_Date(msclr::interop::marshal_as<System::String^>(date));
+					string date = dataMovies["results"][i]["first_air_date"].toStyledString();
+					date.erase(remove(date.begin(), date.end(), '"'), date.end());
+					serie->SetRealease_Date(Convert::ToDateTime(msclr::interop::marshal_as<System::String^>(date)));
 
 					string data = poster_ + dataMovies["results"][i]["poster_path"].toStyledString();
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(data);
+
+					string country = dataMovies["results"][i]["origin_country"].toStyledString();
+					serie->SetCountry(msclr::interop::marshal_as<System::String^>(country));
 
 					serie->SetPoster(l->imageDown(unmanaged));
 
@@ -273,6 +280,7 @@ namespace Project5 {
 					unmanaged = msclr::interop::marshal_as<System::String^>(data);
 
 					serie->SetBakcDrop(l->imageDown(unmanaged));
+					serie->SetExist(DataBaseOperations::Search_Serie(serie->GetIdApi()));
 					//adding a user Control related to this movie : 
 					PosterImage^ serie_uc = gcnew PosterImage(i, serie,this->panel);
 					this->serie->Controls->Add(serie_uc);
@@ -288,6 +296,6 @@ namespace Project5 {
 		InitializeUserControl(urlDiscover_movies,"title");
 		InitializeUserControl(urlDiscover_series, "name");
 		l->ShowBackGroundImageDashBoard(urlDiscover_movies, imagePanel, overview);
-	}
+		}
 	};
 }

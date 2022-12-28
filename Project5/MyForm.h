@@ -5,12 +5,19 @@
 #include "PosterImage.h"
 #include "DashBoard.h"
 #include "DiscoverUser.h"
+#include "Library.h"
+#include <ctime>
+#include <ratio>
+#include <chrono>
+#include "Calendar_uc.h"
+
 using namespace std;
+using namespace std::chrono;
 using namespace System::Drawing::Imaging;
 using namespace System;
 using namespace System::Windows::Forms;
 namespace Project5 {
-
+	using namespace System::Timers;
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -51,7 +58,8 @@ namespace Project5 {
 
 
 	private: System::Windows::Forms::Panel^ panel2;
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ calendarBtn;
+
 	private: System::Windows::Forms::Button^ libraryBtn;
 	private: System::Windows::Forms::Button^ menuBtn;
 
@@ -77,7 +85,7 @@ namespace Project5 {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->calendarBtn = (gcnew System::Windows::Forms::Button());
 			this->libraryBtn = (gcnew System::Windows::Forms::Button());
 			this->menuBtn = (gcnew System::Windows::Forms::Button());
 			this->discoverBtn = (gcnew System::Windows::Forms::Button());
@@ -118,7 +126,7 @@ namespace Project5 {
 			// panel2
 			// 
 			this->panel2->BackColor = System::Drawing::Color::Transparent;
-			this->panel2->Controls->Add(this->button1);
+			this->panel2->Controls->Add(this->calendarBtn);
 			this->panel2->Controls->Add(this->libraryBtn);
 			this->panel2->Controls->Add(this->menuBtn);
 			this->panel2->Controls->Add(this->discoverBtn);
@@ -128,18 +136,19 @@ namespace Project5 {
 			this->panel2->Size = System::Drawing::Size(1333, 50);
 			this->panel2->TabIndex = 6;
 			// 
-			// button1
+			// calendarBtn
 			// 
-			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->calendarBtn->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->calendarBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->ForeColor = System::Drawing::Color::Gold;
-			this->button1->Location = System::Drawing::Point(662, 0);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(205, 53);
-			this->button1->TabIndex = 7;
-			this->button1->Text = L"Calendar";
-			this->button1->UseVisualStyleBackColor = true;
+			this->calendarBtn->ForeColor = System::Drawing::Color::Gold;
+			this->calendarBtn->Location = System::Drawing::Point(662, 0);
+			this->calendarBtn->Name = L"calendarBtn";
+			this->calendarBtn->Size = System::Drawing::Size(205, 53);
+			this->calendarBtn->TabIndex = 7;
+			this->calendarBtn->Text = L"Calendar";
+			this->calendarBtn->UseVisualStyleBackColor = true;
+			this->calendarBtn->Click += gcnew System::EventHandler(this, &MyForm::calendarBtn_Click);
 			// 
 			// libraryBtn
 			// 
@@ -221,6 +230,16 @@ namespace Project5 {
 		}
 #pragma endregion
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		WCHAR path[260];
+
+		GetModuleFileName(NULL, path, 260);
+
+		HWND console = FindWindow(L"ConsoleWindowClass", path);
+
+		if (IsWindow(console)) {
+			ShowWindow(console, SW_HIDE);
+		}
+
 		DashBoard^ menu_ = gcnew DashBoard(this->panelContent);
 		this->panelContent->Controls->Clear();
 		menu_->Dock = DockStyle::Fill;
@@ -232,16 +251,33 @@ namespace Project5 {
 		
 	}
 	private: System::Void discoverBtn_Click_1(System::Object^ sender, System::EventArgs^ e) {
+		high_resolution_clock::time_point start = high_resolution_clock::now();
 		DiscoverUser^ du = gcnew DiscoverUser(this->panelContent);
 		this->panelContent->Controls->Clear();
 		du->Dock = DockStyle::Fill;
 		this->panelContent->Controls->Add(du);
+		// Stop the timer
+		high_resolution_clock::time_point end = high_resolution_clock::now();
+
+		// Calculate the elapsed time
+		duration<double> elapsedTime = duration_cast<duration<double>>(end - start);
+		// Print the elapsed time
+		MessageBox::Show(elapsedTime.count() + " seconds");
 	}
 	private: System::Void menuBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		MyForm_Load(sender, e);
 	}
-private: System::Void libraryBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-
+	private: System::Void libraryBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		Library^ lb = gcnew Library(this->panelContent);
+		this->panelContent->Controls->Clear();
+		lb->Dock = DockStyle::Fill;
+		this->panelContent->Controls->Add(lb);
+	}
+private: System::Void calendarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+	Calendar_uc^ cl = gcnew Calendar_uc();
+	this->panelContent->Controls->Clear();
+	cl->Dock = DockStyle::Fill;
+	this->panelContent->Controls->Add(cl);
 }
 };
 	
