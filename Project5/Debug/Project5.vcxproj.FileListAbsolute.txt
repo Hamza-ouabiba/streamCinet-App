@@ -3,4 +3,40 @@ D:\projects\training\Project5\Project5\Debug\Project5.vcxproj.SuggestedBindingRe
 D:\projects\training\Project5\Project5\Debug\Project5.MyForm.resources
 D:\projects\training\Project5\Project5\Debug\Project5.vcxproj.GenerateResource.cache
 D:\projects\training\Project5\Project5\Debug\Project5.Ressource.resources
-D:\projects\training\Project5\Project5\Debug\Project5.MyUserControl.resources
+D:\projects\training\Project5\Project5\Debug\Project5.DiscoverUser.resources
+D:\projects\training\Project5\Project5\Debug\Project5.DashBoard.resources
+D:\projects\training\Project5\Project5\Debug\Project5.PosterImage.resources
+D:\projects\training\Project5\Project5\Debug\Project5.ViewMovie.resources
+D:\projects\training\Project5\Project5\Debug\Project5.Library.resources
+D:\projects\training\Project5\Project5\Debug\Project5.Calendar_uc.resources
+D:\projects\training\Project5\Project5\Debug\Project5.DaysUserControl.resources
+D:\projects\training\Project5\Project5\Debug\Project5.BlankUserControl.resources
+D:\projects\training\Project5\Project5\Debug\Project5.WatchForm.resources
+C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.vcxproj.AssemblyReference.cache
+C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.vcxproj.SuggestedBindingRedirects.cache
+C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.BlankUserControl.resources
+C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.Calendar_uc.resources
+C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.DashBoard.resources
+C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.DaysUserControl.resources
+C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.DiscoverUser.resources
+C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.Library.resources
+C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.MyForm.resources
+C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.PosterImage.resources
+C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.Ressource.resources
+C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.ViewMovie.resources
+C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.WatchForm.resources
+C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.vcxproj.GenerateResource.cache
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.vcxproj.AssemblyReference.cache
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.vcxproj.SuggestedBindingRedirects.cache
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.BlankUserControl.resources
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.Calendar_uc.resources
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.DashBoard.resources
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.DaysUserControl.resources
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.DiscoverUser.resources
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.Library.resources
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.MyForm.resources
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.PosterImage.resources
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.Ressource.resources
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.ViewMovie.resources
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.WatchForm.resources
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.vcxproj.GenerateResource.cache

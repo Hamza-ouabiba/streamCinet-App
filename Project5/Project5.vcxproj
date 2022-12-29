@@ -93,7 +93,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\projects\training\Project5\Project5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\include;C:\Users\MT\Desktop\streamCinet-App-master\Project5\include;D:\projects\training\Project5\Project5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libcurl_a.lib;Ws2_32.lib;Crypt32.lib;Wldap32.lib;Normaliz.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -103,7 +103,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\projects\training\Project5\Project5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\include;C:\Users\MT\Desktop\streamCinet-App-master\Project5\include;D:\projects\training\Project5\Project5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libcurl_a.lib;Ws2_32.lib;Crypt32.lib;Wldap32.lib;Normaliz.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -113,7 +113,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\projects\training\Project5\Project5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\include;C:\Users\MT\Desktop\streamCinet-App-master\Project5\include;D:\projects\training\Project5\Project5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libcurl_a.lib;Ws2_32.lib;Crypt32.lib;Wldap32.lib;Normaliz.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -123,7 +123,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\projects\training\Project5\Project5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\include;C:\Users\MT\Desktop\streamCinet-App-master\Project5\include;D:\projects\training\Project5\Project5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libcurl_a.lib;Ws2_32.lib;Crypt32.lib;Wldap32.lib;Normaliz.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -137,29 +137,101 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BlankUserControl.cpp" />
+    <ClCompile Include="Calendar_uc.cpp" />
+    <ClCompile Include="ComboVal.cpp" />
+    <ClCompile Include="DashBoard.cpp" />
+    <ClCompile Include="DataBaseConnection.cpp" />
+    <ClCompile Include="DataBaseOperations.cpp" />
+    <ClCompile Include="DaysUserControl.cpp" />
+    <ClCompile Include="DiscoverUser.cpp" />
+    <ClCompile Include="Library.cpp" />
+    <ClCompile Include="Mani.cpp" />
     <ClCompile Include="dist\jsoncpp.cpp" />
+    <ClCompile Include="Movie.cpp" />
     <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="MyUserControl.cpp" />
+    <ClCompile Include="PosterImage.cpp" />
+    <ClCompile Include="PosterPlanning.cpp" />
+    <ClCompile Include="Serie.cpp" />
+    <ClCompile Include="ViewMovie.cpp" />
+    <ClCompile Include="WatchForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlankUserControl.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="Calendar_uc.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="ComboVal.h" />
+    <ClInclude Include="DashBoard.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="DataBaseConnection.h" />
+    <ClInclude Include="DataBaseOperations.h" />
+    <ClInclude Include="DaysUserControl.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="DiscoverUser.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="Library.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="Mani.h" />
     <ClInclude Include="dist\json\json-forwards.h" />
     <ClInclude Include="dist\json\json.h" />
+    <ClInclude Include="Movie.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="MyUserControl.h">
+    <ClInclude Include="PosterImage.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="PosterPlanning.h">
       <FileType>CppControl</FileType>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Serie.h" />
+    <ClInclude Include="ViewMovie.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="WatchForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BlankUserControl.resx">
+      <DependentUpon>BlankUserControl.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calendar_uc.resx">
+      <DependentUpon>Calendar_uc.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DashBoard.resx">
+      <DependentUpon>DashBoard.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DaysUserControl.resx">
+      <DependentUpon>DaysUserControl.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DiscoverUser.resx">
+      <DependentUpon>DiscoverUser.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library.resx">
+      <DependentUpon>Library.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MyUserControl.resx">
-      <DependentUpon>MyUserControl.h</DependentUpon>
+    <EmbeddedResource Include="PosterImage.resx">
+      <DependentUpon>PosterImage.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressource.resx" />
+    <EmbeddedResource Include="ViewMovie.resx">
+      <DependentUpon>ViewMovie.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WatchForm.resx">
+      <DependentUpon>WatchForm.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
