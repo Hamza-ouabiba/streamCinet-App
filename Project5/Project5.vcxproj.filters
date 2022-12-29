@@ -13,46 +13,82 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ManipulateData">
+      <UniqueIdentifier>{bbf81335-4129-4e70-b599-900d4f687365}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClassMoviesSeries">
+      <UniqueIdentifier>{52d70e2d-8b24-43d3-be49-358bc5eabe8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="interface">
+      <UniqueIdentifier>{1720924b-c382-4961-8d73-0e158d28c997}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Discover">
+      <UniqueIdentifier>{ab381155-dec8-4d35-870d-2725664460c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Calendar">
+      <UniqueIdentifier>{cea7affc-d147-4d23-89a6-53ed98a82dc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WatchLater">
+      <UniqueIdentifier>{13e9e489-2979-4559-9b90-96bb334a55d7}</UniqueIdentifier>
+    </Filter>
     <Filter Include="My_Library">
-      <UniqueIdentifier>{f2a48a4c-687d-4e12-8ca1-98709b840c6f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="My_Library\Class">
-      <UniqueIdentifier>{e98909a8-7670-4fdd-984f-db0bfbe38e86}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Main_UserControl">
-      <UniqueIdentifier>{98c54d2a-43f3-4599-b85c-c124b3e5b69e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="My_Library\icons">
-      <UniqueIdentifier>{ea2dd633-c786-4eaf-b7aa-fb5cb9bb1aec}</UniqueIdentifier>
+      <UniqueIdentifier>{059cc649-5b03-48de-b04e-0196dc80fef5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MyForm.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="dist\jsoncpp.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="MyLibrary.cpp">
-      <Filter>My_Library</Filter>
+    <ClCompile Include="Mani.cpp">
+      <Filter>ManipulateData</Filter>
     </ClCompile>
-    <ClCompile Include="Movie_UC.cpp">
-      <Filter>My_Library</Filter>
+    <ClCompile Include="DashBoard.cpp">
+      <Filter>interface</Filter>
     </ClCompile>
-    <ClCompile Include="MyUserControl.cpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClCompile Include="MyForm.cpp">
+      <Filter>interface</Filter>
     </ClCompile>
-    <ClCompile Include="Display.cpp">
-      <Filter>Main_UserControl</Filter>
+    <ClCompile Include="PosterImage.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DiscoverUser.cpp">
+      <Filter>Discover</Filter>
+    </ClCompile>
+    <ClCompile Include="Serie.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Movie.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DataBaseOperations.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Calendar_uc.cpp">
+      <Filter>Calendar</Filter>
+    </ClCompile>
+    <ClCompile Include="DaysUserControl.cpp">
+      <Filter>Calendar</Filter>
+    </ClCompile>
+    <ClCompile Include="BlankUserControl.cpp">
+      <Filter>Calendar</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchForm.cpp">
+      <Filter>WatchLater</Filter>
+    </ClCompile>
+    <ClCompile Include="PosterPlanning.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ComboVal.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="DataBaseConnection.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="DataBase.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Library.cpp">
+      <Filter>My_Library</Filter>
     </ClCompile>
-    <ClCompile Include="ClassData.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="ViewMovie.cpp">
+      <Filter>My_Library</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -68,29 +104,63 @@
     <ClInclude Include="resource.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="MyLibrary.h">
-      <Filter>My_Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Movie_UC.h">
-      <Filter>My_Library</Filter>
-    </ClInclude>
-    <ClInclude Include="ClassData.h">
-      <Filter>My_Library\Class</Filter>
-    </ClInclude>
-    <ClInclude Include="MyUserControl.h">
+    <ClInclude Include="DiscoverUser.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Display.h">
-      <Filter>Main_UserControl</Filter>
+    <ClInclude Include="DashBoard.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="DataBase.h">
-      <Filter>My_Library\Class</Filter>
+    <ClInclude Include="Mani.h">
+      <Filter>ManipulateData</Filter>
+    </ClInclude>
+    <ClInclude Include="PosterImage.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Calendar_uc.h">
+      <Filter>Calendar</Filter>
+    </ClInclude>
+    <ClInclude Include="DaysUserControl.h">
+      <Filter>Calendar</Filter>
+    </ClInclude>
+    <ClInclude Include="BlankUserControl.h">
+      <Filter>Calendar</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchForm.h">
+      <Filter>WatchLater</Filter>
+    </ClInclude>
+    <ClInclude Include="PosterPlanning.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="ComboVal.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Library.h">
+      <Filter>My_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewMovie.h">
+      <Filter>My_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Movie.h">
+      <Filter>My_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Serie.h">
+      <Filter>My_Library</Filter>
     </ClInclude>
     <ClInclude Include="DataBaseConnection.h">
-      <Filter>My_Library\Class</Filter>
+      <Filter>My_Library</Filter>
     </ClInclude>
-    <ClInclude Include="Class.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="DataBaseOperations.h">
+      <Filter>My_Library</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Fichiers de ressources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ressource.resx">
+      <Filter>Fichiers de ressources</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

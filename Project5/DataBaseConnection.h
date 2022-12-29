@@ -1,5 +1,5 @@
 #pragma once
- 
+
 using namespace System::Data::SqlClient;
 public ref class DataBaseConnection
 {
