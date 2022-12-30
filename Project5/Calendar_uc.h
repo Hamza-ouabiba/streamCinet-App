@@ -33,10 +33,12 @@ namespace Project5 {
 
 
 		   static int year = DateTime::Now.Year;
+		   Panel^ content;
 	public:
-		Calendar_uc()
+		Calendar_uc(Panel^ content)
 		{
 			InitializeComponent();
+			this->content = content;
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
@@ -92,7 +94,7 @@ namespace Project5 {
 			// 
 			// prevBtn
 			// 
-			this->prevBtn->Location = System::Drawing::Point(396, 13);
+			this->prevBtn->Location = System::Drawing::Point(24, 13);
 			this->prevBtn->Name = L"prevBtn";
 			this->prevBtn->Size = System::Drawing::Size(99, 38);
 			this->prevBtn->TabIndex = 1;
@@ -102,7 +104,7 @@ namespace Project5 {
 			// 
 			// nextBtn
 			// 
-			this->nextBtn->Location = System::Drawing::Point(510, 13);
+			this->nextBtn->Location = System::Drawing::Point(138, 13);
 			this->nextBtn->Name = L"nextBtn";
 			this->nextBtn->Size = System::Drawing::Size(99, 38);
 			this->nextBtn->TabIndex = 2;
@@ -174,7 +176,7 @@ namespace Project5 {
 			DaysUserControl^ uc = gcnew DaysUserControl(i, month, year);
 			this->calendarPan->Controls->Add(uc);
 			uc->setPanel(this->listPanel);
-			uc->setPanelList(this->calendarPan);
+			uc->setPanelList(this->content);
 		}
 	}
 	private: System::Void Calendar_uc_Load(System::Object^ sender, System::EventArgs^ e) {
@@ -204,7 +206,7 @@ namespace Project5 {
 			DaysUserControl^ uc = gcnew DaysUserControl(i,month,year);
 			this->calendarPan->Controls->Add(uc);
 			uc->setPanel(this->listPanel);
-			uc->setPanelList(this->calendarPan);
+			uc->setPanelList(this->content);
 		}
 	}
 private: System::Void nextBtn_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -231,7 +233,7 @@ private: System::Void nextBtn_Click(System::Object^ sender, System::EventArgs^ e
 			DaysUserControl^ uc = gcnew DaysUserControl(i, month, year);
 			this->calendarPan->Controls->Add(uc);
 			uc->setPanel(this->listPanel);
-			uc->setPanelList(this->calendarPan);
+			uc->setPanelList(this->content);
 		}
 }
 	private: void retrieveDataMovies()

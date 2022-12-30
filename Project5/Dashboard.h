@@ -196,7 +196,7 @@ namespace Project5 {
 			string backDrop_ = "https://image.tmdb.org/t/p/w1280";
 			for (int i = 1;i <= 19;i++)
 			{
-				if (type == "title")
+				if (type == "title" && dataMovies["results"][i]["release_date"].asString() != "null")
 				{
 					//creating a movie object : 
 					Movie^ mv = gcnew Movie();
@@ -221,6 +221,7 @@ namespace Project5 {
 
 					string date = dataMovies["results"][i]["release_date"].toStyledString();
 					date.erase(remove(date.begin(), date.end(), '"'), date.end());
+					MessageBox::Show(msclr::interop::marshal_as<System::String^>(date));
 					mv->SetRealease_Date(Convert::ToDateTime(msclr::interop::marshal_as<System::String^>(date)));
 
 

@@ -108,6 +108,7 @@ namespace Project5 {
 			ViewMovie^ vm = gcnew ViewMovie(this->movie_);
 			vm->Dock = DockStyle::Fill;
 			control->Controls->Add(vm);
+			MessageBox::Show("hna");
 		}
 		else
 		{

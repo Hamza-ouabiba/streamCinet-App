@@ -274,7 +274,7 @@ namespace Project5 {
 		this->panelContent->Controls->Add(lb);
 	}
 private: System::Void calendarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-	Calendar_uc^ cl = gcnew Calendar_uc();
+	Calendar_uc^ cl = gcnew Calendar_uc(this->panelContent);
 	this->panelContent->Controls->Clear();
 	cl->Dock = DockStyle::Fill;
 	this->panelContent->Controls->Add(cl);

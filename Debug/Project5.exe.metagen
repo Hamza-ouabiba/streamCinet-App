@@ -104,7 +104,7 @@ Class Project5.DaysUserControl: AutoLayout, AnsiClass, Class, Public, BeforeFiel
     setPanelList(Panel): PrivateScope, Public, HideBySig
 Class Project5.Calendar_uc: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(System.Windows.Forms.Panel): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class Mani: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
