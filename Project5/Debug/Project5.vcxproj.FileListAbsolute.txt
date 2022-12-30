@@ -12,3 +12,5 @@ D:\projects\training\Project5\Project5\Debug\Project5.Calendar_uc.resources
 D:\projects\training\Project5\Project5\Debug\Project5.DaysUserControl.resources
 D:\projects\training\Project5\Project5\Debug\Project5.BlankUserControl.resources
 D:\projects\training\Project5\Project5\Debug\Project5.WatchForm.resources
+D:\projects\training\Project5\Project5\Debug\Project5.PosterPlanning.resources
+D:\projects\training\Project5\Project5\Debug\Project5.WatchLater_UC.resources

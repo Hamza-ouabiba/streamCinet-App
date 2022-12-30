@@ -233,7 +233,6 @@ namespace Project5 {
 					backN.erase(remove(backN.begin(), backN.end(), '"'), backN.end());
 					postN.erase(remove(postN.begin(), postN.end(), '"'), postN.end());
 					cout << "backN : "<<backN<<"postN"<<postN;
-					System::Threading::Thread::Sleep(10);
 					if (dataMovies["results"][i]["backdrop_path"].asString() != "" && dataMovies["results"][i]["poster_path"].asString() != "" && dataMovies["results"][i]["release_date"].asString() != "")
 					{
 						string url_poster = poster_ + dataMovies["results"][i]["poster_path"].toStyledString();
@@ -319,6 +318,15 @@ namespace Project5 {
 				}
 			}
 		}
+	private: bool checkCategorieCombo(String^ name)
+	{
+		for (int i = 0;i < comboCat->Items->Count;i++)
+		{
+			if (name == comboCat->Items[i]->ToString())
+				return true;
+		}
+		return false;
+	}
 	private: string getCategorieNameById(string type,string idCat)
 	{
 		string url = "https://api.themoviedb.org/3/genre/movie/list?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
@@ -332,47 +340,48 @@ namespace Project5 {
 		name.erase(remove(name.begin(), name.end(), '"'), name.end());
 		return name;
 	}
-	private: void loadComboBoxCategories(string type,string url)
+	private: string GetIdByName(string type, string name)
 	{
-		Json::Value dataMovies = l->getInformations(url, type);
-		
+		string url = "https://api.themoviedb.org/3/genre/movie/list?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
+		string id;
+		string nameCom;
+		Json::Value dataCategories = l->getInformations(url, type);
 		for (int i = 0;i <= 19;i++)
 		{
-			if (type == "title")
+			nameCom = dataCategories["genres"][i]["name"].toStyledString();
+			nameCom.erase(remove(nameCom.begin(), nameCom.end(), '"'), nameCom.end());
+			if (dataCategories["genres"][i]["name"].asString() == name)
 			{
-				string categorieId = dataMovies["results"][i]["genre_ids"][0].toStyledString();
-				System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(getCategorieNameById(type,categorieId));
-				ComboVal^ cv = gcnew ComboVal();
-				cv->title = unmanaged;
-				cv->id = msclr::interop::marshal_as<System::String^>(categorieId);
-				this->comboCat->DisplayMember = "title";
-				this->comboCat->ValueMember = "id";
-				this->comboCat->Items->Add(cv);
-			}
-			else
-			{
-				string categorieId = dataMovies["results"][i]["genre_ids"][0].toStyledString();
-				System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(getCategorieNameById(type, categorieId));
-				ComboVal^ cv = gcnew ComboVal();
-				cv->title = unmanaged;
-				cv->id = msclr::interop::marshal_as<System::String^>(categorieId);
-				this->comboCat->DisplayMember = cv->title;
-				this->comboCat->ValueMember = cv->id;
-				this->comboCat->Items->Add(cv);
+				id = dataCategories["genres"][i]["id"].toStyledString();
+				MessageBox::Show("ana hna");
 			}
 		}
+		id.erase(remove(id.begin(), id.end(), '"'), id.end());
+		return id;
+	}
+	private: void loadComboBoxCategories(string url)
+	{
+		Json::Value dataMovies = l->getInformations(url, "type");
+		for (int i = 0;i <= 19;i++)
+			comboCat->Items->Add(msclr::interop::marshal_as<System::String^>(dataMovies["genres"][i]["name"].asString()));
 	}
 #pragma endregion
 	private: System::Void DiscoverUser_Load(System::Object^ sender, System::EventArgs^ e) {
 
 		string urlDiscover_movies = "https://api.themoviedb.org/3/discover/movie?api_key=10f96818301b77e61d73d48aa20d81f9&page=";
-		ShowFlowPanel(urlDiscover_movies, "title");
-		loadComboBoxCategories("title",urlDiscover_movies);
+		/*ShowFlowPanel(urlDiscover_movies, "title");*/
+		string urlCategories = "https://api.themoviedb.org/3/genre/movie/list?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
+		comboCat->Items->Clear();
+		loadComboBoxCategories(urlCategories);
+		locationUser = "movies";
 	}
 	private: System::Void seriesBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		string urlDiscover_series = "https://api.themoviedb.org/3/discover/tv?api_key=10f96818301b77e61d73d48aa20d81f9&page=";
+		string urlCategories = "https://api.themoviedb.org/3/genre/tv/list?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
 		ShowFlowPanel(urlDiscover_series, "name");
 		locationUser = "series";
+		comboCat->Items->Clear();
+		loadComboBoxCategories(urlCategories);
 	}
 	private: System::Void popularBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		string urlDiscover_popular_m = "https://api.themoviedb.org/3/movie/popular?api_key=10f96818301b77e61d73d48aa20d81f9&page=";
@@ -389,23 +398,147 @@ namespace Project5 {
 		/*urlSearch = "https://api.themoviedb.org/3/search/tv?api_key=10f96818301b77e61d73d48aa20d81f9&page=1&query=h" + search->Text;
 		ShowFlowPanel(msclr::interop::marshal_as<std::string>(urlSearch), "name");*/
 	}
-	private: void displayCategories(string url,string type)
+	private: void getObjectCatDisplay(string url,string type,string idCat)
 	{
-		if (type == "title")
+		Json::Value dataMovies = l->getInformations(url, type);
+		stringstream ss;
+		string poster_ = "https://image.tmdb.org/t/p/w500";
+		string backDrop_ = "https://image.tmdb.org/t/p/w1280";
+		discoverMovie->Controls->Clear();
+		//get categorie Id :
+		for (int i = 0;i <= 19;i++)
 		{
-			string url = "https://api.themoviedb.org/3/genre/movie/list?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
+			if (type == "title")
+			{
+				for (int z = 0;z < 3;z++)
+				{
+					string st = dataMovies["results"][i]["genre_ids"][z].toStyledString();
+					if (st != "" && st == idCat)
+					{
+						MessageBox::Show("image ");
+						Movie^ mv = gcnew Movie();
+						int id;
+						string backN = dataMovies["results"][i]["backdrop_path"].toStyledString();
+						string postN = dataMovies["results"][i]["poster_path"].toStyledString();
+						string date = dataMovies["results"][i]["release_date"].toStyledString();
+						date.erase(remove(date.begin(), date.end(), '"'), date.end());
+						backN.erase(remove(backN.begin(), backN.end(), '"'), backN.end());
+						postN.erase(remove(postN.begin(), postN.end(), '"'), postN.end());
+						cout << "backN : " << backN << "postN" << postN;
+						if (dataMovies["results"][i]["backdrop_path"].asString() != "" && dataMovies["results"][i]["poster_path"].asString() != "" && dataMovies["results"][i]["release_date"].asString() != "")
+						{
+							string url_poster = poster_ + dataMovies["results"][i]["poster_path"].toStyledString();
+							string backdrop_url = backDrop_ + dataMovies["results"][i]["backdrop_path"].toStyledString();
+							//remove quotation marks because of JSON 
+							url_poster.erase(remove(url_poster.begin(), url_poster.end(), '"'), url_poster.end());
+							backdrop_url.erase(remove(backdrop_url.begin(), backdrop_url.end(), '"'), backdrop_url.end());
+							//setting data of movie : 
+							ss << dataMovies["results"][i]["id"].toStyledString();
+							ss >> id;
+							mv->SetIdApi(id);
+
+							string title = dataMovies["results"][i][type].toStyledString();
+							mv->SetTitle(msclr::interop::marshal_as<System::String^>(title));
+
+							string overview = dataMovies["results"][i]["overview"].toStyledString();
+							mv->SetOverview(msclr::interop::marshal_as<System::String^>(overview));
+
+							mv->SetRealease_Date(Convert::ToDateTime(msclr::interop::marshal_as<System::String^>(date)));
+
+							string data = poster_ + dataMovies["results"][i]["poster_path"].toStyledString();
+							data.erase(remove(data.begin(), data.end(), '"'), data.end());
+							date = "";
+							System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(data);
+
+							mv->SetPoster(l->DownloadImage(unmanaged));
+							data = backDrop_ + dataMovies["results"][i]["backdrop_path"].toStyledString();
+							data.erase(remove(data.begin(), data.end(), '"'), data.end());
+							unmanaged = msclr::interop::marshal_as<System::String^>(data);
+
+							mv->SetBakcDrop(l->DownloadImage(unmanaged));
+							mv->SetExist(DataBaseOperations::Search_Movie(mv->GetIdApi()));
+							//adding a user Control related to this movie : 
+							PosterImage^ movie_uc = gcnew PosterImage(i, mv, this->panel_);
+							this->discoverMovie->Controls->Add(movie_uc);
+						}
+					}
+				}
+			}
+			else if (type == "name")
+			{
+				for (int z = 0;z < 3;z++)
+				{
+					string st = dataMovies["results"][i]["genre_ids"][z].toStyledString();
+					if (st != "" && st == idCat)
+					{
+							Serie^ serie = gcnew Serie();
+							int id;
+							string url_poster = poster_ + dataMovies["results"][i]["poster_path"].toStyledString();
+							string backdrop_url = backDrop_ + dataMovies["results"][i]["backdrop_path"].toStyledString();
+							//remove quotation marks because of JSON 
+							url_poster.erase(remove(url_poster.begin(), url_poster.end(), '"'), url_poster.end());
+							backdrop_url.erase(remove(backdrop_url.begin(), backdrop_url.end(), '"'), backdrop_url.end());
+							//setting data of movie : 
+							ss << dataMovies["results"][i]["id"].toStyledString();
+							ss >> id;
+							serie->SetIdApi(id);
+
+							string title = dataMovies["results"][i][type].toStyledString();
+							title.erase(remove(title.begin(), title.end(), '"'), title.end());
+							serie->SetName(msclr::interop::marshal_as<System::String^>(title));
+
+							string overview = dataMovies["results"][i]["overview"].toStyledString();
+							serie->SetOverview(msclr::interop::marshal_as<System::String^>(overview));
+
+
+							string date = dataMovies["results"][i]["first_air_date"].toStyledString();
+							date.erase(remove(date.begin(), date.end(), '"'), date.end());
+							serie->SetRealease_Date(Convert::ToDateTime(msclr::interop::marshal_as<System::String^>(date)));
+
+							string data = poster_ + dataMovies["results"][i]["poster_path"].toStyledString();
+							data.erase(remove(data.begin(), data.end(), '"'), data.end());
+							System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(data);
+
+							string country = dataMovies["results"][i]["origin_country"].toStyledString();
+							serie->SetCountry(msclr::interop::marshal_as<System::String^>(country));
+
+							serie->SetPoster(l->imageDown(unmanaged));
+
+							data = backDrop_ + dataMovies["results"][i]["backdrop_path"].toStyledString();
+							data.erase(remove(data.begin(), data.end(), '"'), data.end());
+							unmanaged = msclr::interop::marshal_as<System::String^>(data);
+
+							serie->SetBakcDrop(l->imageDown(unmanaged));
+							serie->SetExist(DataBaseOperations::Search_Serie(serie->GetIdApi()));
+							//adding a user Control related to this movie : 
+							PosterImage^ serie_uc = gcnew PosterImage(i, serie, this->panel_);
+							this->discoverMovie->Controls->Add(serie_uc);
+							cout << "creating series";
+						}
+					}
+				}
+			}
+					
 		}
-	}
 	private: System::Void comboCat_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-		String^ categorie = comboCat->SelectedValue->ToString();
-		MessageBox::Show(categorie);
+		String^ categorie = this->comboCat->Items[comboCat->SelectedIndex]->ToString();
 		//if user is in the movies section : 
 		if (locationUser == "movies")
 		{
 			string urlDiscover_movies = "https://api.themoviedb.org/3/discover/movie?api_key=10f96818301b77e61d73d48aa20d81f9&page=";
 			//getting each id of a movie and then test it to a particular id of category: 
-
+			string idCat = GetIdByName("movies", msclr::interop::marshal_as<std::string>(categorie));
+			MessageBox::Show("this is id : " + msclr::interop::marshal_as<String^>(idCat));
+			getObjectCatDisplay(urlDiscover_movies, "title", idCat);
 		}
-}
+		else if (locationUser == "series")
+		{
+			string urlDiscover_series = "https://api.themoviedb.org/3/discover/tv?api_key=10f96818301b77e61d73d48aa20d81f9&page=";
+			//getting each id of a movie and then test it to a particular id of category: 
+			string idCat = GetIdByName("movies", msclr::interop::marshal_as<std::string>(categorie));
+			MessageBox::Show("this is id : " + msclr::interop::marshal_as<String^>(idCat));
+			getObjectCatDisplay(urlDiscover_series, "name", idCat);
+		}
+	}
 };
 }

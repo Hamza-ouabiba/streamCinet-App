@@ -154,6 +154,7 @@
     <ClCompile Include="Serie.cpp" />
     <ClCompile Include="ViewMovie.cpp" />
     <ClCompile Include="WatchForm.cpp" />
+    <ClCompile Include="WatchLater_UC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlankUserControl.h">
@@ -197,6 +198,9 @@
     <ClInclude Include="WatchForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="WatchLater_UC.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BlankUserControl.resx">
@@ -223,12 +227,18 @@
     <EmbeddedResource Include="PosterImage.resx">
       <DependentUpon>PosterImage.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PosterPlanning.resx">
+      <DependentUpon>PosterPlanning.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ressource.resx" />
     <EmbeddedResource Include="ViewMovie.resx">
       <DependentUpon>ViewMovie.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WatchForm.resx">
       <DependentUpon>WatchForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WatchLater_UC.resx">
+      <DependentUpon>WatchLater_UC.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
