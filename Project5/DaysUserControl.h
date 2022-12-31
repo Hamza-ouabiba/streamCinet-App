@@ -21,7 +21,7 @@ using namespace std;
 namespace Project5 {
 
 	/// <summary>
-	/// Description résumée de DaysUserControl
+	/// Description rÃ©sumÃ©e de DaysUserControl
 	/// </summary>
 	public ref class DaysUserControl : public System::Windows::Forms::UserControl
 	{
@@ -68,7 +68,7 @@ namespace Project5 {
 		}
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisées.
+		/// Nettoyage des ressources utilisÃ©es.
 		/// </summary>
 		~DaysUserControl()
 		{
@@ -82,14 +82,14 @@ namespace Project5 {
 
 	private:
 		/// <summary>
-		/// Variable nécessaire au concepteur.
+		/// Variable nÃ©cessaire au concepteur.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette méthode avec l'éditeur de code.
+		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -226,9 +226,7 @@ namespace Project5 {
 			conx.Close();
 		}
 	private: System::Void days_Click(System::Object^ sender, System::EventArgs^ e) {
-			
 			if (checkValidityDate())
-			{
 				this->panelMovies->Controls->Clear();
 				this->panelSeries->Controls->Clear();
 				loadDataMovies();
