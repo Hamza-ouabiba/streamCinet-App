@@ -112,10 +112,11 @@ namespace Project5 {
 		this->panel_->Controls->Clear();
 		if (movie_->GetTitle() != "")
 		{
-
 			ViewMovie^ vm = gcnew ViewMovie(this->movie_);
 			vm->Dock = DockStyle::Fill;
 			panel_->Controls->Add(vm);
+			//refreshing page maybe to display current adding :: 
+			//
 		}
 		else
 		{

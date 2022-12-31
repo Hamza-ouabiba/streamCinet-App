@@ -131,6 +131,7 @@ namespace Project5 {
 	private: void addDataBaseMovie()
 	{
 		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+		MessageBox::Show("this the id: " + idPlanning);
 		String^ Query = "insert into planning_movie(ID,ID_MOVIE) values(" + idPlanning+ "," + movie_->GetIdMovie() + ")";
 		SqlCommand Cmd(Query, % conx);
 		conx.Open();
@@ -149,20 +150,19 @@ namespace Project5 {
 		{
 			if (checkDataMovie())
 			{
-				MessageBox::Show("movie already existed in database");
+				MessageBox::Show("movie already existed in this Planification try another thing");
 			}
 			else
 			{
 				MessageBox::Show("movie set to watch in specified date" + day + month + year);
 				addDataBaseMovie();
-
 			}
 		}
 		else if(serie_->GetName() != "")
 		{
 			if (checkDataSerie())
 			{
-				MessageBox::Show("serie already existed in database");
+				MessageBox::Show("serie already Plannified in this date");
 			}
 			else
 			{

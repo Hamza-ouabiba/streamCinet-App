@@ -27,6 +27,7 @@ namespace Project5 {
 			InitializeComponent();
 			movie_ = mv;
 			this->button1->BackgroundImage = movie_->GetPoster();
+			this->button1->Text = mv->GetTitle();
 			this->control = control;
 			serie_ = gcnew Serie();
 			serie_->SetName("");
@@ -41,6 +42,7 @@ namespace Project5 {
 			movie_ = gcnew Movie();
 			this->control = control;
 			this->button1->BackgroundImage = serie_->GetPoster();
+			this->button1->Text = serie_->GetName();
 			movie_->SetTitle("");
 			//
 			//TODO: ajoutez ici le code du constructeur
@@ -77,13 +79,17 @@ namespace Project5 {
 			// 
 			// button1
 			// 
+			this->button1->BackColor = System::Drawing::Color::Transparent;
 			this->button1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->ForeColor = System::Drawing::Color::White;
 			this->button1->Location = System::Drawing::Point(0, 0);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(335, 117);
+			this->button1->Size = System::Drawing::Size(288, 83);
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"button1";
-			this->button1->UseVisualStyleBackColor = true;
+			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &PosterPlanning::button1_Click);
 			// 
 			// PosterPlanning
@@ -92,7 +98,7 @@ namespace Project5 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->Controls->Add(this->button1);
 			this->Name = L"PosterPlanning";
-			this->Size = System::Drawing::Size(335, 117);
+			this->Size = System::Drawing::Size(288, 83);
 			this->Load += gcnew System::EventHandler(this, &PosterPlanning::PosterPlanning_Load);
 			this->ResumeLayout(false);
 
@@ -104,7 +110,6 @@ namespace Project5 {
 		this->control->Controls->Clear();
 		if (movie_->GetTitle() != "")
 		{
-
 			ViewMovie^ vm = gcnew ViewMovie(this->movie_);
 			vm->Dock = DockStyle::Fill;
 			control->Controls->Add(vm);

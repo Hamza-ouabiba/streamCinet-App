@@ -139,7 +139,6 @@
   <ItemGroup>
     <ClCompile Include="BlankUserControl.cpp" />
     <ClCompile Include="Calendar_uc.cpp" />
-    <ClCompile Include="ComboVal.cpp" />
     <ClCompile Include="DashBoard.cpp" />
     <ClCompile Include="DataBaseOperations.cpp" />
     <ClCompile Include="DaysUserControl.cpp" />
@@ -163,7 +162,6 @@
     <ClInclude Include="Calendar_uc.h">
       <FileType>CppControl</FileType>
     </ClInclude>
-    <ClInclude Include="ComboVal.h" />
     <ClInclude Include="DashBoard.h">
       <FileType>CppControl</FileType>
     </ClInclude>

@@ -26,13 +26,29 @@ namespace Project5 {
 	{
 		static int month = DateTime::Now.Month;
 		static int days = DateTime::Now.Day;
-	private: System::Windows::Forms::FlowLayoutPanel^ listPanel;
-	private: System::Windows::Forms::Button^ addSerie;
+		static int year = DateTime::Now.Year;
 
+
+	private: System::Windows::Forms::Button^ addSerie;
 	private: System::Windows::Forms::Button^ addMv;
 
 
-		   static int year = DateTime::Now.Year;
+
+
+
+
+
+
+	private: System::Windows::Forms::Label^ dateForm;
+	private: System::Windows::Forms::FlowLayoutPanel^ moviesSec;
+	private: System::Windows::Forms::FlowLayoutPanel^ seriesSec;
+	private: System::Windows::Forms::Panel^ panel1;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label1;
+
+
+
+
 		   Panel^ content;
 	public:
 		Calendar_uc(Panel^ content)
@@ -77,9 +93,15 @@ namespace Project5 {
 			this->calendarPan = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->prevBtn = (gcnew System::Windows::Forms::Button());
 			this->nextBtn = (gcnew System::Windows::Forms::Button());
-			this->listPanel = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			this->moviesSec = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			this->seriesSec = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->addMv = (gcnew System::Windows::Forms::Button());
 			this->addSerie = (gcnew System::Windows::Forms::Button());
+			this->dateForm = (gcnew System::Windows::Forms::Label());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// calendarPan
@@ -89,7 +111,7 @@ namespace Project5 {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->calendarPan->Location = System::Drawing::Point(-1, 61);
 			this->calendarPan->Name = L"calendarPan";
-			this->calendarPan->Size = System::Drawing::Size(1059, 675);
+			this->calendarPan->Size = System::Drawing::Size(764, 675);
 			this->calendarPan->TabIndex = 0;
 			// 
 			// prevBtn
@@ -112,21 +134,26 @@ namespace Project5 {
 			this->nextBtn->UseVisualStyleBackColor = true;
 			this->nextBtn->Click += gcnew System::EventHandler(this, &Calendar_uc::nextBtn_Click);
 			// 
-			// listPanel
+			// moviesSec
 			// 
-			this->listPanel->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->moviesSec->Location = System::Drawing::Point(331, 27);
+			this->moviesSec->Name = L"moviesSec";
+			this->moviesSec->Size = System::Drawing::Size(260, 653);
+			this->moviesSec->TabIndex = 0;
+			// 
+			// seriesSec
+			// 
+			this->seriesSec->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->listPanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
-				static_cast<System::Int32>(static_cast<System::Byte>(64)));
-			this->listPanel->ForeColor = System::Drawing::Color::Coral;
-			this->listPanel->Location = System::Drawing::Point(1058, 61);
-			this->listPanel->Name = L"listPanel";
-			this->listPanel->Size = System::Drawing::Size(302, 675);
-			this->listPanel->TabIndex = 3;
+			this->seriesSec->Location = System::Drawing::Point(0, 27);
+			this->seriesSec->Name = L"seriesSec";
+			this->seriesSec->Size = System::Drawing::Size(333, 650);
+			this->seriesSec->TabIndex = 1;
 			// 
 			// addMv
 			// 
-			this->addMv->Location = System::Drawing::Point(1195, 8);
+			this->addMv->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->addMv->Location = System::Drawing::Point(1227, 3);
 			this->addMv->Name = L"addMv";
 			this->addMv->Size = System::Drawing::Size(130, 48);
 			this->addMv->TabIndex = 1;
@@ -136,7 +163,8 @@ namespace Project5 {
 			// 
 			// addSerie
 			// 
-			this->addSerie->Location = System::Drawing::Point(1058, 7);
+			this->addSerie->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->addSerie->Location = System::Drawing::Point(1068, 3);
 			this->addSerie->Name = L"addSerie";
 			this->addSerie->Size = System::Drawing::Size(131, 48);
 			this->addSerie->TabIndex = 0;
@@ -144,20 +172,69 @@ namespace Project5 {
 			this->addSerie->UseVisualStyleBackColor = true;
 			this->addSerie->Click += gcnew System::EventHandler(this, &Calendar_uc::addSerie_Click);
 			// 
+			// dateForm
+			// 
+			this->dateForm->AutoSize = true;
+			this->dateForm->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->dateForm->ForeColor = System::Drawing::Color::White;
+			this->dateForm->Location = System::Drawing::Point(551, 18);
+			this->dateForm->Name = L"dateForm";
+			this->dateForm->Size = System::Drawing::Size(157, 29);
+			this->dateForm->TabIndex = 4;
+			this->dateForm->Text = L"Date display";
+			// 
+			// panel1
+			// 
+			this->panel1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+				static_cast<System::Int32>(static_cast<System::Byte>(128)));
+			this->panel1->Controls->Add(this->label2);
+			this->panel1->Controls->Add(this->label1);
+			this->panel1->Controls->Add(this->seriesSec);
+			this->panel1->Controls->Add(this->moviesSec);
+			this->panel1->Location = System::Drawing::Point(769, 56);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(588, 680);
+			this->panel1->TabIndex = 5;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(13, 8);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(56, 16);
+			this->label1->TabIndex = 2;
+			this->label1->Text = L"SERIES";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(342, 8);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(58, 16);
+			this->label2->TabIndex = 3;
+			this->label2->Text = L"MOVIES";
+			// 
 			// Calendar_uc
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->Controls->Add(this->panel1);
+			this->Controls->Add(this->dateForm);
 			this->Controls->Add(this->addSerie);
 			this->Controls->Add(this->addMv);
-			this->Controls->Add(this->listPanel);
 			this->Controls->Add(this->nextBtn);
 			this->Controls->Add(this->prevBtn);
 			this->Controls->Add(this->calendarPan);
 			this->Name = L"Calendar_uc";
 			this->Size = System::Drawing::Size(1360, 736);
 			this->Load += gcnew System::EventHandler(this, &Calendar_uc::Calendar_uc_Load);
+			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -175,12 +252,15 @@ namespace Project5 {
 		{
 			DaysUserControl^ uc = gcnew DaysUserControl(i, month, year);
 			this->calendarPan->Controls->Add(uc);
-			uc->setPanel(this->listPanel);
+			uc->setPanelMovies(this->moviesSec);
+			uc->setPanelSeries(this->seriesSec);
 			uc->setPanelList(this->content);
 		}
 	}
 	private: System::Void Calendar_uc_Load(System::Object^ sender, System::EventArgs^ e) {
 		loadCalendar();
+		String^ monthName = System::Globalization::DateTimeFormatInfo::CurrentInfo->GetMonthName(month);
+		dateForm->Text = monthName + " " + year;
 	}
 	private: System::Void prevBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (month == 1)
@@ -205,9 +285,12 @@ namespace Project5 {
 		{
 			DaysUserControl^ uc = gcnew DaysUserControl(i,month,year);
 			this->calendarPan->Controls->Add(uc);
-			uc->setPanel(this->listPanel);
+			uc->setPanelMovies(this->moviesSec);
+			uc->setPanelSeries(this->seriesSec);
 			uc->setPanelList(this->content);
 		}
+		String^ monthName = System::Globalization::DateTimeFormatInfo::CurrentInfo->GetMonthName(month);
+		dateForm->Text = monthName + " " + year;
 	}
 private: System::Void nextBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (month == 12)
@@ -232,9 +315,12 @@ private: System::Void nextBtn_Click(System::Object^ sender, System::EventArgs^ e
 		{
 			DaysUserControl^ uc = gcnew DaysUserControl(i, month, year);
 			this->calendarPan->Controls->Add(uc);
-			uc->setPanel(this->listPanel);
+			uc->setPanelMovies(this->moviesSec);
+			uc->setPanelSeries(this->seriesSec);
 			uc->setPanelList(this->content);
 		}
+		String^ monthName = System::Globalization::DateTimeFormatInfo::CurrentInfo->GetMonthName(month);
+		dateForm->Text = monthName + " " + year;
 }
 	private: void retrieveDataMovies()
 	{
@@ -311,14 +397,17 @@ private: System::Void nextBtn_Click(System::Object^ sender, System::EventArgs^ e
 		}
 		conx.Close();
 	}
-private: System::Void addMv_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->calendarPan->Controls->Clear();
-	retrieveDataMovies();
-}
-private: System::Void addSerie_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->calendarPan->Controls->Clear();
-	retrieveTvShows();
-
-}
+		private: System::Void addMv_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->calendarPan->Controls->Clear();
+			prevBtn->Visible = false;
+			nextBtn->Visible = false;
+			retrieveDataMovies();
+		}
+		private: System::Void addSerie_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->calendarPan->Controls->Clear();
+			prevBtn->Visible = false;
+			nextBtn->Visible = false;
+			retrieveTvShows();
+		}
 };
 }

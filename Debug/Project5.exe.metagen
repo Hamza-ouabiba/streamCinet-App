@@ -98,10 +98,11 @@ Class Project5.WatchLater_UC: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
 Class Project5.DaysUserControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
     Void .ctor(Int32, Int32, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(Int32, System.Windows.Forms.Panel): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Int32, System.Windows.Forms.Panel, System.Windows.Forms.Panel, System.Windows.Forms.Panel): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
-    setPanel(Panel): PrivateScope, Public, HideBySig
+    setPanelMovies(Panel): PrivateScope, Public, HideBySig
     setPanelList(Panel): PrivateScope, Public, HideBySig
+    setPanelSeries(Panel): PrivateScope, Public, HideBySig
 Class Project5.Calendar_uc: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
     Void .ctor(System.Windows.Forms.Panel): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

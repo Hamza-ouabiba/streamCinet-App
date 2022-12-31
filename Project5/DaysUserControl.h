@@ -29,14 +29,17 @@ namespace Project5 {
 		int dayOfweek;
 		int mo;
 		int year;
-		Panel^ panelContent;
+		Panel^ panelMovies;
+		Panel^ panelSeries;
 		Panel^ list;
 	public:
-		DaysUserControl(int index,Panel^ show)
+		DaysUserControl(int index,Panel^ movies,Panel^ series,Panel^ list)
 		{
 			InitializeComponent();
 			this->dayOfweek = index;
-			this->panelContent = show;
+			this->panelMovies = movies;
+			this->list = list;
+			this->panelSeries = series;
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
@@ -51,13 +54,17 @@ namespace Project5 {
 			//TODO: ajoutez ici le code du constructeur
 			//
 		}
-		void setPanel(Panel^ panel)
+		void setPanelMovies(Panel^ panel)
 		{
-			this->panelContent = panel;
+			this->panelMovies = panel;
 		}
 		void setPanelList(Panel^ panel)
 		{
 			this->list = panel;
+		}
+		void setPanelSeries(Panel^ panel)
+		{
+			this->panelSeries = panel;
 		}
 	protected:
 		/// <summary>
@@ -91,6 +98,7 @@ namespace Project5 {
 			// 
 			// days
 			// 
+			this->days->BackColor = System::Drawing::Color::Red;
 			this->days->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->days->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -99,7 +107,7 @@ namespace Project5 {
 			this->days->Size = System::Drawing::Size(194, 111);
 			this->days->TabIndex = 0;
 			this->days->Text = L"1";
-			this->days->UseVisualStyleBackColor = true;
+			this->days->UseVisualStyleBackColor = false;
 			this->days->Click += gcnew System::EventHandler(this, &DaysUserControl::days_Click);
 			// 
 			// DaysUserControl
@@ -146,7 +154,8 @@ namespace Project5 {
 			movie_->SetExist(DataBaseOperations::Search_Movie(movie_->GetIdApi()));
 			//creating a user control for it : 
 			PosterPlanning^ movie_userc = gcnew PosterPlanning(movie_,list);
-			panelContent->Controls->Add(movie_userc);
+			panelMovies->Controls->Add(movie_userc);
+
 		}
 	}
 	private: void loadDataSeries()
@@ -180,7 +189,7 @@ namespace Project5 {
 			serie_->SetExist(DataBaseOperations::Search_Serie(serie_->GetIdApi()));
 			//creating a user control for it : 
 			PosterPlanning^ serie_userc = gcnew PosterPlanning(serie_,list);
-			panelContent->Controls->Add(serie_userc);
+			panelSeries->Controls->Add(serie_userc);
 		}
 	}
 #pragma endregion
@@ -191,7 +200,6 @@ namespace Project5 {
 		{
 			SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
 			String^ Query = "SELECT * from PLANNING where date = '"+this->dayOfweek + "-" + this->mo + "-" + this->year+ "'";
-			MessageBox::Show(Query);
 			SqlCommand Cmd(Query, % conx);
 			conx.Open();
 			SqlDataReader^ sqlReader = Cmd.ExecuteReader();
@@ -201,7 +209,6 @@ namespace Project5 {
 		{
 			SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
 			String^ Query = "select id from planning where date = '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "'";
-			MessageBox::Show(Query);
 			SqlCommand Cmd(Query, % conx);
 			conx.Open();
 			SqlDataReader^ sqlReader = Cmd.ExecuteReader();
@@ -213,22 +220,17 @@ namespace Project5 {
 		{
 			SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
 			String^ Query = "insert into planning(date) values('"+this->dayOfweek+"-"+this->mo+"-"+this->year+"')";
-			MessageBox::Show(Query);
 			SqlCommand Cmd(Query, % conx);
 			conx.Open();
 			SqlDataReader^ sqlReader = Cmd.ExecuteReader();
 			conx.Close();
-			MessageBox::Show("last index is : " + getLastDateInserted().ToString());
 		}
 	private: System::Void days_Click(System::Object^ sender, System::EventArgs^ e) {
-			MessageBox::Show("today is : " + this->dayOfweek + "/" + this->mo + "/" + this->year);
-			WatchLater_UC::month = this->mo;
-			WatchLater_UC::day = this->dayOfweek;
-			WatchLater_UC::year = this->year;
-			WatchLater_UC::idPlanning = getLastDateInserted();
+			
 			if (checkValidityDate())
 			{
-				this->panelContent->Controls->Clear();
+				this->panelMovies->Controls->Clear();
+				this->panelSeries->Controls->Clear();
 				loadDataMovies();
 				loadDataSeries();
 			}
@@ -237,6 +239,10 @@ namespace Project5 {
 				insertDate();
 				MessageBox::Show("you can add a movie or a serie to this date : ");
 			}
+			WatchLater_UC::month = this->mo;
+			WatchLater_UC::day = this->dayOfweek;
+			WatchLater_UC::year = this->year;
+			WatchLater_UC::idPlanning = getLastDateInserted();
 	}
 	};
 }

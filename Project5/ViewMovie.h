@@ -82,10 +82,10 @@ namespace Project5 {
 		{
 			this->panelImage = (gcnew System::Windows::Forms::Panel());
 			this->blur = (gcnew System::Windows::Forms::Panel());
+			this->idapi = (gcnew System::Windows::Forms::Label());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->addLibraryBtn = (gcnew System::Windows::Forms::Button());
 			this->title = (gcnew System::Windows::Forms::Label());
-			this->idapi = (gcnew System::Windows::Forms::Label());
 			this->panelImage->SuspendLayout();
 			this->blur->SuspendLayout();
 			this->SuspendLayout();
@@ -117,6 +117,16 @@ namespace Project5 {
 			this->blur->Name = L"blur";
 			this->blur->Size = System::Drawing::Size(1266, 610);
 			this->blur->TabIndex = 0;
+			// 
+			// idapi
+			// 
+			this->idapi->AutoSize = true;
+			this->idapi->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->idapi->Location = System::Drawing::Point(515, 112);
+			this->idapi->Name = L"idapi";
+			this->idapi->Size = System::Drawing::Size(44, 16);
+			this->idapi->TabIndex = 3;
+			this->idapi->Text = L"label1";
 			// 
 			// panel1
 			// 
@@ -150,16 +160,6 @@ namespace Project5 {
 			this->title->Size = System::Drawing::Size(92, 25);
 			this->title->TabIndex = 0;
 			this->title->Text = L"Du texte";
-			// 
-			// idapi
-			// 
-			this->idapi->AutoSize = true;
-			this->idapi->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->idapi->Location = System::Drawing::Point(451, 61);
-			this->idapi->Name = L"idapi";
-			this->idapi->Size = System::Drawing::Size(44, 16);
-			this->idapi->TabIndex = 3;
-			this->idapi->Text = L"label1";
 			// 
 			// ViewMovie
 			// 

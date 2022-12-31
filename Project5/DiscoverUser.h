@@ -5,7 +5,6 @@
 #include "Movie.h"
 #include<iostream>
 #include <windows.h> // required for Sleep function
-#include "ComboVal.h"
 using namespace System;
 using namespace System::Threading;
 using namespace System::ComponentModel;
@@ -139,6 +138,7 @@ namespace Project5 {
 			this->ratedBtn->TabIndex = 4;
 			this->ratedBtn->Text = L"Top Rated";
 			this->ratedBtn->UseVisualStyleBackColor = true;
+			this->ratedBtn->Click += gcnew System::EventHandler(this, &DiscoverUser::ratedBtn_Click);
 			// 
 			// popularBtn
 			// 
@@ -363,7 +363,10 @@ namespace Project5 {
 	{
 		Json::Value dataMovies = l->getInformations(url, "type");
 		for (int i = 0;i <= 19;i++)
-			comboCat->Items->Add(msclr::interop::marshal_as<System::String^>(dataMovies["genres"][i]["name"].asString()));
+		{
+			if (dataMovies["genres"][i]["name"].asString() != "")
+				comboCat->Items->Add(msclr::interop::marshal_as<System::String^>(dataMovies["genres"][i]["name"].asString()));
+		}
 	}
 #pragma endregion
 	private: System::Void DiscoverUser_Load(System::Object^ sender, System::EventArgs^ e) {
@@ -378,7 +381,7 @@ namespace Project5 {
 	private: System::Void seriesBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		string urlDiscover_series = "https://api.themoviedb.org/3/discover/tv?api_key=10f96818301b77e61d73d48aa20d81f9&page=";
 		string urlCategories = "https://api.themoviedb.org/3/genre/tv/list?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
-		ShowFlowPanel(urlDiscover_series, "name");
+		//ShowFlowPanel(urlDiscover_series, "name");
 		locationUser = "series";
 		comboCat->Items->Clear();
 		loadComboBoxCategories(urlCategories);
@@ -539,6 +542,23 @@ namespace Project5 {
 			MessageBox::Show("this is id : " + msclr::interop::marshal_as<String^>(idCat));
 			getObjectCatDisplay(urlDiscover_series, "name", idCat);
 		}
+		else if (locationUser == "toprated")
+		{
+			string urlTop_rated = "https://api.themoviedb.org/3/movie/top_rated?api_key=10f96818301b77e61d73d48aa20d81f9&page=";
+			/*ShowFlowPanel(urlDiscover_movies, "title");*/
+			string urlCategories = "https://api.themoviedb.org/3/genre/movie/list?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
+			comboCat->Items->Clear();
+			loadComboBoxCategories(urlCategories);
+			locationUser = "toprated";
+		}
+	}
+	private: System::Void ratedBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		string urlTop_rated = "https://api.themoviedb.org/3/movie/top_rated?api_key=10f96818301b77e61d73d48aa20d81f9&page=";
+		/*ShowFlowPanel(urlDiscover_movies, "title");*/
+		string urlCategories = "https://api.themoviedb.org/3/genre/movie/list?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
+		comboCat->Items->Clear();
+		loadComboBoxCategories(urlCategories);
+		locationUser = "toprated";
 	}
 };
 }

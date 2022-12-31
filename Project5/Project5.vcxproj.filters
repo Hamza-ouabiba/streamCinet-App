@@ -87,9 +87,6 @@
     <ClCompile Include="PosterPlanning.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="ComboVal.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="WatchLater_UC.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -147,9 +144,6 @@
       <Filter>WatchLater</Filter>
     </ClInclude>
     <ClInclude Include="PosterPlanning.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="ComboVal.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="WatchLater_UC.h">
