@@ -1,6 +1,8 @@
 #pragma once
 #include <string> 
-#include "DataBaseConnection.h"    
+#include "DataBaseConnection.h"   
+#include <msclr/marshal_cppstd.h>
+
 using namespace std;
 using namespace System;
 using namespace System::Windows::Forms;

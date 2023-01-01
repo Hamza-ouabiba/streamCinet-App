@@ -72,7 +72,7 @@ namespace Project5 {
 		/// <summary>
 		/// Variable nécessaire au concepteur.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -248,7 +248,7 @@ namespace Project5 {
 	private: System::Void moviesBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void discoverBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		
+
 	}
 	private: System::Void discoverBtn_Click_1(System::Object^ sender, System::EventArgs^ e) {
 		high_resolution_clock::time_point start = high_resolution_clock::now();
@@ -273,12 +273,12 @@ namespace Project5 {
 		lb->Dock = DockStyle::Fill;
 		this->panelContent->Controls->Add(lb);
 	}
-private: System::Void calendarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-	Calendar_uc^ cl = gcnew Calendar_uc();
-	this->panelContent->Controls->Clear();
-	cl->Dock = DockStyle::Fill;
-	this->panelContent->Controls->Add(cl);
-}
-};
-	
+	private: System::Void calendarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		Calendar_uc^ cl = gcnew Calendar_uc(this->panelContent);
+		this->panelContent->Controls->Clear();
+		cl->Dock = DockStyle::Fill;
+		this->panelContent->Controls->Add(cl);
+	}
+	};
+
 }

@@ -4,7 +4,6 @@
 #include "DataBaseConnection.h"
 #include "PosterImage.h"
 #include "DataBaseOperations.h"
-
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;

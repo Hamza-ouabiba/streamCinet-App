@@ -65,7 +65,7 @@ namespace Project5 {
 		/// <summary>
 		/// Variable nécessaire au concepteur.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -182,13 +182,13 @@ namespace Project5 {
 			this->PerformLayout();
 
 		}
-		void setData(Json::Value dataMovies,string url,int i,string type)
+		void setData(Json::Value dataMovies, string url, int i, string type)
 		{
 			int indexPage = 0;
-			
-			
+
+
 		}
-		void InitializeUserControl(string url,string type)
+		void InitializeUserControl(string url, string type)
 		{
 			Json::Value dataMovies = l->getInformations(url);
 			stringstream ss;
@@ -196,7 +196,7 @@ namespace Project5 {
 			string backDrop_ = "https://image.tmdb.org/t/p/w1280";
 			for (int i = 1;i <= 19;i++)
 			{
-				if (type == "title")
+				if (type == "title" && dataMovies["results"][i]["release_date"].asString() != "null")
 				{
 					//creating a movie object : 
 					Movie^ mv = gcnew Movie();
@@ -221,6 +221,7 @@ namespace Project5 {
 
 					string date = dataMovies["results"][i]["release_date"].toStyledString();
 					date.erase(remove(date.begin(), date.end(), '"'), date.end());
+					MessageBox::Show(msclr::interop::marshal_as<System::String^>(date));
 					mv->SetRealease_Date(Convert::ToDateTime(msclr::interop::marshal_as<System::String^>(date)));
 
 
@@ -233,9 +234,9 @@ namespace Project5 {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					unmanaged = msclr::interop::marshal_as<System::String^>(data);
 
-					mv->SetBakcDrop(l->imageDown(unmanaged)); 
+					mv->SetBakcDrop(l->imageDown(unmanaged));
 					//adding a user Control related to this movie : 
-					PosterImage ^ movie_uc = gcnew PosterImage(i, mv,this->panel);
+					PosterImage^ movie_uc = gcnew PosterImage(i, mv, this->panel);
 					this->movie->Controls->Add(movie_uc);
 					cout << "creating movies";
 				}
@@ -279,9 +280,8 @@ namespace Project5 {
 					unmanaged = msclr::interop::marshal_as<System::String^>(data);
 
 					serie->SetBakcDrop(l->imageDown(unmanaged));
-				
 					//adding a user Control related to this movie : 
-					PosterImage^ serie_uc = gcnew PosterImage(i, serie,this->panel);
+					PosterImage^ serie_uc = gcnew PosterImage(i, serie, this->panel);
 					this->serie->Controls->Add(serie_uc);
 					cout << "creating series";
 				}
@@ -292,9 +292,9 @@ namespace Project5 {
 		string urlDiscover_movies = "https://api.themoviedb.org/3/discover/movie?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
 		string urlDiscover_series = "https://api.themoviedb.org/3/discover/tv?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
 		//setting overview : 
-		InitializeUserControl(urlDiscover_movies,"title");
+		/*InitializeUserControl(urlDiscover_movies,"title");
 		InitializeUserControl(urlDiscover_series, "name");
-		l->ShowBackGroundImageDashBoard(urlDiscover_movies, imagePanel, overview);
-		}
+		l->ShowBackGroundImageDashBoard(urlDiscover_movies, imagePanel, overview);*/
+	}
 	};
 }

@@ -40,3 +40,5 @@ C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Proje
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.ViewMovie.resources
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.WatchForm.resources
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.vcxproj.GenerateResource.cache
+D:\projects\training\Project5\Project5\Debug\Project5.PosterPlanning.resources
+D:\projects\training\Project5\Project5\Debug\Project5.WatchLater_UC.resources

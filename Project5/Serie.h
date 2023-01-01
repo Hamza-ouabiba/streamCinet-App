@@ -1,9 +1,12 @@
 #pragma once
 #include <string> 
+#include <msclr/marshal_cppstd.h>
 #include "DataBaseOperations.h"
 using namespace::std;
 using namespace System;
 using namespace Drawing;
+
+
 
 public ref class Serie
 {

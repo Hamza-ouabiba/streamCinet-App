@@ -78,9 +78,6 @@
     <ClCompile Include="PosterPlanning.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="ComboVal.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="DataBaseConnection.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -89,6 +86,9 @@
     </ClCompile>
     <ClCompile Include="ViewMovie.cpp">
       <Filter>My_Library</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchLater_UC.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -131,9 +131,6 @@
     <ClInclude Include="PosterPlanning.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="ComboVal.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Library.h">
       <Filter>My_Library</Filter>
     </ClInclude>
@@ -151,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="DataBaseOperations.h">
       <Filter>My_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchLater_UC.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

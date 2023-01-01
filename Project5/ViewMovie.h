@@ -3,9 +3,7 @@
 #include "Movie.h"  
 #include "Serie.h" 
 #include"json/json.h"  
- 
 #using <System.Net.Http.dll>
-
 #using <System.Runtime.InteropServices.dll>
 
 using namespace System::Net::Http;
@@ -35,12 +33,14 @@ namespace Project5 {
 
 
 	public:
-		  Serie^ serie_ = nullptr;
-		  Movie^ movie_ = nullptr;
+		  Serie^ serie_ ;
+		  Movie^ movie_ ;
 		ViewMovie(Movie^ MV)
 		{
 			InitializeComponent();
 			movie_ = MV;
+			serie_ = gcnew Serie();
+			serie_->SetName("");
 			Title_label->Text = movie_->GetTitle();
 			this->Overview_label->Text = movie_->GetOverview();
 			this->Rating_label->Text = movie_->GetRating().ToString();
@@ -57,6 +57,8 @@ namespace Project5 {
 		ViewMovie(Serie^ Serie)
 		{
 			InitializeComponent();
+			movie_ = gcnew Movie();
+			movie_->SetTitle("");
 			this->serie_ = Serie;
 			this->Title_label->Text = serie_->GetName();
 			this->Overview_label->Text = serie_->GetOverview();
@@ -138,9 +140,10 @@ namespace Project5 {
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->BtnLibrary_AddRemove->ForeColor = System::Drawing::Color::White;
 			this->BtnLibrary_AddRemove->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->BtnLibrary_AddRemove->Location = System::Drawing::Point(213, 101);
+			this->BtnLibrary_AddRemove->Location = System::Drawing::Point(284, 124);
+			this->BtnLibrary_AddRemove->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->BtnLibrary_AddRemove->Name = L"BtnLibrary_AddRemove";
-			this->BtnLibrary_AddRemove->Size = System::Drawing::Size(190, 51);
+			this->BtnLibrary_AddRemove->Size = System::Drawing::Size(253, 63);
 			this->BtnLibrary_AddRemove->TabIndex = 16;
 			this->BtnLibrary_AddRemove->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			this->BtnLibrary_AddRemove->UseVisualStyleBackColor = false;
@@ -153,9 +156,10 @@ namespace Project5 {
 			this->Title_label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Title_label->ForeColor = System::Drawing::Color::White;
-			this->Title_label->Location = System::Drawing::Point(41, 35);
+			this->Title_label->Location = System::Drawing::Point(55, 43);
+			this->Title_label->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->Title_label->Name = L"Title_label";
-			this->Title_label->Size = System::Drawing::Size(171, 25);
+			this->Title_label->Size = System::Drawing::Size(215, 31);
 			this->Title_label->TabIndex = 27;
 			this->Title_label->Text = L"Game of thrones";
 			this->Title_label->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
@@ -167,9 +171,10 @@ namespace Project5 {
 			this->BtnTrailer->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->BtnTrailer->ForeColor = System::Drawing::Color::White;
-			this->BtnTrailer->Location = System::Drawing::Point(49, 101);
+			this->BtnTrailer->Location = System::Drawing::Point(65, 124);
+			this->BtnTrailer->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->BtnTrailer->Name = L"BtnTrailer";
-			this->BtnTrailer->Size = System::Drawing::Size(125, 51);
+			this->BtnTrailer->Size = System::Drawing::Size(167, 63);
 			this->BtnTrailer->TabIndex = 15;
 			this->BtnTrailer->Text = L"Watch Trailer";
 			this->BtnTrailer->UseVisualStyleBackColor = false;
@@ -184,9 +189,10 @@ namespace Project5 {
 			this->Overview_label->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Overview_label->ForeColor = System::Drawing::Color::White;
-			this->Overview_label->Location = System::Drawing::Point(25, 455);
+			this->Overview_label->Location = System::Drawing::Point(33, 560);
+			this->Overview_label->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->Overview_label->Name = L"Overview_label";
-			this->Overview_label->Size = System::Drawing::Size(995, 145);
+			this->Overview_label->Size = System::Drawing::Size(1327, 178);
 			this->Overview_label->TabIndex = 26;
 			this->Overview_label->Text = L"qcssssssssssss";
 			// 
@@ -197,9 +203,10 @@ namespace Project5 {
 			this->label10->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label10->ForeColor = System::Drawing::Color::White;
-			this->label10->Location = System::Drawing::Point(26, 414);
+			this->label10->Location = System::Drawing::Point(35, 510);
+			this->label10->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(89, 24);
+			this->label10->Size = System::Drawing::Size(114, 29);
 			this->label10->TabIndex = 25;
 			this->label10->Text = L"Overview";
 			// 
@@ -210,9 +217,10 @@ namespace Project5 {
 			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label4->ForeColor = System::Drawing::Color::White;
-			this->label4->Location = System::Drawing::Point(509, 228);
+			this->label4->Location = System::Drawing::Point(679, 281);
+			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(70, 25);
+			this->label4->Size = System::Drawing::Size(86, 31);
 			this->label4->TabIndex = 21;
 			this->label4->Text = L"label4";
 			// 
@@ -223,9 +231,10 @@ namespace Project5 {
 			this->Date_label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Date_label->ForeColor = System::Drawing::Color::White;
-			this->Date_label->Location = System::Drawing::Point(41, 228);
+			this->Date_label->Location = System::Drawing::Point(55, 281);
+			this->Date_label->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->Date_label->Name = L"Date_label";
-			this->Date_label->Size = System::Drawing::Size(60, 25);
+			this->Date_label->Size = System::Drawing::Size(74, 31);
 			this->Date_label->TabIndex = 19;
 			this->Date_label->Text = L"2017";
 			// 
@@ -236,9 +245,10 @@ namespace Project5 {
 			this->Rating_label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Rating_label->ForeColor = System::Drawing::Color::White;
-			this->Rating_label->Location = System::Drawing::Point(263, 228);
+			this->Rating_label->Location = System::Drawing::Point(351, 281);
+			this->Rating_label->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->Rating_label->Name = L"Rating_label";
-			this->Rating_label->Size = System::Drawing::Size(70, 25);
+			this->Rating_label->Size = System::Drawing::Size(86, 31);
 			this->Rating_label->TabIndex = 20;
 			this->Rating_label->Text = L"label3";
 			// 
@@ -246,9 +256,10 @@ namespace Project5 {
 			// 
 			this->panel1->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->panel1->Dock = System::Windows::Forms::DockStyle::Right;
-			this->panel1->Location = System::Drawing::Point(1048, 0);
+			this->panel1->Location = System::Drawing::Point(1397, 0);
+			this->panel1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(203, 710);
+			this->panel1->Size = System::Drawing::Size(271, 874);
 			this->panel1->TabIndex = 28;
 			// 
 			// Category1_label
@@ -257,9 +268,10 @@ namespace Project5 {
 			this->Category1_label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->Category1_label->ForeColor = System::Drawing::Color::White;
-			this->Category1_label->Location = System::Drawing::Point(41, 287);
+			this->Category1_label->Location = System::Drawing::Point(55, 353);
+			this->Category1_label->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->Category1_label->Name = L"Category1_label";
-			this->Category1_label->Size = System::Drawing::Size(70, 25);
+			this->Category1_label->Size = System::Drawing::Size(86, 31);
 			this->Category1_label->TabIndex = 29;
 			this->Category1_label->Text = L"label1";
 			// 
@@ -269,9 +281,10 @@ namespace Project5 {
 			this->Category2_label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->Category2_label->ForeColor = System::Drawing::Color::White;
-			this->Category2_label->Location = System::Drawing::Point(150, 287);
+			this->Category2_label->Location = System::Drawing::Point(200, 353);
+			this->Category2_label->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->Category2_label->Name = L"Category2_label";
-			this->Category2_label->Size = System::Drawing::Size(70, 25);
+			this->Category2_label->Size = System::Drawing::Size(86, 31);
 			this->Category2_label->TabIndex = 30;
 			this->Category2_label->Text = L"label1";
 			// 
@@ -281,9 +294,10 @@ namespace Project5 {
 			this->Category3_label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->Category3_label->ForeColor = System::Drawing::Color::White;
-			this->Category3_label->Location = System::Drawing::Point(274, 287);
+			this->Category3_label->Location = System::Drawing::Point(365, 353);
+			this->Category3_label->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->Category3_label->Name = L"Category3_label";
-			this->Category3_label->Size = System::Drawing::Size(70, 25);
+			this->Category3_label->Size = System::Drawing::Size(86, 31);
 			this->Category3_label->TabIndex = 31;
 			this->Category3_label->Text = L"label1";
 			// 
@@ -305,20 +319,22 @@ namespace Project5 {
 			this->panel2->Controls->Add(this->label4);
 			this->panel2->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->panel2->Location = System::Drawing::Point(0, 0);
+			this->panel2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(1251, 710);
+			this->panel2->Size = System::Drawing::Size(1668, 874);
 			this->panel2->TabIndex = 32;
 			this->panel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &ViewMovie::panel2_Paint);
 			// 
 			// ViewMovie
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(52)));
 			this->Controls->Add(this->panel2);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"ViewMovie";
-			this->Size = System::Drawing::Size(1251, 710);
+			this->Size = System::Drawing::Size(1668, 874);
 			this->Load += gcnew System::EventHandler(this, &ViewMovie::ViewMovie_Load);
 			this->panel2->ResumeLayout(false);
 			this->panel2->PerformLayout();
@@ -624,7 +640,6 @@ namespace Project5 {
 				Command.Parameters->AddWithValue("@RATING", movie_->GetRating());
 				Command.Parameters->AddWithValue("@RELEASE_DATE", movie_->GetRealease_Date());
 				Command.Parameters->AddWithValue("@OVERVIEW", movie_->GetOverview());
-
 				MemoryStream^ ms;
 				try {
 					ms = gcnew MemoryStream();
@@ -804,7 +819,7 @@ namespace Project5 {
 	}
 	private: System::Void BtnLibrary_AddRemove_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		if (movie_) {
+		if (movie_->GetTitle() != "") {
 
 			if (movie_->GetExist()) {
 				RemoveFromDataBase_Movie();
@@ -820,7 +835,7 @@ namespace Project5 {
 			//BtnLibrary_AddRemove->ImageAlign = ImageAlign::MiddleLeft;
 
 		}
-		else {
+		else if(serie_->GetName() != "") {
 			if (serie_->GetExist()) {
 				RemoveFromDataBase_Serie();
 				BtnLibrary_AddRemove->Text = "Add To Library";
@@ -828,7 +843,6 @@ namespace Project5 {
 			}
 			else {
 				AddToDataBase_Serie();
-
 				BtnLibrary_AddRemove->Text = "Remove from Library";
 				BtnLibrary_AddRemove->Image = Image::FromFile("icons\\remove.png");
 			}
