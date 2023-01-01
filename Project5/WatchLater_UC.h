@@ -32,11 +32,10 @@ namespace Project5 {
 		static int month;
 		static int year;
 		static int idPlanning;
-		WatchLater_UC(Movie^ movie,Panel^ panelmovies)
+		WatchLater_UC(Movie^ movie)
 		{
 			InitializeComponent();
 			this->movie_ = movie;
-			this->panelMovies = panelmovies;
 			this->button1->BackgroundImage = movie->GetPoster();
 			this->button1->Text = movie->GetTitle();
 			serie_ = gcnew Serie();
@@ -48,11 +47,10 @@ namespace Project5 {
 			//TODO: ajoutez ici le code du constructeur
 			//
 		}
-		WatchLater_UC(Serie^ serie,Panel^ panelseries)
+		WatchLater_UC(Serie^ serie)
 		{
 			InitializeComponent();
 			this->serie_ = serie;
-			this->panelSeries = panelseries;
 			this->button1->BackgroundImage = serie_->GetPoster();
 			this->button1->Text = serie_->GetName();
 			this->day = day;
@@ -63,6 +61,14 @@ namespace Project5 {
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
+		}
+		void setPanelMovies(Panel^ panelMovies)
+		{
+			this->panelMovies = panelMovies;
+		}
+		void setPanelSeries(Panel^ panelSeries)
+		{
+			this->panelSeries = panelSeries;
 		}
 		void setPanelContent(Panel^ panelContent)
 		{
@@ -141,7 +147,7 @@ namespace Project5 {
 	private: void loadDataMovies()
 	{
 			SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-			String^ Query = "select ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from MOVIE join PLANNING_MOVIE on MOVIE.ID_MOVIE = PLANNING_MOVIE.ID_MOVIE join PLANNING on PLANNING_MOVIE.ID = PLANNING.ID where PLANNING.date = '" + this->day + "-" + this->month + "-" + this->year + "'";
+			String^ Query = "select MOVIE.ID_MOVIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from MOVIE join PLANNING_MOVIE on MOVIE.ID_MOVIE = PLANNING_MOVIE.ID_MOVIE join PLANNING on PLANNING_MOVIE.ID = PLANNING.ID where PLANNING.date = '" + this->day + "-" + this->month + "-" + this->year + "'";
 			SqlCommand Cmd(Query, % conx);
 			conx.Open();
 			SqlDataReader^ sqlReader = Cmd.ExecuteReader();
@@ -149,7 +155,7 @@ namespace Project5 {
 			{
 				////creating an instance for every movie : 
 				Movie^ movie_ = gcnew Movie();
-				movie_->SetIdMovie(Convert::ToInt32(sqlReader[0]->ToString()));
+				movie_->SetIdMovie(Convert::ToInt32(sqlReader["ID_MOVIE"]->ToString()));
 				movie_->SetIdApi(Convert::ToInt32(sqlReader["ID_API"]->ToString()));
 				movie_->SetTitle(sqlReader["TITLE"]->ToString());
 				movie_->SetOverview(sqlReader["OVERVIEW"]->ToString());
@@ -167,15 +173,25 @@ namespace Project5 {
 				image = gcnew Bitmap(ms);
 				movie_->SetBakcDrop(image);
 				//creating a user control for it : 
-				PosterPlanning^ movie_userc = gcnew PosterPlanning(movie_, this->panelContent);
+				PosterPlanning^ movie_userc = gcnew PosterPlanning(movie_, this->panelContent, getIdPlanning());
 				panelMovies->Controls->Add(movie_userc);
 
 		}
 	}
+	private: int getIdPlanning()
+	{
+		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+		String^ Query = "SELECT ID from PLANNING WHERE DATE =  '" + this->day + "-" + this->month + "-" + this->year + "'";
+		SqlCommand Cmd(Query, % conx);
+		conx.Open();
+		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
+		if (sqlReader->Read())
+			return Convert::ToInt32(sqlReader[0]->ToString());
+	}
 	private: void loadDataSeries()
 	{
 			SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-			String^ Query = "select ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from SERIE join PLANNING_SERIE on SERIE.ID_SERIE = PLANNING_SERIE.ID_SERIE join PLANNING on PLANNING_SERIE.ID = PLANNING.ID where PLANNING.date = '" + this->day + "-" + this->month + "-" + this->year + "'";
+			String^ Query = "select SERIE.ID_SERIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from SERIE join PLANNING_SERIE on SERIE.ID_SERIE = PLANNING_SERIE.ID_SERIE join PLANNING on PLANNING_SERIE.ID = PLANNING.ID where PLANNING.date = '" + this->day + "-" + this->month + "-" + this->year + "'";
 			SqlCommand Cmd(Query, % conx);
 			conx.Open();
 			SqlDataReader^ sqlReader = Cmd.ExecuteReader();
@@ -183,7 +199,8 @@ namespace Project5 {
 			{
 				//creating an instance for every movie : 
 				Serie^ serie_ = gcnew Serie();
-				serie_->SetIdApi(Convert::ToInt32(sqlReader[0]->ToString()));
+				serie_->SetIdSerie((Convert::ToInt32(sqlReader["ID_SERIE"]->ToString())));
+				serie_->SetIdApi(Convert::ToInt32(sqlReader["ID_API"]->ToString()));
 				serie_->SetName(sqlReader["TITLE"]->ToString());
 				serie_->SetOverview(sqlReader["OVERVIEW"]->ToString());
 				serie_->SetRealease_Date(Convert::ToDateTime(sqlReader["RELEASE_DATE"]->ToString()));
@@ -200,7 +217,7 @@ namespace Project5 {
 				image = gcnew Bitmap(ms);
 				serie_->SetBakcDrop(image);
 				//creating a user control for it : 
-				PosterPlanning^ serie_userc = gcnew PosterPlanning(serie_, this->panelContent);
+				PosterPlanning^ serie_userc = gcnew PosterPlanning(serie_, this->panelContent, getIdPlanning());
 				panelSeries->Controls->Add(serie_userc);
 		}
 	}
@@ -246,9 +263,10 @@ namespace Project5 {
 					MessageBox::Show("serie already Plannified in this date");
 				else
 				{
-					addDataBaseSerie();
 					panelSeries->Controls->Clear();
+					addDataBaseSerie();
 					loadDataSeries();
+					
 					//MessageBox::Show("serie in : " + serie_->GetIdSerie());
 					MessageBox::Show("serie set to watch in specified date" + day + month + year);
 				}

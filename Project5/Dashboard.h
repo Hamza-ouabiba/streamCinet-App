@@ -221,7 +221,6 @@ namespace Project5 {
 
 					string date = dataMovies["results"][i]["release_date"].toStyledString();
 					date.erase(remove(date.begin(), date.end(), '"'), date.end());
-					MessageBox::Show(msclr::interop::marshal_as<System::String^>(date));
 					mv->SetRealease_Date(Convert::ToDateTime(msclr::interop::marshal_as<System::String^>(date)));
 
 

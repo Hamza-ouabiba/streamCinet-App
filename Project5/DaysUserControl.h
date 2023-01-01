@@ -122,10 +122,20 @@ namespace Project5 {
 			this->ResumeLayout(false);
 
 		}
+	private: int getIdPlanning()
+	{
+		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+		String^ Query = "SELECT ID from PLANNING WHERE DATE =  '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "'";
+		SqlCommand Cmd(Query, % conx);
+		conx.Open();
+		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
+		if (sqlReader->Read())
+			return Convert::ToInt32(sqlReader[0]->ToString());
+	}
 	private: void loadDataMovies()
 	{
 		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-		String^ Query = "select ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from MOVIE join PLANNING_MOVIE on MOVIE.ID_MOVIE = PLANNING_MOVIE.ID_MOVIE join PLANNING on PLANNING_MOVIE.ID = PLANNING.ID where PLANNING.date = '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "'";
+		String^ Query = "select MOVIE.ID_MOVIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from MOVIE join PLANNING_MOVIE on MOVIE.ID_MOVIE = PLANNING_MOVIE.ID_MOVIE join PLANNING on PLANNING_MOVIE.ID = PLANNING.ID where PLANNING.date = '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "'";
 		SqlCommand Cmd(Query, % conx);
 		conx.Open();
 		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
@@ -133,7 +143,8 @@ namespace Project5 {
 		{
 			////creating an instance for every movie : 
 			Movie^ movie_ = gcnew Movie();
-			movie_->SetIdMovie(Convert::ToInt32(sqlReader[0]->ToString()));
+			MessageBox::Show("setting id_movie : " + sqlReader["ID_MOVIE"]->ToString());
+			movie_->SetIdMovie(Convert::ToInt32(sqlReader["ID_MOVIE"]->ToString()));
 			movie_->SetIdApi(Convert::ToInt32(sqlReader["ID_API"]->ToString()));
 			movie_->SetTitle(sqlReader["TITLE"]->ToString());
 			movie_->SetOverview(sqlReader["OVERVIEW"]->ToString());
@@ -151,15 +162,16 @@ namespace Project5 {
 			image = gcnew Bitmap(ms);
 			movie_->SetBakcDrop(image);
 			//creating a user control for it : 
-			PosterPlanning^ movie_userc = gcnew PosterPlanning(movie_, list);
+			PosterPlanning^ movie_userc = gcnew PosterPlanning(movie_, list,getIdPlanning());
 			panelMovies->Controls->Add(movie_userc);
 
 		}
 	}
+	
 	private: void loadDataSeries()
 	{
 		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-		String^ Query = "select ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from SERIE join PLANNING_SERIE on SERIE.ID_SERIE = PLANNING_SERIE.ID_SERIE join PLANNING on PLANNING_SERIE.ID = PLANNING.ID where PLANNING.date = '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "'";
+		String^ Query = "select SERIE.ID_SERIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from SERIE join PLANNING_SERIE on SERIE.ID_SERIE = PLANNING_SERIE.ID_SERIE join PLANNING on PLANNING_SERIE.ID = PLANNING.ID where PLANNING.date = '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "'";
 		SqlCommand Cmd(Query, % conx);
 		conx.Open();
 		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
@@ -167,24 +179,25 @@ namespace Project5 {
 		{
 			//creating an instance for every movie : 
 			Serie^ serie_ = gcnew Serie();
-			serie_->SetIdApi(Convert::ToInt32(sqlReader[0]->ToString()));
+			serie_->SetIdSerie((Convert::ToInt32(sqlReader["ID_SERIE"]->ToString())));
+			serie_->SetIdApi(Convert::ToInt32(sqlReader["ID_API"]->ToString()));
 			serie_->SetName(sqlReader["TITLE"]->ToString());
 			serie_->SetOverview(sqlReader["OVERVIEW"]->ToString());
 			serie_->SetRealease_Date(Convert::ToDateTime(sqlReader["RELEASE_DATE"]->ToString()));
 			serie_->SetRating((float)Convert::ToDouble(sqlReader["Rating"]->ToString()));
 
 			// Create a MemoryStream to hold the image data
-			MemoryStream^ ms = gcnew MemoryStream(sqlReader->GetSqlBinary(5).Value);
+			MemoryStream^ ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
 			// Load the image data into a Bitmap object
 			Bitmap^ image = gcnew Bitmap(ms);
 			serie_->SetPoster(image);
 
-			ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
+			ms = gcnew MemoryStream(sqlReader->GetSqlBinary(7).Value);
 			// Load the image data into a Bitmap object
 			image = gcnew Bitmap(ms);
 			serie_->SetBakcDrop(image);
 			//creating a user control for it : 
-			PosterPlanning^ serie_userc = gcnew PosterPlanning(serie_, list);
+			PosterPlanning^ serie_userc = gcnew PosterPlanning(serie_, list,getIdPlanning());
 			panelSeries->Controls->Add(serie_userc);
 		}
 	}

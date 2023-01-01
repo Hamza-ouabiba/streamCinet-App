@@ -2,7 +2,7 @@
 #include <string>
 #include "Mani.h"
 #include "PosterImage.h"
-//#include "Movie.h"
+#include "Movie.h"
 #include<iostream>
 #include <windows.h> // required for Sleep function
 using namespace System;
@@ -363,10 +363,7 @@ namespace Project5 {
 			nameCom = dataCategories["genres"][i]["name"].toStyledString();
 			nameCom.erase(remove(nameCom.begin(), nameCom.end(), '"'), nameCom.end());
 			if (dataCategories["genres"][i]["name"].asString() == name)
-			{
 				id = dataCategories["genres"][i]["id"].toStyledString();
-				MessageBox::Show("ana hna");
-			}
 		}
 		id.erase(remove(id.begin(), id.end(), '"'), id.end());
 		return id;
@@ -384,7 +381,7 @@ namespace Project5 {
 	private: System::Void DiscoverUser_Load(System::Object^ sender, System::EventArgs^ e) {
 
 		string urlDiscover_movies = "https://api.themoviedb.org/3/discover/movie?api_key=10f96818301b77e61d73d48aa20d81f9&page=";
-		/*ShowFlowPanel(urlDiscover_movies, "title");*/
+		ShowFlowPanel(urlDiscover_movies, "title");
 		string urlCategories = "https://api.themoviedb.org/3/genre/movie/list?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
 		comboCat->Items->Clear();
 		loadComboBoxCategories(urlCategories);
@@ -410,8 +407,8 @@ namespace Project5 {
 		String^ urlSearch = "https://api.themoviedb.org/3/search/movie?api_key=10f96818301b77e61d73d48aa20d81f9&page=1&query=" + search->Text;
 		ShowFlowPanel(msclr::interop::marshal_as<std::string>(urlSearch), "title");
 
-		/*urlSearch = "https://api.themoviedb.org/3/search/tv?api_key=10f96818301b77e61d73d48aa20d81f9&page=1&query=h" + search->Text;
-		ShowFlowPanel(msclr::interop::marshal_as<std::string>(urlSearch), "name");*/
+		urlSearch = "https://api.themoviedb.org/3/search/tv?api_key=10f96818301b77e61d73d48aa20d81f9&page=1&query=h" + search->Text;
+		ShowFlowPanel(msclr::interop::marshal_as<std::string>(urlSearch), "name");
 	}
 	private: void getObjectCatDisplay(string url, string type, string idCat)
 	{

@@ -9,7 +9,7 @@ using namespace System::Collections;
 using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
-
+		
 namespace Project5 {
 
 	/// <summary>
@@ -21,14 +21,16 @@ namespace Project5 {
 		Movie^ movie_;
 		Serie^ serie_;
 		Panel^ control;
+		int idPlanning;
 	private: System::Windows::Forms::Button^ button1;
 	public:
-		PosterPlanning(Movie^ mv, Panel^ control)
+		PosterPlanning(Movie^ mv, Panel^ control,int id)
 		{
 			InitializeComponent();
 			movie_ = mv;
 			this->button1->BackgroundImage = movie_->GetPoster();
 			this->button1->Text = mv->GetTitle();
+			this->idPlanning = id;
 			this->control = control;
 			serie_ = gcnew Serie();
 			serie_->SetName("");
@@ -36,11 +38,12 @@ namespace Project5 {
 			//TODO: ajoutez ici le code du constructeur
 			//
 		}
-		PosterPlanning(Serie^ serie, Panel^ control)
+		PosterPlanning(Serie^ serie, Panel^ control,int id)
 		{
 			InitializeComponent();
 			serie_ = serie;
 			movie_ = gcnew Movie();
+			this->idPlanning = id;
 			this->control = control;
 			this->button1->BackgroundImage = serie_->GetPoster();
 			this->button1->Text = serie_->GetName();
@@ -95,6 +98,9 @@ namespace Project5 {
 			this->button1->Text = L"button1";
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &PosterPlanning::button1_Click);
+			this->button1->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &PosterPlanning::button1_MouseClick);
+			//this->button1->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &PosterPlanning::button1_MouseDoubleClick);
+
 			// 
 			// PosterPlanning
 			// 
@@ -108,10 +114,30 @@ namespace Project5 {
 
 		}
 #pragma endregion
+	private: void deletePlanningMovie()
+	{
+		MessageBox::Show("id of planning is : " + this->idPlanning + " and id_movie is : " + this->movie_->GetIdMovie());
+		String^ Query2 = "DELETE FROM planning_movie WHERE id = " + this->idPlanning + " " + "and ID_MOVIE = " + this->movie_->GetIdMovie();
+		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+		conx.Open();
+		int index = 0;
+		SqlCommand Cmd2(Query2, % conx);
+		SqlDataReader^ sqlReader2 = Cmd2.ExecuteReader();
+	}
+	private: void deletePlanningSerie()
+	{
+		String^ Query2 = "DELETE FROM planning_serie WHERE id = " + this->idPlanning + " " + "and ID_SERIE = " + this->serie_->GetIdSerie();
+		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+		conx.Open();
+		int index = 0;
+		SqlCommand Cmd2(Query2, % conx);
+		SqlDataReader^ sqlReader2 = Cmd2.ExecuteReader();
+	}
 	private: System::Void PosterPlanning_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->control->Controls->Clear();
+		
+		/*this->control->Controls->Clear();
 		if (movie_->GetTitle() != "")
 		{
 			ViewMovie^ vm = gcnew ViewMovie(this->movie_);
@@ -124,7 +150,20 @@ namespace Project5 {
 			ViewMovie^ vs = gcnew ViewMovie(this->serie_);
 			vs->Dock = DockStyle::Fill;
 			this->control->Controls->Add(vs);
+		}*/
+	}
+	
+	private: System::Void button1_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+		if (movie_->GetTitle() != "")
+		{
+			MessageBox::Show("deleting movie");
+			deletePlanningMovie();
+		}
+		else
+		{
+			MessageBox::Show("deleting serie : ");
+			deletePlanningSerie();
 		}
 	}
-	};
+};
 }

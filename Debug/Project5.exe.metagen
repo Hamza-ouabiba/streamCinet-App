@@ -95,12 +95,12 @@ Class Project5.ViewMovie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Movie movie_ : Public
 Class Project5.PosterPlanning: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
-    Void .ctor(Serie, System.Windows.Forms.Panel): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(Movie, System.Windows.Forms.Panel): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Serie, System.Windows.Forms.Panel, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Movie, System.Windows.Forms.Panel, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class Project5.WatchLater_UC: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
-    Void .ctor(Serie, System.Windows.Forms.Panel): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(Movie, System.Windows.Forms.Panel): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Serie): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Movie): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
     Movie movie_ : Public
     Serie serie_ : Public
@@ -112,6 +112,8 @@ Class Project5.WatchLater_UC: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
     Int32 year : Public, Static
     Int32 idPlanning : Public, Static
   Methods:
+    setPanelMovies(Panel): PrivateScope, Public, HideBySig
+    setPanelSeries(Panel): PrivateScope, Public, HideBySig
     setPanelContent(Panel): PrivateScope, Public, HideBySig
 Class Project5.DaysUserControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl

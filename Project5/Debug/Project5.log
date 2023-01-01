@@ -1,9 +1,16 @@
-﻿  Calendar_uc.cpp
+﻿  DaysUserControl.cpp
   MyForm.cpp
 D:\projects\training\Project5\Project5\Mani.h(80,53): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
 D:\projects\training\Project5\Project5\Mani.h(84,29): warning C4101: 'ex' : variable locale non référencée
 D:\projects\training\Project5\Project5\Mani.h(149,13): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+  PosterPlanning.cpp
+  WatchLater_UC.cpp
   Génération de code en cours...
+D:\projects\training\Project5\Project5\WatchLater_UC.h(190): warning C4715: 'Project5::WatchLater_UC::getIdPlanning' : les chemins de contrôle ne retournent pas tous une valeur
 D:\projects\training\Project5\Project5\Mani.h(146): warning C4715: 'Mani::imageDown' : les chemins de contrôle ne retournent pas tous une valeur
+D:\projects\training\Project5\Project5\WatchLater_UC.h(190): warning C4715: 'Project5::WatchLater_UC::getIdPlanning' : les chemins de contrôle ne retournent pas tous une valeur
+D:\projects\training\Project5\Project5\DaysUserControl.h(134): warning C4715: 'Project5::DaysUserControl::getIdPlanning' : les chemins de contrôle ne retournent pas tous une valeur
+D:\projects\training\Project5\Project5\WatchLater_UC.h(190): warning C4715: 'Project5::WatchLater_UC::getIdPlanning' : les chemins de contrôle ne retournent pas tous une valeur
+D:\projects\training\Project5\Project5\DaysUserControl.h(134): warning C4715: 'Project5::DaysUserControl::getIdPlanning' : les chemins de contrôle ne retournent pas tous une valeur
   BlankUserControl.obj : module MSIL détecté ; liens incrémentiels désactivés pour MSIL ; édition de liens complète en cours
   Project5.vcxproj -> D:\projects\training\Project5\Debug\Project5.exe

@@ -27,7 +27,6 @@ namespace Project5 {
 		static int days = DateTime::Now.Day;
 		static int year = DateTime::Now.Year;
 		Panel^ content;
-
 	private: System::Windows::Forms::Button^ addSerie;
 	private: System::Windows::Forms::Button^ addMv;
 	private: System::Windows::Forms::Label^ dateForm;
@@ -35,7 +34,7 @@ namespace Project5 {
 	private: System::Windows::Forms::FlowLayoutPanel^ seriesSec;
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Button^ button1;
+
 	private: System::Windows::Forms::Label^ label1;
 
 
@@ -91,7 +90,6 @@ namespace Project5 {
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -229,20 +227,10 @@ namespace Project5 {
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"SERIES";
 			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(452, 3);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 0;
-			this->button1->Text = L"button1";
-			this->button1->UseVisualStyleBackColor = true;
-			// 
 			// Calendar_uc
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->Controls->Add(this->button1);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->dateForm);
 			this->Controls->Add(this->addSerie);
@@ -376,8 +364,10 @@ namespace Project5 {
 			image = gcnew Bitmap(ms);
 			movie_->SetBakcDrop(image);
 			//creating a user control for it : 
-			WatchLater_UC^ movie_userc = gcnew WatchLater_UC(movie_,moviesSec);
+			WatchLater_UC^ movie_userc = gcnew WatchLater_UC(movie_);
 			movie_userc->setPanelContent(this->content);
+			movie_userc->setPanelMovies(this->moviesSec);
+			movie_userc->setPanelSeries(this->seriesSec);
 			calendarPan->Controls->Add(movie_userc);
 		}
 		conx.Close();
@@ -413,8 +403,10 @@ namespace Project5 {
 			image = gcnew Bitmap(ms);
 			serie_->SetBakcDrop(image);
 			//creating a user control for it : 
-			WatchLater_UC^ serie_userc = gcnew WatchLater_UC(serie_,seriesSec);
+			WatchLater_UC^ serie_userc = gcnew WatchLater_UC(serie_);
 			serie_userc->setPanelContent(this->content);
+			serie_userc->setPanelMovies(this->moviesSec);
+			serie_userc->setPanelSeries(this->seriesSec);
 			calendarPan->Controls->Add(serie_userc);
 		}
 		conx.Close();
