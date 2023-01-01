@@ -15,7 +15,7 @@ using namespace std;
 namespace Project5 {
 
 	/// <summary>
-	/// Description résumée de DashBoard
+	/// Description rÃ©sumÃ©e de DashBoard
 	/// </summary>
 	public ref class DashBoard : public System::Windows::Forms::UserControl
 	{
@@ -37,7 +37,7 @@ namespace Project5 {
 		}
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisées.
+		/// Nettoyage des ressources utilisÃ©es.
 		/// </summary>
 		~DashBoard()
 		{
@@ -63,14 +63,14 @@ namespace Project5 {
 	protected:
 	private:
 		/// <summary>
-		/// Variable nécessaire au concepteur.
+		/// Variable nÃ©cessaire au concepteur.
 		/// </summary>
 		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette méthode avec l'éditeur de code.
+		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -291,9 +291,9 @@ namespace Project5 {
 		string urlDiscover_movies = "https://api.themoviedb.org/3/discover/movie?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
 		string urlDiscover_series = "https://api.themoviedb.org/3/discover/tv?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
 		//setting overview : 
-		/*InitializeUserControl(urlDiscover_movies,"title");
+		InitializeUserControl(urlDiscover_movies,"title");
 		InitializeUserControl(urlDiscover_series, "name");
-		l->ShowBackGroundImageDashBoard(urlDiscover_movies, imagePanel, overview);*/
+		l->ShowBackGroundImageDashBoard(urlDiscover_movies, imagePanel, overview);
 	}
 	};
 }
