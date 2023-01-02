@@ -8,7 +8,7 @@ public:
 	}
 	static System::String^ ConnectionString()
 	{
-		return "Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True";
+		return "Data Source=HB\\SQLEXPRESS;Initial Catalog=DataBase_StreamCinet;Integrated Security=True";
 	}
 	static SqlConnection^ Connection() {
 		SqlConnection^ conx = gcnew SqlConnection(ConnectionString());

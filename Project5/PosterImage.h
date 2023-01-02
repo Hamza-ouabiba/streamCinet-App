@@ -1,7 +1,7 @@
 #pragma once
 #include "Movie.h"
 #include "Serie.h"
-#include "ViewMovie.h"
+#include  "ViewMovie.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -16,7 +16,7 @@ namespace Project5 {
 	{
 	
 	public:
-		Movie^ movie_;
+		Movie^ movie_ ;
 		Serie^ serie_;
 		int index;
 		Panel^ panel_;
@@ -121,7 +121,7 @@ namespace Project5 {
 			}
 			else
 			{
-				ViewMovie^ vs = gcnew ViewMovie(serie_);
+				ViewMovie^ vs = gcnew ViewMovie(this->serie_);
 				vs->Dock = DockStyle::Fill;
 				this->panel_->Controls->Add(vs);
 			}

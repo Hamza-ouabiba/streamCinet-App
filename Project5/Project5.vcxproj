@@ -93,7 +93,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\projects\training\Project5\Project5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\MT\Desktop\streamCinet-App-walid\Project5\include;D:\projects\training\Project5\Project5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libcurl_a.lib;Ws2_32.lib;Crypt32.lib;Wldap32.lib;Normaliz.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -103,7 +103,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\projects\training\Project5\Project5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\MT\Desktop\streamCinet-App-walid\Project5\include;D:\projects\training\Project5\Project5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libcurl_a.lib;Ws2_32.lib;Crypt32.lib;Wldap32.lib;Normaliz.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -113,7 +113,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\projects\training\Project5\Project5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\MT\Desktop\streamCinet-App-walid\Project5\include;D:\projects\training\Project5\Project5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libcurl_a.lib;Ws2_32.lib;Crypt32.lib;Wldap32.lib;Normaliz.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -123,7 +123,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\projects\training\Project5\Project5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\MT\Desktop\streamCinet-App-walid\Project5\include;D:\projects\training\Project5\Project5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libcurl_a.lib;Ws2_32.lib;Crypt32.lib;Wldap32.lib;Normaliz.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -145,6 +145,7 @@
     <ClCompile Include="DaysUserControl.cpp" />
     <ClCompile Include="DiscoverUser.cpp" />
     <ClCompile Include="Library.cpp" />
+    <ClCompile Include="Login.cpp" />
     <ClCompile Include="Mani.cpp" />
     <ClCompile Include="dist\jsoncpp.cpp" />
     <ClCompile Include="Movie.cpp" />
@@ -152,6 +153,8 @@
     <ClCompile Include="PosterImage.cpp" />
     <ClCompile Include="PosterPlanning.cpp" />
     <ClCompile Include="Serie.cpp" />
+    <ClCompile Include="SignUp.cpp" />
+    <ClCompile Include="UserClass.cpp" />
     <ClCompile Include="ViewMovie.cpp" />
     <ClCompile Include="WatchForm.cpp" />
     <ClCompile Include="WatchLater_UC.cpp" />
@@ -177,6 +180,9 @@
     <ClInclude Include="Library.h">
       <FileType>CppControl</FileType>
     </ClInclude>
+    <ClInclude Include="Login.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Mani.h" />
     <ClInclude Include="dist\json\json-forwards.h" />
     <ClInclude Include="dist\json\json.h" />
@@ -192,6 +198,10 @@
     </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="Serie.h" />
+    <ClInclude Include="SignUp.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="UserClass.h" />
     <ClInclude Include="ViewMovie.h">
       <FileType>CppControl</FileType>
     </ClInclude>
@@ -221,6 +231,9 @@
     <EmbeddedResource Include="Library.resx">
       <DependentUpon>Library.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
     </EmbeddedResource>
@@ -231,6 +244,9 @@
       <DependentUpon>PosterPlanning.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressource.resx" />
+    <EmbeddedResource Include="SignUp.resx">
+      <DependentUpon>SignUp.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewMovie.resx">
       <DependentUpon>ViewMovie.h</DependentUpon>
     </EmbeddedResource>

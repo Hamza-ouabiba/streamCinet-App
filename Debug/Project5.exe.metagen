@@ -4,15 +4,17 @@
   Project5.DaysUserControl.resources - Embedded, ContainedInManifestFile, 
   Project5.DiscoverUser.resources - Embedded, ContainedInManifestFile, 
   Project5.Library.resources - Embedded, ContainedInManifestFile, 
+  Project5.Login.resources - Embedded, ContainedInManifestFile, 
   Project5.MyForm.resources - Embedded, ContainedInManifestFile, 
   Project5.PosterImage.resources - Embedded, ContainedInManifestFile, 
   Project5.PosterPlanning.resources - Embedded, ContainedInManifestFile, 
   Project5.Ressource.resources - Embedded, ContainedInManifestFile, 
+  Project5.SignUp.resources - Embedded, ContainedInManifestFile, 
   Project5.ViewMovie.resources - Embedded, ContainedInManifestFile, 
   Project5.WatchForm.resources - Embedded, ContainedInManifestFile, 
   Project5.WatchLater_UC.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
-Assembly Project5, Version=0.0.*, Culture=Langue indifférente (Pays indifférent): 
+Assembly Project5, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
 	hash=SHA1, flags=PublicKey
 Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
@@ -86,6 +88,22 @@ Class Movie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetPoster(Image): PrivateScope, Public, HideBySig
     SetBakcDrop(Image): PrivateScope, Public, HideBySig
     SetExist(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+Class UserClass: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    GetIdUser(): PrivateScope, Public, HideBySig
+    GetUsername(): PrivateScope, Public, HideBySig
+    GetEmail(): PrivateScope, Public, HideBySig
+    GetPassword(): PrivateScope, Public, HideBySig
+    SetIdUser(Int32): PrivateScope, Public, HideBySig
+    SetUsername(String): PrivateScope, Public, HideBySig
+    SetEmail(String): PrivateScope, Public, HideBySig
+    SetPassword(String): PrivateScope, Public, HideBySig
+Class Project5.Login: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    UserClass User : Public
 Class Project5.ViewMovie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
     Void .ctor(Serie): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -93,6 +111,7 @@ Class Project5.ViewMovie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Fields:
     Serie serie_ : Public
     Movie movie_ : Public
+    Int32 idUser : Public
 Class Project5.PosterPlanning: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
     Void .ctor(Serie, System.Windows.Forms.Panel, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -156,9 +175,12 @@ Class Project5.Library: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(System.Windows.Forms.Panel): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
     System.Windows.Forms.Panel Display_Panel : Public
+    Int32 idUser : Public
     Boolean Choice : Public
-    System.Data.SqlClient.SqlConnection conx : Public
 Class Project5.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Project5.SignUp: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class Project5.WatchForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit

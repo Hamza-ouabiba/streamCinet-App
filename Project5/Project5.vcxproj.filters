@@ -34,6 +34,9 @@
     <Filter Include="My_Library">
       <UniqueIdentifier>{059cc649-5b03-48de-b04e-0196dc80fef5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="User">
+      <UniqueIdentifier>{86b934ef-43e8-4456-9860-03764c718034}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dist\jsoncpp.cpp">
@@ -89,6 +92,15 @@
     </ClCompile>
     <ClCompile Include="WatchLater_UC.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="UserClass.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="Login.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="SignUp.cpp">
+      <Filter>User</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +163,15 @@
     </ClInclude>
     <ClInclude Include="WatchLater_UC.h">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="UserClass.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="Login.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="SignUp.h">
+      <Filter>User</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
