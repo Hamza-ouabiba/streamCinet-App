@@ -1,0 +1,307 @@
+	void AddToWatchListSerie(int ID_SERIE) {
+			try {
+				SqlConnection conx(DataBaseConnection::ConnectionString());
+				conx.Open();
+				String^ Query = "INSERT INTO WATCHLIST_SERIE(ID_SERIE,ID_WATCH_LIST) VALUES(@ID_SERIE,@ID_WATCH_LIST); ";
+				SqlCommand Command(Query, % conx);
+				Command.Parameters->AddWithValue("@ID_WATCH_LIST", UserClass::User->GetIdWatchList());
+				Command.Parameters->AddWithValue("@ID_SERIE", ID_SERIE);
+
+				Command.ExecuteNonQuery();
+
+				conx.Close();
+
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show(ex->Message);
+			}
+
+		}
+
+
+	void AddToWatchListMovie(int ID_MOVIE) {
+			try{
+				SqlConnection conx(DataBaseConnection::ConnectionString());
+				conx.Open();
+				String^ Query = "INSERT INTO WATCHLIST_MOVIE(ID_MOVIE,ID_WATCH_LIST) VALUES(@ID_MOVIE,@ID_WATCH_LIST); ";
+				SqlCommand Command(Query,% conx);
+				Command.Parameters->AddWithValue("@ID_WATCH_LIST", UserClass::User->GetIdWatchList());
+				Command.Parameters->AddWithValue("@ID_MOVIE", ID_MOVIE);
+			 
+				Command.ExecuteNonQuery();
+ 
+				conx.Close(); 
+
+			  }
+				catch (Exception^ ex) {
+				MessageBox::Show(ex->Message);
+			 }
+
+		}
+
+
+
+
+
+
+///////////////Search functions//////////////////////////////////////////////////////////////
+
+		   void GetMoviesByQuery(String^ Query) {
+			   MemoryStream^ ms;
+			   PosterImage^ UC;
+			   Movie^ Mv;
+			   try {
+				   SqlCommand Cmd(Query, conx);
+				   conx->Open();
+				   SqlDataReader^ Read = Cmd.ExecuteReader();
+				   flowLayoutPanel1->Controls->Clear();
+
+				   while (Read->Read()) {
+
+					   Mv = gcnew Movie();
+
+					   Mv->SetIdMovie(Convert::ToInt32(Read[0]->ToString()));
+					   Mv->SetIdApi(Convert::ToInt32(Read["ID_API"]->ToString()));
+					   Mv->SetTitle(Read["TITLE"]->ToString());
+					   Mv->SetOverview(Read["OVERVIEW"]->ToString());
+					   Mv->SetRealease_Date(Convert::ToDateTime(Read["RELEASE_DATE"]->ToString()));
+					   Mv->SetRating((float)Convert::ToDouble(Read["Rating"]->ToString()));
+
+					   // Create a MemoryStream to hold the image data
+					   ms = gcnew MemoryStream(Read->GetSqlBinary(6).Value);
+					   // Load the image data into a Bitmap object
+					   Bitmap^ image = gcnew Bitmap(ms);
+					   Mv->SetPoster(image);
+
+					   ms = gcnew MemoryStream(Read->GetSqlBinary(7).Value);
+					   // Load the image data into a Bitmap object
+					   image = gcnew Bitmap(ms);
+					   Mv->SetBakcDrop(image);
+
+					   UC = gcnew PosterImage(0,Mv, Display_Panel);
+					   flowLayoutPanel1->Controls->Add(UC);
+
+				   }
+				   conx->Close();
+			   }
+			   catch (Exception^ ex) {
+				   MessageBox::Show(ex->Message);
+
+			   }
+		   }
+
+		   void All_Movies() {
+			   //"SELECT *FROM movie where ID_MOVIE = any("Select ID_MOVIE from WATCHLIST_MOVIE where ID_WATCH_LIST = @ID_WATCH_LIST");"
+
+			   String^ Query3 = "Select ID_MOVIE from WATCHLIST_MOVIE where ID_WATCH_LIST = " + UserClass::User->GetIdWatchList() + " ;";
+			   String^ Query = "SELECT *FROM MOVIE where ID_MOVIE = any("+ Query3 +") ;";
+			   GetMoviesByQuery(Query);
+		   }
+
+		   void MovieByTitle()
+		   {
+			   String^ Query3 = "Select ID_MOVIE from WATCHLIST_MOVIE where ID_WATCH_LIST = " + UserClass::User->GetIdWatchList() + " ;";
+			   String^ Query = "SELECT *FROM MOVIE where TITLE like '" + textBox1->Text + "%' and ID_MOVIE = any("+ Query3 +") ";
+			   GetMoviesByQuery(Query);
+		   }
+		   void MovieByCategory()
+		   {
+			   String^ Query2 = "SELECT ID_MOVIE FROM MOVIECATEGORY where ID_CATEGORY = (" + DataBaseOperations::GetIdCategory_MovieByCategory(comboBox1->Text) + ");";
+			   String^ Query = "SELECT *FROM MOVIE where ID_MOVIE = any(" + Query2 + ") ";
+			   GetMoviesByQuery(Query);
+		   }
+		   void MovieByCategoryAndTitle()
+		   {
+			   String^ Query2 = "SELECT ID_MOVIE FROM MOVIECATEGORY where  ID_CATEGORY = (" + DataBaseOperations::GetIdCategory_MovieByCategory(comboBox1->Text) + ") ;";
+			   String^ Query3 = "Select ID_MOVIE from WATCHLIST_MOVIE where ID_WATCH_LIST = " + UserClass::User->GetIdWatchList() + " ;";
+			   String^ Query = "SELECT *FROM MOVIE where TITLE like '" + textBox1->Text + "%' and ID_MOVIE = any(" + Query2 + ") and ID_MOVIE = any("+ Query3 +") ";
+			   GetMoviesByQuery(Query);
+		   }
+
+
+///////////::// Search Serie :::::::::////////////////////////////////////////////////////////////////
+		
+		   void GetSeriesByQuery(String^ Query) {
+
+			   MemoryStream^ ms;
+			   PosterImage^ UC;
+			   Serie^ Sr;
+
+			   try {
+				   SqlCommand Cmd(Query, conx);
+				   conx->Open();
+				   SqlDataReader^ Read = Cmd.ExecuteReader();
+				   flowLayoutPanel1->Controls->Clear();
+
+				   while (Read->Read()) {
+
+					   Sr = gcnew Serie();
+
+					   Sr->SetIdSerie(Convert::ToInt32(Read[0]->ToString()));
+					   Sr->SetIdApi(Convert::ToInt32(Read["ID_API"]->ToString()));
+					   Sr->SetName(Read["TITLE"]->ToString());
+					   Sr->SetOverview(Read["OVERVIEW"]->ToString());
+					   Sr->SetRealease_Date(Convert::ToDateTime(Read["RELEASE_DATE"]->ToString()));
+					   Sr->SetRating((float)Convert::ToDouble(Read["Rating"]->ToString()));
+
+					   // Create a MemoryStream to hold the image data
+					   ms = gcnew MemoryStream(Read->GetSqlBinary(6).Value);
+					   // Load the image data into a Bitmap object
+					   Bitmap^ image = gcnew Bitmap(ms);
+					   Sr->SetPoster(image);
+
+					   ms = gcnew MemoryStream(Read->GetSqlBinary(7).Value);
+					   // Load the image data into a Bitmap object
+					   image = gcnew Bitmap(ms);
+					   Sr->SetBakcDrop(image);
+
+					   UC = gcnew PosterImage(0,Sr, Display_Panel);
+					   flowLayoutPanel1->Controls->Add(UC);
+				   }
+				   conx->Close();
+			   }
+			   catch (Exception^ ex) {
+				   MessageBox::Show(ex->Message);
+			   }
+		   }
+		  
+		   ;
+		   void All_Series() {
+			   String^ Query = "SELECT *FROM SERIE ;";
+			   GetSeriesByQuery(Query);
+		   }
+		   void SerieByTitle()
+		   {
+			   String^ Query = "SELECT *FROM SERIE where TITLE like '" + textBox1->Text + "%'; ";
+			   GetSeriesByQuery(Query);
+		   }
+		   void SerieByCategory()
+		   {
+			   String^ Query2 = "SELECT ID_SERIE FROM SERIECATEGORY where ID_CATEGORY = (select ID_CATEGORY from CATEGORY_SERIE where CATEGORY like '" + comboBox1->Text + "%' )";
+			   String^ Query = "SELECT *FROM SERIE where ID_SERIE = any(" + Query2 + ") ";
+			   GetSeriesByQuery(Query);
+		   }
+		   void SerieByCategoryAndTitle()
+		   {
+			   String^ Query2 = "SELECT ID_SERIE FROM SERIECATEGORY where  ID_CATEGORY = (select ID_CATEGORY from CATEGORY where CATEGORY like '" + comboBox1->Text + "%' )";
+			   String^ Query = "SELECT *FROM SERIE where TITLE like '" + textBox1->Text + "%' and ID_SERIE = any(" + Query2 + ") ";
+			   GetSeriesByQuery(Query);
+		   }
+
+///////////////////////////////////////////Sign Up/////////////////////////////////////////////////////////////////////
+
+
+
+
+ static void AddUser() {
+			   if (Login::User->GetUsername() != "" && Login::User->GetEmail() != "" && Login::User->GetPassword() != "" && Login::User->GetWatchListName() != "") {
+				   try {
+
+					   SqlConnection conx(DataBaseConnection::ConnectionString());
+					   conx.Open();
+					   String^ Query = "Select EMAIL from Users where EMAIL = @Email; ";
+					   SqlCommand Cmd(Query, % conx);
+					   Cmd.Parameters->AddWithValue("@Email", Login::User->GetEmail());
+
+					   SqlDataReader^ reader = Cmd.ExecuteReader();
+
+					   if (reader->RecordsAffected == -1) {
+
+						   reader->Close();
+
+						   String^ Query = "INSERT INTO Users (EMAIL,PASSWORD,NAME) VALUES (@EMAIL,@PASSWORD,@NAME) ; ";
+						   SqlCommand Command(Query, % conx);
+
+						   Command.Parameters->AddWithValue("@EMAIL", Login::User->GetEmail());
+						   Command.Parameters->AddWithValue("@PASSWORD", Login::User->GetPassword());
+						   Command.Parameters->AddWithValue("@NAME", Login::User->GetUsername());
+
+						   if (Command.ExecuteNonQuery()) {
+
+							   Login::User->SetIdUser(DataBaseOperations::LastIdUser());
+
+							   SqlCommand Command2("INSERT INTO WATCHLIST (ID_USER,NAME) VALUES(@ID_USER,@NAME)", % conx);
+							   Command2.Parameters->AddWithValue("@NAME", Login::User->GetWatchListName());
+							   Command2.Parameters->AddWithValue("@ID_USER", Login::User->GetIdUser());
+							   Command2.ExecuteNonQuery();
+
+							   Login::User->SetIdWatchList(DataBaseOperations::LastIdWatchList());
+
+							   if (Command2.ExecuteNonQuery()) {
+								   SqlCommand Command3("UPDATE Users SET ID_WATCH_LIST = @ID_WATCH_LIST  WHERE ID_USER = @ID_USER", % conx);
+								   Command3.Parameters->AddWithValue("@ID_WATCH_LIST", Login::User->GetIdWatchList());
+								   Command3.Parameters->AddWithValue("@ID_USER", Login::User->GetIdUser());
+								   Command3.ExecuteNonQuery();
+							   }
+
+						   }
+						   else {
+
+							   MessageBox::Show("Email already exist!!! ");
+						   }
+
+					   }
+					   else {
+
+						   MessageBox::Show("Email already exist!!! ");
+					   }
+
+
+					   conx.Close();
+
+				   }
+				   catch (Exception^ ex) {
+					   MessageBox::Show(ex->Message);
+				   }
+			   }
+
+		   }
+
+
+
+
+ bool CheckUser() {
+
+			   try {
+				   SqlConnection conx(DataBaseConnection::ConnectionString());
+				   conx.Open();
+
+				   MessageBox::Show( User->GetEmail() + " " +  User->GetPassword());
+
+				   String^ Query = "Select ID_USER,ID_WATCH_LIST,PASSWORD,NAME, EMAIL from Users where EMAIL = @Email and PASSWORD = @PASSWORD; ";
+				   SqlCommand Cmd(Query, % conx);
+				   Cmd.Parameters->AddWithValue("@Email",  User->GetEmail());
+				   Cmd.Parameters->AddWithValue("@PASSWORD",  User->GetPassword());
+
+				   SqlDataReader^ reader = Cmd.ExecuteReader();
+
+				   if (reader->HasRows) {
+
+					   while (reader->Read())
+					   {
+						   User->SetIdUser(Convert::ToInt32(reader["ID_USER"]->ToString()));
+						   User->SetIdWatchList(Convert::ToInt32(reader["ID_WATCH_LIST"]->ToString()));
+					       User->SetPassword(reader["PASSWORD"]->ToString());
+						   User->SetEmail(reader["EMAIL"]->ToString());
+						   User->SetUsername(reader["NAME"]->ToString());
+						   User->SetWatchListName(DataBaseOperations::GetWatchListName(User->GetIdWatchList()));
+					   }
+					   reader->Close();
+
+
+					   conx.Close();
+					   return true;
+				   }
+				   else {
+
+					   MessageBox::Show("user not exist");
+
+				   }
+
+			   }
+			   catch (Exception^ ex) {
+				   MessageBox::Show(ex->Message);
+			   }
+			   return false;
+
+		   }
