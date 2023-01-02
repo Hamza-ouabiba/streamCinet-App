@@ -72,7 +72,7 @@ namespace Project5 {
 		/// <summary>
 		/// Variable nécessaire au concepteur.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -96,9 +96,10 @@ namespace Project5 {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(727, 57);
+			this->label3->Location = System::Drawing::Point(545, 46);
+			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(44, 16);
+			this->label3->Size = System::Drawing::Size(35, 13);
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"label3";
 			this->label3->UseWaitCursor = true;
@@ -106,9 +107,10 @@ namespace Project5 {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(59, 57);
+			this->label2->Location = System::Drawing::Point(44, 46);
+			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(44, 16);
+			this->label2->Size = System::Drawing::Size(35, 13);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"label2";
 			this->label2->UseWaitCursor = true;
@@ -116,9 +118,10 @@ namespace Project5 {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(625, 57);
+			this->label1->Location = System::Drawing::Point(469, 46);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(44, 16);
+			this->label1->Size = System::Drawing::Size(35, 13);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"label1";
 			this->label1->UseWaitCursor = true;
@@ -132,8 +135,9 @@ namespace Project5 {
 			this->panel2->Controls->Add(this->discoverBtn);
 			this->panel2->Dock = System::Windows::Forms::DockStyle::Top;
 			this->panel2->Location = System::Drawing::Point(0, 0);
+			this->panel2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(1333, 50);
+			this->panel2->Size = System::Drawing::Size(1000, 41);
 			this->panel2->TabIndex = 6;
 			// 
 			// calendarBtn
@@ -142,9 +146,10 @@ namespace Project5 {
 			this->calendarBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->calendarBtn->ForeColor = System::Drawing::Color::Gold;
-			this->calendarBtn->Location = System::Drawing::Point(662, 0);
+			this->calendarBtn->Location = System::Drawing::Point(496, 0);
+			this->calendarBtn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->calendarBtn->Name = L"calendarBtn";
-			this->calendarBtn->Size = System::Drawing::Size(205, 53);
+			this->calendarBtn->Size = System::Drawing::Size(154, 43);
 			this->calendarBtn->TabIndex = 7;
 			this->calendarBtn->Text = L"Calendar";
 			this->calendarBtn->UseVisualStyleBackColor = true;
@@ -156,9 +161,10 @@ namespace Project5 {
 			this->libraryBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->libraryBtn->ForeColor = System::Drawing::Color::Gold;
-			this->libraryBtn->Location = System::Drawing::Point(461, 0);
+			this->libraryBtn->Location = System::Drawing::Point(346, 0);
+			this->libraryBtn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->libraryBtn->Name = L"libraryBtn";
-			this->libraryBtn->Size = System::Drawing::Size(205, 53);
+			this->libraryBtn->Size = System::Drawing::Size(154, 43);
 			this->libraryBtn->TabIndex = 2;
 			this->libraryBtn->Text = L"My Library";
 			this->libraryBtn->UseVisualStyleBackColor = true;
@@ -171,8 +177,9 @@ namespace Project5 {
 				static_cast<System::Byte>(0)));
 			this->menuBtn->ForeColor = System::Drawing::Color::Yellow;
 			this->menuBtn->Location = System::Drawing::Point(0, 0);
+			this->menuBtn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->menuBtn->Name = L"menuBtn";
-			this->menuBtn->Size = System::Drawing::Size(205, 50);
+			this->menuBtn->Size = System::Drawing::Size(154, 41);
 			this->menuBtn->TabIndex = 1;
 			this->menuBtn->Text = L"StreamCinet";
 			this->menuBtn->UseVisualStyleBackColor = true;
@@ -184,9 +191,10 @@ namespace Project5 {
 			this->discoverBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->discoverBtn->ForeColor = System::Drawing::Color::Gold;
-			this->discoverBtn->Location = System::Drawing::Point(260, 0);
+			this->discoverBtn->Location = System::Drawing::Point(195, 0);
+			this->discoverBtn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->discoverBtn->Name = L"discoverBtn";
-			this->discoverBtn->Size = System::Drawing::Size(205, 53);
+			this->discoverBtn->Size = System::Drawing::Size(154, 43);
 			this->discoverBtn->TabIndex = 0;
 			this->discoverBtn->Text = L"Discovery";
 			this->discoverBtn->UseVisualStyleBackColor = true;
@@ -200,25 +208,28 @@ namespace Project5 {
 			this->panelContent->AutoScroll = true;
 			this->panelContent->BackColor = System::Drawing::Color::Black;
 			this->panelContent->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
-			this->panelContent->Location = System::Drawing::Point(3, 57);
+			this->panelContent->Location = System::Drawing::Point(2, 46);
+			this->panelContent->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->panelContent->Name = L"panelContent";
-			this->panelContent->Size = System::Drawing::Size(1330, 537);
+			this->panelContent->Size = System::Drawing::Size(998, 436);
 			this->panelContent->TabIndex = 6;
+			this->panelContent->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panelContent_Paint);
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScroll = true;
 			this->AutoScrollMargin = System::Drawing::Size(2, 10);
 			this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->BackColor = System::Drawing::Color::Black;
-			this->ClientSize = System::Drawing::Size(1333, 599);
+			this->ClientSize = System::Drawing::Size(1000, 487);
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panelContent);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
@@ -248,7 +259,7 @@ namespace Project5 {
 	private: System::Void moviesBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void discoverBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		
+
 	}
 	private: System::Void discoverBtn_Click_1(System::Object^ sender, System::EventArgs^ e) {
 		high_resolution_clock::time_point start = high_resolution_clock::now();
@@ -273,12 +284,14 @@ namespace Project5 {
 		lb->Dock = DockStyle::Fill;
 		this->panelContent->Controls->Add(lb);
 	}
-private: System::Void calendarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-	Calendar_uc^ cl = gcnew Calendar_uc();
-	this->panelContent->Controls->Clear();
-	cl->Dock = DockStyle::Fill;
-	this->panelContent->Controls->Add(cl);
-}
+	private: System::Void calendarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		Calendar_uc^ cl = gcnew Calendar_uc(this->panelContent);
+		this->panelContent->Controls->Clear();
+		cl->Dock = DockStyle::Fill;
+		this->panelContent->Controls->Add(cl);
+	}
+	private: System::Void panelContent_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	}
 };
-	
+
 }

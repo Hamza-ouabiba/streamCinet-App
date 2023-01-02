@@ -3,10 +3,9 @@
 #include "Movie.h"  
 #include "Serie.h" 
 #include"json/json.h"  
- 
 #using <System.Net.Http.dll>
-
 #using <System.Runtime.InteropServices.dll>
+#include "Login.h"
 
 using namespace System::Net::Http;
 using namespace System;
@@ -28,19 +27,21 @@ namespace Project5 {
 	{
 
 	private: System::Windows::Forms::Label^ Category1_label;
-	
+
 	private: System::Windows::Forms::Label^ Category2_label;
 	private: System::Windows::Forms::Label^ Category3_label;
 	private: System::Windows::Forms::Panel^ panel2;
 
 
 	public:
-		  Serie^ serie_ = nullptr;
-		  Movie^ movie_ = nullptr;
+		Serie^ serie_;
+		Movie^ movie_;
 		ViewMovie(Movie^ MV)
 		{
 			InitializeComponent();
 			movie_ = MV;
+			serie_ = gcnew Serie();
+			serie_->SetName("");
 			Title_label->Text = movie_->GetTitle();
 			this->Overview_label->Text = movie_->GetOverview();
 			this->Rating_label->Text = movie_->GetRating().ToString();
@@ -57,6 +58,8 @@ namespace Project5 {
 		ViewMovie(Serie^ Serie)
 		{
 			InitializeComponent();
+			movie_ = gcnew Movie();
+			movie_->SetTitle("");
 			this->serie_ = Serie;
 			this->Title_label->Text = serie_->GetName();
 			this->Overview_label->Text = serie_->GetOverview();
@@ -66,28 +69,28 @@ namespace Project5 {
 			label10->Text = serie_->GetCountry();
 			Category1_label->Text = "";
 			Category2_label->Text = "";
-			Category3_label->Text = ""; 
-			
+			Category3_label->Text = "";
+
 			//TODO: Add the constructor code here
 			//
 		}
 
 
-		private: System::Windows::Forms::Button^ BtnLibrary_AddRemove;
-		public:
-		private: System::Windows::Forms::Label^ Title_label;
-		private: System::Windows::Forms::Button^ BtnTrailer;
-		private: System::Windows::Forms::Label^ Overview_label;
-		private: System::Windows::Forms::Label^ label10;
+	private: System::Windows::Forms::Button^ BtnLibrary_AddRemove;
+	public:
+	private: System::Windows::Forms::Label^ Title_label;
+	private: System::Windows::Forms::Button^ BtnTrailer;
+	private: System::Windows::Forms::Label^ Overview_label;
+	private: System::Windows::Forms::Label^ label10;
 
-		private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Label^ label4;
 
 
-		private: System::Windows::Forms::Label^ Date_label;
+	private: System::Windows::Forms::Label^ Date_label;
 
-		private: System::Windows::Forms::Label^ Rating_label;
-		private: System::Windows::Forms::Panel^ panel1;
-	
+	private: System::Windows::Forms::Label^ Rating_label;
+	private: System::Windows::Forms::Panel^ panel1;
+
 
 	protected:
 		/// <summary>
@@ -105,7 +108,7 @@ namespace Project5 {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -186,7 +189,7 @@ namespace Project5 {
 			this->Overview_label->ForeColor = System::Drawing::Color::White;
 			this->Overview_label->Location = System::Drawing::Point(25, 455);
 			this->Overview_label->Name = L"Overview_label";
-			this->Overview_label->Size = System::Drawing::Size(995, 145);
+			this->Overview_label->Size = System::Drawing::Size(785, 145);
 			this->Overview_label->TabIndex = 26;
 			this->Overview_label->Text = L"qcssssssssssss";
 			// 
@@ -246,9 +249,9 @@ namespace Project5 {
 			// 
 			this->panel1->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->panel1->Dock = System::Windows::Forms::DockStyle::Right;
-			this->panel1->Location = System::Drawing::Point(1048, 0);
+			this->panel1->Location = System::Drawing::Point(1047, 0);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(203, 710);
+			this->panel1->Size = System::Drawing::Size(204, 710);
 			this->panel1->TabIndex = 28;
 			// 
 			// Category1_label
@@ -289,10 +292,12 @@ namespace Project5 {
 			// 
 			// panel2
 			// 
+			this->panel2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->panel2->BackColor = System::Drawing::Color::Transparent;
 			this->panel2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->panel2->Controls->Add(this->Title_label);
-			this->panel2->Controls->Add(this->panel1);
 			this->panel2->Controls->Add(this->Category3_label);
 			this->panel2->Controls->Add(this->Overview_label);
 			this->panel2->Controls->Add(this->BtnTrailer);
@@ -303,10 +308,9 @@ namespace Project5 {
 			this->panel2->Controls->Add(this->Date_label);
 			this->panel2->Controls->Add(this->BtnLibrary_AddRemove);
 			this->panel2->Controls->Add(this->label4);
-			this->panel2->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->panel2->Location = System::Drawing::Point(0, 0);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(1251, 710);
+			this->panel2->Size = System::Drawing::Size(1041, 710);
 			this->panel2->TabIndex = 32;
 			this->panel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &ViewMovie::panel2_Paint);
 			// 
@@ -317,6 +321,7 @@ namespace Project5 {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(52)));
 			this->Controls->Add(this->panel2);
+			this->Controls->Add(this->panel1);
 			this->Name = L"ViewMovie";
 			this->Size = System::Drawing::Size(1251, 710);
 			this->Load += gcnew System::EventHandler(this, &ViewMovie::ViewMovie_Load);
@@ -327,9 +332,9 @@ namespace Project5 {
 		}
 #pragma endregion
 
-	 
+
 		///:::::::::://////:::::::::://////:::::::::://////::::::::::///
-	 
+
 		void Insert_Serie_Category(int idApiCategory) {
 			try {
 				SqlConnection conx(DataBaseConnection::ConnectionString());
@@ -349,11 +354,11 @@ namespace Project5 {
 		}
 		void AddCategoryToSerie(int idApiMovie) {
 
-			String^ Url = "https://api.themoviedb.org/3/tv/"+idApiMovie+"?api_key=10f96818301b77e61d73d48aa20d81f9";
+			String^ Url = "https://api.themoviedb.org/3/tv/" + idApiMovie + "?api_key=10f96818301b77e61d73d48aa20d81f9";
 
-			 
+
 			HttpClient^ client = gcnew HttpClient();
-			
+
 			HttpResponseMessage^ response = client->GetAsync(Url)->Result;
 
 			String^ jsonString = response->Content->ReadAsStringAsync()->Result;
@@ -390,6 +395,26 @@ namespace Project5 {
 				}
 			}
 		}
+		void AddToWatchListSerie(int ID_SERIE) {
+			try {
+				SqlConnection conx(DataBaseConnection::ConnectionString());
+				conx.Open();
+				String^ Query = "INSERT INTO WATCHLIST_SERIE(ID_SERIE,ID_WATCH_LIST) VALUES(@ID_SERIE,@ID_WATCH_LIST); ";
+				SqlCommand Command(Query, % conx);
+				Command.Parameters->AddWithValue("@ID_WATCH_LIST", Login::User->GetIdWatchList());
+				Command.Parameters->AddWithValue("@ID_SERIE", ID_SERIE);
+
+				Command.ExecuteNonQuery();
+
+				conx.Close();
+
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show(ex->Message);
+			}
+
+		}
+
 		void AddToDataBase_Serie() {
 
 			try {
@@ -401,7 +426,7 @@ namespace Project5 {
 				Command.Parameters->AddWithValue("@ID_API", serie_->GetIdApi());
 				Command.Parameters->AddWithValue("@RATING", serie_->GetRating());
 				Command.Parameters->AddWithValue("@RELEASE_DATE", serie_->GetRealease_Date());
-				Command.Parameters->AddWithValue("@OVERVIEW", serie_->GetOverview()); 
+				Command.Parameters->AddWithValue("@OVERVIEW", serie_->GetOverview());
 				Command.Parameters->AddWithValue("@COUNTRY", serie_->GetCountry());
 
 				MemoryStream^ ms;
@@ -429,7 +454,8 @@ namespace Project5 {
 				serie_->SetIdSerie(DataBaseOperations::LastInsertedSerie());
 
 				AddCategoryToSerie(serie_->GetIdApi());
-
+				AddToWatchListSerie(serie_->GetIdSerie());
+					
 				serie_->SetExist(true);
 
 				conx.Close();
@@ -549,11 +575,11 @@ namespace Project5 {
 				MessageBox::Show(ex->Message);
 			}
 		}
-					
 
- /////////////////////////////Movie:::::::::////////////////////////////
 
-		 
+		/////////////////////////////Movie:::::::::////////////////////////////
+
+
 		void Insert_Movie_Category(int idApiCategory) {
 			try {
 				SqlConnection conx(DataBaseConnection::ConnectionString());
@@ -570,7 +596,8 @@ namespace Project5 {
 			catch (Exception^ ex) {
 				MessageBox::Show(ex->Message);
 			}
-		} 
+		}
+		
 		void AddCategoryToMovie(int idApiMovie) {
 
 			String^ Url = "https://api.themoviedb.org/3/movie/" + idApiMovie + "?api_key=10f96818301b77e61d73d48aa20d81f9";
@@ -612,6 +639,25 @@ namespace Project5 {
 				}
 			}
 		}
+		void AddToWatchListMovie(int ID_MOVIE) {
+			try {
+				SqlConnection conx(DataBaseConnection::ConnectionString());
+				conx.Open();
+				String^ Query = "INSERT INTO WATCHLIST_MOVIE(ID_MOVIE,ID_WATCH_LIST) VALUES(@ID_MOVIE,@ID_WATCH_LIST); ";
+				SqlCommand Command(Query, % conx);
+				Command.Parameters->AddWithValue("@ID_WATCH_LIST", Login::User->GetIdWatchList());
+				Command.Parameters->AddWithValue("@ID_MOVIE", ID_MOVIE);
+
+				Command.ExecuteNonQuery();
+
+				conx.Close();
+
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show(ex->Message);
+			}
+
+		}
 		void AddToDataBase_Movie() {
 
 			try {
@@ -624,7 +670,6 @@ namespace Project5 {
 				Command.Parameters->AddWithValue("@RATING", movie_->GetRating());
 				Command.Parameters->AddWithValue("@RELEASE_DATE", movie_->GetRealease_Date());
 				Command.Parameters->AddWithValue("@OVERVIEW", movie_->GetOverview());
-
 				MemoryStream^ ms;
 				try {
 					ms = gcnew MemoryStream();
@@ -644,6 +689,7 @@ namespace Project5 {
 				movie_->SetIdMovie(DataBaseOperations::LastInsertedMovie());
 
 				AddCategoryToMovie(movie_->GetIdApi());
+				AddToWatchListMovie(movie_->GetIdMovie());
 
 				conx.Close();
 				movie_->SetExist(true);
@@ -685,7 +731,7 @@ namespace Project5 {
 
 				SqlDataReader^ reader = command->ExecuteReader();
 				while (reader->Read())
-				{ 
+				{
 					if (i == 1) {
 
 						Category1_label->Text = DataBaseOperations::CategoryMovie_ByIdCategory(Convert::ToInt32(reader[0]->ToString()));
@@ -762,14 +808,14 @@ namespace Project5 {
 				MessageBox::Show(ex->Message);
 			}
 		}
-		   
- ///:::::::::://///:::::::::://////:::::::::://////::::::::::///
+
+		///:::::::::://///:::::::::://////:::::::::://////::::::::::///
 
 
 
 	private: System::Void ViewMovie_Load(System::Object^ sender, System::EventArgs^ e) {
-
-		if (movie_) {
+		MessageBox::Show("hna");
+		if (movie_->GetTitle() != "") {
 			if (movie_->GetExist()) {
 				DisplayCategory_Movie_FromDataBase();
 				BtnLibrary_AddRemove->Text = "Remove from Library";
@@ -783,7 +829,7 @@ namespace Project5 {
 
 			}
 		}
-		else {
+		else if (serie_->GetName() != "") {
 			if (serie_->GetExist()) {
 				DisplayCategory_Serie_FromDataBase();
 				BtnLibrary_AddRemove->Text = "Remove from Library";
@@ -791,20 +837,20 @@ namespace Project5 {
 
 			}
 			else {
-				 
+
 				DisplayCategory_Serie_FromApi();
 				BtnLibrary_AddRemove->Text = "Add To Library";
 				BtnLibrary_AddRemove->Image = Image::FromFile("icons\\add.png");
 
 			}
 		}
-		
+
 
 
 	}
 	private: System::Void BtnLibrary_AddRemove_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		if (movie_) {
+		if (movie_->GetTitle() != "") {
 
 			if (movie_->GetExist()) {
 				RemoveFromDataBase_Movie();
@@ -820,7 +866,7 @@ namespace Project5 {
 			//BtnLibrary_AddRemove->ImageAlign = ImageAlign::MiddleLeft;
 
 		}
-		else {
+		else if (serie_->GetName() != "") {
 			if (serie_->GetExist()) {
 				RemoveFromDataBase_Serie();
 				BtnLibrary_AddRemove->Text = "Add To Library";
@@ -828,17 +874,15 @@ namespace Project5 {
 			}
 			else {
 				AddToDataBase_Serie();
-
 				BtnLibrary_AddRemove->Text = "Remove from Library";
 				BtnLibrary_AddRemove->Image = Image::FromFile("icons\\remove.png");
 			}
 
 		}
-
 	}
-private: System::Void BtnTrailer_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void panel2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-}
-};
+	private: System::Void BtnTrailer_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void panel2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	}
+	};
 }

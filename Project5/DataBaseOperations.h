@@ -1,14 +1,16 @@
-#pragma once
-#include <string> 
-#include "DataBaseConnection.h"    
-using namespace std;
+#pragma once 
+#include "DataBaseConnection.h"   
+#include <msclr/marshal_cppstd.h>
+ 
+  
 using namespace System;
 using namespace System::Windows::Forms;
 using namespace System::Data::SqlClient;
 
-ref class DataBaseOperations
+public ref class DataBaseOperations
 {
 private:
+	
 
 	static int GetIdCategory(String^ Query) {
 
@@ -115,8 +117,13 @@ private:
 			String^ Query = "Select CATEGORY from CATEGORY where ID_CATEGORY = " + id + ";";
 			return GetCategory(Query);
 		}
+		static int GetIdCategory_MovieByCategory(String^ category) {
+		 
+			 String^ Query = "select ID_CATEGORY from CATEGORY where CATEGORY like '" + category + "%' ;";
 
-		static int^ GetIdCategory_Movie(int ID_API) {
+			 return GetIdCategory(Query);
+		}
+		static int GetIdCategory_Movie(int ID_API) {
 			String^ Query = "Select ID_CATEGORY from CATEGORY where ID_API = " + ID_API + ";";
 			return GetIdCategory(Query);
 		}
@@ -162,12 +169,88 @@ private:
 			String^ Query = "Select CATEGORY from CATEGORY_SERIE where ID_CATEGORY = "+ id +";";
 			return GetCategory(Query);
 		}
+		static int GetIdCategory_SerieByCategory(String^ category) {
 
+			String^ Query = "select ID_CATEGORY from CATEGORY_SERIE where CATEGORY like '" + category + "%' ;";
 
-		static int^ GetIdCategory_Serie(int ID_API) {
+			return GetIdCategory(Query);
+		}
+
+		static int GetIdCategory_Serie(int ID_API) {
 			String^ Query = "Select ID_CATEGORY from CATEGORY_SERIE where ID_API = " + ID_API + ";";
 			return GetIdCategory(Query);		
 		}
+
+		////////////User operation////
+	
+		static String^ GetWatchListName(int ID_WATCH_LIST) {
+
+			try {
+				SqlConnection conx(DataBaseConnection::ConnectionString());
+				conx.Open();
+				String^ Query = "Select NAME from WATCHLIST where ID_WATCH_LIST = @ID_WATCH_LIST ; ";
+				SqlCommand Command(Query, % conx);
+				Command.Parameters->AddWithValue("@ID_WATCH_LIST", ID_WATCH_LIST);
+
+				SqlDataReader^ reader = Command.ExecuteReader();
+
+				while (reader->Read())
+				{
+					return reader["NAME"]->ToString();
+				}
+
+				conx.Close();
+
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show(ex->Message);
+			}
+		}
+
+
+		static int LastIdUser() {
+			int id = -1;
+			try {
+				SqlConnection conx(DataBaseConnection::ConnectionString());
+				SqlCommand^ command = gcnew SqlCommand("SELECT MAX(ID_USER) from Users;", % conx);
+
+				conx.Open();
+
+				SqlDataReader^ reader = command->ExecuteReader();
+				while (reader->Read())
+				{
+					id = Convert::ToInt32(reader[0]->ToString());
+				}
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show(ex->Message);
+			}
+
+			return id;
+
+		}
+		static int LastIdWatchList() {
+			int id = -1;
+			try {
+				SqlConnection conx(DataBaseConnection::ConnectionString());
+				SqlCommand^ command = gcnew SqlCommand("SELECT MAX(ID_WATCH_LIST) from WATCHLIST;", % conx);
+
+				conx.Open();
+
+				SqlDataReader^ reader = command->ExecuteReader();
+				while (reader->Read())
+				{
+					id = Convert::ToInt32(reader[0]->ToString());
+				}
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show(ex->Message);
+			}
+
+			return id;
+
+		}
+	
 		 
 
 };

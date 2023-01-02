@@ -26,6 +26,8 @@ C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.Ressource.res
 C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.ViewMovie.resources
 C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.WatchForm.resources
 C:\Users\MT\Desktop\streamCinet-App-master\Project5\Debug\Project5.vcxproj.GenerateResource.cache
+D:\projects\training\Project5\Project5\Debug\Project5.PosterPlanning.resources
+D:\projects\training\Project5\Project5\Debug\Project5.WatchLater_UC.resources
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.vcxproj.AssemblyReference.cache
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.vcxproj.SuggestedBindingRedirects.cache
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.BlankUserControl.resources
@@ -34,9 +36,13 @@ C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Proje
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.DaysUserControl.resources
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.DiscoverUser.resources
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.Library.resources
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.Login.resources
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.MyForm.resources
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.PosterImage.resources
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.PosterPlanning.resources
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.Ressource.resources
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.SignUp.resources
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.ViewMovie.resources
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.WatchForm.resources
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.WatchLater_UC.resources
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Debug\Project5.vcxproj.GenerateResource.cache

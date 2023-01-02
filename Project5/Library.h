@@ -1,9 +1,10 @@
-#pragma once
+ 
 #include "Movie.h" 
 #include "Serie.h"
 #include "DataBaseConnection.h"
 #include "PosterImage.h"
 #include "DataBaseOperations.h"
+#include"Login.h"
 
 using namespace System;
 using namespace System::ComponentModel;
@@ -339,25 +340,32 @@ namespace Project5 {
 		   }
 
 		   void All_Movies() {
-			   String^ Query = "SELECT *FROM MOVIE ;";
+			   //"SELECT *FROM movie where ID_MOVIE = any("Select ID_MOVIE from WATCHLIST_MOVIE where ID_WATCH_LIST = @ID_WATCH_LIST");"
+
+			   String^ Query3 = "Select ID_MOVIE from WATCHLIST_MOVIE where ID_WATCH_LIST = " + Login::User->GetIdWatchList() ;
+			   String^ Query = "SELECT *FROM MOVIE where ID_MOVIE = any(" + Query3 + ") ;";
 			   GetMoviesByQuery(Query);
 		   }
 
 		   void MovieByTitle()
 		   {
-			   String^ Query = "SELECT *FROM MOVIE where TITLE like '" + textBox1->Text + "%'; ";
+			   String^ Query3 = "Select ID_MOVIE from WATCHLIST_MOVIE where ID_WATCH_LIST = " + Login::User->GetIdWatchList();
+			   String^ Query = "SELECT *FROM MOVIE where TITLE like '" + textBox1->Text + "%' and ID_MOVIE = any("+ Query3 +") ;";
 			   GetMoviesByQuery(Query);
 		   }
 		   void MovieByCategory()
 		   {
-			   String^ Query2 = "SELECT ID_MOVIE FROM MOVIECATEGORY where ID_CATEGORY = (select ID_CATEGORY from CATEGORY where CATEGORY like '" + comboBox1->Text + "%' )";
-			   String^ Query = "SELECT *FROM MOVIE where ID_MOVIE = any(" + Query2 + ") ";
+
+			   String^ Query3 = "Select ID_MOVIE from WATCHLIST_MOVIE where ID_WATCH_LIST = " + Login::User->GetIdWatchList();
+			   String^ Query2 = "SELECT ID_MOVIE FROM MOVIECATEGORY where ID_CATEGORY = (" + DataBaseOperations::GetIdCategory_MovieByCategory(comboBox1->Text) + ")";
+			   String^ Query = "SELECT *FROM MOVIE where ID_MOVIE = any(" + Query2 + ")  and ID_MOVIE = any(" + Query3 + ") ;";
 			   GetMoviesByQuery(Query);
 		   }
 		   void MovieByCategoryAndTitle()
 		   {
-			   String^ Query2 = "SELECT ID_MOVIE FROM MOVIECATEGORY where  ID_CATEGORY = (select ID_CATEGORY from CATEGORY where CATEGORY like '" + comboBox1->Text + "%' )";
-			   String^ Query = "SELECT *FROM MOVIE where TITLE like '" + textBox1->Text + "%' and ID_MOVIE = any(" + Query2 + ") ";
+			   String^ Query2 = "SELECT ID_MOVIE FROM MOVIECATEGORY where  ID_CATEGORY = (" + DataBaseOperations::GetIdCategory_MovieByCategory(comboBox1->Text) + ")";
+			   String^ Query3 = "Select ID_MOVIE from WATCHLIST_MOVIE where ID_WATCH_LIST = " + Login::User->GetIdWatchList() ;
+			   String^ Query = "SELECT *FROM MOVIE where TITLE like '" + textBox1->Text + "%' and ID_MOVIE = any(" + Query2 + ") and ID_MOVIE = any("+ Query3 +") ; ";
 			   GetMoviesByQuery(Query);
 		   }
 
@@ -407,26 +415,32 @@ namespace Project5 {
 				   MessageBox::Show(ex->Message);
 			   }
 		   }
-
+		  
+		   ;
 		   void All_Series() {
-			   String^ Query = "SELECT *FROM SERIE ;";
+
+			   String^ Query3 = "Select ID_SERIE from WATCHLIST_SERIE where ID_WATCH_LIST = " + Login::User->GetIdWatchList();
+			   String^ Query = "SELECT *FROM SERIE where ID_SERIE = any(" + Query3 + ") ;"; 
 			   GetSeriesByQuery(Query);
 		   }
 		   void SerieByTitle()
 		   {
-			   String^ Query = "SELECT *FROM SERIE where TITLE like '" + textBox1->Text + "%'; ";
+			   String^ Query3 = "Select ID_SERIE from WATCHLIST_SERIE where ID_WATCH_LIST = " + Login::User->GetIdWatchList();
+			   String^ Query = "SELECT *FROM SERIE where TITLE like '" + textBox1->Text + "%' and  ID_SERIE = any(" + Query3 + ") ;";
 			   GetSeriesByQuery(Query);
 		   }
 		   void SerieByCategory()
 		   {
+			   String^ Query3 = "Select ID_SERIE from WATCHLIST_SERIE where ID_WATCH_LIST = " + Login::User->GetIdWatchList();
 			   String^ Query2 = "SELECT ID_SERIE FROM SERIECATEGORY where ID_CATEGORY = (select ID_CATEGORY from CATEGORY_SERIE where CATEGORY like '" + comboBox1->Text + "%' )";
-			   String^ Query = "SELECT *FROM SERIE where ID_SERIE = any(" + Query2 + ") ";
+			   String^ Query = "SELECT *FROM SERIE where ID_SERIE = any(" + Query2 + ") and  ID_SERIE = any(" + Query3 + ") ;";
 			   GetSeriesByQuery(Query);
 		   }
 		   void SerieByCategoryAndTitle()
 		   {
+			   String^ Query3 = "Select ID_SERIE from WATCHLIST_SERIE where ID_WATCH_LIST = " + Login::User->GetIdWatchList();
 			   String^ Query2 = "SELECT ID_SERIE FROM SERIECATEGORY where  ID_CATEGORY = (select ID_CATEGORY from CATEGORY where CATEGORY like '" + comboBox1->Text + "%' )";
-			   String^ Query = "SELECT *FROM SERIE where TITLE like '" + textBox1->Text + "%' and ID_SERIE = any(" + Query2 + ") ";
+			   String^ Query = "SELECT *FROM SERIE where TITLE like '" + textBox1->Text + "%' and ID_SERIE = any(" + Query2 + ") and ID_SERIE = any(" + Query3 + ") ;";
 			   GetSeriesByQuery(Query);
 		   }
 

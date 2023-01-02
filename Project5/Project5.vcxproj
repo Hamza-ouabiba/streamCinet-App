@@ -139,13 +139,13 @@
   <ItemGroup>
     <ClCompile Include="BlankUserControl.cpp" />
     <ClCompile Include="Calendar_uc.cpp" />
-    <ClCompile Include="ComboVal.cpp" />
     <ClCompile Include="DashBoard.cpp" />
     <ClCompile Include="DataBaseConnection.cpp" />
     <ClCompile Include="DataBaseOperations.cpp" />
     <ClCompile Include="DaysUserControl.cpp" />
     <ClCompile Include="DiscoverUser.cpp" />
     <ClCompile Include="Library.cpp" />
+    <ClCompile Include="Login.cpp" />
     <ClCompile Include="Mani.cpp" />
     <ClCompile Include="dist\jsoncpp.cpp" />
     <ClCompile Include="Movie.cpp" />
@@ -153,8 +153,11 @@
     <ClCompile Include="PosterImage.cpp" />
     <ClCompile Include="PosterPlanning.cpp" />
     <ClCompile Include="Serie.cpp" />
+    <ClCompile Include="SignUp.cpp" />
+    <ClCompile Include="UserClass.cpp" />
     <ClCompile Include="ViewMovie.cpp" />
     <ClCompile Include="WatchForm.cpp" />
+    <ClCompile Include="WatchLater_UC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlankUserControl.h">
@@ -163,7 +166,6 @@
     <ClInclude Include="Calendar_uc.h">
       <FileType>CppControl</FileType>
     </ClInclude>
-    <ClInclude Include="ComboVal.h" />
     <ClInclude Include="DashBoard.h">
       <FileType>CppControl</FileType>
     </ClInclude>
@@ -177,6 +179,9 @@
     </ClInclude>
     <ClInclude Include="Library.h">
       <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="Login.h">
+      <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Mani.h" />
     <ClInclude Include="dist\json\json-forwards.h" />
@@ -193,11 +198,18 @@
     </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="Serie.h" />
+    <ClInclude Include="SignUp.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="UserClass.h" />
     <ClInclude Include="ViewMovie.h">
       <FileType>CppControl</FileType>
     </ClInclude>
     <ClInclude Include="WatchForm.h">
       <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="WatchLater_UC.h">
+      <FileType>CppControl</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -219,18 +231,30 @@
     <EmbeddedResource Include="Library.resx">
       <DependentUpon>Library.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PosterImage.resx">
       <DependentUpon>PosterImage.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PosterPlanning.resx">
+      <DependentUpon>PosterPlanning.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ressource.resx" />
+    <EmbeddedResource Include="SignUp.resx">
+      <DependentUpon>SignUp.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewMovie.resx">
       <DependentUpon>ViewMovie.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WatchForm.resx">
       <DependentUpon>WatchForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WatchLater_UC.resx">
+      <DependentUpon>WatchLater_UC.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

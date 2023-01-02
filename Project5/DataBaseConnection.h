@@ -1,5 +1,4 @@
 #pragma once
-
 using namespace System::Data::SqlClient;
 public ref class DataBaseConnection
 {
@@ -9,7 +8,7 @@ public:
 	}
 	static System::String^ ConnectionString()
 	{
-		return "Data Source = HB\\SQLEXPRESS; Initial Catalog = DataBase_StreamCinet; Integrated Security = True";
+		return "Data Source=HB\\SQLEXPRESS;Initial Catalog=DataBase_StreamCinet;Integrated Security=True";
 	}
 	static SqlConnection^ Connection() {
 		SqlConnection^ conx = gcnew SqlConnection(ConnectionString());

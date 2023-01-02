@@ -1,38 +1,13 @@
-﻿  BlankUserControl.cpp
-  Calendar_uc.cpp
-  ComboVal.cpp
-  DashBoard.cpp
-C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Mani.h(80,53): warning C4390: ';': empty controlled statement found; is this the intent?
-C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Mani.h(84,29): warning C4101: 'ex': unreferenced local variable
-C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Mani.h(149,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  DataBaseConnection.cpp
-  DataBaseOperations.cpp
-  DaysUserControl.cpp
-  DiscoverUser.cpp
-C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Mani.h(80,53): warning C4390: ';': empty controlled statement found; is this the intent?
-C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Mani.h(84,29): warning C4101: 'ex': unreferenced local variable
-C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Mani.h(149,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Library.cpp
-  Mani.cpp
-C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Mani.h(80,53): warning C4390: ';': empty controlled statement found; is this the intent?
-C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Mani.h(84,29): warning C4101: 'ex': unreferenced local variable
-C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Mani.h(149,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  jsoncpp.cpp
-  Movie.cpp
+﻿  Library.cpp
   MyForm.cpp
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Mani.h(80,53): warning C4390: ';': empty controlled statement found; is this the intent?
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Mani.h(84,29): warning C4101: 'ex': unreferenced local variable
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Mani.h(149,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  PosterImage.cpp
-  PosterPlanning.cpp
-  Serie.cpp
-  ViewMovie.cpp
-  WatchForm.cpp
-  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
   Generating Code...
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\DataBaseOperations.h(208): warning C4715: 'DataBaseOperations::GetWatchListName': not all control paths return a value
 C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Mani.h(146): warning C4715: 'Mani::imageDown': not all control paths return a value
-C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Mani.h(146): warning C4715: 'Mani::imageDown': not all control paths return a value
-C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Mani.h(146): warning C4715: 'Mani::imageDown': not all control paths return a value
-C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\Mani.h(146): warning C4715: 'Mani::imageDown': not all control paths return a value
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\WatchLater_UC.h(190): warning C4715: 'Project5::WatchLater_UC::getIdPlanning': not all control paths return a value
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\DaysUserControl.h(134): warning C4715: 'Project5::DaysUserControl::getIdPlanning': not all control paths return a value
+C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Project5\DataBaseOperations.h(208): warning C4715: 'DataBaseOperations::GetWatchListName': not all control paths return a value
   BlankUserControl.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   Project5.vcxproj -> C:\Users\MT\Documents\code blocks\C++\walid\streamCinet-App\Debug\Project5.exe

@@ -15,7 +15,7 @@ using namespace std;
 namespace Project5 {
 
 	/// <summary>
-	/// Description résumée de DashBoard
+	/// Description rÃ©sumÃ©e de DashBoard
 	/// </summary>
 	public ref class DashBoard : public System::Windows::Forms::UserControl
 	{
@@ -37,7 +37,7 @@ namespace Project5 {
 		}
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisées.
+		/// Nettoyage des ressources utilisÃ©es.
 		/// </summary>
 		~DashBoard()
 		{
@@ -63,14 +63,14 @@ namespace Project5 {
 	protected:
 	private:
 		/// <summary>
-		/// Variable nécessaire au concepteur.
+		/// Variable nÃ©cessaire au concepteur.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette méthode avec l'éditeur de code.
+		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -182,13 +182,13 @@ namespace Project5 {
 			this->PerformLayout();
 
 		}
-		void setData(Json::Value dataMovies,string url,int i,string type)
+		void setData(Json::Value dataMovies, string url, int i, string type)
 		{
 			int indexPage = 0;
-			
-			
+
+
 		}
-		void InitializeUserControl(string url,string type)
+		void InitializeUserControl(string url, string type)
 		{
 			Json::Value dataMovies = l->getInformations(url);
 			stringstream ss;
@@ -196,7 +196,7 @@ namespace Project5 {
 			string backDrop_ = "https://image.tmdb.org/t/p/w1280";
 			for (int i = 1;i <= 19;i++)
 			{
-				if (type == "title")
+				if (type == "title" && dataMovies["results"][i]["release_date"].asString() != "null")
 				{
 					//creating a movie object : 
 					Movie^ mv = gcnew Movie();
@@ -233,9 +233,9 @@ namespace Project5 {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					unmanaged = msclr::interop::marshal_as<System::String^>(data);
 
-					mv->SetBakcDrop(l->imageDown(unmanaged)); 
+					mv->SetBakcDrop(l->imageDown(unmanaged));
 					//adding a user Control related to this movie : 
-					PosterImage ^ movie_uc = gcnew PosterImage(i, mv,this->panel);
+					PosterImage^ movie_uc = gcnew PosterImage(i, mv, this->panel);
 					this->movie->Controls->Add(movie_uc);
 					cout << "creating movies";
 				}
@@ -279,9 +279,8 @@ namespace Project5 {
 					unmanaged = msclr::interop::marshal_as<System::String^>(data);
 
 					serie->SetBakcDrop(l->imageDown(unmanaged));
-				
 					//adding a user Control related to this movie : 
-					PosterImage^ serie_uc = gcnew PosterImage(i, serie,this->panel);
+					PosterImage^ serie_uc = gcnew PosterImage(i, serie, this->panel);
 					this->serie->Controls->Add(serie_uc);
 					cout << "creating series";
 				}
@@ -295,6 +294,6 @@ namespace Project5 {
 		InitializeUserControl(urlDiscover_movies,"title");
 		InitializeUserControl(urlDiscover_series, "name");
 		l->ShowBackGroundImageDashBoard(urlDiscover_movies, imagePanel, overview);
-		}
+	}
 	};
 }

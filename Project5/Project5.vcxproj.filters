@@ -34,6 +34,9 @@
     <Filter Include="My_Library">
       <UniqueIdentifier>{059cc649-5b03-48de-b04e-0196dc80fef5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="User">
+      <UniqueIdentifier>{22e49f14-a336-405f-8f6e-affff0958283}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dist\jsoncpp.cpp">
@@ -78,9 +81,6 @@
     <ClCompile Include="PosterPlanning.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="ComboVal.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="DataBaseConnection.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -89,6 +89,18 @@
     </ClCompile>
     <ClCompile Include="ViewMovie.cpp">
       <Filter>My_Library</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchLater_UC.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="UserClass.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="Login.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="SignUp.cpp">
+      <Filter>User</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -131,9 +143,6 @@
     <ClInclude Include="PosterPlanning.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="ComboVal.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Library.h">
       <Filter>My_Library</Filter>
     </ClInclude>
@@ -151,6 +160,18 @@
     </ClInclude>
     <ClInclude Include="DataBaseOperations.h">
       <Filter>My_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchLater_UC.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="UserClass.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="Login.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="SignUp.h">
+      <Filter>User</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

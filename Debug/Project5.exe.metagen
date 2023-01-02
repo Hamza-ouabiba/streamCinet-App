@@ -4,11 +4,15 @@
   Project5.DaysUserControl.resources - Embedded, ContainedInManifestFile, 
   Project5.DiscoverUser.resources - Embedded, ContainedInManifestFile, 
   Project5.Library.resources - Embedded, ContainedInManifestFile, 
+  Project5.Login.resources - Embedded, ContainedInManifestFile, 
   Project5.MyForm.resources - Embedded, ContainedInManifestFile, 
   Project5.PosterImage.resources - Embedded, ContainedInManifestFile, 
+  Project5.PosterPlanning.resources - Embedded, ContainedInManifestFile, 
   Project5.Ressource.resources - Embedded, ContainedInManifestFile, 
+  Project5.SignUp.resources - Embedded, ContainedInManifestFile, 
   Project5.ViewMovie.resources - Embedded, ContainedInManifestFile, 
   Project5.WatchForm.resources - Embedded, ContainedInManifestFile, 
+  Project5.WatchLater_UC.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly Project5, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
 	hash=SHA1, flags=PublicKey
@@ -31,17 +35,29 @@ Assembly System.Runtime.InteropServices, Version=4.1.2.0, Culture=neutral, Publi
 Class Project5.BlankUserControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-Class Project5.DaysUserControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :System.Windows.Forms.UserControl
-    Void .ctor(Int32, Int32, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Methods:
-    setPanel(Panel): PrivateScope, Public, HideBySig
 Class DataBaseConnection: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     ConnectionString(): PrivateScope, Public, Static, HideBySig
     Connection(): PrivateScope, Public, Static, HideBySig
+Class DataBaseOperations: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    Exist_Movie(Int32): PrivateScope, Public, Static, HideBySig
+    LastInsertedMovie(): PrivateScope, Public, Static, HideBySig
+    CategoryMovie_ByIdApiCategory(Int32): PrivateScope, Public, Static, HideBySig
+    CategoryMovie_ByIdCategory(Int32): PrivateScope, Public, Static, HideBySig
+    GetIdCategory_MovieByCategory(String): PrivateScope, Public, Static, HideBySig
+    GetIdCategory_Movie(Int32): PrivateScope, Public, Static, HideBySig
+    Exist_Serie(Int32): PrivateScope, Public, Static, HideBySig
+    LastInsertedSerie(): PrivateScope, Public, Static, HideBySig
+    CategorySerie_ByIdApiCategory(Int32): PrivateScope, Public, Static, HideBySig
+    CategorySerie_ByIdCategory(Int32): PrivateScope, Public, Static, HideBySig
+    GetIdCategory_SerieByCategory(String): PrivateScope, Public, Static, HideBySig
+    GetIdCategory_Serie(Int32): PrivateScope, Public, Static, HideBySig
+    GetWatchListName(Int32): PrivateScope, Public, Static, HideBySig
+    LastIdUser(): PrivateScope, Public, Static, HideBySig
+    LastIdWatchList(): PrivateScope, Public, Static, HideBySig
 Class Serie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(Int32, Int32, System.String, System.String, System.String, Single, System.DateTime, System.Drawing.Image, System.Drawing.Image): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(Serie): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -67,20 +83,6 @@ Class Serie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetBakcDrop(Image): PrivateScope, Public, HideBySig
     SetExist(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     SetCountry(String): PrivateScope, Public, HideBySig
-Class Project5.PosterPlanning: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :System.Windows.Forms.UserControl
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-Class Project5.Calendar_uc: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :System.Windows.Forms.UserControl
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-Class Mani: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Methods:
-    getInformations(Value*, basic_string<char\,std::char_traits<char>\,std::allocator<char> >*): PrivateScope, Public, HideBySig
-    DownloadImage(String): PrivateScope, Public, HideBySig
-    imageDown(String): PrivateScope, Public, HideBySig
-    randomNumber(): PrivateScope, Public, HideBySig
-    ShowBackGroundImageDashBoard(basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, Panel, RichTextBox): PrivateScope, Public, HideBySig
 Class Movie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(Int32, Int32, System.String, System.String, Single, System.DateTime, System.Drawing.Image, System.Drawing.Image): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(Movie): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -104,6 +106,26 @@ Class Movie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetPoster(Image): PrivateScope, Public, HideBySig
     SetBakcDrop(Image): PrivateScope, Public, HideBySig
     SetExist(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+Class UserClass: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    GetIdUser(): PrivateScope, Public, HideBySig
+    GetIdWatchList(): PrivateScope, Public, HideBySig
+    GetUsername(): PrivateScope, Public, HideBySig
+    GetEmail(): PrivateScope, Public, HideBySig
+    GetWatchListName(): PrivateScope, Public, HideBySig
+    GetPassword(): PrivateScope, Public, HideBySig
+    SetIdUser(Int32): PrivateScope, Public, HideBySig
+    SetIdWatchList(Int32): PrivateScope, Public, HideBySig
+    SetUsername(String): PrivateScope, Public, HideBySig
+    SetEmail(String): PrivateScope, Public, HideBySig
+    SetWatchListName(String): PrivateScope, Public, HideBySig
+    SetPassword(String): PrivateScope, Public, HideBySig
+Class Project5.Login: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    UserClass User : Public, Static
 Class Project5.ViewMovie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
     Void .ctor(Serie): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -111,6 +133,47 @@ Class Project5.ViewMovie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Fields:
     Serie serie_ : Public
     Movie movie_ : Public
+Class Project5.PosterPlanning: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.UserControl
+    Void .ctor(Serie, System.Windows.Forms.Panel, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Movie, System.Windows.Forms.Panel, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Project5.WatchLater_UC: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.UserControl
+    Void .ctor(Serie): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Movie): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Movie movie_ : Public
+    Serie serie_ : Public
+    System.Windows.Forms.Panel panelMovies : Public
+    System.Windows.Forms.Panel panelSeries : Public
+    System.Windows.Forms.Panel panelContent : Public
+    Int32 day : Public, Static
+    Int32 month : Public, Static
+    Int32 year : Public, Static
+    Int32 idPlanning : Public, Static
+  Methods:
+    setPanelMovies(Panel): PrivateScope, Public, HideBySig
+    setPanelSeries(Panel): PrivateScope, Public, HideBySig
+    setPanelContent(Panel): PrivateScope, Public, HideBySig
+Class Project5.DaysUserControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.UserControl
+    Void .ctor(Int32, Int32, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Int32, System.Windows.Forms.Panel, System.Windows.Forms.Panel, System.Windows.Forms.Panel): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    setPanelMovies(Panel): PrivateScope, Public, HideBySig
+    setPanelList(Panel): PrivateScope, Public, HideBySig
+    setPanelSeries(Panel): PrivateScope, Public, HideBySig
+Class Project5.Calendar_uc: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.UserControl
+    Void .ctor(System.Windows.Forms.Panel): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Mani: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    getInformations(Value*, basic_string<char\,std::char_traits<char>\,std::allocator<char> >*): PrivateScope, Public, HideBySig
+    DownloadImage(String): PrivateScope, Public, HideBySig
+    imageDown(String): PrivateScope, Public, HideBySig
+    randomNumber(): PrivateScope, Public, HideBySig
+    ShowBackGroundImageDashBoard(basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, Panel, RichTextBox): PrivateScope, Public, HideBySig
 Class Project5.PosterImage: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
     Void .ctor(Int32, Serie, System.Windows.Forms.Panel): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -136,6 +199,9 @@ Class Project5.Library: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Boolean Choice : Public
     System.Data.SqlClient.SqlConnection conx : Public
 Class Project5.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Project5.SignUp: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class Project5.WatchForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
