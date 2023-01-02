@@ -143,7 +143,6 @@ namespace Project5 {
 		{
 			////creating an instance for every movie : 
 			Movie^ movie_ = gcnew Movie();
-			MessageBox::Show("setting id_movie : " + sqlReader["ID_MOVIE"]->ToString());
 			movie_->SetIdMovie(Convert::ToInt32(sqlReader["ID_MOVIE"]->ToString()));
 			movie_->SetIdApi(Convert::ToInt32(sqlReader["ID_API"]->ToString()));
 			movie_->SetTitle(sqlReader["TITLE"]->ToString());

@@ -113,7 +113,7 @@ namespace Project5 {
 #pragma endregion
 		private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 			this->panel_->Controls->Clear();
-			if (movie_)
+			if (movie_->GetTitle() != "")
 			{
 				ViewMovie^ vm = gcnew ViewMovie(movie_);
 				vm->Dock = DockStyle::Fill;

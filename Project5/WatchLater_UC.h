@@ -207,12 +207,12 @@ namespace Project5 {
 				serie_->SetRating((float)Convert::ToDouble(sqlReader["Rating"]->ToString()));
 
 				// Create a MemoryStream to hold the image data
-				MemoryStream^ ms = gcnew MemoryStream(sqlReader->GetSqlBinary(5).Value);
+				MemoryStream^ ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
 				// Load the image data into a Bitmap object
 				Bitmap^ image = gcnew Bitmap(ms);
 				serie_->SetPoster(image);
 
-				ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
+				ms = gcnew MemoryStream(sqlReader->GetSqlBinary(7).Value);
 				// Load the image data into a Bitmap object
 				image = gcnew Bitmap(ms);
 				serie_->SetBakcDrop(image);

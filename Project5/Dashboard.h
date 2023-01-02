@@ -291,9 +291,9 @@ namespace Project5 {
 		string urlDiscover_movies = "https://api.themoviedb.org/3/discover/movie?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
 		string urlDiscover_series = "https://api.themoviedb.org/3/discover/tv?api_key=10f96818301b77e61d73d48aa20d81f9&page=1";
 		//setting overview : 
-		InitializeUserControl(urlDiscover_movies,"title");
+		/*InitializeUserControl(urlDiscover_movies,"title");
 		InitializeUserControl(urlDiscover_series, "name");
-		l->ShowBackGroundImageDashBoard(urlDiscover_movies, imagePanel, overview);
+		l->ShowBackGroundImageDashBoard(urlDiscover_movies, imagePanel, overview);*/
 	}
 	};
 }

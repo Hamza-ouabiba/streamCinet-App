@@ -783,8 +783,8 @@ namespace Project5 {
 
 
 	private: System::Void ViewMovie_Load(System::Object^ sender, System::EventArgs^ e) {
-
-		if (movie_) {
+		MessageBox::Show("hna");
+		if (movie_->GetTitle() != "") {
 			if (movie_->GetExist()) {
 				DisplayCategory_Movie_FromDataBase();
 				BtnLibrary_AddRemove->Text = "Remove from Library";
@@ -798,7 +798,7 @@ namespace Project5 {
 
 			}
 		}
-		else {
+		else if(serie_->GetName() != "") {
 			if (serie_->GetExist()) {
 				DisplayCategory_Serie_FromDataBase();
 				BtnLibrary_AddRemove->Text = "Remove from Library";
@@ -848,7 +848,6 @@ namespace Project5 {
 			}
 
 		}
-
 	}
 private: System::Void BtnTrailer_Click(System::Object^ sender, System::EventArgs^ e) {
 }

@@ -387,12 +387,13 @@ namespace Project5 {
 					   Sr->SetRating((float)Convert::ToDouble(Read["Rating"]->ToString()));
 
 					   // Create a MemoryStream to hold the image data
-					   ms = gcnew MemoryStream(Read->GetSqlBinary(6).Value);
+
+					   ms = gcnew MemoryStream(Read->GetSqlBinary(4).Value);
 					   // Load the image data into a Bitmap object
 					   Bitmap^ image = gcnew Bitmap(ms);
 					   Sr->SetPoster(image);
 
-					   ms = gcnew MemoryStream(Read->GetSqlBinary(7).Value);
+					   ms = gcnew MemoryStream(Read->GetSqlBinary(5).Value);
 					   // Load the image data into a Bitmap object
 					   image = gcnew Bitmap(ms);
 					   Sr->SetBakcDrop(image);
