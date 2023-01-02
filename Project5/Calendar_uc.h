@@ -27,17 +27,15 @@ namespace Project5 {
 		static int days = DateTime::Now.Day;
 		static int year = DateTime::Now.Year;
 		Panel^ content;
-	private: System::Windows::Forms::Button^ addSerie;
-	private: System::Windows::Forms::Button^ addMv;
-	private: System::Windows::Forms::Label^ dateForm;
-	private: System::Windows::Forms::FlowLayoutPanel^ moviesSec;
-	private: System::Windows::Forms::FlowLayoutPanel^ seriesSec;
-	private: System::Windows::Forms::Panel^ panel1;
-	private: System::Windows::Forms::Label^ label2;
+		private: System::Windows::Forms::Button^ addSerie;
+		private: System::Windows::Forms::Button^ addMv;
+		private: System::Windows::Forms::Label^ dateForm;
+		private: System::Windows::Forms::FlowLayoutPanel^ moviesSec;
+		private: System::Windows::Forms::FlowLayoutPanel^ seriesSec;
+		private: System::Windows::Forms::Panel^ panel1;
+		private: System::Windows::Forms::Label^ label2;
 
 	private: System::Windows::Forms::Label^ label1;
-
-
 
 	public:
 		Calendar_uc(Panel^ content)

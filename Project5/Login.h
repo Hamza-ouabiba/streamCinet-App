@@ -1,9 +1,11 @@
-#pragma once
-#include"DataBaseOperations.h"
+#pragma once  
+#include "DataBaseOperations.h"
+#include "DataBaseConnection.h"
 #include "UserClass.h" 
 namespace Project5 {
 
 	using namespace System;
+	using namespace System::Data::SqlClient;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
@@ -16,11 +18,10 @@ namespace Project5 {
 	public ref class Login : public System::Windows::Forms::Form
 	{
 	public:
-		static UserClass^ User ;
+	    UserClass^ User;
 		Login(void)
 		{
 			InitializeComponent();
-
 			//
 			//TODO: Add the constructor code here
 			//
@@ -37,10 +38,9 @@ namespace Project5 {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^ button2;
+
 	protected:
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::TextBox^ WatchlistName;
 	private: System::Windows::Forms::TextBox^ tbConfrimPassword;
 	private: System::Windows::Forms::TextBox^ tbPassword;
 	private: System::Windows::Forms::TextBox^ tbEmail;
@@ -48,8 +48,8 @@ namespace Project5 {
 	private: System::Windows::Forms::Label^ lbConfirmPassword;
 	private: System::Windows::Forms::Label^ lbPassword;
 	private: System::Windows::Forms::Label^ lbEmail;
-	private: System::Windows::Forms::Label^ lbPhone;
 	private: System::Windows::Forms::Label^ lbName;
+	private: System::Windows::Forms::Button^ button3;
 
 	private:
 		/// <summary>
@@ -64,9 +64,7 @@ namespace Project5 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->WatchlistName = (gcnew System::Windows::Forms::TextBox());
 			this->tbConfrimPassword = (gcnew System::Windows::Forms::TextBox());
 			this->tbPassword = (gcnew System::Windows::Forms::TextBox());
 			this->tbEmail = (gcnew System::Windows::Forms::TextBox());
@@ -74,22 +72,9 @@ namespace Project5 {
 			this->lbConfirmPassword = (gcnew System::Windows::Forms::Label());
 			this->lbPassword = (gcnew System::Windows::Forms::Label());
 			this->lbEmail = (gcnew System::Windows::Forms::Label());
-			this->lbPhone = (gcnew System::Windows::Forms::Label());
 			this->lbName = (gcnew System::Windows::Forms::Label());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
-			// 
-			// button2
-			// 
-			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button2->ForeColor = System::Drawing::Color::White;
-			this->button2->Location = System::Drawing::Point(293, 398);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(151, 37);
-			this->button2->TabIndex = 34;
-			this->button2->Text = L"Cancel";
-			this->button2->UseVisualStyleBackColor = true;
 			// 
 			// button1
 			// 
@@ -97,77 +82,67 @@ namespace Project5 {
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button1->ForeColor = System::Drawing::Color::White;
-			this->button1->Location = System::Drawing::Point(81, 398);
+			this->button1->Location = System::Drawing::Point(279, 359);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(151, 37);
-			this->button1->TabIndex = 33;
-			this->button1->Text = L"Login";
+			this->button1->TabIndex = 45;
+			this->button1->Text = L"Sign Up";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Login::button1_Click);
-			// 
-			// WatchlistName
-			// 
-			this->WatchlistName->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->WatchlistName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->WatchlistName->Location = System::Drawing::Point(293, 172);
-			this->WatchlistName->Multiline = true;
-			this->WatchlistName->Name = L"WatchlistName";
-			this->WatchlistName->Size = System::Drawing::Size(215, 22);
-			this->WatchlistName->TabIndex = 32;
 			// 
 			// tbConfrimPassword
 			// 
 			this->tbConfrimPassword->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->tbConfrimPassword->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->tbConfrimPassword->Location = System::Drawing::Point(293, 298);
+			this->tbConfrimPassword->Location = System::Drawing::Point(279, 257);
 			this->tbConfrimPassword->Name = L"tbConfrimPassword";
 			this->tbConfrimPassword->PasswordChar = '*';
 			this->tbConfrimPassword->Size = System::Drawing::Size(215, 19);
-			this->tbConfrimPassword->TabIndex = 31;
+			this->tbConfrimPassword->TabIndex = 43;
 			// 
 			// tbPassword
 			// 
 			this->tbPassword->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->tbPassword->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->tbPassword->Location = System::Drawing::Point(293, 232);
+			this->tbPassword->Location = System::Drawing::Point(279, 191);
 			this->tbPassword->Name = L"tbPassword";
 			this->tbPassword->PasswordChar = '*';
 			this->tbPassword->Size = System::Drawing::Size(215, 19);
-			this->tbPassword->TabIndex = 30;
+			this->tbPassword->TabIndex = 42;
 			// 
 			// tbEmail
 			// 
 			this->tbEmail->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->tbEmail->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->tbEmail->Location = System::Drawing::Point(293, 127);
+			this->tbEmail->Location = System::Drawing::Point(279, 133);
 			this->tbEmail->Name = L"tbEmail";
 			this->tbEmail->Size = System::Drawing::Size(215, 19);
-			this->tbEmail->TabIndex = 29;
+			this->tbEmail->TabIndex = 41;
+			this->tbEmail->TextChanged += gcnew System::EventHandler(this, &Login::tbEmail_TextChanged);
 			// 
 			// tbName
 			// 
 			this->tbName->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->tbName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->tbName->Location = System::Drawing::Point(293, 68);
+			this->tbName->Location = System::Drawing::Point(279, 67);
 			this->tbName->Multiline = true;
 			this->tbName->Name = L"tbName";
 			this->tbName->Size = System::Drawing::Size(215, 18);
-			this->tbName->TabIndex = 28;
+			this->tbName->TabIndex = 40;
 			// 
 			// lbConfirmPassword
 			// 
 			this->lbConfirmPassword->Font = (gcnew System::Drawing::Font(L"Palatino Linotype", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lbConfirmPassword->ForeColor = System::Drawing::Color::White;
-			this->lbConfirmPassword->Location = System::Drawing::Point(43, 291);
+			this->lbConfirmPassword->Location = System::Drawing::Point(38, 250);
 			this->lbConfirmPassword->Name = L"lbConfirmPassword";
 			this->lbConfirmPassword->Size = System::Drawing::Size(278, 31);
-			this->lbConfirmPassword->TabIndex = 27;
+			this->lbConfirmPassword->TabIndex = 39;
 			this->lbConfirmPassword->Text = L"Confirm the password";
 			this->lbConfirmPassword->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			// 
@@ -176,10 +151,10 @@ namespace Project5 {
 			this->lbPassword->Font = (gcnew System::Drawing::Font(L"Palatino Linotype", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lbPassword->ForeColor = System::Drawing::Color::White;
-			this->lbPassword->Location = System::Drawing::Point(43, 232);
+			this->lbPassword->Location = System::Drawing::Point(38, 191);
 			this->lbPassword->Name = L"lbPassword";
 			this->lbPassword->Size = System::Drawing::Size(278, 31);
-			this->lbPassword->TabIndex = 26;
+			this->lbPassword->TabIndex = 38;
 			this->lbPassword->Text = L"Password";
 			this->lbPassword->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			// 
@@ -188,36 +163,38 @@ namespace Project5 {
 			this->lbEmail->Font = (gcnew System::Drawing::Font(L"Palatino Linotype", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lbEmail->ForeColor = System::Drawing::Color::White;
-			this->lbEmail->Location = System::Drawing::Point(43, 120);
+			this->lbEmail->Location = System::Drawing::Point(38, 126);
 			this->lbEmail->Name = L"lbEmail";
 			this->lbEmail->Size = System::Drawing::Size(205, 31);
-			this->lbEmail->TabIndex = 25;
+			this->lbEmail->TabIndex = 37;
 			this->lbEmail->Text = L"Email";
 			this->lbEmail->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			// 
-			// lbPhone
-			// 
-			this->lbPhone->Font = (gcnew System::Drawing::Font(L"Palatino Linotype", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lbPhone->ForeColor = System::Drawing::Color::White;
-			this->lbPhone->Location = System::Drawing::Point(43, 177);
-			this->lbPhone->Name = L"lbPhone";
-			this->lbPhone->Size = System::Drawing::Size(221, 31);
-			this->lbPhone->TabIndex = 24;
-			this->lbPhone->Text = L"Watch list name";
-			this->lbPhone->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			// 
 			// lbName
 			// 
 			this->lbName->Font = (gcnew System::Drawing::Font(L"Palatino Linotype", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lbName->ForeColor = System::Drawing::Color::White;
-			this->lbName->Location = System::Drawing::Point(43, 56);
+			this->lbName->Location = System::Drawing::Point(38, 55);
 			this->lbName->Name = L"lbName";
 			this->lbName->Size = System::Drawing::Size(278, 40);
-			this->lbName->TabIndex = 23;
+			this->lbName->TabIndex = 35;
 			this->lbName->Text = L"User name";
 			this->lbName->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			// 
+			// button3
+			// 
+			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button3->ForeColor = System::Drawing::Color::White;
+			this->button3->Location = System::Drawing::Point(83, 359);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(151, 37);
+			this->button3->TabIndex = 47;
+			this->button3->Text = L"Login";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &Login::button3_Click);
 			// 
 			// Login
 			// 
@@ -225,10 +202,9 @@ namespace Project5 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(52)));
-			this->ClientSize = System::Drawing::Size(552, 504);
-			this->Controls->Add(this->button2);
+			this->ClientSize = System::Drawing::Size(524, 477);
+			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->WatchlistName);
 			this->Controls->Add(this->tbConfrimPassword);
 			this->Controls->Add(this->tbPassword);
 			this->Controls->Add(this->tbEmail);
@@ -236,7 +212,6 @@ namespace Project5 {
 			this->Controls->Add(this->lbConfirmPassword);
 			this->Controls->Add(this->lbPassword);
 			this->Controls->Add(this->lbEmail);
-			this->Controls->Add(this->lbPhone);
 			this->Controls->Add(this->lbName);
 			this->Name = L"Login";
 			this->Text = L"Login";
@@ -245,74 +220,74 @@ namespace Project5 {
 			this->PerformLayout();
 
 		}
+
+		bool CheckUser() {
+
+			try {
+				SqlConnection conx(DataBaseConnection::ConnectionString());
+				conx.Open();
+
+				MessageBox::Show(User->GetEmail() + " " + User->GetPassword());
+
+				String^ Query = "Select ID_USER,PASSWORD,NAME, EMAIL from Users where EMAIL = @Email and PASSWORD = @PASSWORD; ";
+				SqlCommand Cmd(Query, % conx);
+				Cmd.Parameters->AddWithValue("@Email", User->GetEmail());
+				Cmd.Parameters->AddWithValue("@PASSWORD", User->GetPassword());
+
+				SqlDataReader^ reader = Cmd.ExecuteReader();
+
+				if (reader->HasRows) {
+
+					while (reader->Read())
+					{
+						User->SetIdUser(Convert::ToInt32(reader["ID_USER"]->ToString())); 
+						User->SetPassword(reader["PASSWORD"]->ToString());
+						User->SetEmail(reader["EMAIL"]->ToString());
+						User->SetUsername(reader["NAME"]->ToString()); 
+					}
+					reader->Close();
+
+
+					conx.Close();
+					return true;
+				}
+				else {
+
+					MessageBox::Show("user not exist");
+
+				}
+
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show(ex->Message);
+			}
+			return false;
+
+		}
 #pragma endregion
 	private: System::Void Login_Load(System::Object^ sender, System::EventArgs^ e) {
-
-
-
 	}
-
-		   bool CheckUser() {
-
-			   try {
-				   SqlConnection conx(DataBaseConnection::ConnectionString());
-				   conx.Open();
-
-				   MessageBox::Show( User->GetEmail() + " " +  User->GetPassword());
-
-				   String^ Query = "Select ID_USER,ID_WATCH_LIST,PASSWORD,NAME, EMAIL from Users where EMAIL = @Email and PASSWORD = @PASSWORD; ";
-				   SqlCommand Cmd(Query, % conx);
-				   Cmd.Parameters->AddWithValue("@Email",  User->GetEmail());
-				   Cmd.Parameters->AddWithValue("@PASSWORD",  User->GetPassword());
-
-				   SqlDataReader^ reader = Cmd.ExecuteReader();
-
-				   if (reader->HasRows) {
-
-					   while (reader->Read())
-					   {
-						   User->SetIdUser(Convert::ToInt32(reader["ID_USER"]->ToString()));
-						   User->SetIdWatchList(Convert::ToInt32(reader["ID_WATCH_LIST"]->ToString()));
-					       User->SetPassword(reader["PASSWORD"]->ToString());
-						   User->SetEmail(reader["EMAIL"]->ToString());
-						   User->SetUsername(reader["NAME"]->ToString());
-						   User->SetWatchListName(DataBaseOperations::GetWatchListName(User->GetIdWatchList()));
-					   }
-					   reader->Close();
-
-
-					   conx.Close();
-					   return true;
-				   }
-				   else {
-
-					   MessageBox::Show("user not exist");
-
-				   }
-
-			   }
-			   catch (Exception^ ex) {
-				   MessageBox::Show(ex->Message);
-			   }
-			   return false;
-
-		   }
-
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-			 User = gcnew UserClass();
-
-			 User->SetEmail(tbEmail->Text);
-			 User->SetPassword(tbPassword->Text);
-
-			if (CheckUser()) {
-				MessageBox::Show("logedin");
-				this->Hide();
-		 
-			}
-			else {
-				MessageBox::Show("not");
-			}
 	}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		User = gcnew UserClass();
+
+		User->SetEmail(tbEmail->Text);
+		User->SetPassword(tbPassword->Text);
+
+		if (CheckUser()) {
+			MessageBox::Show("logedin");
+			this->Hide();
+
+		}
+		else {
+			MessageBox::Show("not");
+		}
+
+}
+private: System::Void tbEmail_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

@@ -27,6 +27,7 @@ namespace Project5 {
 	private: System::Windows::Forms::ComboBox^ comboCat;
 		   Panel^ panel_;
 	public:
+		
 		DiscoverUser(void)
 		{
 			InitializeComponent();
@@ -37,6 +38,7 @@ namespace Project5 {
 		DiscoverUser(Panel^ panelContent)
 		{
 			InitializeComponent();
+	
 			this->panel_ = panelContent;
 		}
 	protected:
@@ -101,10 +103,12 @@ namespace Project5 {
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->discoverMovie->AutoScroll = true;
-			this->discoverMovie->Location = System::Drawing::Point(258, 46);
+			this->discoverMovie->Location = System::Drawing::Point(194, 37);
+			this->discoverMovie->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->discoverMovie->Name = L"discoverMovie";
-			this->discoverMovie->Size = System::Drawing::Size(1042, 734);
+			this->discoverMovie->Size = System::Drawing::Size(782, 596);
 			this->discoverMovie->TabIndex = 0;
+			this->discoverMovie->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &DiscoverUser::discoverMovie_Paint);
 			// 
 			// comboCat
 			// 
@@ -112,9 +116,10 @@ namespace Project5 {
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->comboCat->FormattingEnabled = true;
-			this->comboCat->Location = System::Drawing::Point(258, 8);
+			this->comboCat->Location = System::Drawing::Point(194, 6);
+			this->comboCat->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->comboCat->Name = L"comboCat";
-			this->comboCat->Size = System::Drawing::Size(459, 24);
+			this->comboCat->Size = System::Drawing::Size(345, 21);
 			this->comboCat->TabIndex = 12;
 			this->comboCat->SelectedIndexChanged += gcnew System::EventHandler(this, &DiscoverUser::comboCat_SelectedIndexChanged);
 			// 
@@ -125,18 +130,20 @@ namespace Project5 {
 			this->panel1->Controls->Add(this->popularBtn);
 			this->panel1->Controls->Add(this->seriesBtn);
 			this->panel1->Controls->Add(this->moviesBtn);
-			this->panel1->Location = System::Drawing::Point(0, 34);
+			this->panel1->Location = System::Drawing::Point(0, 28);
+			this->panel1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(258, 950);
+			this->panel1->Size = System::Drawing::Size(194, 772);
 			this->panel1->TabIndex = 5;
 			// 
 			// ratedBtn
 			// 
 			this->ratedBtn->BackColor = System::Drawing::Color::CornflowerBlue;
 			this->ratedBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->ratedBtn->Location = System::Drawing::Point(23, 225);
+			this->ratedBtn->Location = System::Drawing::Point(17, 183);
+			this->ratedBtn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->ratedBtn->Name = L"ratedBtn";
-			this->ratedBtn->Size = System::Drawing::Size(214, 47);
+			this->ratedBtn->Size = System::Drawing::Size(160, 38);
 			this->ratedBtn->TabIndex = 4;
 			this->ratedBtn->Text = L"Top Rated";
 			this->ratedBtn->UseVisualStyleBackColor = false;
@@ -146,9 +153,10 @@ namespace Project5 {
 			// 
 			this->popularBtn->BackColor = System::Drawing::Color::CornflowerBlue;
 			this->popularBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->popularBtn->Location = System::Drawing::Point(23, 159);
+			this->popularBtn->Location = System::Drawing::Point(17, 129);
+			this->popularBtn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->popularBtn->Name = L"popularBtn";
-			this->popularBtn->Size = System::Drawing::Size(214, 47);
+			this->popularBtn->Size = System::Drawing::Size(160, 38);
 			this->popularBtn->TabIndex = 3;
 			this->popularBtn->Text = L"Popular";
 			this->popularBtn->UseVisualStyleBackColor = false;
@@ -158,9 +166,10 @@ namespace Project5 {
 			// 
 			this->seriesBtn->BackColor = System::Drawing::Color::CornflowerBlue;
 			this->seriesBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->seriesBtn->Location = System::Drawing::Point(23, 91);
+			this->seriesBtn->Location = System::Drawing::Point(17, 74);
+			this->seriesBtn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->seriesBtn->Name = L"seriesBtn";
-			this->seriesBtn->Size = System::Drawing::Size(214, 47);
+			this->seriesBtn->Size = System::Drawing::Size(160, 38);
 			this->seriesBtn->TabIndex = 1;
 			this->seriesBtn->Text = L"Series";
 			this->seriesBtn->UseVisualStyleBackColor = false;
@@ -170,9 +179,10 @@ namespace Project5 {
 			// 
 			this->moviesBtn->BackColor = System::Drawing::Color::CornflowerBlue;
 			this->moviesBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->moviesBtn->Location = System::Drawing::Point(23, 18);
+			this->moviesBtn->Location = System::Drawing::Point(17, 15);
+			this->moviesBtn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->moviesBtn->Name = L"moviesBtn";
-			this->moviesBtn->Size = System::Drawing::Size(214, 47);
+			this->moviesBtn->Size = System::Drawing::Size(160, 38);
 			this->moviesBtn->TabIndex = 0;
 			this->moviesBtn->Text = L"Movies";
 			this->moviesBtn->UseVisualStyleBackColor = false;
@@ -183,9 +193,10 @@ namespace Project5 {
 			this->searchBtn->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->searchBtn->BackColor = System::Drawing::Color::Coral;
 			this->searchBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->searchBtn->Location = System::Drawing::Point(1229, 8);
+			this->searchBtn->Location = System::Drawing::Point(922, 6);
+			this->searchBtn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->searchBtn->Name = L"searchBtn";
-			this->searchBtn->Size = System::Drawing::Size(69, 32);
+			this->searchBtn->Size = System::Drawing::Size(52, 26);
 			this->searchBtn->TabIndex = 11;
 			this->searchBtn->Text = L"Search";
 			this->searchBtn->UseVisualStyleBackColor = false;
@@ -194,15 +205,16 @@ namespace Project5 {
 			// search
 			// 
 			this->search->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->search->Location = System::Drawing::Point(773, 10);
+			this->search->Location = System::Drawing::Point(580, 8);
+			this->search->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->search->Multiline = true;
 			this->search->Name = L"search";
-			this->search->Size = System::Drawing::Size(450, 30);
+			this->search->Size = System::Drawing::Size(338, 25);
 			this->search->TabIndex = 10;
 			// 
 			// DiscoverUser
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Black;
 			this->Controls->Add(this->comboCat);
@@ -210,8 +222,9 @@ namespace Project5 {
 			this->Controls->Add(this->searchBtn);
 			this->Controls->Add(this->search);
 			this->Controls->Add(this->panel1);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"DiscoverUser";
-			this->Size = System::Drawing::Size(1317, 790);
+			this->Size = System::Drawing::Size(988, 642);
 			this->Load += gcnew System::EventHandler(this, &DiscoverUser::DiscoverUser_Load);
 			this->panel1->ResumeLayout(false);
 			this->ResumeLayout(false);
@@ -568,5 +581,7 @@ namespace Project5 {
 		loadComboBoxCategories(urlCategories);
 		locationUser = "toprated";
 	}
-	};
+	private: System::Void discoverMovie_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	}
+};
 }

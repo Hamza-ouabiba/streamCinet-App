@@ -40,24 +40,6 @@ Class DataBaseConnection: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Methods:
     ConnectionString(): PrivateScope, Public, Static, HideBySig
     Connection(): PrivateScope, Public, Static, HideBySig
-Class DataBaseOperations: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Methods:
-    Exist_Movie(Int32): PrivateScope, Public, Static, HideBySig
-    LastInsertedMovie(): PrivateScope, Public, Static, HideBySig
-    CategoryMovie_ByIdApiCategory(Int32): PrivateScope, Public, Static, HideBySig
-    CategoryMovie_ByIdCategory(Int32): PrivateScope, Public, Static, HideBySig
-    GetIdCategory_MovieByCategory(String): PrivateScope, Public, Static, HideBySig
-    GetIdCategory_Movie(Int32): PrivateScope, Public, Static, HideBySig
-    Exist_Serie(Int32): PrivateScope, Public, Static, HideBySig
-    LastInsertedSerie(): PrivateScope, Public, Static, HideBySig
-    CategorySerie_ByIdApiCategory(Int32): PrivateScope, Public, Static, HideBySig
-    CategorySerie_ByIdCategory(Int32): PrivateScope, Public, Static, HideBySig
-    GetIdCategory_SerieByCategory(String): PrivateScope, Public, Static, HideBySig
-    GetIdCategory_Serie(Int32): PrivateScope, Public, Static, HideBySig
-    GetWatchListName(Int32): PrivateScope, Public, Static, HideBySig
-    LastIdUser(): PrivateScope, Public, Static, HideBySig
-    LastIdWatchList(): PrivateScope, Public, Static, HideBySig
 Class Serie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(Int32, Int32, System.String, System.String, System.String, Single, System.DateTime, System.Drawing.Image, System.Drawing.Image): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(Serie): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -110,22 +92,18 @@ Class UserClass: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     GetIdUser(): PrivateScope, Public, HideBySig
-    GetIdWatchList(): PrivateScope, Public, HideBySig
     GetUsername(): PrivateScope, Public, HideBySig
     GetEmail(): PrivateScope, Public, HideBySig
-    GetWatchListName(): PrivateScope, Public, HideBySig
     GetPassword(): PrivateScope, Public, HideBySig
     SetIdUser(Int32): PrivateScope, Public, HideBySig
-    SetIdWatchList(Int32): PrivateScope, Public, HideBySig
     SetUsername(String): PrivateScope, Public, HideBySig
     SetEmail(String): PrivateScope, Public, HideBySig
-    SetWatchListName(String): PrivateScope, Public, HideBySig
     SetPassword(String): PrivateScope, Public, HideBySig
 Class Project5.Login: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
-    UserClass User : Public, Static
+    UserClass User : Public
 Class Project5.ViewMovie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
     Void .ctor(Serie): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -133,6 +111,7 @@ Class Project5.ViewMovie: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Fields:
     Serie serie_ : Public
     Movie movie_ : Public
+    Int32 idUser : Public
 Class Project5.PosterPlanning: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.UserControl
     Void .ctor(Serie, System.Windows.Forms.Panel, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -196,8 +175,8 @@ Class Project5.Library: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(System.Windows.Forms.Panel): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
     System.Windows.Forms.Panel Display_Panel : Public
+    Int32 idUser : Public
     Boolean Choice : Public
-    System.Data.SqlClient.SqlConnection conx : Public
 Class Project5.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

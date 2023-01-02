@@ -1,7 +1,6 @@
 #pragma once
-#include <string>
+#include <string> 
 #include "DataBaseOperations.h"
- 
 using namespace::std;
 using namespace System;
 using namespace Drawing;
