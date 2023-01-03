@@ -167,11 +167,21 @@ namespace Project5 {
 	private: System::Void flowLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
 	private: System::Void Library_Load(System::Object^ sender, System::EventArgs^ e) {
-		Choice = true;
-		loadCategory_Movie();
 
-		All_Movies();
-		comboBox1->SelectedIndex = 0;
+		if (Login::User->GetIdUser()!=NULL) {
+			Choice = true;
+			loadCategory_Movie();
+
+			All_Movies();
+			comboBox1->SelectedIndex = 0;
+
+		}
+		else {
+			Login^ form = gcnew Login();
+			form->Show();
+
+		}
+		
 	}
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 
@@ -370,20 +380,20 @@ namespace Project5 {
 		   void All_Movies() {
 			   //"SELECT *FROM movie where ID_MOVIE = any("Select ID_MOVIE from WATCHLIST_MOVIE where ID_WATCH_LIST = @ID_WATCH_LIST");"
 
-			   String^ Query3 = "Select ID_MOVIE from Library_Movie where ID_USER = " + idUser;
+			   String^ Query3 = "Select ID_MOVIE from Library_Movie where ID_USER = " + Login::User->GetIdUser();
 			   String^ Query = "SELECT *FROM MOVIE where ID_MOVIE = any(" + Query3 + ") ;";
 			   GetMoviesByQuery(Query);
 		   }
 
 		   void MovieByTitle()
 		   {
-			   String^ Query3 = "Select ID_MOVIE from Library_Movie where ID_USER = " + idUser;
+			   String^ Query3 = "Select ID_MOVIE from Library_Movie where ID_USER = " + Login::User->GetIdUser();
 			   String^ Query = "SELECT *FROM MOVIE where TITLE like '" + textBox1->Text + "%' and ID_MOVIE = any(" + Query3 + ") ;";
 			   GetMoviesByQuery(Query);
 		   }
 		   void MovieByCategory()
 		   {
-			   String^ Query3 = "Select ID_MOVIE from Library_Movie where ID_USER = " + idUser;
+			   String^ Query3 = "Select ID_MOVIE from Library_Movie where ID_USER = " + Login::User->GetIdUser();
 			   String^ Query2 = "SELECT ID_MOVIE FROM MOVIECATEGORY where ID_CATEGORY = (" + DataBaseOperations::GetIdCategory_MovieByCategory(comboBox1->Text) + ")";
 			   String^ Query = "SELECT *FROM MOVIE where ID_MOVIE = any(" + Query2 + ")  and ID_MOVIE = any(" + Query3 + ") ;";
 			   GetMoviesByQuery(Query);
@@ -391,7 +401,7 @@ namespace Project5 {
 		   void MovieByCategoryAndTitle()
 		   {
 			   String^ Query2 = "SELECT ID_MOVIE FROM MOVIECATEGORY where  ID_CATEGORY = (" + DataBaseOperations::GetIdCategory_MovieByCategory(comboBox1->Text) + ")";
-			   String^ Query3 = "Select ID_MOVIE from Library_Movie where ID_USER = " + idUser;
+			   String^ Query3 = "Select ID_MOVIE from Library_Movie where ID_USER = " + Login::User->GetIdUser();
 			   String^ Query = "SELECT *FROM MOVIE where TITLE like '" + textBox1->Text + "%' and ID_MOVIE = any(" + Query2 + ") and ID_MOVIE = any(" + Query3 + ") ; ";
 			   GetMoviesByQuery(Query);
 		   }
@@ -422,7 +432,7 @@ namespace Project5 {
 					   Sr->SetOverview(Read["OVERVIEW"]->ToString());
 					   Sr->SetRealease_Date(Convert::ToDateTime(Read["RELEASE_DATE"]->ToString()));
 					   Sr->SetRating((float)Convert::ToDouble(Read["Rating"]->ToString()));
-
+					   Sr->SetCountry(Read["COUNTRY"]->ToString());
 					   // Create a MemoryStream to hold the image data
 					   ms = gcnew MemoryStream(Read->GetSqlBinary(4).Value);
 					   // Load the image data into a Bitmap object
@@ -447,26 +457,26 @@ namespace Project5 {
 		   ;
 		   void All_Series() {
 
-			   String^ Query3 = "Select ID_SERIE from Library_Serie where ID_USER = " + idUser;
+			   String^ Query3 = "Select ID_SERIE from Library_Serie where ID_USER = " + Login::User->GetIdUser();
 			   String^ Query = "SELECT *FROM SERIE where ID_SERIE = any(" + Query3 + ") ;";
 			   GetSeriesByQuery(Query);
 		   }
 		   void SerieByTitle()
 		   {
-			   String^ Query3 = "Select ID_SERIE from Library_Serie where ID_USER = " + idUser;
+			   String^ Query3 = "Select ID_SERIE from Library_Serie where ID_USER = " + Login::User->GetIdUser();
 			   String^ Query = "SELECT *FROM SERIE where TITLE like '" + textBox1->Text + "%' and  ID_SERIE = any(" + Query3 + ") ;";
 			   GetSeriesByQuery(Query);
 		   }
 		   void SerieByCategory()
 		   {
-			   String^ Query3 = "Select ID_SERIE from Library_Serie where ID_USER = " + idUser;
+			   String^ Query3 = "Select ID_SERIE from Library_Serie where ID_USER = " + Login::User->GetIdUser();
 			   String^ Query2 = "SELECT ID_SERIE FROM SERIECATEGORY where ID_CATEGORY = (select ID_CATEGORY from CATEGORY_SERIE where CATEGORY like '" + comboBox1->Text + "%' )";
 			   String^ Query = "SELECT *FROM SERIE where ID_SERIE = any(" + Query2 + ") and  ID_SERIE = any(" + Query3 + ") ;";
 			   GetSeriesByQuery(Query);
 		   }
 		   void SerieByCategoryAndTitle()
 		   {
-			   String^ Query3 = "Select ID_SERIE from Library_Serie where ID_USER = " + idUser;
+			   String^ Query3 = "Select ID_SERIE from Library_Serie where ID_USER = " + Login::User->GetIdUser();
 			   String^ Query2 = "SELECT ID_SERIE FROM SERIECATEGORY where  ID_CATEGORY = (select ID_CATEGORY from CATEGORY where CATEGORY like '" + comboBox1->Text + "%' )";
 			   String^ Query = "SELECT *FROM SERIE where TITLE like '" + textBox1->Text + "%' and ID_SERIE = any(" + Query2 + ") and ID_SERIE = any(" + Query3 + ") ;";
 			   GetSeriesByQuery(Query);

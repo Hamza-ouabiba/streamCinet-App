@@ -1,7 +1,8 @@
 #pragma once  
+#include "SignUp.h"
 #include "DataBaseOperations.h"
 #include "DataBaseConnection.h"
-#include "UserClass.h" 
+#include "UserClass.h"  
 namespace Project5 {
 
 	using namespace System;
@@ -18,7 +19,7 @@ namespace Project5 {
 	public ref class Login : public System::Windows::Forms::Form
 	{
 	public:
-	    UserClass^ User;
+	    static UserClass^ User;
 		Login(void)
 		{
 			InitializeComponent();
@@ -41,14 +42,14 @@ namespace Project5 {
 
 	protected:
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::TextBox^ tbConfrimPassword;
+
 	private: System::Windows::Forms::TextBox^ tbPassword;
 	private: System::Windows::Forms::TextBox^ tbEmail;
-	private: System::Windows::Forms::TextBox^ tbName;
-	private: System::Windows::Forms::Label^ lbConfirmPassword;
+
+
 	private: System::Windows::Forms::Label^ lbPassword;
 	private: System::Windows::Forms::Label^ lbEmail;
-	private: System::Windows::Forms::Label^ lbName;
+
 	private: System::Windows::Forms::Button^ button3;
 
 	private:
@@ -65,14 +66,10 @@ namespace Project5 {
 		void InitializeComponent(void)
 		{
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->tbConfrimPassword = (gcnew System::Windows::Forms::TextBox());
 			this->tbPassword = (gcnew System::Windows::Forms::TextBox());
 			this->tbEmail = (gcnew System::Windows::Forms::TextBox());
-			this->tbName = (gcnew System::Windows::Forms::TextBox());
-			this->lbConfirmPassword = (gcnew System::Windows::Forms::Label());
 			this->lbPassword = (gcnew System::Windows::Forms::Label());
 			this->lbEmail = (gcnew System::Windows::Forms::Label());
-			this->lbName = (gcnew System::Windows::Forms::Label());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
@@ -82,7 +79,7 @@ namespace Project5 {
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button1->ForeColor = System::Drawing::Color::White;
-			this->button1->Location = System::Drawing::Point(279, 359);
+			this->button1->Location = System::Drawing::Point(252, 202);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(151, 37);
 			this->button1->TabIndex = 45;
@@ -90,26 +87,16 @@ namespace Project5 {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Login::button1_Click);
 			// 
-			// tbConfrimPassword
-			// 
-			this->tbConfrimPassword->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->tbConfrimPassword->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->tbConfrimPassword->Location = System::Drawing::Point(279, 257);
-			this->tbConfrimPassword->Name = L"tbConfrimPassword";
-			this->tbConfrimPassword->PasswordChar = '*';
-			this->tbConfrimPassword->Size = System::Drawing::Size(215, 19);
-			this->tbConfrimPassword->TabIndex = 43;
-			// 
 			// tbPassword
 			// 
 			this->tbPassword->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->tbPassword->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->tbPassword->Location = System::Drawing::Point(279, 191);
+			this->tbPassword->Location = System::Drawing::Point(232, 123);
+			this->tbPassword->Multiline = true;
 			this->tbPassword->Name = L"tbPassword";
 			this->tbPassword->PasswordChar = '*';
-			this->tbPassword->Size = System::Drawing::Size(215, 19);
+			this->tbPassword->Size = System::Drawing::Size(215, 27);
 			this->tbPassword->TabIndex = 42;
 			// 
 			// tbEmail
@@ -117,43 +104,21 @@ namespace Project5 {
 			this->tbEmail->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->tbEmail->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->tbEmail->Location = System::Drawing::Point(279, 133);
+			this->tbEmail->Location = System::Drawing::Point(232, 72);
+			this->tbEmail->Multiline = true;
 			this->tbEmail->Name = L"tbEmail";
-			this->tbEmail->Size = System::Drawing::Size(215, 19);
+			this->tbEmail->Size = System::Drawing::Size(215, 24);
 			this->tbEmail->TabIndex = 41;
 			this->tbEmail->TextChanged += gcnew System::EventHandler(this, &Login::tbEmail_TextChanged);
-			// 
-			// tbName
-			// 
-			this->tbName->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->tbName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->tbName->Location = System::Drawing::Point(279, 67);
-			this->tbName->Multiline = true;
-			this->tbName->Name = L"tbName";
-			this->tbName->Size = System::Drawing::Size(215, 18);
-			this->tbName->TabIndex = 40;
-			// 
-			// lbConfirmPassword
-			// 
-			this->lbConfirmPassword->Font = (gcnew System::Drawing::Font(L"Palatino Linotype", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lbConfirmPassword->ForeColor = System::Drawing::Color::White;
-			this->lbConfirmPassword->Location = System::Drawing::Point(38, 250);
-			this->lbConfirmPassword->Name = L"lbConfirmPassword";
-			this->lbConfirmPassword->Size = System::Drawing::Size(278, 31);
-			this->lbConfirmPassword->TabIndex = 39;
-			this->lbConfirmPassword->Text = L"Confirm the password";
-			this->lbConfirmPassword->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			// 
 			// lbPassword
 			// 
 			this->lbPassword->Font = (gcnew System::Drawing::Font(L"Palatino Linotype", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lbPassword->ForeColor = System::Drawing::Color::White;
-			this->lbPassword->Location = System::Drawing::Point(38, 191);
+			this->lbPassword->Location = System::Drawing::Point(56, 123);
 			this->lbPassword->Name = L"lbPassword";
-			this->lbPassword->Size = System::Drawing::Size(278, 31);
+			this->lbPassword->Size = System::Drawing::Size(196, 31);
 			this->lbPassword->TabIndex = 38;
 			this->lbPassword->Text = L"Password";
 			this->lbPassword->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
@@ -163,24 +128,12 @@ namespace Project5 {
 			this->lbEmail->Font = (gcnew System::Drawing::Font(L"Palatino Linotype", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lbEmail->ForeColor = System::Drawing::Color::White;
-			this->lbEmail->Location = System::Drawing::Point(38, 126);
+			this->lbEmail->Location = System::Drawing::Point(56, 65);
 			this->lbEmail->Name = L"lbEmail";
 			this->lbEmail->Size = System::Drawing::Size(205, 31);
 			this->lbEmail->TabIndex = 37;
 			this->lbEmail->Text = L"Email";
 			this->lbEmail->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			// 
-			// lbName
-			// 
-			this->lbName->Font = (gcnew System::Drawing::Font(L"Palatino Linotype", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lbName->ForeColor = System::Drawing::Color::White;
-			this->lbName->Location = System::Drawing::Point(38, 55);
-			this->lbName->Name = L"lbName";
-			this->lbName->Size = System::Drawing::Size(278, 40);
-			this->lbName->TabIndex = 35;
-			this->lbName->Text = L"User name";
-			this->lbName->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			// 
 			// button3
 			// 
@@ -188,7 +141,7 @@ namespace Project5 {
 			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button3->ForeColor = System::Drawing::Color::White;
-			this->button3->Location = System::Drawing::Point(83, 359);
+			this->button3->Location = System::Drawing::Point(61, 202);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(151, 37);
 			this->button3->TabIndex = 47;
@@ -200,20 +153,19 @@ namespace Project5 {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->AutoValidate = System::Windows::Forms::AutoValidate::Disable;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(52)));
-			this->ClientSize = System::Drawing::Size(524, 477);
+			this->ClientSize = System::Drawing::Size(478, 286);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->tbConfrimPassword);
 			this->Controls->Add(this->tbPassword);
 			this->Controls->Add(this->tbEmail);
-			this->Controls->Add(this->tbName);
-			this->Controls->Add(this->lbConfirmPassword);
 			this->Controls->Add(this->lbPassword);
 			this->Controls->Add(this->lbEmail);
-			this->Controls->Add(this->lbName);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
 			this->Name = L"Login";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Login";
 			this->Load += gcnew System::EventHandler(this, &Login::Login_Load);
 			this->ResumeLayout(false);
@@ -225,9 +177,7 @@ namespace Project5 {
 
 			try {
 				SqlConnection conx(DataBaseConnection::ConnectionString());
-				conx.Open();
-
-				MessageBox::Show(User->GetEmail() + " " + User->GetPassword());
+				conx.Open(); 
 
 				String^ Query = "Select ID_USER,PASSWORD,NAME, EMAIL from Users where EMAIL = @Email and PASSWORD = @PASSWORD; ";
 				SqlCommand Cmd(Query, % conx);
@@ -268,7 +218,9 @@ namespace Project5 {
 	private: System::Void Login_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-
+		 SignUp^ form = gcnew SignUp(); 
+		 form->Show();
+		 this->Hide();
 	}
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 
@@ -278,9 +230,8 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 		User->SetPassword(tbPassword->Text);
 
 		if (CheckUser()) {
-			MessageBox::Show("logedin");
-			this->Hide();
-
+			MessageBox::Show("loged in");
+			this->Hide();  
 		}
 		else {
 			MessageBox::Show("not");

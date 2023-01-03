@@ -23,7 +23,9 @@ public:
 	}
 
 	int GetIdUser() {
+	 
 		return this->idUser;
+		
 	} 
 	String^ GetUsername() {
 		return this->Username;

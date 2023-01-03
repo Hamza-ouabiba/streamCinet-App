@@ -279,16 +279,34 @@ namespace Project5 {
 		MyForm_Load(sender, e);
 	}
 	private: System::Void libraryBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		Library^ lb = gcnew Library(this->panelContent);
-		this->panelContent->Controls->Clear();
-		lb->Dock = DockStyle::Fill;
-		this->panelContent->Controls->Add(lb);
+
+
+		if (Login::User) {
+
+			Library^ lb = gcnew Library(this->panelContent);
+			this->panelContent->Controls->Clear();
+			lb->Dock = DockStyle::Fill;
+			this->panelContent->Controls->Add(lb);
+		}
+		else {
+			Login^ form = gcnew Login();
+			form->Show();
+		}
+
 	}
 	private: System::Void calendarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		Calendar_uc^ cl = gcnew Calendar_uc(this->panelContent);
-		this->panelContent->Controls->Clear();
-		cl->Dock = DockStyle::Fill;
-		this->panelContent->Controls->Add(cl);
+
+		if (Login::User) {
+			Calendar_uc^ cl = gcnew Calendar_uc(this->panelContent);
+			this->panelContent->Controls->Clear();
+			cl->Dock = DockStyle::Fill;
+			this->panelContent->Controls->Add(cl);
+		}
+		else {
+			Login^ form = gcnew Login();
+			form->Show();
+		}
+		
 	}
 	private: System::Void panelContent_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
