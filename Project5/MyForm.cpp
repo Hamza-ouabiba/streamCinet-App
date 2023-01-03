@@ -1,4 +1,5 @@
 #include "MyForm.h"
+#include "Login.h"
 
 #include <iostream>
 
@@ -9,7 +10,9 @@ void main()
 {
     Application::EnableVisualStyles();
     Application::SetCompatibleTextRenderingDefault(false);
-    Project5::MyForm form;
-    Application::Run(% form);
+     
+    Project5::MyForm fr;
+    Application::Run(% fr);
+    
 
 }

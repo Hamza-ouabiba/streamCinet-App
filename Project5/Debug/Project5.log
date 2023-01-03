@@ -19,14 +19,24 @@ C:\Users\MT\Desktop\streamCinet-App-walid\Project5\Mani.h(149,13): warning C4244
   WatchLater_UC.cpp
   Generating Code...
 C:\Users\MT\Desktop\streamCinet-App-walid\Project5\WatchLater_UC.h(190): warning C4715: 'Project5::WatchLater_UC::getIdPlanning': not all control paths return a value
+C:\Users\MT\Desktop\streamCinet-App-walid\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi': not all control paths return a value
+C:\Users\MT\Desktop\streamCinet-App-walid\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi': not all control paths return a value
+C:\Users\MT\Desktop\streamCinet-App-walid\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi': not all control paths return a value
+C:\Users\MT\Desktop\streamCinet-App-walid\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi': not all control paths return a value
 C:\Users\MT\Desktop\streamCinet-App-walid\Project5\Mani.h(146): warning C4715: 'Mani::imageDown': not all control paths return a value
 C:\Users\MT\Desktop\streamCinet-App-walid\Project5\WatchLater_UC.h(190): warning C4715: 'Project5::WatchLater_UC::getIdPlanning': not all control paths return a value
 C:\Users\MT\Desktop\streamCinet-App-walid\Project5\DaysUserControl.h(134): warning C4715: 'Project5::DaysUserControl::getIdPlanning': not all control paths return a value
+C:\Users\MT\Desktop\streamCinet-App-walid\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi': not all control paths return a value
+C:\Users\MT\Desktop\streamCinet-App-walid\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi': not all control paths return a value
 C:\Users\MT\Desktop\streamCinet-App-walid\Project5\Mani.h(146): warning C4715: 'Mani::imageDown': not all control paths return a value
+C:\Users\MT\Desktop\streamCinet-App-walid\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi': not all control paths return a value
 C:\Users\MT\Desktop\streamCinet-App-walid\Project5\WatchLater_UC.h(190): warning C4715: 'Project5::WatchLater_UC::getIdPlanning': not all control paths return a value
 C:\Users\MT\Desktop\streamCinet-App-walid\Project5\DaysUserControl.h(134): warning C4715: 'Project5::DaysUserControl::getIdPlanning': not all control paths return a value
+C:\Users\MT\Desktop\streamCinet-App-walid\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi': not all control paths return a value
 C:\Users\MT\Desktop\streamCinet-App-walid\Project5\Mani.h(146): warning C4715: 'Mani::imageDown': not all control paths return a value
+C:\Users\MT\Desktop\streamCinet-App-walid\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi': not all control paths return a value
 C:\Users\MT\Desktop\streamCinet-App-walid\Project5\WatchLater_UC.h(190): warning C4715: 'Project5::WatchLater_UC::getIdPlanning': not all control paths return a value
 C:\Users\MT\Desktop\streamCinet-App-walid\Project5\DaysUserControl.h(134): warning C4715: 'Project5::DaysUserControl::getIdPlanning': not all control paths return a value
+C:\Users\MT\Desktop\streamCinet-App-walid\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi': not all control paths return a value
   BlankUserControl.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   Project5.vcxproj -> C:\Users\MT\Desktop\streamCinet-App-walid\Debug\Project5.exe
