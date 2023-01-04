@@ -14,7 +14,7 @@
   Project5.WatchForm.resources - Embedded, ContainedInManifestFile, 
   Project5.WatchLater_UC.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
-Assembly Project5, Version=0.0.*, Culture=Langue indifférente (Pays indifférent): 
+Assembly Project5, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
 	hash=SHA1, flags=PublicKey
 Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
