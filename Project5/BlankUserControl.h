@@ -40,7 +40,7 @@ namespace Project5 {
 		/// <summary>
 		/// Variable nécessaire au concepteur.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -57,7 +57,7 @@ namespace Project5 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->Name = L"BlankUserControl";
-			this->Size = System::Drawing::Size(194, 111);
+			this->Size = System::Drawing::Size(181, 111);
 			this->ResumeLayout(false);
 
 		}

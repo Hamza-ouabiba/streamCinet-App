@@ -1,6 +1,7 @@
-#pragma once 
+﻿#pragma once 
 #include "DataBaseConnection.h"  
 #include "Movie.h"  
+#include "Mani.h"
 #include "Serie.h" 
 #include"json/json.h"  
 #using <System.Net.Http.dll>
@@ -47,6 +48,7 @@ namespace Project5 {
 
 
 	public:
+		Mani^ l;
 		Serie^ serie_;
 		Movie^ movie_;
 	public:
@@ -60,13 +62,13 @@ namespace Project5 {
 			serie_ = gcnew Serie();
 			serie_->SetName("");
 			Title_label->Text = movie_->GetTitle();
-
+			this->movie_->SetExist(DataBaseOperations::Exist_Movie(movie_->GetIdApi(), Login::User->GetIdUser()));
 			this->Overview->Text = movie_->GetOverview();
 			this->Overview->ForeColor = this->BackColor;
 
 
 			this->Rating_label->Text = movie_->GetRating().ToString();
-			this->Date_label->Text = movie_->GetRealease_Date().ToString();
+			this->Date_label->Text = movie_->GetRealease_Date().ToString("dd/MM/yyyy");
 			label4->Text = "";
 
 			Category1_label->Text = "";
@@ -85,12 +87,13 @@ namespace Project5 {
 			movie_->SetTitle("");
 			this->serie_ = Serie; 
 			this->Title_label->Text = serie_->GetName();
-			
+			this->Date_label->Text = serie_->GetRealease_Date().ToString("dd/MM/yyyy");
+			this->serie_->SetExist(DataBaseOperations::Exist_Serie(serie_->GetIdApi(), Login::User->GetIdUser()));
 			this->Overview->Text = serie_->GetOverview();
 			this->Overview->ForeColor = this->BackColor;
 
 			this->Rating_label->Text = serie_->GetRating().ToString();
-			this->Date_label->Text = serie_->GetRealease_Date().ToString();
+			//oui
 			this->panel2->BackgroundImage = serie_->GetBakcDrop();
 			label4->Text = serie_->GetCountry();
 			Category1_label->Text = "";
@@ -143,8 +146,8 @@ namespace Project5 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle9 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle10 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->BtnLibrary_AddRemove = (gcnew System::Windows::Forms::Button());
 			this->Title_label = (gcnew System::Windows::Forms::Label());
 			this->BtnTrailer = (gcnew System::Windows::Forms::Button());
@@ -180,9 +183,10 @@ namespace Project5 {
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->BtnLibrary_AddRemove->ForeColor = System::Drawing::Color::White;
 			this->BtnLibrary_AddRemove->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->BtnLibrary_AddRemove->Location = System::Drawing::Point(213, 101);
+			this->BtnLibrary_AddRemove->Location = System::Drawing::Point(284, 124);
+			this->BtnLibrary_AddRemove->Margin = System::Windows::Forms::Padding(4);
 			this->BtnLibrary_AddRemove->Name = L"BtnLibrary_AddRemove";
-			this->BtnLibrary_AddRemove->Size = System::Drawing::Size(190, 51);
+			this->BtnLibrary_AddRemove->Size = System::Drawing::Size(253, 63);
 			this->BtnLibrary_AddRemove->TabIndex = 16;
 			this->BtnLibrary_AddRemove->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			this->BtnLibrary_AddRemove->UseVisualStyleBackColor = false;
@@ -195,9 +199,10 @@ namespace Project5 {
 			this->Title_label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Title_label->ForeColor = System::Drawing::Color::White;
-			this->Title_label->Location = System::Drawing::Point(41, 35);
+			this->Title_label->Location = System::Drawing::Point(55, 43);
+			this->Title_label->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->Title_label->Name = L"Title_label";
-			this->Title_label->Size = System::Drawing::Size(171, 25);
+			this->Title_label->Size = System::Drawing::Size(215, 31);
 			this->Title_label->TabIndex = 27;
 			this->Title_label->Text = L"Game of thrones";
 			this->Title_label->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
@@ -209,9 +214,10 @@ namespace Project5 {
 			this->BtnTrailer->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->BtnTrailer->ForeColor = System::Drawing::Color::White;
-			this->BtnTrailer->Location = System::Drawing::Point(49, 101);
+			this->BtnTrailer->Location = System::Drawing::Point(65, 124);
+			this->BtnTrailer->Margin = System::Windows::Forms::Padding(4);
 			this->BtnTrailer->Name = L"BtnTrailer";
-			this->BtnTrailer->Size = System::Drawing::Size(125, 51);
+			this->BtnTrailer->Size = System::Drawing::Size(167, 63);
 			this->BtnTrailer->TabIndex = 15;
 			this->BtnTrailer->Text = L"Watch Trailer";
 			this->BtnTrailer->UseVisualStyleBackColor = false;
@@ -224,9 +230,10 @@ namespace Project5 {
 			this->label10->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label10->ForeColor = System::Drawing::Color::White;
-			this->label10->Location = System::Drawing::Point(3, 0);
+			this->label10->Location = System::Drawing::Point(4, 0);
+			this->label10->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(99, 24);
+			this->label10->Size = System::Drawing::Size(126, 29);
 			this->label10->TabIndex = 25;
 			this->label10->Text = L"Overview :";
 			// 
@@ -237,9 +244,10 @@ namespace Project5 {
 			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label4->ForeColor = System::Drawing::Color::White;
-			this->label4->Location = System::Drawing::Point(689, 228);
+			this->label4->Location = System::Drawing::Point(1170, 63);
+			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(70, 25);
+			this->label4->Size = System::Drawing::Size(86, 31);
 			this->label4->TabIndex = 21;
 			this->label4->Text = L"label4";
 			// 
@@ -250,9 +258,10 @@ namespace Project5 {
 			this->Date_label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Date_label->ForeColor = System::Drawing::Color::White;
-			this->Date_label->Location = System::Drawing::Point(41, 228);
+			this->Date_label->Location = System::Drawing::Point(55, 281);
+			this->Date_label->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->Date_label->Name = L"Date_label";
-			this->Date_label->Size = System::Drawing::Size(60, 25);
+			this->Date_label->Size = System::Drawing::Size(74, 31);
 			this->Date_label->TabIndex = 19;
 			this->Date_label->Text = L"2017";
 			// 
@@ -263,9 +272,10 @@ namespace Project5 {
 			this->Rating_label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Rating_label->ForeColor = System::Drawing::Color::White;
-			this->Rating_label->Location = System::Drawing::Point(417, 228);
+			this->Rating_label->Location = System::Drawing::Point(257, 281);
+			this->Rating_label->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->Rating_label->Name = L"Rating_label";
-			this->Rating_label->Size = System::Drawing::Size(70, 25);
+			this->Rating_label->Size = System::Drawing::Size(86, 31);
 			this->Rating_label->TabIndex = 20;
 			this->Rating_label->Text = L"label3";
 			// 
@@ -275,18 +285,20 @@ namespace Project5 {
 			this->panel1->Controls->Add(this->panel4);
 			this->panel1->Controls->Add(this->panel3);
 			this->panel1->Dock = System::Windows::Forms::DockStyle::Right;
-			this->panel1->Location = System::Drawing::Point(983, 0);
+			this->panel1->Location = System::Drawing::Point(1311, 0);
+			this->panel1->Margin = System::Windows::Forms::Padding(4);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(268, 710);
+			this->panel1->Size = System::Drawing::Size(357, 874);
 			this->panel1->TabIndex = 28;
 			// 
 			// panel4
 			// 
 			this->panel4->Controls->Add(this->dataGridView1);
 			this->panel4->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->panel4->Location = System::Drawing::Point(0, 67);
+			this->panel4->Location = System::Drawing::Point(0, 82);
+			this->panel4->Margin = System::Windows::Forms::Padding(4);
 			this->panel4->Name = L"panel4";
-			this->panel4->Size = System::Drawing::Size(268, 643);
+			this->panel4->Size = System::Drawing::Size(357, 792);
 			this->panel4->TabIndex = 2;
 			// 
 			// dataGridView1
@@ -300,40 +312,42 @@ namespace Project5 {
 				static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(52)));
 			this->dataGridView1->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->dataGridView1->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::Single;
-			dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
+			dataGridViewCellStyle9->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(52)));
-			dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
+			dataGridViewCellStyle9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			dataGridViewCellStyle1->ForeColor = System::Drawing::Color::White;
-			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dataGridView1->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle9->ForeColor = System::Drawing::Color::White;
+			dataGridViewCellStyle9->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle9->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle9->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataGridView1->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(1) { this->Episodes });
-			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
-				static_cast<System::Int32>(static_cast<System::Byte>(52)));
-			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular,
+			dataGridViewCellStyle10->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle10->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(36)),
+				static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(52)));
+			dataGridViewCellStyle10->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			dataGridViewCellStyle2->ForeColor = System::Drawing::Color::White;
-			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
-			this->dataGridView1->DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle10->ForeColor = System::Drawing::Color::White;
+			dataGridViewCellStyle10->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle10->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle10->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
+			this->dataGridView1->DefaultCellStyle = dataGridViewCellStyle10;
 			this->dataGridView1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->dataGridView1->EnableHeadersVisualStyles = false;
 			this->dataGridView1->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(52)));
 			this->dataGridView1->Location = System::Drawing::Point(0, 0);
+			this->dataGridView1->Margin = System::Windows::Forms::Padding(4);
 			this->dataGridView1->MultiSelect = false;
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
 			this->dataGridView1->RowHeadersVisible = false;
+			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 40;
 			this->dataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->dataGridView1->Size = System::Drawing::Size(268, 643);
+			this->dataGridView1->Size = System::Drawing::Size(357, 792);
 			this->dataGridView1->TabIndex = 0;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ViewMovie::dataGridView1_CellContentClick);
 			this->dataGridView1->DoubleClick += gcnew System::EventHandler(this, &ViewMovie::dataGridView1_DoubleClick);
@@ -341,6 +355,7 @@ namespace Project5 {
 			// Episodes
 			// 
 			this->Episodes->HeaderText = L"Episodes";
+			this->Episodes->MinimumWidth = 6;
 			this->Episodes->Name = L"Episodes";
 			this->Episodes->ReadOnly = true;
 			// 
@@ -350,8 +365,9 @@ namespace Project5 {
 			this->panel3->Controls->Add(this->comboBox1);
 			this->panel3->Dock = System::Windows::Forms::DockStyle::Top;
 			this->panel3->Location = System::Drawing::Point(0, 0);
+			this->panel3->Margin = System::Windows::Forms::Padding(4);
 			this->panel3->Name = L"panel3";
-			this->panel3->Size = System::Drawing::Size(268, 67);
+			this->panel3->Size = System::Drawing::Size(357, 82);
 			this->panel3->TabIndex = 1;
 			// 
 			// comboBox1
@@ -360,9 +376,10 @@ namespace Project5 {
 			this->comboBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(24, 16);
+			this->comboBox1->Location = System::Drawing::Point(32, 20);
+			this->comboBox1->Margin = System::Windows::Forms::Padding(4);
 			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(211, 28);
+			this->comboBox1->Size = System::Drawing::Size(280, 33);
 			this->comboBox1->TabIndex = 0;
 			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &ViewMovie::comboBox1_SelectedIndexChanged);
 			// 
@@ -372,9 +389,10 @@ namespace Project5 {
 			this->Category1_label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->Category1_label->ForeColor = System::Drawing::Color::White;
-			this->Category1_label->Location = System::Drawing::Point(41, 287);
+			this->Category1_label->Location = System::Drawing::Point(55, 353);
+			this->Category1_label->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->Category1_label->Name = L"Category1_label";
-			this->Category1_label->Size = System::Drawing::Size(70, 25);
+			this->Category1_label->Size = System::Drawing::Size(86, 31);
 			this->Category1_label->TabIndex = 29;
 			this->Category1_label->Text = L"label1";
 			// 
@@ -384,9 +402,10 @@ namespace Project5 {
 			this->Category2_label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->Category2_label->ForeColor = System::Drawing::Color::White;
-			this->Category2_label->Location = System::Drawing::Point(150, 287);
+			this->Category2_label->Location = System::Drawing::Point(200, 353);
+			this->Category2_label->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->Category2_label->Name = L"Category2_label";
-			this->Category2_label->Size = System::Drawing::Size(70, 25);
+			this->Category2_label->Size = System::Drawing::Size(86, 31);
 			this->Category2_label->TabIndex = 30;
 			this->Category2_label->Text = L"label1";
 			// 
@@ -396,9 +415,10 @@ namespace Project5 {
 			this->Category3_label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->Category3_label->ForeColor = System::Drawing::Color::White;
-			this->Category3_label->Location = System::Drawing::Point(274, 287);
+			this->Category3_label->Location = System::Drawing::Point(365, 353);
+			this->Category3_label->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->Category3_label->Name = L"Category3_label";
-			this->Category3_label->Size = System::Drawing::Size(70, 25);
+			this->Category3_label->Size = System::Drawing::Size(86, 31);
 			this->Category3_label->TabIndex = 31;
 			this->Category3_label->Text = L"label1";
 			// 
@@ -418,8 +438,9 @@ namespace Project5 {
 			this->panel2->Controls->Add(this->label4);
 			this->panel2->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->panel2->Location = System::Drawing::Point(0, 0);
+			this->panel2->Margin = System::Windows::Forms::Padding(4);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(983, 710);
+			this->panel2->Size = System::Drawing::Size(1311, 874);
 			this->panel2->TabIndex = 32;
 			this->panel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &ViewMovie::panel2_Paint);
 			// 
@@ -428,36 +449,38 @@ namespace Project5 {
 			this->panel6->Controls->Add(this->Overview);
 			this->panel6->Controls->Add(this->label10);
 			this->panel6->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->panel6->Location = System::Drawing::Point(0, 392);
+			this->panel6->Location = System::Drawing::Point(0, 632);
+			this->panel6->Margin = System::Windows::Forms::Padding(4);
 			this->panel6->Name = L"panel6";
-			this->panel6->Size = System::Drawing::Size(983, 318);
+			this->panel6->Size = System::Drawing::Size(1311, 242);
 			this->panel6->TabIndex = 33;
 			// 
 			// Overview
 			// 
-			this->Overview->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
+			this->Overview->BackColor = System::Drawing::Color::White;
 			this->Overview->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->Overview->Dock = System::Windows::Forms::DockStyle::Bottom;
 			this->Overview->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->Overview->ForeColor = System::Drawing::Color::White;
-			this->Overview->Location = System::Drawing::Point(3, 27);
+			this->Overview->ForeColor = System::Drawing::Color::Black;
+			this->Overview->Location = System::Drawing::Point(0, 33);
+			this->Overview->Margin = System::Windows::Forms::Padding(4);
 			this->Overview->Name = L"Overview";
-			this->Overview->Size = System::Drawing::Size(977, 130);
+			this->Overview->Size = System::Drawing::Size(1311, 209);
 			this->Overview->TabIndex = 34;
-			this->Overview->Text = L"";
+			this->Overview->Text = L"okokok";
 			// 
 			// ViewMovie
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(52)));
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"ViewMovie";
-			this->Size = System::Drawing::Size(1251, 710);
+			this->Size = System::Drawing::Size(1668, 874);
 			this->Load += gcnew System::EventHandler(this, &ViewMovie::ViewMovie_Load);
 			this->panel1->ResumeLayout(false);
 			this->panel4->ResumeLayout(false);
@@ -561,47 +584,53 @@ namespace Project5 {
 			try {
 				SqlConnection conx(DataBaseConnection::ConnectionString());
 				conx.Open();
-				String^ Query = "INSERT INTO SERIE(ID_API,TITLE,RATING,RELEASE_DATE,OVERVIEW,POSTER,BACKDROP,COUNTRY) VALUES(@ID_API,@TITLE,@RATING,@RELEASE_DATE,@OVERVIEW,@POSTER,@BACKDROP,@COUNTRY); ";
-				SqlCommand Command(Query, % conx);
-				Command.Parameters->AddWithValue("@TITLE", serie_->GetName());
-				Command.Parameters->AddWithValue("@ID_API", serie_->GetIdApi());
-				Command.Parameters->AddWithValue("@RATING", serie_->GetRating());
-				Command.Parameters->AddWithValue("@RELEASE_DATE", serie_->GetRealease_Date());
-				Command.Parameters->AddWithValue("@OVERVIEW", serie_->GetOverview());
-				Command.Parameters->AddWithValue("@COUNTRY", serie_->GetCountry());
+				if (DataBaseOperations::GetIdSerieByApi(serie_->GetIdApi()) == -1) {
 
-				MemoryStream^ ms;
-				try {
-					ms = gcnew MemoryStream();
-					serie_->GetPoster()->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
-					Command.Parameters->AddWithValue("@POSTER", ms->ToArray());
 
-					ms = gcnew MemoryStream();
-					serie_->GetBakcDrop()->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
-					Command.Parameters->AddWithValue("@BACKDROP", ms->ToArray());
+					String^ Query = "INSERT INTO SERIE(ID_API,TITLE,RATING,RELEASE_DATE,OVERVIEW,POSTER,BACKDROP,COUNTRY) VALUES(@ID_API,@TITLE,@RATING,@RELEASE_DATE,@OVERVIEW,@POSTER,@BACKDROP,@COUNTRY); ";
+					SqlCommand Command(Query, % conx);
+					Command.Parameters->AddWithValue("@TITLE", serie_->GetName());
+					Command.Parameters->AddWithValue("@ID_API", serie_->GetIdApi());
+					Command.Parameters->AddWithValue("@RATING", serie_->GetRating());
+					Command.Parameters->AddWithValue("@RELEASE_DATE", serie_->GetRealease_Date());
+					Command.Parameters->AddWithValue("@OVERVIEW", serie_->GetOverview());
+					Command.Parameters->AddWithValue("@COUNTRY", serie_->GetCountry());
+
+					MemoryStream^ ms;
+					try {
+						ms = gcnew MemoryStream();
+						serie_->GetPoster()->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+						Command.Parameters->AddWithValue("@POSTER", ms->ToArray());
+
+						ms = gcnew MemoryStream();
+						serie_->GetBakcDrop()->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+						Command.Parameters->AddWithValue("@BACKDROP", ms->ToArray());
+
+					}
+					catch (Exception^ ex) {
+						MessageBox::Show(ex->Message);
+					}
+					finally {
+						ms->Close();
+					}
+
+					Command.ExecuteNonQuery();
+
+					//
+					serie_->SetIdSerie(DataBaseOperations::LastInsertedSerie());
+
+					AddCategoryToSerie(serie_->GetIdApi());
 
 				}
-				catch (Exception^ ex) {
-					MessageBox::Show(ex->Message);
-				}
-				finally {
-					ms->Close();
+				else {
+					serie_->SetIdSerie(DataBaseOperations::GetIdSerieByApi(serie_->GetIdApi()));
 				}
 
-
-				Command.ExecuteNonQuery();
-
-				//
-				serie_->SetIdSerie(DataBaseOperations::LastInsertedSerie());
-
-				AddCategoryToSerie(serie_->GetIdApi());
 				//add to  Library_Serie
 				AddToWatchListSerie(serie_->GetIdSerie());
 
 				serie_->SetExist(true);
-
 				conx.Close();
-
 
 			}
 			catch (Exception^ ex) {
@@ -610,6 +639,7 @@ namespace Project5 {
 
 
 		}
+
 		void DisplayCategory_Serie_FromDataBase() {
 			try {
 				int i = 1;
@@ -651,13 +681,28 @@ namespace Project5 {
 
 				SqlConnection conx(DataBaseConnection::ConnectionString());
 				conx.Open();
-				String^ Query = "DELETE FROM SERIE where ID_API = @ID_API;";
+				String^ Query = "DELETE FROM Library_Serie where ID_SERIE = @ID_SERIE and ID_USER=@ID_USER;";
 				SqlCommand Command(Query, % conx);
-				Command.Parameters->AddWithValue("@ID_API", serie_->GetIdApi());
+				Command.Parameters->AddWithValue("@ID_SERIE", serie_->GetIdSerie());
+				Command.Parameters->AddWithValue("@ID_USER", Login::User->GetIdUser());
 				Command.ExecuteNonQuery();
-				conx.Close();
+				conx.Close(); 
 
 				serie_->SetExist(false);
+				
+				try {
+
+					SqlConnection conx(DataBaseConnection::ConnectionString());
+					conx.Open();
+					String^ Query = "DELETE FROM SERIE where ID_SERIE not in (SELECT ID_SERIE FROM Library_Serie) ;";
+					SqlCommand Command(Query, % conx); 
+					Command.ExecuteNonQuery();
+					conx.Close();
+
+				}
+				catch (Exception^ ex) {
+					MessageBox::Show(ex->Message);
+				}
 			}
 			catch (Exception^ ex) {
 				MessageBox::Show(ex->Message);
@@ -1021,7 +1066,7 @@ namespace Project5 {
 							break;
 						}
 
-					}
+					}//att nchof wa7d l9ta : ma3rrt : 
 				}
 			}
 		}
@@ -1032,8 +1077,9 @@ namespace Project5 {
 				String^ Query = "INSERT INTO Library_Movie(ID_MOVIE,ID_USER) VALUES(@ID_MOVIE,@ID_USER); ";
 				SqlCommand Command(Query, % conx);
 				Command.Parameters->AddWithValue("@ID_USER", Login::User->GetIdUser());
+				//njreb hna ???
 				Command.Parameters->AddWithValue("@ID_MOVIE", ID_MOVIE);
-
+				//non
 				Command.ExecuteNonQuery();
 
 				conx.Close();
@@ -1044,41 +1090,54 @@ namespace Project5 {
 			}
 
 		}
+
 		void AddToDataBase_Movie() {
 
-			try {
+		try {
+
 				SqlConnection conx(DataBaseConnection::ConnectionString());
 				conx.Open();
-				String^ Query = "INSERT INTO MOVIE(ID_API,TITLE,RATING,RELEASE_DATE,OVERVIEW,POSTER,BACKDROP) VALUES(@ID_API,@TITLE,@RATING,@RELEASE_DATE,@OVERVIEW,@POSTER,@BACKDROP); ";
-				SqlCommand Command(Query, % conx);
-				Command.Parameters->AddWithValue("@TITLE", movie_->GetTitle());
-				Command.Parameters->AddWithValue("@ID_API", movie_->GetIdApi());
-				Command.Parameters->AddWithValue("@RATING", movie_->GetRating());
-				Command.Parameters->AddWithValue("@RELEASE_DATE", movie_->GetRealease_Date());
-				Command.Parameters->AddWithValue("@OVERVIEW", movie_->GetOverview());
-				MemoryStream^ ms;
-				try {
-					ms = gcnew MemoryStream();
-					movie_->GetPoster()->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
-					Command.Parameters->AddWithValue("@POSTER", ms->ToArray());
+				//aaah oui i9der hna kayn chi blan  : 
+			 if (DataBaseOperations::GetIdMovieByApi(movie_->GetIdApi()) == -1) {
+ 
+					String^ Query = "INSERT INTO MOVIE(ID_API,TITLE,RATING,RELEASE_DATE,OVERVIEW,POSTER,BACKDROP) VALUES(@ID_API,@TITLE,@RATING,@RELEASE_DATE,@OVERVIEW,@POSTER,@BACKDROP); ";
+					SqlCommand Command(Query, % conx);
+					Command.Parameters->AddWithValue("@TITLE", movie_->GetTitle());
+					Command.Parameters->AddWithValue("@ID_API", movie_->GetIdApi());
+					Command.Parameters->AddWithValue("@RATING", movie_->GetRating());
+					Command.Parameters->AddWithValue("@RELEASE_DATE", movie_->GetRealease_Date());
+					Command.Parameters->AddWithValue("@OVERVIEW", movie_->GetOverview());
+					MemoryStream^ ms;
+					try {
+						ms = gcnew MemoryStream();
+						movie_->GetPoster()->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+						Command.Parameters->AddWithValue("@POSTER", ms->ToArray());
 
-					ms = gcnew MemoryStream();
-					movie_->GetBakcDrop()->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
-					Command.Parameters->AddWithValue("@BACKDROP", ms->ToArray());
+						ms = gcnew MemoryStream();
+						movie_->GetBakcDrop()->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+						Command.Parameters->AddWithValue("@BACKDROP", ms->ToArray());
+					}
+					finally {
+						ms->Close();
+					}
+					Command.ExecuteNonQuery();
+					//hna : ??ghaliban had last insert :ah ok  normalement ila makan walo  ,??? ach ghay3tik  ;
+					movie_->SetIdMovie(DataBaseOperations::LastInsertedMovie());
+					//i9der;: 
+					MessageBox::Show(Convert::ToString(DataBaseOperations::LastInsertedMovie()));
 
+					// add to Library_Movie
+					AddCategoryToMovie(movie_->GetIdApi());
+				  
 				}
-				finally {
-					ms->Close();
+				else {
+					movie_->SetIdMovie(DataBaseOperations::GetIdMovieByApi(movie_->GetIdApi()));
 				}
-				Command.ExecuteNonQuery();
-
-				movie_->SetIdMovie(DataBaseOperations::LastInsertedMovie());
-				// add to Library_Movie
-				AddCategoryToMovie(movie_->GetIdApi());
-				AddToWatchListMovie(movie_->GetIdMovie());
-
-				conx.Close();
+			 ///ouii else : 
 				movie_->SetExist(true);
+				AddToWatchListMovie(movie_->GetIdMovie());//hadii :
+
+				 conx.Close();
 
 			}
 			catch (Exception^ ex) {
@@ -1092,13 +1151,30 @@ namespace Project5 {
 
 				SqlConnection conx(DataBaseConnection::ConnectionString());
 				conx.Open();
-				String^ Query = "DELETE FROM MOVIE where ID_API = @ID_API;";
+				//had les parametres han7iydhom @à
+				String^ Query = "DELETE FROM Library_Movie where ID_MOVIE = " + movie_->GetIdMovie() + " and ID_USER = " + Login::User->GetIdUser();
+				MessageBox::Show(Query);
 				SqlCommand Command(Query, % conx);
-				Command.Parameters->AddWithValue("@ID_API", movie_->GetIdApi());
+				/*Command.Parameters->AddWithValue("@ID_MOVIE", movie_->GetIdMovie());
+				Command.Parameters->AddWithValue("@ID_USER", Login::User->GetIdUser());*/
 				Command.ExecuteNonQuery();
 				conx.Close();
 
 				movie_->SetExist(false);
+
+				try {
+
+					SqlConnection conx(DataBaseConnection::ConnectionString());
+					conx.Open();
+					String^ Query = "DELETE FROM SERIE where ID_SERIE not in (SELECT ID_SERIE FROM Library_Serie) ;";
+					SqlCommand Command(Query, % conx);
+					Command.ExecuteNonQuery();
+					conx.Close();
+
+				}
+				catch (Exception^ ex) {
+					MessageBox::Show(ex->Message);
+				}
 			}
 			catch (Exception^ ex) {
 				MessageBox::Show(ex->Message);
@@ -1198,12 +1274,15 @@ namespace Project5 {
 		///:::::::::://///:::::::::://////:::::::::://////::::::::::///
 
 
-
 	private: System::Void ViewMovie_Load(System::Object^ sender, System::EventArgs^ e) {
 
-		MessageBox::Show("hna");
 		if (movie_->GetTitle() != "") {
+			//saaat rah db khs normalement f load dyal discovery wach kadar liha setexsit : 
+			//hna ila messagitiha ghatkon false : makayn lach : 
+			//nsetti exist hna : 
+
 			if (movie_->GetExist()) {
+				panel1->Visible = false;
 				DisplayCategory_Movie_FromDataBase();
 				BtnLibrary_AddRemove->Text = "Remove from Library";
 				BtnLibrary_AddRemove->Image = Image::FromFile("icons\\remove.png");
@@ -1218,6 +1297,7 @@ namespace Project5 {
 			}
 		}
 		else if(serie_->GetName() != "") {
+			panel1->Visible = true;
 			if (serie_->GetExist()) { 
 				
 				LoadSeasonsFromApi();
@@ -1286,6 +1366,25 @@ namespace Project5 {
 		}
 	}
 private: System::Void BtnTrailer_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ ytbLink = "https://www.youtube.com/watch?v=";
+	if (movie_->GetTitle() != "")
+	{
+		String^ idApiMovie = Convert::ToString(movie_->GetIdApi());
+		String^ keyTrailer = l->getTrailer(msclr::interop::marshal_as<std::string>(idApiMovie));
+		if (keyTrailer != "")
+			System::Diagnostics::Process::Start(ytbLink + l->getTrailer(msclr::interop::marshal_as<std::string>(idApiMovie)));
+		else
+			MessageBox::Show("no available trailer for this movie :( ");
+	}
+	else
+	{
+		String^ idApiSerie = Convert::ToString(serie_->GetIdApi());
+		String^ keyTrailer = l->getTrailer(msclr::interop::marshal_as<std::string>(idApiSerie));
+		if (keyTrailer != "")
+			System::Diagnostics::Process::Start(ytbLink + l->getTrailer(msclr::interop::marshal_as<std::string>(idApiSerie)));
+		else
+			MessageBox::Show("no available trailer for this serie :(");
+	}
 }
 private: System::Void panel2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 }

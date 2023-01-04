@@ -27,13 +27,14 @@ namespace Project5 {
 		static int days = DateTime::Now.Day;
 		static int year = DateTime::Now.Year;
 		Panel^ content;
-		private: System::Windows::Forms::Button^ addSerie;
-		private: System::Windows::Forms::Button^ addMv;
-		private: System::Windows::Forms::Label^ dateForm;
-		private: System::Windows::Forms::FlowLayoutPanel^ moviesSec;
-		private: System::Windows::Forms::FlowLayoutPanel^ seriesSec;
-		private: System::Windows::Forms::Panel^ panel1;
-		private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Button^ addSerie;
+	private: System::Windows::Forms::Button^ addMv;
+	private: System::Windows::Forms::Label^ dateForm;
+	private: System::Windows::Forms::FlowLayoutPanel^ moviesSec;
+	private: System::Windows::Forms::FlowLayoutPanel^ seriesSec;
+	private: System::Windows::Forms::Panel^ panel1;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Button^ refreshBtn;
 
 	private: System::Windows::Forms::Label^ label1;
 
@@ -88,6 +89,7 @@ namespace Project5 {
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->refreshBtn = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -196,6 +198,7 @@ namespace Project5 {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(32)), static_cast<System::Int32>(static_cast<System::Byte>(29)),
 				static_cast<System::Int32>(static_cast<System::Byte>(30)));
+			this->panel1->Controls->Add(this->refreshBtn);
 			this->panel1->Controls->Add(this->label2);
 			this->panel1->Controls->Add(this->label1);
 			this->panel1->Controls->Add(this->seriesSec);
@@ -225,6 +228,19 @@ namespace Project5 {
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"SERIES";
 			// 
+			// refreshBtn
+			// 
+			this->refreshBtn->Anchor = System::Windows::Forms::AnchorStyles::Top;
+			this->refreshBtn->BackColor = System::Drawing::Color::Red;
+			this->refreshBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->refreshBtn->Location = System::Drawing::Point(561, 1);
+			this->refreshBtn->Name = L"refreshBtn";
+			this->refreshBtn->Size = System::Drawing::Size(75, 23);
+			this->refreshBtn->TabIndex = 4;
+			this->refreshBtn->Text = L"Refresh";
+			this->refreshBtn->UseVisualStyleBackColor = false;
+			this->refreshBtn->Click += gcnew System::EventHandler(this, &Calendar_uc::refreshBtn_Click);
+			// 
 			// Calendar_uc
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -250,7 +266,9 @@ namespace Project5 {
 	{
 		DateTime start = DateTime(year, month, 1);
 		int days = DateTime::DaysInMonth(year, month);
-		int daysOfWeek = Convert::ToInt32(start.DayOfWeek.ToString("d")) + 1;
+		int daysOfWeek = Convert::ToInt32(start.DayOfWeek.ToString("d"));
+		if (daysOfWeek == 0)
+			daysOfWeek = 7;
 		for (int i = 1;i < daysOfWeek;i++)
 		{
 			BlankUserControl^ bk = gcnew BlankUserControl();
@@ -271,17 +289,17 @@ namespace Project5 {
 		dateForm->Text = monthName + " " + year;
 	}
 	private: System::Void prevBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (month == 1)
+		month--;
+		if (month == 0)
 		{
-			month = 13;
+			month = 12;
 			year--;
 		}
-		month--;
 		//first day of month : 
 		this->calendarPan->Controls->Clear();
 		DateTime start = DateTime(year, month, 1);
 		int days = DateTime::DaysInMonth(year, month);
-		int daysOfWeek = Convert::ToInt32(start.DayOfWeek.ToString("d")) + 1;
+		int daysOfWeek = Convert::ToInt32(start.DayOfWeek.ToString("d"));
 		if (daysOfWeek == 0)
 			daysOfWeek = 7;
 		for (int i = 1;i < daysOfWeek;i++)
@@ -301,17 +319,17 @@ namespace Project5 {
 		dateForm->Text = monthName + " " + year;
 	}
 	private: System::Void nextBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (month == 12)
+		month++;
+		if (month == 13)
 		{
-			month = 0;
+			month = 1;
 			year++;
 		}
-		month++;
 		//first day of month : 
 		this->calendarPan->Controls->Clear();
 		DateTime start = DateTime(year, month, 1);
 		int days = DateTime::DaysInMonth(year, month);
-		int daysOfWeek = Convert::ToInt32(start.DayOfWeek.ToString("d")) + 1;
+		int daysOfWeek = Convert::ToInt32(start.DayOfWeek.ToString("d"));
 		if (daysOfWeek == 0)
 			daysOfWeek = 7;
 		for (int i = 1;i < daysOfWeek;i++)
@@ -332,8 +350,8 @@ namespace Project5 {
 	}
 	private: void retrieveDataMovies()
 	{
-		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-		String^ Query = "SELECT *FROM MOVIE ;";
+		SqlConnection conx(DataBaseConnection::ConnectionString());
+		String^ Query = "SELECT  MOVIE.ID_MOVIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP FROM library_movie join MOVIE on library_movie.id_movie = MOVIE.id_movie WHERE id_user = " + Login::User->GetIdUser();
 		SqlCommand Cmd(Query, % conx);
 		conx.Open();
 		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
@@ -370,10 +388,90 @@ namespace Project5 {
 		}
 		conx.Close();
 	}
+	private: int getIdPlanning()
+	{
+		SqlConnection conx(DataBaseConnection::ConnectionString());
+		String^ Query = "SELECT ID from PLANNING WHERE DATE =  '" + this->days + "-" + this->month + "-" + this->year + "'";
+		SqlCommand Cmd(Query, % conx);
+		conx.Open();
+		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
+		if (sqlReader->Read())
+			return Convert::ToInt32(sqlReader[0]->ToString());
+	}
+	private: void loadDataMovies()
+	{
+		SqlConnection conx(DataBaseConnection::ConnectionString());
+		String^ Query = "select MOVIE.ID_MOVIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from MOVIE join PLANNING_MOVIE on MOVIE.ID_MOVIE = PLANNING_MOVIE.ID_MOVIE join PLANNING on PLANNING_MOVIE.ID = PLANNING.ID where PLANNING.date = '" + this->days + "-" + this->month + "-" + this->year + "' and PLANNING.id_user = " + Login::User->GetIdUser();
+		SqlCommand Cmd(Query, % conx);
+		MessageBox::Show(Query);
+		conx.Open();
+		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
+		while (sqlReader->Read())
+		{
+			////creating an instance for every movie : 
+			Movie^ movie_ = gcnew Movie();
+			movie_->SetIdMovie(Convert::ToInt32(sqlReader["ID_MOVIE"]->ToString()));
+			movie_->SetIdApi(Convert::ToInt32(sqlReader["ID_API"]->ToString()));
+			movie_->SetTitle(sqlReader["TITLE"]->ToString());
+			movie_->SetOverview(sqlReader["OVERVIEW"]->ToString());
+			movie_->SetRealease_Date(Convert::ToDateTime(sqlReader["RELEASE_DATE"]->ToString()));
+			movie_->SetRating((float)Convert::ToDouble(sqlReader["Rating"]->ToString()));
+
+			//// Create a MemoryStream to hold the image data
+			MemoryStream^ ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
+			//// Load the image data into a Bitmap object
+			Bitmap^ image = gcnew Bitmap(ms);
+			movie_->SetPoster(image);
+
+			ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
+			// Load the image data into a Bitmap object
+			image = gcnew Bitmap(ms);
+			movie_->SetBakcDrop(image);
+			//creating a user control for it : 
+			PosterPlanning^ movie_userc = gcnew PosterPlanning(movie_, moviesSec, getIdPlanning());
+			MessageBox::Show("hna2");
+			moviesSec->Controls->Add(movie_userc);
+		}
+	}
+
+	private: void loadDataSeries()
+	{
+		SqlConnection conx(DataBaseConnection::ConnectionString());
+		String^ Query = "select SERIE.ID_SERIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from SERIE join PLANNING_SERIE on SERIE.ID_SERIE = PLANNING_SERIE.ID_SERIE join PLANNING on PLANNING_SERIE.ID = PLANNING.ID where PLANNING.date = '" + this->days + "-" + this->month + "-" + this->year + "' and planning_serie.id_user = " + Login::User->GetIdUser();
+		SqlCommand Cmd(Query, % conx);
+		conx.Open();
+		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
+		while (sqlReader->Read())
+		{
+			//creating an instance for every movie : 
+			Serie^ serie_ = gcnew Serie();
+			serie_->SetIdSerie((Convert::ToInt32(sqlReader["ID_SERIE"]->ToString())));
+			serie_->SetIdApi(Convert::ToInt32(sqlReader["ID_API"]->ToString()));
+			serie_->SetName(sqlReader["TITLE"]->ToString());
+			serie_->SetOverview(sqlReader["OVERVIEW"]->ToString());
+			serie_->SetRealease_Date(Convert::ToDateTime(sqlReader["RELEASE_DATE"]->ToString()));
+			serie_->SetRating((float)Convert::ToDouble(sqlReader["Rating"]->ToString()));
+
+			// Create a MemoryStream to hold the image data
+			MemoryStream^ ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
+			// Load the image data into a Bitmap object
+			Bitmap^ image = gcnew Bitmap(ms);
+			serie_->SetPoster(image);
+
+			ms = gcnew MemoryStream(sqlReader->GetSqlBinary(7).Value);
+			// Load the image data into a Bitmap object
+			image = gcnew Bitmap(ms);
+			serie_->SetBakcDrop(image);
+			//creating a user control for it : 
+			PosterPlanning^ serie_userc = gcnew PosterPlanning(serie_, seriesSec, getIdPlanning());
+			seriesSec->Controls->Add(serie_userc);
+		}
+	}
 	private: void retrieveTvShows()
 	{
-		String^ Query2 = "SELECT *FROM SERIE ;";
-		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+
+		String^ Query2 = "SELECT SERIE.ID_SERIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP FROM serie join library_serie on serie.id_serie = library_serie.id_serie where id_user = " + Login::User->GetIdUser();
+		SqlConnection conx(DataBaseConnection::ConnectionString());
 		conx.Open();
 		int index = 0;
 		SqlCommand Cmd2(Query2, % conx);
@@ -391,12 +489,12 @@ namespace Project5 {
 			serie_->SetRating((float)Convert::ToDouble(sqlReader2["Rating"]->ToString()));
 
 			// Create a MemoryStream to hold the image data
-			MemoryStream^ ms = gcnew MemoryStream(sqlReader2->GetSqlBinary(4).Value);
+			MemoryStream^ ms = gcnew MemoryStream(sqlReader2->GetSqlBinary(6).Value);
 			// Load the image data into a Bitmap object
 			Bitmap^ image = gcnew Bitmap(ms);
 			serie_->SetPoster(image);
 
-			ms = gcnew MemoryStream(sqlReader2->GetSqlBinary(5).Value);
+			ms = gcnew MemoryStream(sqlReader2->GetSqlBinary(7).Value);
 			// Load the image data into a Bitmap object
 			image = gcnew Bitmap(ms);
 			serie_->SetBakcDrop(image);
@@ -420,6 +518,13 @@ namespace Project5 {
 		prevBtn->Visible = false;
 		nextBtn->Visible = false;
 		retrieveTvShows();
+	}
+	private: System::Void refreshBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		/*this->moviesSec->Controls->Clear();
+		this->seriesSec->Controls->Clear();*/
+		MessageBox::Show("hna");
+		loadDataMovies();
+		loadDataSeries();
 	}
 	};
 }

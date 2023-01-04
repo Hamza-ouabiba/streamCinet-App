@@ -105,7 +105,7 @@ namespace Project5 {
 				static_cast<System::Byte>(0)));
 			this->days->Location = System::Drawing::Point(0, 0);
 			this->days->Name = L"days";
-			this->days->Size = System::Drawing::Size(194, 111);
+			this->days->Size = System::Drawing::Size(181, 111);
 			this->days->TabIndex = 0;
 			this->days->Text = L"1";
 			this->days->UseVisualStyleBackColor = false;
@@ -117,7 +117,7 @@ namespace Project5 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->Controls->Add(this->days);
 			this->Name = L"DaysUserControl";
-			this->Size = System::Drawing::Size(194, 111);
+			this->Size = System::Drawing::Size(181, 111);
 			this->Load += gcnew System::EventHandler(this, &DaysUserControl::DaysUserControl_Load);
 			this->ResumeLayout(false);
 
@@ -135,7 +135,7 @@ namespace Project5 {
 	private: void loadDataMovies()
 	{
 		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-		String^ Query = "select MOVIE.ID_MOVIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from MOVIE join PLANNING_MOVIE on MOVIE.ID_MOVIE = PLANNING_MOVIE.ID_MOVIE join PLANNING on PLANNING_MOVIE.ID = PLANNING.ID where PLANNING.date = '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "'";
+		String^ Query = "select MOVIE.ID_MOVIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from MOVIE join PLANNING_MOVIE on MOVIE.ID_MOVIE = PLANNING_MOVIE.ID_MOVIE join PLANNING on PLANNING_MOVIE.ID = PLANNING.ID where PLANNING.date = '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "' and planning_movie.id_user = " + Login::User->GetIdUser();
 		SqlCommand Cmd(Query, % conx);
 		conx.Open();
 		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
@@ -170,7 +170,7 @@ namespace Project5 {
 	private: void loadDataSeries()
 	{
 		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-		String^ Query = "select SERIE.ID_SERIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from SERIE join PLANNING_SERIE on SERIE.ID_SERIE = PLANNING_SERIE.ID_SERIE join PLANNING on PLANNING_SERIE.ID = PLANNING.ID where PLANNING.date = '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "'";
+		String^ Query = "select SERIE.ID_SERIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from SERIE join PLANNING_SERIE on SERIE.ID_SERIE = PLANNING_SERIE.ID_SERIE join PLANNING on PLANNING_SERIE.ID = PLANNING.ID where PLANNING.date = '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "' and PLANNING_serie.id_user = " + Login::User->GetIdUser();
 		SqlCommand Cmd(Query, % conx);
 		conx.Open();
 		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
@@ -234,9 +234,9 @@ namespace Project5 {
 		conx.Close();
 	}
 	private: System::Void days_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->panelMovies->Controls->Clear();
+		this->panelSeries->Controls->Clear();
 		if (checkValidityDate()){
-				this->panelMovies->Controls->Clear();
-				this->panelSeries->Controls->Clear();
 				loadDataMovies();
 				loadDataSeries();
 		}

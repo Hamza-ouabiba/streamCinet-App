@@ -146,36 +146,35 @@ namespace Project5 {
 	}
 	private: void loadDataMovies()
 	{
-			SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-			String^ Query = "select MOVIE.ID_MOVIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from MOVIE join PLANNING_MOVIE on MOVIE.ID_MOVIE = PLANNING_MOVIE.ID_MOVIE join PLANNING on PLANNING_MOVIE.ID = PLANNING.ID where PLANNING.date = '" + this->day + "-" + this->month + "-" + this->year + "'";
-			SqlCommand Cmd(Query, % conx);
-			conx.Open();
-			SqlDataReader^ sqlReader = Cmd.ExecuteReader();
-			while (sqlReader->Read())
-			{
-				////creating an instance for every movie : 
-				Movie^ movie_ = gcnew Movie();
-				movie_->SetIdMovie(Convert::ToInt32(sqlReader["ID_MOVIE"]->ToString()));
-				movie_->SetIdApi(Convert::ToInt32(sqlReader["ID_API"]->ToString()));
-				movie_->SetTitle(sqlReader["TITLE"]->ToString());
-				movie_->SetOverview(sqlReader["OVERVIEW"]->ToString());
-				movie_->SetRealease_Date(Convert::ToDateTime(sqlReader["RELEASE_DATE"]->ToString()));
-				movie_->SetRating((float)Convert::ToDouble(sqlReader["Rating"]->ToString()));
+		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+		String^ Query = "select MOVIE.ID_MOVIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from MOVIE join PLANNING_MOVIE on MOVIE.ID_MOVIE = PLANNING_MOVIE.ID_MOVIE join PLANNING on PLANNING_MOVIE.ID = PLANNING.ID where PLANNING.date = '" + this->day + "-" + this->month + "-" + this->year + "' and planning_movie.id_user = " + Login::User->GetIdUser();
+		SqlCommand Cmd(Query, % conx);
+		conx.Open();
+		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
+		while (sqlReader->Read())
+		{
+			////creating an instance for every movie : 
+			Movie^ movie_ = gcnew Movie();
+			movie_->SetIdMovie(Convert::ToInt32(sqlReader["ID_MOVIE"]->ToString()));
+			movie_->SetIdApi(Convert::ToInt32(sqlReader["ID_API"]->ToString()));
+			movie_->SetTitle(sqlReader["TITLE"]->ToString());
+			movie_->SetOverview(sqlReader["OVERVIEW"]->ToString());
+			movie_->SetRealease_Date(Convert::ToDateTime(sqlReader["RELEASE_DATE"]->ToString()));
+			movie_->SetRating((float)Convert::ToDouble(sqlReader["Rating"]->ToString()));
 
-				//// Create a MemoryStream to hold the image data
-				MemoryStream^ ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
-				//// Load the image data into a Bitmap object
-				Bitmap^ image = gcnew Bitmap(ms);
-				movie_->SetPoster(image);
+			//// Create a MemoryStream to hold the image data
+			MemoryStream^ ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
+			//// Load the image data into a Bitmap object
+			Bitmap^ image = gcnew Bitmap(ms);
+			movie_->SetPoster(image);
 
-				ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
-				// Load the image data into a Bitmap object
-				image = gcnew Bitmap(ms);
-				movie_->SetBakcDrop(image);
-				//creating a user control for it : 
-				PosterPlanning^ movie_userc = gcnew PosterPlanning(movie_, this->panelContent, getIdPlanning());
-				panelMovies->Controls->Add(movie_userc);
-
+			ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
+			// Load the image data into a Bitmap object
+			image = gcnew Bitmap(ms);
+			movie_->SetBakcDrop(image);
+			//creating a user control for it : 
+			PosterPlanning^ movie_userc = gcnew PosterPlanning(movie_, this->panelContent, getIdPlanning());
+			panelMovies->Controls->Add(movie_userc);
 		}
 	}
 	private: int getIdPlanning()
@@ -190,53 +189,53 @@ namespace Project5 {
 	}
 	private: void loadDataSeries()
 	{
-			SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-			String^ Query = "select SERIE.ID_SERIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from SERIE join PLANNING_SERIE on SERIE.ID_SERIE = PLANNING_SERIE.ID_SERIE join PLANNING on PLANNING_SERIE.ID = PLANNING.ID where PLANNING.date = '" + this->day + "-" + this->month + "-" + this->year + "'";
-			SqlCommand Cmd(Query, % conx);
-			conx.Open();
-			SqlDataReader^ sqlReader = Cmd.ExecuteReader();
-			while (sqlReader->Read())
-			{
-				//creating an instance for every movie : 
-				Serie^ serie_ = gcnew Serie();
-				serie_->SetIdSerie((Convert::ToInt32(sqlReader["ID_SERIE"]->ToString())));
-				serie_->SetIdApi(Convert::ToInt32(sqlReader["ID_API"]->ToString()));
-				serie_->SetName(sqlReader["TITLE"]->ToString());
-				serie_->SetOverview(sqlReader["OVERVIEW"]->ToString());
-				serie_->SetRealease_Date(Convert::ToDateTime(sqlReader["RELEASE_DATE"]->ToString()));
-				serie_->SetRating((float)Convert::ToDouble(sqlReader["Rating"]->ToString()));
+		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+		String^ Query = "select SERIE.ID_SERIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from SERIE join PLANNING_SERIE on SERIE.ID_SERIE = PLANNING_SERIE.ID_SERIE join PLANNING on PLANNING_SERIE.ID = PLANNING.ID where PLANNING.date = '" + this->day + "-" + this->month + "-" + this->year + "' and PLANNING_SERIE.ID_USER = " + Login::User->GetIdUser();
+		SqlCommand Cmd(Query, % conx);
+		conx.Open();
+		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
+		while (sqlReader->Read())
+		{
+			//creating an instance for every movie : 
+			Serie^ serie_ = gcnew Serie();
+			serie_->SetIdSerie((Convert::ToInt32(sqlReader["ID_SERIE"]->ToString())));
+			serie_->SetIdApi(Convert::ToInt32(sqlReader["ID_API"]->ToString()));
+			serie_->SetName(sqlReader["TITLE"]->ToString());
+			serie_->SetOverview(sqlReader["OVERVIEW"]->ToString());
+			serie_->SetRealease_Date(Convert::ToDateTime(sqlReader["RELEASE_DATE"]->ToString()));
+			serie_->SetRating((float)Convert::ToDouble(sqlReader["Rating"]->ToString()));
 
-				// Create a MemoryStream to hold the image data
-				MemoryStream^ ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
-				// Load the image data into a Bitmap object
-				Bitmap^ image = gcnew Bitmap(ms);
-				serie_->SetPoster(image);
+			// Create a MemoryStream to hold the image data
+			MemoryStream^ ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
+			// Load the image data into a Bitmap object
+			Bitmap^ image = gcnew Bitmap(ms);
+			serie_->SetPoster(image);
 
-				ms = gcnew MemoryStream(sqlReader->GetSqlBinary(7).Value);
-				// Load the image data into a Bitmap object
-				image = gcnew Bitmap(ms);
-				serie_->SetBakcDrop(image);
-				//creating a user control for it : 
-				PosterPlanning^ serie_userc = gcnew PosterPlanning(serie_, this->panelContent, getIdPlanning());
-				panelSeries->Controls->Add(serie_userc);
+			ms = gcnew MemoryStream(sqlReader->GetSqlBinary(7).Value);
+			// Load the image data into a Bitmap object
+			image = gcnew Bitmap(ms);
+			serie_->SetBakcDrop(image);
+			//creating a user control for it : 
+			PosterPlanning^ serie_userc = gcnew PosterPlanning(serie_, this->panelContent, getIdPlanning());
+			panelSeries->Controls->Add(serie_userc);
 		}
 	}
 #pragma endregion
 	private: void addDataBaseMovie()
 	{
-			SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-			String^ Query = "insert into planning_movie(ID,ID_MOVIE) values(" + idPlanning + "," + movie_->GetIdMovie() + ")";
-			SqlCommand Cmd(Query, % conx);
-			conx.Open();
-			SqlDataReader^ sqlReader = Cmd.ExecuteReader();
+		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+		String^ Query = "insert into planning_movie(ID,ID_MOVIE,id_user) values(" + idPlanning + "," + movie_->GetIdMovie() + "," + Login::User->GetIdUser() + ")";
+		SqlCommand Cmd(Query, % conx);
+		conx.Open();
+		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
 	}
 	private: void addDataBaseSerie()
 	{
-			SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-			String^ Query = "insert into planning_serie(ID,ID_serie) values(" + idPlanning + "," + serie_->GetIdSerie() + ")";
-			SqlCommand Cmd(Query, % conx);
-			conx.Open();
-			SqlDataReader^ sqlReader = Cmd.ExecuteReader();
+		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+		String^ Query = "insert into planning_serie(ID,ID_serie,id_user) values(" + idPlanning + "," + serie_->GetIdSerie() + "," + Login::User->GetIdUser() + ")";
+		SqlCommand Cmd(Query, % conx);
+		conx.Open();
+		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (movie_->GetTitle() != "")
@@ -266,7 +265,7 @@ namespace Project5 {
 					panelSeries->Controls->Clear();
 					addDataBaseSerie();
 					loadDataSeries();
-					
+
 					//MessageBox::Show("serie in : " + serie_->GetIdSerie());
 					MessageBox::Show("serie set to watch in specified date" + day + month + year);
 				}

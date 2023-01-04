@@ -27,7 +27,6 @@ namespace Project5 {
 	private: System::Windows::Forms::ComboBox^ comboCat;
 		   Panel^ panel_;
 	public:
-		
 		DiscoverUser(void)
 		{
 			InitializeComponent();
@@ -38,7 +37,6 @@ namespace Project5 {
 		DiscoverUser(Panel^ panelContent)
 		{
 			InitializeComponent();
-	
 			this->panel_ = panelContent;
 		}
 	protected:
@@ -54,24 +52,14 @@ namespace Project5 {
 		}
 	private: System::Windows::Forms::FlowLayoutPanel^ discoverMovie;
 	protected:
-
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Button^ ratedBtn;
-
 	private: System::Windows::Forms::Button^ popularBtn;
-
-
-
 	private: System::Windows::Forms::Button^ seriesBtn;
 	private: System::Windows::Forms::Button^ moviesBtn;
 	private: System::Windows::Forms::Button^ searchBtn;
 	private: System::Windows::Forms::TextBox^ search;
-
-
-
-
 	protected:
-
 	private:
 		/// <summary>
 		/// Variable nécessaire au concepteur.
@@ -103,12 +91,12 @@ namespace Project5 {
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->discoverMovie->AutoScroll = true;
-			this->discoverMovie->Location = System::Drawing::Point(194, 37);
-			this->discoverMovie->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->discoverMovie->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(18)), static_cast<System::Int32>(static_cast<System::Byte>(17)),
+				static_cast<System::Int32>(static_cast<System::Byte>(17)));
+			this->discoverMovie->Location = System::Drawing::Point(258, 46);
 			this->discoverMovie->Name = L"discoverMovie";
-			this->discoverMovie->Size = System::Drawing::Size(782, 596);
+			this->discoverMovie->Size = System::Drawing::Size(1042, 734);
 			this->discoverMovie->TabIndex = 0;
-			this->discoverMovie->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &DiscoverUser::discoverMovie_Paint);
 			// 
 			// comboCat
 			// 
@@ -116,34 +104,32 @@ namespace Project5 {
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->comboCat->FormattingEnabled = true;
-			this->comboCat->Location = System::Drawing::Point(194, 6);
-			this->comboCat->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->comboCat->Location = System::Drawing::Point(258, 8);
 			this->comboCat->Name = L"comboCat";
-			this->comboCat->Size = System::Drawing::Size(345, 21);
+			this->comboCat->Size = System::Drawing::Size(459, 24);
 			this->comboCat->TabIndex = 12;
 			this->comboCat->SelectedIndexChanged += gcnew System::EventHandler(this, &DiscoverUser::comboCat_SelectedIndexChanged);
 			// 
 			// panel1
 			// 
-			this->panel1->BackColor = System::Drawing::Color::Black;
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(18)), static_cast<System::Int32>(static_cast<System::Byte>(17)),
+				static_cast<System::Int32>(static_cast<System::Byte>(17)));
 			this->panel1->Controls->Add(this->ratedBtn);
 			this->panel1->Controls->Add(this->popularBtn);
 			this->panel1->Controls->Add(this->seriesBtn);
 			this->panel1->Controls->Add(this->moviesBtn);
-			this->panel1->Location = System::Drawing::Point(0, 28);
-			this->panel1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->panel1->Location = System::Drawing::Point(0, 34);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(194, 772);
+			this->panel1->Size = System::Drawing::Size(258, 950);
 			this->panel1->TabIndex = 5;
 			// 
 			// ratedBtn
 			// 
 			this->ratedBtn->BackColor = System::Drawing::Color::CornflowerBlue;
 			this->ratedBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->ratedBtn->Location = System::Drawing::Point(17, 183);
-			this->ratedBtn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->ratedBtn->Location = System::Drawing::Point(23, 225);
 			this->ratedBtn->Name = L"ratedBtn";
-			this->ratedBtn->Size = System::Drawing::Size(160, 38);
+			this->ratedBtn->Size = System::Drawing::Size(214, 47);
 			this->ratedBtn->TabIndex = 4;
 			this->ratedBtn->Text = L"Top Rated";
 			this->ratedBtn->UseVisualStyleBackColor = false;
@@ -153,10 +139,9 @@ namespace Project5 {
 			// 
 			this->popularBtn->BackColor = System::Drawing::Color::CornflowerBlue;
 			this->popularBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->popularBtn->Location = System::Drawing::Point(17, 129);
-			this->popularBtn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->popularBtn->Location = System::Drawing::Point(23, 159);
 			this->popularBtn->Name = L"popularBtn";
-			this->popularBtn->Size = System::Drawing::Size(160, 38);
+			this->popularBtn->Size = System::Drawing::Size(214, 47);
 			this->popularBtn->TabIndex = 3;
 			this->popularBtn->Text = L"Popular";
 			this->popularBtn->UseVisualStyleBackColor = false;
@@ -166,10 +151,9 @@ namespace Project5 {
 			// 
 			this->seriesBtn->BackColor = System::Drawing::Color::CornflowerBlue;
 			this->seriesBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->seriesBtn->Location = System::Drawing::Point(17, 74);
-			this->seriesBtn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->seriesBtn->Location = System::Drawing::Point(23, 91);
 			this->seriesBtn->Name = L"seriesBtn";
-			this->seriesBtn->Size = System::Drawing::Size(160, 38);
+			this->seriesBtn->Size = System::Drawing::Size(214, 47);
 			this->seriesBtn->TabIndex = 1;
 			this->seriesBtn->Text = L"Series";
 			this->seriesBtn->UseVisualStyleBackColor = false;
@@ -179,10 +163,9 @@ namespace Project5 {
 			// 
 			this->moviesBtn->BackColor = System::Drawing::Color::CornflowerBlue;
 			this->moviesBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->moviesBtn->Location = System::Drawing::Point(17, 15);
-			this->moviesBtn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->moviesBtn->Location = System::Drawing::Point(23, 18);
 			this->moviesBtn->Name = L"moviesBtn";
-			this->moviesBtn->Size = System::Drawing::Size(160, 38);
+			this->moviesBtn->Size = System::Drawing::Size(214, 47);
 			this->moviesBtn->TabIndex = 0;
 			this->moviesBtn->Text = L"Movies";
 			this->moviesBtn->UseVisualStyleBackColor = false;
@@ -193,10 +176,9 @@ namespace Project5 {
 			this->searchBtn->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->searchBtn->BackColor = System::Drawing::Color::Coral;
 			this->searchBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->searchBtn->Location = System::Drawing::Point(922, 6);
-			this->searchBtn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->searchBtn->Location = System::Drawing::Point(1229, 8);
 			this->searchBtn->Name = L"searchBtn";
-			this->searchBtn->Size = System::Drawing::Size(52, 26);
+			this->searchBtn->Size = System::Drawing::Size(69, 32);
 			this->searchBtn->TabIndex = 11;
 			this->searchBtn->Text = L"Search";
 			this->searchBtn->UseVisualStyleBackColor = false;
@@ -205,26 +187,25 @@ namespace Project5 {
 			// search
 			// 
 			this->search->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->search->Location = System::Drawing::Point(580, 8);
-			this->search->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->search->Location = System::Drawing::Point(773, 10);
 			this->search->Multiline = true;
 			this->search->Name = L"search";
-			this->search->Size = System::Drawing::Size(338, 25);
+			this->search->Size = System::Drawing::Size(450, 30);
 			this->search->TabIndex = 10;
 			// 
 			// DiscoverUser
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::Color::Black;
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(18)), static_cast<System::Int32>(static_cast<System::Byte>(17)),
+				static_cast<System::Int32>(static_cast<System::Byte>(17)));
 			this->Controls->Add(this->comboCat);
 			this->Controls->Add(this->discoverMovie);
 			this->Controls->Add(this->searchBtn);
 			this->Controls->Add(this->search);
 			this->Controls->Add(this->panel1);
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"DiscoverUser";
-			this->Size = System::Drawing::Size(988, 642);
+			this->Size = System::Drawing::Size(1317, 790);
 			this->Load += gcnew System::EventHandler(this, &DiscoverUser::DiscoverUser_Load);
 			this->panel1->ResumeLayout(false);
 			this->ResumeLayout(false);
@@ -269,10 +250,12 @@ namespace Project5 {
 					mv->SetIdApi(id);
 
 					string title = dataMovies["results"][i][type].toStyledString();
+					title.erase(remove(title.begin(), title.end(), '"'), title.end());
 					mv->SetTitle(msclr::interop::marshal_as<System::String^>(title));
 
 					string overview = dataMovies["results"][i]["overview"].toStyledString();
 					mv->SetOverview(msclr::interop::marshal_as<System::String^>(overview));
+
 
 					mv->SetRealease_Date(Convert::ToDateTime(msclr::interop::marshal_as<System::String^>(date)));
 
@@ -281,11 +264,13 @@ namespace Project5 {
 					date = "";
 					System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(data);
 
+					mv->SetRating(dataMovies["results"][i]["vote_average"].asFloat());
+
 					mv->SetPoster(l->DownloadImage(unmanaged));
 					data = backDrop_ + dataMovies["results"][i]["backdrop_path"].toStyledString();
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					unmanaged = msclr::interop::marshal_as<System::String^>(data);
-					mv->SetExist(DataBaseOperations::Exist_Movie(mv->GetIdApi()));
+					mv->SetExist(DataBaseOperations::Exist_Movie(mv->GetIdApi(),Login::User->GetIdUser()));
 					mv->SetBakcDrop(l->DownloadImage(unmanaged));
 					//adding a user Control related to this movie : 
 					PosterImage^ movie_uc = gcnew PosterImage(i, mv, panel_);
@@ -327,9 +312,12 @@ namespace Project5 {
 					System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(data);
 
 					string country = dataMovies["results"][i]["origin_country"].toStyledString();
+					country.erase(remove(country.begin(), country.end(), '"'), country.end());
 					serie->SetCountry(msclr::interop::marshal_as<System::String^>(country));
-					serie->SetExist(DataBaseOperations::Exist_Serie(serie->GetIdApi()));
+					serie->SetExist(DataBaseOperations::Exist_Serie(serie->GetIdApi(),Login::User->GetIdUser()));
 					serie->SetPoster(l->DownloadImage(unmanaged));
+
+					serie->SetRating(dataMovies["results"][i]["vote_average"].asFloat());
 
 					data = backDrop_ + dataMovies["results"][i]["backdrop_path"].toStyledString();
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
@@ -479,8 +467,8 @@ namespace Project5 {
 							data = backDrop_ + dataMovies["results"][i]["backdrop_path"].toStyledString();
 							data.erase(remove(data.begin(), data.end(), '"'), data.end());
 							unmanaged = msclr::interop::marshal_as<System::String^>(data);
-
-							mv->SetExist(DataBaseOperations::Exist_Movie(mv->GetIdApi()));
+							//oui nmessagiha nchof : 
+							mv->SetExist(DataBaseOperations::Exist_Movie(mv->GetIdApi(),Login::User->GetIdUser()));
 							mv->SetBakcDrop(l->DownloadImage(unmanaged));
 							//adding a user Control related to this movie : 
 							PosterImage^ movie_uc = gcnew PosterImage(i, mv, this->panel_);
@@ -532,7 +520,8 @@ namespace Project5 {
 						data = backDrop_ + dataMovies["results"][i]["backdrop_path"].toStyledString();
 						data.erase(remove(data.begin(), data.end(), '"'), data.end());
 						unmanaged = msclr::interop::marshal_as<System::String^>(data);
-						serie->SetExist(DataBaseOperations::Exist_Serie(serie->GetIdApi()));
+
+						serie->SetExist(DataBaseOperations::Exist_Serie(serie->GetIdApi(),Login::User->GetIdUser()));
 						serie->SetBakcDrop(l->imageDown(unmanaged));
 						//adding a user Control related to this movie : 
 						PosterImage^ serie_uc = gcnew PosterImage(i, serie, this->panel_);
@@ -542,7 +531,6 @@ namespace Project5 {
 				}
 			}
 		}
-
 	}
 	private: System::Void comboCat_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 		String^ categorie = this->comboCat->Items[comboCat->SelectedIndex]->ToString();
@@ -581,7 +569,5 @@ namespace Project5 {
 		loadComboBoxCategories(urlCategories);
 		locationUser = "toprated";
 	}
-	private: System::Void discoverMovie_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-	}
-};
+	};
 }

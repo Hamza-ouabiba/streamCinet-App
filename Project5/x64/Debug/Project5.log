@@ -1,225 +1,125 @@
-﻿  DashBoard.cpp
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\Mani.h(80,53): warning C4390: ';': empty controlled statement found; is this the intent?
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\Mani.h(84,29): warning C4101: 'ex': unreferenced local variable
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\Mani.h(149,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+﻿  BlankUserControl.cpp
+  Calendar_uc.cpp
+  DashBoard.cpp
+D:\GithubJs\streamCinet-App\Project5\Mani.h(80,53): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+D:\GithubJs\streamCinet-App\Project5\Mani.h(84,29): warning C4101: 'ex' : variable locale non référencée
+D:\GithubJs\streamCinet-App\Project5\Mani.h(149,13): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+  DataBaseConnection.cpp
+  DataBaseOperations.cpp
+  DaysUserControl.cpp
   DiscoverUser.cpp
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\Mani.h(80,53): warning C4390: ';': empty controlled statement found; is this the intent?
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\Mani.h(84,29): warning C4101: 'ex': unreferenced local variable
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\Mani.h(149,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\GithubJs\streamCinet-App\Project5\Mani.h(80,53): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+D:\GithubJs\streamCinet-App\Project5\Mani.h(84,29): warning C4101: 'ex' : variable locale non référencée
+D:\GithubJs\streamCinet-App\Project5\Mani.h(149,13): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
   Library.cpp
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12152,71): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12152,71): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12167,5): error C2371: 'IDataObject': redefinition; different basic types
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(590,31): message : see declaration of 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12342,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12342,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12355,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12355,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12368,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12368,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12416,47): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12416,47): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12436,43): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12436,43): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12547,55): error C3699: '*': cannot use this indirection on type 'IMessageFilter'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12547,55): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12597,5): error C2371: 'IMessageFilter': redefinition; different basic types
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(604,34): message : see declaration of 'IMessageFilter'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15087,23): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15087,23): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15095,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15095,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15100,23): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15100,23): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15108,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15108,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15113,23): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15113,23): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15122,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15122,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(423,70): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(423,70): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(1230,70): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(1230,70): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(1236,72): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(1236,72): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(3468,71): error C3699: '*': cannot use this indirection on type 'IDropTarget'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(3468,71): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(3508,5): error C2371: 'IDropTarget': redefinition; different basic types
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(184,31): message : see declaration of 'IDropTarget'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(91,81): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(91,81): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(98,9): error C2371: 'IServiceProvider': redefinition; different basic types
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(44,36): message : see declaration of 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(115,47): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(115,47): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(239,28): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(239,28): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(249,38): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(249,38): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\urlmon.h(6870,70): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\urlmon.h(6870,70): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\urlmon.h(6872,66): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\urlmon.h(6872,66): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\ole2.h(210,100): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\ole2.h(210,100): message : compiler replacing '*' with '^' to continue parsing
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(9,30): error C2039: 'Http': is not a member of 'System::Net'
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(9,34): error C2871: 'Http': a namespace with this name does not exist
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(438,4): error C2065: 'HttpClient': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(438,16): error C2065: 'client': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(438,31): error C2061: syntax error: identifier 'HttpClient'
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(439,4): error C2065: 'HttpResponseMessage': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(439,25): error C2065: 'response': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(439,36): error C2065: 'client': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(441,25): error C2065: 'response': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(447,8): error C2065: 'response': undeclared identifier
+  Login.cpp
+  Mani.cpp
+D:\GithubJs\streamCinet-App\Project5\Mani.h(80,53): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+D:\GithubJs\streamCinet-App\Project5\Mani.h(84,29): warning C4101: 'ex' : variable locale non référencée
+D:\GithubJs\streamCinet-App\Project5\Mani.h(149,13): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+  jsoncpp.cpp
+  Movie.cpp
   MyForm.cpp
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(9,30): error C2039: 'Http': is not a member of 'System::Net'
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(9,34): error C2871: 'Http': a namespace with this name does not exist
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(438,4): error C2065: 'HttpClient': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(438,16): error C2065: 'client': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(438,31): error C2061: syntax error: identifier 'HttpClient'
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(439,4): error C2065: 'HttpResponseMessage': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(439,25): error C2065: 'response': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(439,36): error C2065: 'client': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(441,25): error C2065: 'response': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(447,8): error C2065: 'response': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\Mani.h(80,53): warning C4390: ';': empty controlled statement found; is this the intent?
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\Mani.h(149,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\GithubJs\streamCinet-App\Project5\Mani.h(80,53): warning C4390: ';' : une instruction contrôlée a été trouvée vide ; est-ce ce que vous souhaitiez ?
+D:\GithubJs\streamCinet-App\Project5\Mani.h(84,29): warning C4101: 'ex' : variable locale non référencée
+D:\GithubJs\streamCinet-App\Project5\Mani.h(149,13): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
   PosterImage.cpp
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12152,71): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12152,71): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12167,5): error C2371: 'IDataObject': redefinition; different basic types
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(590,31): message : see declaration of 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12342,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12342,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12355,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12355,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12368,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12368,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12416,47): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12416,47): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12436,43): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12436,43): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12547,55): error C3699: '*': cannot use this indirection on type 'IMessageFilter'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12547,55): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12597,5): error C2371: 'IMessageFilter': redefinition; different basic types
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(604,34): message : see declaration of 'IMessageFilter'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15087,23): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15087,23): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15095,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15095,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15100,23): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15100,23): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15108,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15108,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15113,23): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15113,23): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15122,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15122,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(423,70): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(423,70): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(1230,70): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(1230,70): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(1236,72): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(1236,72): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(3468,71): error C3699: '*': cannot use this indirection on type 'IDropTarget'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(3468,71): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(3508,5): error C2371: 'IDropTarget': redefinition; different basic types
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(184,31): message : see declaration of 'IDropTarget'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(91,81): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(91,81): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(98,9): error C2371: 'IServiceProvider': redefinition; different basic types
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(44,36): message : see declaration of 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(115,47): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(115,47): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(239,28): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(239,28): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(249,38): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(249,38): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\urlmon.h(6870,70): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\urlmon.h(6870,70): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\urlmon.h(6872,66): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\urlmon.h(6872,66): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\ole2.h(210,100): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\ole2.h(210,100): message : compiler replacing '*' with '^' to continue parsing
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(9,30): error C2039: 'Http': is not a member of 'System::Net'
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(9,34): error C2871: 'Http': a namespace with this name does not exist
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(438,4): error C2065: 'HttpClient': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(438,16): error C2065: 'client': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(438,31): error C2061: syntax error: identifier 'HttpClient'
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(439,4): error C2065: 'HttpResponseMessage': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(439,25): error C2065: 'response': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(439,36): error C2065: 'client': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(441,25): error C2065: 'response': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(447,8): error C2065: 'response': undeclared identifier
+  PosterPlanning.cpp
+  Serie.cpp
+  SignUp.cpp
+  UserClass.cpp
   ViewMovie.cpp
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12152,71): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12152,71): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12167,5): error C2371: 'IDataObject': redefinition; different basic types
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(590,31): message : see declaration of 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12342,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12342,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12355,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12355,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12368,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12368,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12416,47): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12416,47): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12436,43): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12436,43): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12547,55): error C3699: '*': cannot use this indirection on type 'IMessageFilter'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12547,55): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(12597,5): error C2371: 'IMessageFilter': redefinition; different basic types
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(604,34): message : see declaration of 'IMessageFilter'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15087,23): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15087,23): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15095,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15095,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15100,23): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15100,23): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15108,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15108,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15113,23): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15113,23): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15122,33): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\objidl.h(15122,33): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(423,70): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(423,70): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(1230,70): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(1230,70): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(1236,72): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(1236,72): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(3468,71): error C3699: '*': cannot use this indirection on type 'IDropTarget'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(3468,71): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(3508,5): error C2371: 'IDropTarget': redefinition; different basic types
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\oleidl.h(184,31): message : see declaration of 'IDropTarget'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(91,81): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(91,81): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(98,9): error C2371: 'IServiceProvider': redefinition; different basic types
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(44,36): message : see declaration of 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(115,47): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(115,47): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(239,28): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(239,28): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(249,38): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\servprov.h(249,38): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\urlmon.h(6870,70): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\urlmon.h(6870,70): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\urlmon.h(6872,66): error C3699: '*': cannot use this indirection on type 'IServiceProvider'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\urlmon.h(6872,66): message : compiler replacing '*' with '^' to continue parsing
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\ole2.h(210,100): error C3699: '*': cannot use this indirection on type 'IDataObject'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\ole2.h(210,100): message : compiler replacing '*' with '^' to continue parsing
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(9,30): error C2039: 'Http': is not a member of 'System::Net'
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(9,34): error C2871: 'Http': a namespace with this name does not exist
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(438,4): error C2065: 'HttpClient': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(438,16): error C2065: 'client': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(438,31): error C2061: syntax error: identifier 'HttpClient'
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(439,4): error C2065: 'HttpResponseMessage': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(439,25): error C2065: 'response': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(439,36): error C2065: 'client': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(441,25): error C2065: 'response': undeclared identifier
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\ViewMovie.h(447,8): error C2065: 'response': undeclared identifier
-  Generating Code...
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\Mani.h(146): warning C4715: 'Mani::imageDown': not all control paths return a value
-C:\Users\MT\Desktop\streamCinet-App-master\Project5\Mani.h(146): warning C4715: 'Mani::imageDown': not all control paths return a value
+  WatchForm.cpp
+  Génération de code en cours...
+D:\GithubJs\streamCinet-App\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\Mani.h(146): warning C4715: 'Mani::imageDown' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\WatchLater_UC.h(190): warning C4715: 'Project5::WatchLater_UC::getIdPlanning' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\DaysUserControl.h(134): warning C4715: 'Project5::DaysUserControl::getIdPlanning' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\Mani.h(146): warning C4715: 'Mani::imageDown' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\Mani.h(146): warning C4715: 'Mani::imageDown' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\WatchLater_UC.h(190): warning C4715: 'Project5::WatchLater_UC::getIdPlanning' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\DaysUserControl.h(134): warning C4715: 'Project5::DaysUserControl::getIdPlanning' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\Mani.h(146): warning C4715: 'Mani::imageDown' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\WatchLater_UC.h(190): warning C4715: 'Project5::WatchLater_UC::getIdPlanning' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\DaysUserControl.h(134): warning C4715: 'Project5::DaysUserControl::getIdPlanning' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi' : les chemins de contrôle ne retournent pas tous une valeur
+  Compilation en cours...
+  WatchLater_UC.cpp
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  Génération de code en cours...
+D:\GithubJs\streamCinet-App\Project5\WatchLater_UC.h(190): warning C4715: 'Project5::WatchLater_UC::getIdPlanning' : les chemins de contrôle ne retournent pas tous une valeur
+D:\GithubJs\streamCinet-App\Project5\ViewMovie.h(862): warning C4715: 'Project5::ViewMovie::Overview_Episode_FromApi' : les chemins de contrôle ne retournent pas tous une valeur
+  BlankUserControl.obj : module MSIL détecté ; liens incrémentiels désactivés pour MSIL ; édition de liens complète en cours
+MyForm.obj : error LNK2020: jeton non résolu (0A000550) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+Mani.obj : error LNK2020: jeton non résolu (0A0004F0) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+DiscoverUser.obj : error LNK2020: jeton non résolu (0A00052A) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+DashBoard.obj : error LNK2020: jeton non résolu (0A000520) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+MyForm.obj : error LNK2020: jeton non résolu (0A000557) "extern "C" void __cdecl curl_easy_cleanup(void *)" (?curl_easy_cleanup@@$$J0YAXPEAX@Z)
+Mani.obj : error LNK2028: jeton non résolu (0A0004F7) "extern "C" void __cdecl curl_easy_cleanup(void *)" (?curl_easy_cleanup@@$$J0YAXPEAX@Z) référencé dans la fonction "public: class Json::Value __clrcall Mani::getInformations(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?getInformations@Mani@@$$FQE$AAM?AVValue@Json@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+DiscoverUser.obj : error LNK2028: jeton non résolu (0A000531) "extern "C" void __cdecl curl_easy_cleanup(void *)" (?curl_easy_cleanup@@$$J0YAXPEAX@Z) référencé dans la fonction "public: class Json::Value __clrcall Mani::getInformations(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?getInformations@Mani@@$$FQE$AAM?AVValue@Json@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+DashBoard.obj : error LNK2028: jeton non résolu (0A000527) "extern "C" void __cdecl curl_easy_cleanup(void *)" (?curl_easy_cleanup@@$$J0YAXPEAX@Z) référencé dans la fonction "public: class Json::Value __clrcall Mani::getInformations(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?getInformations@Mani@@$$FQE$AAM?AVValue@Json@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+MyForm.obj : error LNK2020: jeton non résolu (0A000559) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+Mani.obj : error LNK2020: jeton non résolu (0A0004F9) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+DiscoverUser.obj : error LNK2020: jeton non résolu (0A000533) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+DashBoard.obj : error LNK2020: jeton non résolu (0A000529) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+MyForm.obj : error LNK2020: jeton non résolu (0A00058E) "extern "C" enum CURLcode __cdecl curl_easy_getinfo(void *,enum CURLINFO,...)" (?curl_easy_getinfo@@$$J0YA?AW4CURLcode@@PEAXW4CURLINFO@@ZZ)
+Mani.obj : error LNK2028: jeton non résolu (0A00052C) "extern "C" enum CURLcode __cdecl curl_easy_getinfo(void *,enum CURLINFO,...)" (?curl_easy_getinfo@@$$J0YA?AW4CURLcode@@PEAXW4CURLINFO@@ZZ) référencé dans la fonction "[T2M] class Json::Value * * __cdecl std::_Unfancy<class Json::Value *>(class Json::Value * *)" (__t2m@??$_Unfancy@PEAVValue@Json@@@std@@YAPEAPEAVValue@Json@@PEAPEAV12@@Z)
+DiscoverUser.obj : error LNK2020: jeton non résolu (0A000566) "extern "C" enum CURLcode __cdecl curl_easy_getinfo(void *,enum CURLINFO,...)" (?curl_easy_getinfo@@$$J0YA?AW4CURLcode@@PEAXW4CURLINFO@@ZZ)
+DashBoard.obj : error LNK2020: jeton non résolu (0A00055C) "extern "C" enum CURLcode __cdecl curl_easy_getinfo(void *,enum CURLINFO,...)" (?curl_easy_getinfo@@$$J0YA?AW4CURLcode@@PEAXW4CURLINFO@@ZZ)
+MyForm.obj : error LNK2020: jeton non résolu (0A00059C) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+Mani.obj : error LNK2020: jeton non résolu (0A00053A) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+DiscoverUser.obj : error LNK2020: jeton non résolu (0A000574) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+DashBoard.obj : error LNK2020: jeton non résolu (0A00056A) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+MyForm.obj : error LNK2020: jeton non résolu (0A0005EA) "extern "C" void * __cdecl curl_easy_init(void)" (?curl_easy_init@@$$J0YAPEAXXZ)
+Mani.obj : error LNK2020: jeton non résolu (0A000585) "extern "C" void * __cdecl curl_easy_init(void)" (?curl_easy_init@@$$J0YAPEAXXZ)
+DiscoverUser.obj : error LNK2028: jeton non résolu (0A0005C0) "extern "C" void * __cdecl curl_easy_init(void)" (?curl_easy_init@@$$J0YAPEAXXZ) référencé dans la fonction "private: void __clrcall Project5::ViewMovie::dataGridView1_DoubleClick(class System::Object ^,class System::EventArgs ^)" (?dataGridView1_DoubleClick@ViewMovie@Project5@@$$FAE$AAMXPE$AAVObject@System@@PE$AAVEventArgs@4@@Z)
+DashBoard.obj : error LNK2028: jeton non résolu (0A0005B6) "extern "C" void * __cdecl curl_easy_init(void)" (?curl_easy_init@@$$J0YAPEAXXZ) référencé dans la fonction "public: class Json::Value __clrcall Mani::getInformations(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?getInformations@Mani@@$$FQE$AAM?AVValue@Json@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+MyForm.obj : error LNK2020: jeton non résolu (0A00062E) "extern "C" enum CURLcode __cdecl curl_easy_getinfo(void *,enum CURLINFO,...)" (?curl_easy_getinfo@@$$J0YA?AW4CURLcode@@PEAXW4CURLINFO@@ZZ)
+Mani.obj : error LNK2028: jeton non résolu (0A0005C9) "extern "C" enum CURLcode __cdecl curl_easy_getinfo(void *,enum CURLINFO,...)" (?curl_easy_getinfo@@$$J0YA?AW4CURLcode@@PEAXW4CURLINFO@@ZZ) référencé dans la fonction "[T2M] class Json::Value * * __cdecl std::_Unfancy<class Json::Value *>(class Json::Value * *)" (__t2m@??$_Unfancy@PEAVValue@Json@@@std@@YAPEAPEAVValue@Json@@PEAPEAV12@@Z)
+DiscoverUser.obj : error LNK2020: jeton non résolu (0A000604) "extern "C" enum CURLcode __cdecl curl_easy_getinfo(void *,enum CURLINFO,...)" (?curl_easy_getinfo@@$$J0YA?AW4CURLcode@@PEAXW4CURLINFO@@ZZ)
+DashBoard.obj : error LNK2020: jeton non résolu (0A0005FA) "extern "C" enum CURLcode __cdecl curl_easy_getinfo(void *,enum CURLINFO,...)" (?curl_easy_getinfo@@$$J0YA?AW4CURLcode@@PEAXW4CURLINFO@@ZZ)
+MyForm.obj : error LNK2028: jeton non résolu (0A000635) "extern "C" enum CURLcode __cdecl curl_easy_perform(void *)" (?curl_easy_perform@@$$J0YA?AW4CURLcode@@PEAX@Z) référencé dans la fonction "public: class Json::Value __clrcall Mani::getInformations(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?getInformations@Mani@@$$FQE$AAM?AVValue@Json@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Mani.obj : error LNK2020: jeton non résolu (0A0005D0) "extern "C" enum CURLcode __cdecl curl_easy_perform(void *)" (?curl_easy_perform@@$$J0YA?AW4CURLcode@@PEAX@Z)
+DiscoverUser.obj : error LNK2020: jeton non résolu (0A00060B) "extern "C" enum CURLcode __cdecl curl_easy_perform(void *)" (?curl_easy_perform@@$$J0YA?AW4CURLcode@@PEAX@Z)
+DashBoard.obj : error LNK2028: jeton non résolu (0A000601) "extern "C" enum CURLcode __cdecl curl_easy_perform(void *)" (?curl_easy_perform@@$$J0YA?AW4CURLcode@@PEAX@Z) référencé dans la fonction "public: class Json::Value __clrcall Mani::getInformations(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?getInformations@Mani@@$$FQE$AAM?AVValue@Json@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+MyForm.obj : error LNK2020: jeton non résolu (0A000644) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+Mani.obj : error LNK2020: jeton non résolu (0A0005DF) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+DiscoverUser.obj : error LNK2020: jeton non résolu (0A00061A) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+DashBoard.obj : error LNK2020: jeton non résolu (0A000610) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+MyForm.obj : error LNK2020: jeton non résolu (0A00065A) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+Mani.obj : error LNK2020: jeton non résolu (0A0005F5) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+DiscoverUser.obj : error LNK2020: jeton non résolu (0A000630) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+DashBoard.obj : error LNK2020: jeton non résolu (0A000626) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+MyForm.obj : error LNK2020: jeton non résolu (0A0007FF) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+Mani.obj : error LNK2020: jeton non résolu (0A0006CB) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+DiscoverUser.obj : error LNK2020: jeton non résolu (0A0007AD) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+DashBoard.obj : error LNK2020: jeton non résolu (0A0007A2) "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+DashBoard.obj : error LNK2019: symbole externe non résolu "extern "C" void * __cdecl curl_easy_init(void)" (?curl_easy_init@@$$J0YAPEAXXZ) référencé dans la fonction "public: class Json::Value __clrcall Mani::getInformations(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?getInformations@Mani@@$$FQE$AAM?AVValue@Json@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+DiscoverUser.obj : error LNK2001: symbole externe non résolu "extern "C" void * __cdecl curl_easy_init(void)" (?curl_easy_init@@$$J0YAPEAXXZ)
+Mani.obj : error LNK2001: symbole externe non résolu "extern "C" void * __cdecl curl_easy_init(void)" (?curl_easy_init@@$$J0YAPEAXXZ)
+MyForm.obj : error LNK2001: symbole externe non résolu "extern "C" void * __cdecl curl_easy_init(void)" (?curl_easy_init@@$$J0YAPEAXXZ)
+DashBoard.obj : error LNK2001: symbole externe non résolu "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+DiscoverUser.obj : error LNK2001: symbole externe non résolu "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+Mani.obj : error LNK2001: symbole externe non résolu "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+MyForm.obj : error LNK2001: symbole externe non résolu "extern "C" enum CURLcode __cdecl curl_easy_setopt(void *,enum CURLoption,...)" (?curl_easy_setopt@@$$J0YA?AW4CURLcode@@PEAXW4CURLoption@@ZZ)
+DashBoard.obj : error LNK2019: symbole externe non résolu "extern "C" enum CURLcode __cdecl curl_easy_perform(void *)" (?curl_easy_perform@@$$J0YA?AW4CURLcode@@PEAX@Z) référencé dans la fonction "public: class Json::Value __clrcall Mani::getInformations(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?getInformations@Mani@@$$FQE$AAM?AVValue@Json@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+DiscoverUser.obj : error LNK2001: symbole externe non résolu "extern "C" enum CURLcode __cdecl curl_easy_perform(void *)" (?curl_easy_perform@@$$J0YA?AW4CURLcode@@PEAX@Z)
+Mani.obj : error LNK2001: symbole externe non résolu "extern "C" enum CURLcode __cdecl curl_easy_perform(void *)" (?curl_easy_perform@@$$J0YA?AW4CURLcode@@PEAX@Z)
+MyForm.obj : error LNK2001: symbole externe non résolu "extern "C" enum CURLcode __cdecl curl_easy_perform(void *)" (?curl_easy_perform@@$$J0YA?AW4CURLcode@@PEAX@Z)
+DashBoard.obj : error LNK2001: symbole externe non résolu "extern "C" enum CURLcode __cdecl curl_easy_getinfo(void *,enum CURLINFO,...)" (?curl_easy_getinfo@@$$J0YA?AW4CURLcode@@PEAXW4CURLINFO@@ZZ)
+DiscoverUser.obj : error LNK2001: symbole externe non résolu "extern "C" enum CURLcode __cdecl curl_easy_getinfo(void *,enum CURLINFO,...)" (?curl_easy_getinfo@@$$J0YA?AW4CURLcode@@PEAXW4CURLINFO@@ZZ)
+Mani.obj : error LNK2001: symbole externe non résolu "extern "C" enum CURLcode __cdecl curl_easy_getinfo(void *,enum CURLINFO,...)" (?curl_easy_getinfo@@$$J0YA?AW4CURLcode@@PEAXW4CURLINFO@@ZZ)
+MyForm.obj : error LNK2001: symbole externe non résolu "extern "C" enum CURLcode __cdecl curl_easy_getinfo(void *,enum CURLINFO,...)" (?curl_easy_getinfo@@$$J0YA?AW4CURLcode@@PEAXW4CURLINFO@@ZZ)
+DashBoard.obj : error LNK2019: symbole externe non résolu "extern "C" void __cdecl curl_easy_cleanup(void *)" (?curl_easy_cleanup@@$$J0YAXPEAX@Z) référencé dans la fonction "public: class Json::Value __clrcall Mani::getInformations(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?getInformations@Mani@@$$FQE$AAM?AVValue@Json@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+DiscoverUser.obj : error LNK2001: symbole externe non résolu "extern "C" void __cdecl curl_easy_cleanup(void *)" (?curl_easy_cleanup@@$$J0YAXPEAX@Z)
+Mani.obj : error LNK2001: symbole externe non résolu "extern "C" void __cdecl curl_easy_cleanup(void *)" (?curl_easy_cleanup@@$$J0YAXPEAX@Z)
+MyForm.obj : error LNK2001: symbole externe non résolu "extern "C" void __cdecl curl_easy_cleanup(void *)" (?curl_easy_cleanup@@$$J0YAXPEAX@Z)
+C:\curl-7.70.0\builds\libcurl-vc-x86-release-static-ipv6-sspi-winssl\lib\libcurl_a.lib : warning LNK4272: type d'ordinateur bibliothèque 'x86' en conflit avec le type d'ordinateur cible 'x64'
+D:\GithubJs\streamCinet-App\x64\Debug\Project5.exe : fatal error LNK1120: 49 externes non résolus

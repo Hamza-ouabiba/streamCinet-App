@@ -251,29 +251,40 @@ namespace Project5 {
 			ShowWindow(console, SW_HIDE);
 		}
 
-		DashBoard^ menu_ = gcnew DashBoard(this->panelContent);
-		this->panelContent->Controls->Clear();
-		menu_->Dock = DockStyle::Fill;
-		this->panelContent->Controls->Add(menu_);
-	}
-	private: System::Void moviesBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void discoverBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-
+		if (Login::User)
+		{
+			DashBoard^ menu_ = gcnew DashBoard(this->panelContent);
+			this->panelContent->Controls->Clear();
+			menu_->Dock = DockStyle::Fill;
+			this->panelContent->Controls->Add(menu_);
+		}
+		else
+		{
+			Login^ form = gcnew Login();
+			form->Show();
+		}
 	}
 	private: System::Void discoverBtn_Click_1(System::Object^ sender, System::EventArgs^ e) {
-		high_resolution_clock::time_point start = high_resolution_clock::now();
-		DiscoverUser^ du = gcnew DiscoverUser(this->panelContent);
-		this->panelContent->Controls->Clear();
-		du->Dock = DockStyle::Fill;
-		this->panelContent->Controls->Add(du);
-		// Stop the timer
-		high_resolution_clock::time_point end = high_resolution_clock::now();
+		if (Login::User)
+		{
+			high_resolution_clock::time_point start = high_resolution_clock::now();
+			DiscoverUser^ du = gcnew DiscoverUser(this->panelContent);
+			this->panelContent->Controls->Clear();
+			du->Dock = DockStyle::Fill;
+			this->panelContent->Controls->Add(du);
+			// Stop the timer
+			high_resolution_clock::time_point end = high_resolution_clock::now();
 
-		// Calculate the elapsed time
-		duration<double> elapsedTime = duration_cast<duration<double>>(end - start);
-		// Print the elapsed time
-		MessageBox::Show(elapsedTime.count() + " seconds");
+			// Calculate the elapsed time
+			duration<double> elapsedTime = duration_cast<duration<double>>(end - start);
+			// Print the elapsed time
+			MessageBox::Show(elapsedTime.count() + " seconds");
+		}
+		else
+		{
+			Login^ form = gcnew Login();
+			form->Show();
+		}
 	}
 	private: System::Void menuBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		MyForm_Load(sender, e);

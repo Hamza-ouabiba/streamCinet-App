@@ -78,11 +78,55 @@ private:
 		}
 	}
 public:
+	/// 
+	static int GetIdByQuery(String^ Query) {
+		try {
 
-	static bool Exist_Movie(int id_Api) {
-		String^ Query = "select TITLE from MOVIE where ID_API = @ID_API";
-		return ExistInDataBase(id_Api, Query);
+			SqlConnection conx(DataBaseConnection::ConnectionString());
+			conx.Open();
+			SqlCommand Command(Query, % conx);
+
+			int id = -1;
+			SqlDataReader^ reader = Command.ExecuteReader();
+			while (reader->Read())
+			{
+				id = Convert::ToInt32(reader[0]->ToString());
+			}
+			return id;
+			conx.Close();
+		}
+		catch (Exception^ ex) {
+			return false;
+			MessageBox::Show(ex->Message);
+
+		}
 	}
+public:
+	/// 
+	static int GetIdSerieByApi(int ID_API) {
+
+		String^ Query = "select ID_SERIE from SERIE where ID_API = " + ID_API;
+		return GetIdByQuery(Query);
+	}
+	/// 
+	static int GetIdMovieByApi(int ID_API) {///lah
+
+		String^ Query = "select ID_MOVIE from MOVIE where ID_API = " + ID_API;
+		return GetIdByQuery(Query);
+	}
+
+	///
+	static bool Exist_Serie(int id_Api , int ID_USER) {
+
+        String^ Query3 = "Select ID_SERIE from Library_Serie where ID_USER = " + ID_USER;
+        String^ Query = "select TITLE from SERIE where ID_API = @ID_API and ID_SERIE = any(" + Query3 + ")";
+        return ExistInDataBase(id_Api, Query);
+    }
+    static bool Exist_Movie(int id_Api, int ID_USER) {
+        String^ Query3 = "Select ID_MOVIE from Library_Movie where ID_USER = " + ID_USER;
+        String^ Query = "select TITLE from MOVIE where ID_API = @ID_API and ID_MOVIE = any(" + Query3 + ")";
+        return ExistInDataBase(id_Api, Query);
+    }
 	static int LastInsertedMovie() {
 		int id = -1;
 		try {
@@ -131,10 +175,7 @@ public:
 
 	////////////////////////// Serie ////////////////////////////////:::::::
 			// Search Serie :
-	static bool Exist_Serie(int id_Api) {
-		String^ Query = "select TITLE from SERIE where ID_API = @ID_API";
-		return ExistInDataBase(id_Api, Query);
-	}
+	
 
 	static int LastInsertedSerie() {
 		int id = -1;

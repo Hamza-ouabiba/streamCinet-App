@@ -33,7 +33,6 @@ public:
 		this->Poster = MV->Poster;
 		this->BakcDrop = MV->BakcDrop;
 
-		this->Exist = DataBaseOperations::Exist_Movie(this->id_Api);
 	}
 	Movie(int id_Movie, int id_Api, String^ title, String^ Overview, float Rating, DateTime Realease_Date, Image^ Poster, Image^ BakcDrop)
 	{
@@ -46,7 +45,6 @@ public:
 		this->Poster = Poster;
 		this->BakcDrop = BakcDrop;
 
-		this->Exist = DataBaseOperations::Exist_Movie(this->id_Api);
 	}
 	int GetIdMovie() {
 		return this->id_Movie;
@@ -84,7 +82,6 @@ public:
 	}
 	void SetIdApi(int id) {
 		this->id_Api = id;
-		this->Exist = DataBaseOperations::Exist_Movie(this->id_Api);
 	}
 	void SetRating(float rating) {
 		this->Rating = rating;

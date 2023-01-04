@@ -9,7 +9,7 @@ using namespace System::Collections;
 using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
-		
+
 namespace Project5 {
 
 	/// <summary>
@@ -24,7 +24,7 @@ namespace Project5 {
 		int idPlanning;
 	private: System::Windows::Forms::Button^ button1;
 	public:
-		PosterPlanning(Movie^ mv, Panel^ control,int id)
+		PosterPlanning(Movie^ mv, Panel^ control, int id)
 		{
 			InitializeComponent();
 			movie_ = mv;
@@ -38,7 +38,7 @@ namespace Project5 {
 			//TODO: ajoutez ici le code du constructeur
 			//
 		}
-		PosterPlanning(Serie^ serie, Panel^ control,int id)
+		PosterPlanning(Serie^ serie, Panel^ control, int id)
 		{
 			InitializeComponent();
 			serie_ = serie;
@@ -117,8 +117,8 @@ namespace Project5 {
 	private: void deletePlanningMovie()
 	{
 		MessageBox::Show("id of planning is : " + this->idPlanning + " and id_movie is : " + this->movie_->GetIdMovie());
-		String^ Query2 = "DELETE FROM planning_movie WHERE id = " + this->idPlanning + " " + "and ID_MOVIE = " + this->movie_->GetIdMovie();
 		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+		String^ Query2 = "DELETE FROM planning_movie WHERE id = " + this->idPlanning + " " + "and ID_MOVIE = " + this->movie_->GetIdMovie() + "and id_user = " + Login::User->GetIdUser();
 		conx.Open();
 		int index = 0;
 		SqlCommand Cmd2(Query2, % conx);
@@ -126,7 +126,7 @@ namespace Project5 {
 	}
 	private: void deletePlanningSerie()
 	{
-		String^ Query2 = "DELETE FROM planning_serie WHERE id = " + this->idPlanning + " " + "and ID_SERIE = " + this->serie_->GetIdSerie();
+		String^ Query2 = "DELETE FROM planning_serie WHERE id = " + this->idPlanning + " " + "and ID_SERIE = " + this->serie_->GetIdSerie() + "and id_user = " + Login::User->GetIdUser();
 		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
 		conx.Open();
 		int index = 0;
@@ -136,7 +136,7 @@ namespace Project5 {
 	private: System::Void PosterPlanning_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		
+
 		/*this->control->Controls->Clear();
 		if (movie_->GetTitle() != "")
 		{
@@ -152,18 +152,26 @@ namespace Project5 {
 			this->control->Controls->Add(vs);
 		}*/
 	}
-	
+	//nn sara7a ma39ltch 
 	private: System::Void button1_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 		if (movie_->GetTitle() != "")
 		{
-			MessageBox::Show("deleting movie");
-			deletePlanningMovie();
+			DialogResult result = MessageBox::Show("Are you sure you want to delete this movie ?", "Confirmation", MessageBoxButtons::YesNo);
+			if (result == DialogResult::Yes)
+			{
+				MessageBox::Show("deleting movie");
+				deletePlanningMovie();
+			}
 		}
 		else
 		{
-			MessageBox::Show("deleting serie : ");
-			deletePlanningSerie();
+			DialogResult result = MessageBox::Show("Are you sure you want to delete this serie ?", "Confirmation", MessageBoxButtons::YesNo);
+			if (result == DialogResult::Yes)
+			{
+				MessageBox::Show("deleting serie : ");
+				deletePlanningSerie();
+			}
 		}
 	}
-};
+	};
 }

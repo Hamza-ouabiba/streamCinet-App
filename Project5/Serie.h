@@ -37,7 +37,6 @@ public:
 		this->Poster = Serie->Poster;
 		this->BakcDrop = Serie->BakcDrop;
 
-		this->Exist = DataBaseOperations::Exist_Serie(this->id_Api);
 	}
 	Serie(int id_Serie, int id_Api, String^ Name, String^ Overview, String^ Country, float Rating, DateTime Realease_Date, Image^ Poster, Image^ BakcDrop)
 	{
@@ -51,7 +50,6 @@ public:
 		this->Poster = Poster;
 		this->BakcDrop = BakcDrop;
 
-		this->Exist = DataBaseOperations::Exist_Serie(this->id_Api);
 	}
 	int GetIdSerie() {
 		return this->id_Serie;
@@ -93,7 +91,6 @@ public:
 	}
 	void SetIdApi(int id) {
 		this->id_Api = id;
-		this->Exist = DataBaseOperations::Exist_Serie(this->id_Api);
 	}
 	void SetRating(float rating) {
 		this->Rating = rating;

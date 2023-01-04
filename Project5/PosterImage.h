@@ -108,7 +108,6 @@ namespace Project5 {
 			this->Name = L"PosterImage";
 			this->Size = System::Drawing::Size(267, 357);
 			this->ResumeLayout(false);
-
 		}
 #pragma endregion
 		private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
