@@ -1,8 +1,10 @@
 #pragma once
-#include <string>
+#include <string> 
+#include "DataBaseOperations.h"
 using namespace::std;
 using namespace System;
 using namespace Drawing;
+
 
 public ref class Movie
 {
@@ -15,17 +17,24 @@ private :
 	DateTime Realease_Date;
 	Image^ Poster;
 	Image^ BakcDrop;
-	bool existData;
+	bool Exist;
 public: 
 	Movie()
 	{
-		this->id_Movie = 0;
-		this->id_Api = 0;
-		this->Rating = 0.0;
-		this->title = "";
-		this->Overview = "";
 	}
-	/*Movie(int id_Movie, int id_Api, String^ title, String^ Overview, float Rating, DateTime Realease_Date, Image^ Poster, Image^ BakcDrop)
+	Movie(Movie^ MV) {
+
+		this->id_Movie = MV->id_Movie;
+		this->id_Api = MV->id_Api;
+		this->title = MV->title;
+		this->Overview = MV->Overview;
+		this->Rating = MV->Rating;
+		this->Realease_Date = MV->Realease_Date;
+		this->Poster = MV->Poster;
+		this->BakcDrop = MV->BakcDrop;
+
+	}
+	Movie(int id_Movie, int id_Api, String^ title, String^ Overview, float Rating, DateTime Realease_Date, Image^ Poster, Image^ BakcDrop)
 	{
 		this->id_Movie = id_Movie;
 		this->id_Api = id_Api;
@@ -35,8 +44,8 @@ public:
 		this->Realease_Date = Realease_Date;
 		this->Poster = Poster;
 		this->BakcDrop = BakcDrop;
-		this->existData = 0;
-	}*/
+
+	}
 	int GetIdMovie() {
 		return this->id_Movie;
 	}
@@ -48,7 +57,7 @@ public:
 	}
 	bool GetExist()
 	{
-		return this->existData;
+		return this->Exist;
 	}
 	String^ GetTitle() {
 		return this->title;
@@ -94,7 +103,7 @@ public:
 	}
 	void SetExist(bool value)
 	{
-		this->existData = value;
+		this->Exist = value;
 	}
 };
 

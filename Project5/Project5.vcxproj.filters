@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Fichiers de ressources">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="ManipulateData">
       <UniqueIdentifier>{bbf81335-4129-4e70-b599-900d4f687365}</UniqueIdentifier>
     </Filter>
@@ -22,20 +18,24 @@
     <Filter Include="interface">
       <UniqueIdentifier>{1720924b-c382-4961-8d73-0e158d28c997}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library">
-      <UniqueIdentifier>{63160960-672e-4b28-9452-abde1d46a2eb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Discover">
       <UniqueIdentifier>{ab381155-dec8-4d35-870d-2725664460c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="NewFilter1">
-      <UniqueIdentifier>{172f939b-f777-4e82-a8af-7aa7c6f7f417}</UniqueIdentifier>
     </Filter>
     <Filter Include="Calendar">
       <UniqueIdentifier>{cea7affc-d147-4d23-89a6-53ed98a82dc0}</UniqueIdentifier>
     </Filter>
     <Filter Include="WatchLater">
       <UniqueIdentifier>{13e9e489-2979-4559-9b90-96bb334a55d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="My_Library">
+      <UniqueIdentifier>{059cc649-5b03-48de-b04e-0196dc80fef5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User">
+      <UniqueIdentifier>{86b934ef-43e8-4456-9860-03764c718034}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -52,12 +52,6 @@
       <Filter>interface</Filter>
     </ClCompile>
     <ClCompile Include="PosterImage.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewMovie.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Library.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="DiscoverUser.cpp">
@@ -87,8 +81,26 @@
     <ClCompile Include="PosterPlanning.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="DataBaseConnection.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Library.cpp">
+      <Filter>My_Library</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewMovie.cpp">
+      <Filter>My_Library</Filter>
+    </ClCompile>
     <ClCompile Include="WatchLater_UC.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="UserClass.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="Login.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="SignUp.cpp">
+      <Filter>User</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,21 +128,6 @@
     <ClInclude Include="PosterImage.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="ViewMovie.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Library.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Movie.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Serie.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="DataBaseOperations.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Calendar_uc.h">
       <Filter>Calendar</Filter>
     </ClInclude>
@@ -146,18 +143,45 @@
     <ClInclude Include="PosterPlanning.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Library.h">
+      <Filter>My_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewMovie.h">
+      <Filter>My_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Movie.h">
+      <Filter>My_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Serie.h">
+      <Filter>My_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="DataBaseConnection.h">
+      <Filter>My_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="DataBaseOperations.h">
+      <Filter>My_Library</Filter>
+    </ClInclude>
     <ClInclude Include="WatchLater_UC.h">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="UserClass.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="Login.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="SignUp.h">
+      <Filter>User</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
-      <Filter>Fichiers de ressources</Filter>
+      <Filter>Fichiers d%27en-tête\Fichiers de ressources</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Ressource.resx">
-      <Filter>Fichiers de ressources</Filter>
+      <Filter>Fichiers d%27en-tête\Fichiers de ressources</Filter>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

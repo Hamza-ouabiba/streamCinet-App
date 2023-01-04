@@ -1,0 +1,29 @@
+trend movies of the week : 
+https://api.themoviedb.org/3/trending/movie/week?api_key=10f96818301b77e61d73d48aa20d81f9&page=1
+Popular movies: 
+https://api.themoviedb.org/3/movie/popular?api_key=10f96818301b77e61d73d48aa20d81f9&page=3
+
+
+https://developers.themoviedb.org/3/movies/get-popular-movies
+
+get movies by search : 
+https://api.themoviedb.org/3/search/movie?api_key=10f96818301b77e61d73d48aa20d81f9&query=a&page={numberPage}
+https://api.themoviedb.org/3/search/movie?api_key=10f96818301b77e61d73d48aa20d81f9&query=a&page=
+
+get movie trailer 
+https://api.themoviedb.org/3/movie/13/videos?api_key=10f96818301b77e61d73d48aa20d81f9
+
+video : d6A38n0W4u4
+https://www.youtube.com/watch?v=XtMThy8QKqU&t=1670s&ab_channel=CleverProgrammer
+postman : 
+https://web.postman.co/workspace/My-Workspace~5109ff56-3eba-407d-8e00-ba5b7184d8e1/request/24968352-02a3c2c7-b76f-4051-aaf3-0682fe2d1f65
+
+		Class_Movie^ Movie;
+		MyUserControl(Class_Movie^ MV)
+		{
+			InitializeComponent();
+			Movie = MV;
+			this->button1->BackgroundImage = Movie->GetPoster();
+			this->button1->Text = Movie->GetTitle();
+			
+			 

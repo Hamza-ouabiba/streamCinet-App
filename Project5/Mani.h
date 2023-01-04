@@ -29,9 +29,9 @@ using namespace System::IO;
 
 public ref class Mani
 {
-public: 
-	Mani(){}
-	Json::Value getInformations( string url_ , string type)
+public:
+	Mani() {}
+	Json::Value getInformations(string url_)
 	{
 		try
 		{
@@ -83,7 +83,7 @@ public:
 		}
 		catch (System::Exception^ ex)
 		{
-			
+
 		}
 	}
 	System::Drawing::Image^ DownloadImage(System::String^ _URL)
@@ -132,7 +132,7 @@ public:
 		HttpResponseMessage^ response = client->GetAsync(url_)->Result;
 
 		// Check the status code of the response
-		if (response->IsSuccessStatusCode)	
+		if (response->IsSuccessStatusCode)
 		{
 			// Get the image data as a stream
 			Stream^ imageStream = response->Content->ReadAsStreamAsync()->Result;
@@ -149,11 +149,16 @@ public:
 		srand(time(NULL));
 		return rand() % 20;
 	}
-	void ShowBackGroundImageDashBoard(string url_,Panel^ flowP,RichTextBox^ over)
+	String^ getTrailer(string idApi)
 	{
+		//;
+		string url_("https://api.themoviedb.org/3/movie/" + idApi + "/videos?api_key=10f96818301b77e61d73d48aa20d81f9");
+		url_.erase(remove(url_.begin(), url_.end(), '\n'), url_.end());
+		//removing l
 		CURL* curl = curl_easy_init();
 		std::string url(url_);
-		Json::Value ra;
+		Json::Value jsonData;
+		string data = "";
 		curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 
 		// Don't bother trying IPv6, which would increase DNS resolution time.
@@ -184,9 +189,66 @@ public:
 
 		if (httpCode == 200)
 		{
+			Json::Value jsonData;
+			Json::Reader jsonReader;
+			if (jsonReader.parse(*httpData.get(), jsonData))
+			{
+				for (int i = 0;i < 100;i++)
+				{
+					if (jsonData["results"][i]["type"].asString() == "Trailer" && jsonData["results"][i]["key"].asString() != "" && jsonData["results"][i]["key"].asString() != "null")
+					{
+						data = jsonData["results"][i]["key"].toStyledString();
+						data.erase(remove(data.begin(), data.end(), '"'), data.end());
+						break;
+					}
+				}
+			}
+
+		}
+		return msclr::interop::marshal_as<System::String^>(data);
+	}
+
+	string ShowBackGroundImageDashBoard(string url_, Panel^ flowP, RichTextBox^ over)
+	{
+		CURL* curl = curl_easy_init();
+		std::string url(url_);
+		Json::Value ra;
+		string idApi;
+		curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+
+		// Don't bother trying IPv6, which would increase DNS resolution time.
+		curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+
+		// Don't wait forever, time out after 10 seconds.
+		curl_easy_setopt(curl, CURLOPT_TIMEOUT, 10);
+
+		// Follow HTTP redirects if necessary.
+		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+
+		// Response information.
+		long httpCode(0);
+		std::unique_ptr<std::string> httpData(new std::string());
+
+		// Hook up data handling function.
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, callback);
+
+		// Hook up data container (will be passed as the last parameter to the
+		// callback handling function).  Can be any pointer type, since it will
+		// internally be passed as a void pointer.
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, httpData.get());
+
+		// Run our HTTP GET command, capture the HTTP response code, and clean up.
+		curl_easy_perform(curl);
+		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
+		curl_easy_cleanup(curl);
+
+		if (httpCode == 200)
+		{
+
 			// Response looks good - done using Curl now.  Try to parse the results
 			// and print them out.
 			//jsonData["results"][i]["original_title"]
+			int index = randomNumber();
 			Json::Value jsonData;
 			Json::Reader jsonReader;
 			string data;
@@ -198,15 +260,35 @@ public:
 			builder["indentation"] = "";
 			if (jsonReader.parse(*httpData.get(), jsonData))
 			{
-				data = site + Json::writeString(builder, jsonData["results"][randomNumber()]["backdrop_path"]);
+				data = site + Json::writeString(builder, jsonData["results"][index]["backdrop_path"]);
 				data.erase(remove(data.begin(), data.end(), '"'), data.end());
 				System::String^ unmanaged = msclr::interop::marshal_as<System::String^>(data);
 				flowP->BackgroundImage = imageDown(unmanaged);
-				overview = jsonData["results"][randomNumber()]["overview"].toStyledString();
+				overview = jsonData["results"][index]["overview"].toStyledString();
 				overPase = msclr::interop::marshal_as<System::String^>(overview);
 				over->Text = overPase;
+				idApi = jsonData["results"][index]["id"].toStyledString();
+				idApi.erase(remove(idApi.begin(), idApi.end(), '"'), idApi.end());
+				return idApi;
 			}
 		}
 	}
+
+	//////////////////////////////////////////////////////////////////////////
+	/*
+	System::Drawing::Image^ ConvertByteToImage(unsigned char Data) {
+
+		try {
+			return Image::FromStream(ms);;
+		}
+		catch (Exception^ e)
+		{
+			Console::WriteLine(e->Message);
+		}
+		finally {
+			ms->Close();
+		}
+		return nullptr;
+	}*/
 };
 

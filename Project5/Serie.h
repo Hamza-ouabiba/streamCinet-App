@@ -1,15 +1,19 @@
 #pragma once
-#include <string>
+#include <string> 
+#include <msclr/marshal_cppstd.h>
+#include "DataBaseOperations.h"
 using namespace::std;
 using namespace System;
 using namespace Drawing;
+
+
 
 public ref class Serie
 {
 private:
 	int id_Serie;
 	int id_Api;
-	bool existedata;
+	bool Exist;
 	String^ Name;
 	String^ Overview;
 	String^ Country;
@@ -20,6 +24,18 @@ private:
 public: 
 	Serie()
 	{
+	}
+	Serie(Serie^ Serie) {
+
+		this->id_Serie = Serie->id_Serie;
+		this->id_Api = Serie->id_Api;
+		this->Name = Serie->Name;
+		this->Country = Serie->Country;
+		this->Overview = Serie->Overview;
+		this->Rating = Serie->Rating;
+		this->Realease_Date = Serie->Realease_Date;
+		this->Poster = Serie->Poster;
+		this->BakcDrop = Serie->BakcDrop;
 
 	}
 	Serie(int id_Serie, int id_Api, String^ Name, String^ Overview, String^ Country, float Rating, DateTime Realease_Date, Image^ Poster, Image^ BakcDrop)
@@ -33,13 +49,14 @@ public:
 		this->Realease_Date = Realease_Date;
 		this->Poster = Poster;
 		this->BakcDrop = BakcDrop;
+
 	}
 	int GetIdSerie() {
 		return this->id_Serie;
 	}
 	bool GetExist()
 	{
-		return this->existedata;
+		return this->Exist;
 	}
 	int GetIdApi() {
 		return this->id_Api;
@@ -95,11 +112,12 @@ public:
 	}
 	void SetExist(bool value)
 	{
-		this->existedata = value;
+		this->Exist = value;
 	}
 	void SetCountry(String^ country)
 	{
 		this->Country = country;
 	}
 };
+
 

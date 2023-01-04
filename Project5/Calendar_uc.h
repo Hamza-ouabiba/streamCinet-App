@@ -5,7 +5,6 @@
 #include "Movie.h"
 #include "Serie.h"
 #include "DataBaseOperations.h"
-#include "WatchLater_UC.h"
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;
@@ -27,29 +26,18 @@ namespace Project5 {
 		static int month = DateTime::Now.Month;
 		static int days = DateTime::Now.Day;
 		static int year = DateTime::Now.Year;
-
-
+		Panel^ content;
 	private: System::Windows::Forms::Button^ addSerie;
 	private: System::Windows::Forms::Button^ addMv;
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::Label^ dateForm;
 	private: System::Windows::Forms::FlowLayoutPanel^ moviesSec;
 	private: System::Windows::Forms::FlowLayoutPanel^ seriesSec;
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Button^ refreshBtn;
+
 	private: System::Windows::Forms::Label^ label1;
 
-
-
-
-		   Panel^ content;
 	public:
 		Calendar_uc(Panel^ content)
 		{
@@ -81,7 +69,7 @@ namespace Project5 {
 		/// <summary>
 		/// Variable nécessaire au concepteur.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -99,8 +87,9 @@ namespace Project5 {
 			this->addSerie = (gcnew System::Windows::Forms::Button());
 			this->dateForm = (gcnew System::Windows::Forms::Label());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->refreshBtn = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -111,14 +100,18 @@ namespace Project5 {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->calendarPan->Location = System::Drawing::Point(-1, 61);
 			this->calendarPan->Name = L"calendarPan";
-			this->calendarPan->Size = System::Drawing::Size(764, 675);
+			this->calendarPan->Size = System::Drawing::Size(709, 675);
 			this->calendarPan->TabIndex = 0;
 			// 
 			// prevBtn
 			// 
-			this->prevBtn->Location = System::Drawing::Point(24, 13);
+			this->prevBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->prevBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->prevBtn->ForeColor = System::Drawing::Color::Red;
+			this->prevBtn->Location = System::Drawing::Point(346, 9);
 			this->prevBtn->Name = L"prevBtn";
-			this->prevBtn->Size = System::Drawing::Size(99, 38);
+			this->prevBtn->Size = System::Drawing::Size(44, 38);
 			this->prevBtn->TabIndex = 1;
 			this->prevBtn->Text = L"<";
 			this->prevBtn->UseVisualStyleBackColor = true;
@@ -126,9 +119,13 @@ namespace Project5 {
 			// 
 			// nextBtn
 			// 
-			this->nextBtn->Location = System::Drawing::Point(138, 13);
+			this->nextBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->nextBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->nextBtn->ForeColor = System::Drawing::Color::Red;
+			this->nextBtn->Location = System::Drawing::Point(405, 9);
 			this->nextBtn->Name = L"nextBtn";
-			this->nextBtn->Size = System::Drawing::Size(99, 38);
+			this->nextBtn->Size = System::Drawing::Size(41, 38);
 			this->nextBtn->TabIndex = 2;
 			this->nextBtn->Text = L">";
 			this->nextBtn->UseVisualStyleBackColor = true;
@@ -136,49 +133,60 @@ namespace Project5 {
 			// 
 			// moviesSec
 			// 
-			this->moviesSec->Location = System::Drawing::Point(331, 27);
+			this->moviesSec->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->moviesSec->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->moviesSec->Location = System::Drawing::Point(334, 27);
 			this->moviesSec->Name = L"moviesSec";
-			this->moviesSec->Size = System::Drawing::Size(260, 653);
+			this->moviesSec->Size = System::Drawing::Size(302, 709);
 			this->moviesSec->TabIndex = 0;
 			// 
 			// seriesSec
 			// 
 			this->seriesSec->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->seriesSec->Location = System::Drawing::Point(0, 27);
+			this->seriesSec->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->seriesSec->Location = System::Drawing::Point(12, 27);
 			this->seriesSec->Name = L"seriesSec";
-			this->seriesSec->Size = System::Drawing::Size(333, 650);
+			this->seriesSec->Size = System::Drawing::Size(310, 709);
 			this->seriesSec->TabIndex = 1;
 			// 
 			// addMv
 			// 
-			this->addMv->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->addMv->Location = System::Drawing::Point(1227, 3);
+			this->addMv->BackColor = System::Drawing::Color::CornflowerBlue;
+			this->addMv->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->addMv->ForeColor = System::Drawing::Color::Black;
+			this->addMv->Location = System::Drawing::Point(150, 3);
 			this->addMv->Name = L"addMv";
 			this->addMv->Size = System::Drawing::Size(130, 48);
 			this->addMv->TabIndex = 1;
 			this->addMv->Text = L"Add a movie";
-			this->addMv->UseVisualStyleBackColor = true;
+			this->addMv->UseVisualStyleBackColor = false;
 			this->addMv->Click += gcnew System::EventHandler(this, &Calendar_uc::addMv_Click);
 			// 
 			// addSerie
 			// 
-			this->addSerie->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->addSerie->Location = System::Drawing::Point(1068, 3);
+			this->addSerie->BackColor = System::Drawing::Color::Coral;
+			this->addSerie->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->addSerie->ForeColor = System::Drawing::Color::Black;
+			this->addSerie->Location = System::Drawing::Point(13, 3);
 			this->addSerie->Name = L"addSerie";
 			this->addSerie->Size = System::Drawing::Size(131, 48);
 			this->addSerie->TabIndex = 0;
 			this->addSerie->Text = L"add A TV Show";
-			this->addSerie->UseVisualStyleBackColor = true;
+			this->addSerie->UseVisualStyleBackColor = false;
 			this->addSerie->Click += gcnew System::EventHandler(this, &Calendar_uc::addSerie_Click);
 			// 
 			// dateForm
 			// 
+			this->dateForm->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->dateForm->AutoSize = true;
 			this->dateForm->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->dateForm->ForeColor = System::Drawing::Color::White;
-			this->dateForm->Location = System::Drawing::Point(551, 18);
+			this->dateForm->Location = System::Drawing::Point(512, 16);
 			this->dateForm->Name = L"dateForm";
 			this->dateForm->Size = System::Drawing::Size(157, 29);
 			this->dateForm->TabIndex = 4;
@@ -188,34 +196,50 @@ namespace Project5 {
 			// 
 			this->panel1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-				static_cast<System::Int32>(static_cast<System::Byte>(128)));
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(32)), static_cast<System::Int32>(static_cast<System::Byte>(29)),
+				static_cast<System::Int32>(static_cast<System::Byte>(30)));
+			this->panel1->Controls->Add(this->refreshBtn);
 			this->panel1->Controls->Add(this->label2);
 			this->panel1->Controls->Add(this->label1);
 			this->panel1->Controls->Add(this->seriesSec);
 			this->panel1->Controls->Add(this->moviesSec);
-			this->panel1->Location = System::Drawing::Point(769, 56);
+			this->panel1->Location = System::Drawing::Point(714, 0);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(588, 680);
+			this->panel1->Size = System::Drawing::Size(643, 736);
 			this->panel1->TabIndex = 5;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->BackColor = System::Drawing::Color::White;
+			this->label2->Location = System::Drawing::Point(342, 8);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(58, 16);
+			this->label2->TabIndex = 3;
+			this->label2->Text = L"MOVIES";
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
+			this->label1->BackColor = System::Drawing::Color::White;
 			this->label1->Location = System::Drawing::Point(13, 8);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(56, 16);
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"SERIES";
 			// 
-			// label2
+			// refreshBtn
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(342, 8);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(58, 16);
-			this->label2->TabIndex = 3;
-			this->label2->Text = L"MOVIES";
+			this->refreshBtn->Anchor = System::Windows::Forms::AnchorStyles::Top;
+			this->refreshBtn->BackColor = System::Drawing::Color::Red;
+			this->refreshBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->refreshBtn->Location = System::Drawing::Point(561, 1);
+			this->refreshBtn->Name = L"refreshBtn";
+			this->refreshBtn->Size = System::Drawing::Size(75, 23);
+			this->refreshBtn->TabIndex = 4;
+			this->refreshBtn->Text = L"Refresh";
+			this->refreshBtn->UseVisualStyleBackColor = false;
+			this->refreshBtn->Click += gcnew System::EventHandler(this, &Calendar_uc::refreshBtn_Click);
 			// 
 			// Calendar_uc
 			// 
@@ -242,7 +266,9 @@ namespace Project5 {
 	{
 		DateTime start = DateTime(year, month, 1);
 		int days = DateTime::DaysInMonth(year, month);
-		int daysOfWeek = Convert::ToInt32(start.DayOfWeek.ToString("d")) + 1;
+		int daysOfWeek = Convert::ToInt32(start.DayOfWeek.ToString("d"));
+		if (daysOfWeek == 0)
+			daysOfWeek = 7;
 		for (int i = 1;i < daysOfWeek;i++)
 		{
 			BlankUserControl^ bk = gcnew BlankUserControl();
@@ -263,47 +289,17 @@ namespace Project5 {
 		dateForm->Text = monthName + " " + year;
 	}
 	private: System::Void prevBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (month == 1)
+		month--;
+		if (month == 0)
 		{
-			month = 13;
+			month = 12;
 			year--;
 		}
-		month--;
 		//first day of month : 
 		this->calendarPan->Controls->Clear();
 		DateTime start = DateTime(year, month, 1);
 		int days = DateTime::DaysInMonth(year, month);
-		int daysOfWeek = Convert::ToInt32(start.DayOfWeek.ToString("d")) +1;
-		if (daysOfWeek == 0)
-			daysOfWeek = 7;
-		for (int i = 1;i < daysOfWeek;i++)
-		{
-			BlankUserControl^ bk = gcnew BlankUserControl();
-			this->calendarPan->Controls->Add(bk);
-		}
-		for (int i = 1;i <= days;i++)
-		{
-			DaysUserControl^ uc = gcnew DaysUserControl(i,month,year);
-			this->calendarPan->Controls->Add(uc);
-			uc->setPanelMovies(this->moviesSec);
-			uc->setPanelSeries(this->seriesSec);
-			uc->setPanelList(this->content);
-		}
-		String^ monthName = System::Globalization::DateTimeFormatInfo::CurrentInfo->GetMonthName(month);
-		dateForm->Text = monthName + " " + year;
-	}
-private: System::Void nextBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (month == 12)
-		{
-			month = 0;
-			year++;
-		}
-		month++;
-		//first day of month : 
-		this->calendarPan->Controls->Clear();
-		DateTime start = DateTime(year, month, 1);
-		int days = DateTime::DaysInMonth(year, month);
-		int daysOfWeek = Convert::ToInt32(start.DayOfWeek.ToString("d")) + 1;
+		int daysOfWeek = Convert::ToInt32(start.DayOfWeek.ToString("d"));
 		if (daysOfWeek == 0)
 			daysOfWeek = 7;
 		for (int i = 1;i < daysOfWeek;i++)
@@ -321,11 +317,41 @@ private: System::Void nextBtn_Click(System::Object^ sender, System::EventArgs^ e
 		}
 		String^ monthName = System::Globalization::DateTimeFormatInfo::CurrentInfo->GetMonthName(month);
 		dateForm->Text = monthName + " " + year;
-}
+	}
+	private: System::Void nextBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		month++;
+		if (month == 13)
+		{
+			month = 1;
+			year++;
+		}
+		//first day of month : 
+		this->calendarPan->Controls->Clear();
+		DateTime start = DateTime(year, month, 1);
+		int days = DateTime::DaysInMonth(year, month);
+		int daysOfWeek = Convert::ToInt32(start.DayOfWeek.ToString("d"));
+		if (daysOfWeek == 0)
+			daysOfWeek = 7;
+		for (int i = 1;i < daysOfWeek;i++)
+		{
+			BlankUserControl^ bk = gcnew BlankUserControl();
+			this->calendarPan->Controls->Add(bk);
+		}
+		for (int i = 1;i <= days;i++)
+		{
+			DaysUserControl^ uc = gcnew DaysUserControl(i, month, year);
+			this->calendarPan->Controls->Add(uc);
+			uc->setPanelMovies(this->moviesSec);
+			uc->setPanelSeries(this->seriesSec);
+			uc->setPanelList(this->content);
+		}
+		String^ monthName = System::Globalization::DateTimeFormatInfo::CurrentInfo->GetMonthName(month);
+		dateForm->Text = monthName + " " + year;
+	}
 	private: void retrieveDataMovies()
 	{
-		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-		String^ Query = "SELECT *FROM MOVIE ;";
+		SqlConnection conx(DataBaseConnection::ConnectionString());
+		String^ Query = "SELECT  MOVIE.ID_MOVIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP FROM library_movie join MOVIE on library_movie.id_movie = MOVIE.id_movie WHERE id_user = " + Login::User->GetIdUser();
 		SqlCommand Cmd(Query, % conx);
 		conx.Open();
 		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
@@ -353,17 +379,99 @@ private: System::Void nextBtn_Click(System::Object^ sender, System::EventArgs^ e
 			// Load the image data into a Bitmap object
 			image = gcnew Bitmap(ms);
 			movie_->SetBakcDrop(image);
-			movie_->SetExist(DataBaseOperations::Search_Movie(movie_->GetIdApi()));
 			//creating a user control for it : 
 			WatchLater_UC^ movie_userc = gcnew WatchLater_UC(movie_);
+			movie_userc->setPanelContent(this->content);
+			movie_userc->setPanelMovies(this->moviesSec);
+			movie_userc->setPanelSeries(this->seriesSec);
 			calendarPan->Controls->Add(movie_userc);
 		}
 		conx.Close();
 	}
+	private: int getIdPlanning()
+	{
+		SqlConnection conx(DataBaseConnection::ConnectionString());
+		String^ Query = "SELECT ID from PLANNING WHERE DATE =  '" + this->days + "-" + this->month + "-" + this->year + "'";
+		SqlCommand Cmd(Query, % conx);
+		conx.Open();
+		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
+		if (sqlReader->Read())
+			return Convert::ToInt32(sqlReader[0]->ToString());
+	}
+	private: void loadDataMovies()
+	{
+		SqlConnection conx(DataBaseConnection::ConnectionString());
+		String^ Query = "select MOVIE.ID_MOVIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from MOVIE join PLANNING_MOVIE on MOVIE.ID_MOVIE = PLANNING_MOVIE.ID_MOVIE join PLANNING on PLANNING_MOVIE.ID = PLANNING.ID where PLANNING.date = '" + this->days + "-" + this->month + "-" + this->year + "' and PLANNING.id_user = " + Login::User->GetIdUser();
+		SqlCommand Cmd(Query, % conx);
+		MessageBox::Show(Query);
+		conx.Open();
+		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
+		while (sqlReader->Read())
+		{
+			////creating an instance for every movie : 
+			Movie^ movie_ = gcnew Movie();
+			movie_->SetIdMovie(Convert::ToInt32(sqlReader["ID_MOVIE"]->ToString()));
+			movie_->SetIdApi(Convert::ToInt32(sqlReader["ID_API"]->ToString()));
+			movie_->SetTitle(sqlReader["TITLE"]->ToString());
+			movie_->SetOverview(sqlReader["OVERVIEW"]->ToString());
+			movie_->SetRealease_Date(Convert::ToDateTime(sqlReader["RELEASE_DATE"]->ToString()));
+			movie_->SetRating((float)Convert::ToDouble(sqlReader["Rating"]->ToString()));
+
+			//// Create a MemoryStream to hold the image data
+			MemoryStream^ ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
+			//// Load the image data into a Bitmap object
+			Bitmap^ image = gcnew Bitmap(ms);
+			movie_->SetPoster(image);
+
+			ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
+			// Load the image data into a Bitmap object
+			image = gcnew Bitmap(ms);
+			movie_->SetBakcDrop(image);
+			//creating a user control for it : 
+			PosterPlanning^ movie_userc = gcnew PosterPlanning(movie_, moviesSec, getIdPlanning());
+			MessageBox::Show("hna2");
+			moviesSec->Controls->Add(movie_userc);
+		}
+	}
+
+	private: void loadDataSeries()
+	{
+		SqlConnection conx(DataBaseConnection::ConnectionString());
+		String^ Query = "select SERIE.ID_SERIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from SERIE join PLANNING_SERIE on SERIE.ID_SERIE = PLANNING_SERIE.ID_SERIE join PLANNING on PLANNING_SERIE.ID = PLANNING.ID where PLANNING.date = '" + this->days + "-" + this->month + "-" + this->year + "' and planning_serie.id_user = " + Login::User->GetIdUser();
+		SqlCommand Cmd(Query, % conx);
+		conx.Open();
+		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
+		while (sqlReader->Read())
+		{
+			//creating an instance for every movie : 
+			Serie^ serie_ = gcnew Serie();
+			serie_->SetIdSerie((Convert::ToInt32(sqlReader["ID_SERIE"]->ToString())));
+			serie_->SetIdApi(Convert::ToInt32(sqlReader["ID_API"]->ToString()));
+			serie_->SetName(sqlReader["TITLE"]->ToString());
+			serie_->SetOverview(sqlReader["OVERVIEW"]->ToString());
+			serie_->SetRealease_Date(Convert::ToDateTime(sqlReader["RELEASE_DATE"]->ToString()));
+			serie_->SetRating((float)Convert::ToDouble(sqlReader["Rating"]->ToString()));
+
+			// Create a MemoryStream to hold the image data
+			MemoryStream^ ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
+			// Load the image data into a Bitmap object
+			Bitmap^ image = gcnew Bitmap(ms);
+			serie_->SetPoster(image);
+
+			ms = gcnew MemoryStream(sqlReader->GetSqlBinary(7).Value);
+			// Load the image data into a Bitmap object
+			image = gcnew Bitmap(ms);
+			serie_->SetBakcDrop(image);
+			//creating a user control for it : 
+			PosterPlanning^ serie_userc = gcnew PosterPlanning(serie_, seriesSec, getIdPlanning());
+			seriesSec->Controls->Add(serie_userc);
+		}
+	}
 	private: void retrieveTvShows()
 	{
-		String^ Query2 = "SELECT *FROM SERIE ;";
-		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+
+		String^ Query2 = "SELECT SERIE.ID_SERIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP FROM serie join library_serie on serie.id_serie = library_serie.id_serie where id_user = " + Login::User->GetIdUser();
+		SqlConnection conx(DataBaseConnection::ConnectionString());
 		conx.Open();
 		int index = 0;
 		SqlCommand Cmd2(Query2, % conx);
@@ -381,33 +489,42 @@ private: System::Void nextBtn_Click(System::Object^ sender, System::EventArgs^ e
 			serie_->SetRating((float)Convert::ToDouble(sqlReader2["Rating"]->ToString()));
 
 			// Create a MemoryStream to hold the image data
-			MemoryStream^ ms = gcnew MemoryStream(sqlReader2->GetSqlBinary(4).Value);
+			MemoryStream^ ms = gcnew MemoryStream(sqlReader2->GetSqlBinary(6).Value);
 			// Load the image data into a Bitmap object
 			Bitmap^ image = gcnew Bitmap(ms);
 			serie_->SetPoster(image);
 
-			ms = gcnew MemoryStream(sqlReader2->GetSqlBinary(5).Value);
+			ms = gcnew MemoryStream(sqlReader2->GetSqlBinary(7).Value);
 			// Load the image data into a Bitmap object
 			image = gcnew Bitmap(ms);
 			serie_->SetBakcDrop(image);
-			serie_->SetExist(DataBaseOperations::Search_Serie(serie_->GetIdApi()));
 			//creating a user control for it : 
 			WatchLater_UC^ serie_userc = gcnew WatchLater_UC(serie_);
+			serie_userc->setPanelContent(this->content);
+			serie_userc->setPanelMovies(this->moviesSec);
+			serie_userc->setPanelSeries(this->seriesSec);
 			calendarPan->Controls->Add(serie_userc);
 		}
 		conx.Close();
 	}
-		private: System::Void addMv_Click(System::Object^ sender, System::EventArgs^ e) {
-			this->calendarPan->Controls->Clear();
-			prevBtn->Visible = false;
-			nextBtn->Visible = false;
-			retrieveDataMovies();
-		}
-		private: System::Void addSerie_Click(System::Object^ sender, System::EventArgs^ e) {
-			this->calendarPan->Controls->Clear();
-			prevBtn->Visible = false;
-			nextBtn->Visible = false;
-			retrieveTvShows();
-		}
-};
+	private: System::Void addMv_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->calendarPan->Controls->Clear();
+		prevBtn->Visible = false;
+		nextBtn->Visible = false;
+		retrieveDataMovies();
+	}
+	private: System::Void addSerie_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->calendarPan->Controls->Clear();
+		prevBtn->Visible = false;
+		nextBtn->Visible = false;
+		retrieveTvShows();
+	}
+	private: System::Void refreshBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		/*this->moviesSec->Controls->Clear();
+		this->seriesSec->Controls->Clear();*/
+		MessageBox::Show("hna");
+		loadDataMovies();
+		loadDataSeries();
+	}
+	};
 }

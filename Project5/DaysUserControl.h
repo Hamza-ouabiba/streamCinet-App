@@ -6,6 +6,7 @@
 #include "Movie.h"
 #include "DataBaseOperations.h"
 #include "Serie.h"
+
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;
@@ -21,7 +22,7 @@ using namespace std;
 namespace Project5 {
 
 	/// <summary>
-	/// Description rÃ©sumÃ©e de DaysUserControl
+	/// Description résumée de DaysUserControl
 	/// </summary>
 	public ref class DaysUserControl : public System::Windows::Forms::UserControl
 	{
@@ -33,7 +34,7 @@ namespace Project5 {
 		Panel^ panelSeries;
 		Panel^ list;
 	public:
-		DaysUserControl(int index,Panel^ movies,Panel^ series,Panel^ list)
+		DaysUserControl(int index, Panel^ movies, Panel^ series, Panel^ list)
 		{
 			InitializeComponent();
 			this->dayOfweek = index;
@@ -44,7 +45,7 @@ namespace Project5 {
 			//TODO: ajoutez ici le code du constructeur
 			//
 		}
-		DaysUserControl(int index,int month,int year)
+		DaysUserControl(int index, int month, int year)
 		{
 			InitializeComponent();
 			this->dayOfweek = index;
@@ -68,7 +69,7 @@ namespace Project5 {
 		}
 	protected:
 		/// <summary>
-		/// Nettoyage des ressources utilisÃ©es.
+		/// Nettoyage des ressources utilisées.
 		/// </summary>
 		~DaysUserControl()
 		{
@@ -82,14 +83,14 @@ namespace Project5 {
 
 	private:
 		/// <summary>
-		/// Variable nÃ©cessaire au concepteur.
+		/// Variable nécessaire au concepteur.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// MÃ©thode requise pour la prise en charge du concepteur - ne modifiez pas
-		/// le contenu de cette mÃ©thode avec l'Ã©diteur de code.
+		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// le contenu de cette méthode avec l'éditeur de code.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -98,13 +99,13 @@ namespace Project5 {
 			// 
 			// days
 			// 
-			this->days->BackColor = System::Drawing::Color::Red;
+			this->days->BackColor = System::Drawing::Color::Gainsboro;
 			this->days->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->days->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->days->Location = System::Drawing::Point(0, 0);
 			this->days->Name = L"days";
-			this->days->Size = System::Drawing::Size(194, 111);
+			this->days->Size = System::Drawing::Size(181, 111);
 			this->days->TabIndex = 0;
 			this->days->Text = L"1";
 			this->days->UseVisualStyleBackColor = false;
@@ -116,25 +117,33 @@ namespace Project5 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->Controls->Add(this->days);
 			this->Name = L"DaysUserControl";
-			this->Size = System::Drawing::Size(194, 111);
+			this->Size = System::Drawing::Size(181, 111);
 			this->Load += gcnew System::EventHandler(this, &DaysUserControl::DaysUserControl_Load);
 			this->ResumeLayout(false);
 
 		}
+	private: int getIdPlanning()
+	{
+		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+		String^ Query = "SELECT ID from PLANNING WHERE DATE =  '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "'";
+		SqlCommand Cmd(Query, % conx);
+		conx.Open();
+		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
+		if (sqlReader->Read())
+			return Convert::ToInt32(sqlReader[0]->ToString());
+	}
 	private: void loadDataMovies()
 	{
 		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-		String^ Query = "select ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from MOVIE join PLANNING_MOVIE on MOVIE.ID_MOVIE = PLANNING_MOVIE.ID_MOVIE join PLANNING on PLANNING_MOVIE.ID = PLANNING.ID where PLANNING.date = '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "'";
-		MessageBox::Show(Query);
+		String^ Query = "select MOVIE.ID_MOVIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from MOVIE join PLANNING_MOVIE on MOVIE.ID_MOVIE = PLANNING_MOVIE.ID_MOVIE join PLANNING on PLANNING_MOVIE.ID = PLANNING.ID where PLANNING.date = '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "' and planning_movie.id_user = " + Login::User->GetIdUser();
 		SqlCommand Cmd(Query, % conx);
 		conx.Open();
 		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
 		while (sqlReader->Read())
 		{
-			MessageBox::Show(sqlReader[0]->ToString());
 			////creating an instance for every movie : 
 			Movie^ movie_ = gcnew Movie();
-			movie_->SetIdMovie(Convert::ToInt32(sqlReader[0]->ToString()));
+			movie_->SetIdMovie(Convert::ToInt32(sqlReader["ID_MOVIE"]->ToString()));
 			movie_->SetIdApi(Convert::ToInt32(sqlReader["ID_API"]->ToString()));
 			movie_->SetTitle(sqlReader["TITLE"]->ToString());
 			movie_->SetOverview(sqlReader["OVERVIEW"]->ToString());
@@ -151,18 +160,17 @@ namespace Project5 {
 			// Load the image data into a Bitmap object
 			image = gcnew Bitmap(ms);
 			movie_->SetBakcDrop(image);
-			movie_->SetExist(DataBaseOperations::Search_Movie(movie_->GetIdApi()));
 			//creating a user control for it : 
-			PosterPlanning^ movie_userc = gcnew PosterPlanning(movie_,list);
+			PosterPlanning^ movie_userc = gcnew PosterPlanning(movie_, list,getIdPlanning());
 			panelMovies->Controls->Add(movie_userc);
 
 		}
 	}
+	
 	private: void loadDataSeries()
 	{
 		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-		String^ Query = "select ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from SERIE join PLANNING_SERIE on SERIE.ID_SERIE = PLANNING_SERIE.ID_SERIE join PLANNING on PLANNING_SERIE.ID = PLANNING.ID where PLANNING.date = '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "'";
-		MessageBox::Show(Query);
+		String^ Query = "select SERIE.ID_SERIE,ID_API,TITLE,OVERVIEW,RELEASE_DATE,RATING,POSTER,BACKDROP from SERIE join PLANNING_SERIE on SERIE.ID_SERIE = PLANNING_SERIE.ID_SERIE join PLANNING on PLANNING_SERIE.ID = PLANNING.ID where PLANNING.date = '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "' and PLANNING_serie.id_user = " + Login::User->GetIdUser();
 		SqlCommand Cmd(Query, % conx);
 		conx.Open();
 		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
@@ -170,77 +178,77 @@ namespace Project5 {
 		{
 			//creating an instance for every movie : 
 			Serie^ serie_ = gcnew Serie();
-			serie_->SetIdApi(Convert::ToInt32(sqlReader[0]->ToString()));
+			serie_->SetIdSerie((Convert::ToInt32(sqlReader["ID_SERIE"]->ToString())));
+			serie_->SetIdApi(Convert::ToInt32(sqlReader["ID_API"]->ToString()));
 			serie_->SetName(sqlReader["TITLE"]->ToString());
 			serie_->SetOverview(sqlReader["OVERVIEW"]->ToString());
 			serie_->SetRealease_Date(Convert::ToDateTime(sqlReader["RELEASE_DATE"]->ToString()));
 			serie_->SetRating((float)Convert::ToDouble(sqlReader["Rating"]->ToString()));
 
 			// Create a MemoryStream to hold the image data
-			MemoryStream^ ms = gcnew MemoryStream(sqlReader->GetSqlBinary(5).Value);
+			MemoryStream^ ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
 			// Load the image data into a Bitmap object
 			Bitmap^ image = gcnew Bitmap(ms);
 			serie_->SetPoster(image);
 
-			ms = gcnew MemoryStream(sqlReader->GetSqlBinary(6).Value);
+			ms = gcnew MemoryStream(sqlReader->GetSqlBinary(7).Value);
 			// Load the image data into a Bitmap object
 			image = gcnew Bitmap(ms);
 			serie_->SetBakcDrop(image);
-			serie_->SetExist(DataBaseOperations::Search_Serie(serie_->GetIdApi()));
 			//creating a user control for it : 
-			PosterPlanning^ serie_userc = gcnew PosterPlanning(serie_,list);
+			PosterPlanning^ serie_userc = gcnew PosterPlanning(serie_, list,getIdPlanning());
 			panelSeries->Controls->Add(serie_userc);
 		}
 	}
 #pragma endregion
-		private: System::Void DaysUserControl_Load(System::Object^ sender, System::EventArgs^ e) {
-			this->days->Text = this->dayOfweek.ToString();
-		}
-		private: bool checkValidityDate()
-		{
-			SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-			String^ Query = "SELECT * from PLANNING where date = '"+this->dayOfweek + "-" + this->mo + "-" + this->year+ "'";
-			SqlCommand Cmd(Query, % conx);
-			conx.Open();
-			SqlDataReader^ sqlReader = Cmd.ExecuteReader();
-			return sqlReader->HasRows;
-		}
-		private: int getLastDateInserted()
-		{
-			SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-			String^ Query = "select id from planning where date = '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "'";
-			SqlCommand Cmd(Query, % conx);
-			conx.Open();
-			SqlDataReader^ sqlReader = Cmd.ExecuteReader();
-			if (sqlReader->Read())
-				return Convert::ToInt32(sqlReader["id"]);
-			return -1;
-		}
-		private: void insertDate()
-		{
-			SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
-			String^ Query = "insert into planning(date) values('"+this->dayOfweek+"-"+this->mo+"-"+this->year+"')";
-			SqlCommand Cmd(Query, % conx);
-			conx.Open();
-			SqlDataReader^ sqlReader = Cmd.ExecuteReader();
-			conx.Close();
-		}
+	private: System::Void DaysUserControl_Load(System::Object^ sender, System::EventArgs^ e) {
+		this->days->Text = this->dayOfweek.ToString();
+	}
+	private: bool checkValidityDate()
+	{
+		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+		String^ Query = "SELECT * from PLANNING where date = '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "'";
+		SqlCommand Cmd(Query, % conx);
+		conx.Open();
+		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
+		return sqlReader->HasRows;
+	}
+	private: int getLastDateInserted()
+	{
+		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+		String^ Query = "select id from planning where date = '" + this->dayOfweek + "-" + this->mo + "-" + this->year + "'";
+		SqlCommand Cmd(Query, % conx);
+		conx.Open();
+		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
+		if (sqlReader->Read())
+			return Convert::ToInt32(sqlReader["id"]);
+		return -1;
+	}
+	private: void insertDate()
+	{
+		SqlConnection conx("Data Source = .\\YASKA; Initial Catalog = DataBase_StreamCinet; Integrated Security = True");
+		String^ Query = "insert into planning(date) values('" + this->dayOfweek + "-" + this->mo + "-" + this->year + "')";
+		SqlCommand Cmd(Query, % conx);
+		conx.Open();
+		SqlDataReader^ sqlReader = Cmd.ExecuteReader();
+		conx.Close();
+	}
 	private: System::Void days_Click(System::Object^ sender, System::EventArgs^ e) {
-			if (checkValidityDate())
-				this->panelMovies->Controls->Clear();
-				this->panelSeries->Controls->Clear();
+		this->panelMovies->Controls->Clear();
+		this->panelSeries->Controls->Clear();
+		if (checkValidityDate()){
 				loadDataMovies();
 				loadDataSeries();
-			}
-			else
-			{
-				insertDate();
-				MessageBox::Show("you can add a movie or a serie to this date : ");
-			}
-			WatchLater_UC::month = this->mo;
-			WatchLater_UC::day = this->dayOfweek;
-			WatchLater_UC::year = this->year;
-			WatchLater_UC::idPlanning = getLastDateInserted();
+		}
+		else
+		{
+			insertDate();
+			MessageBox::Show("you can add a movie or a serie to this date : ");
+		}
+		WatchLater_UC::month = this->mo;
+		WatchLater_UC::day = this->dayOfweek;
+		WatchLater_UC::year = this->year;
+		WatchLater_UC::idPlanning = getLastDateInserted();
 	}
-	};
+};
 }
