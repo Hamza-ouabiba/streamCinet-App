@@ -2,6 +2,8 @@
 
 <p>This application is a movie and series tracking application built in C++/CLI and CURL, which uses the TMDB API to retrieve data and display it in the app. The user can view all the information about a specific movie or series, and also has the option to add it to their library or calendar.</p>
 
+<h2>ScreenShot</h2>
+<img src="https://user-images.githubusercontent.com/73914495/213504445-d509bcc3-577f-4995-8fd8-aeca091b8e92.png">
 <h2>Features</h2>
 
 <ul>
