@@ -21,7 +21,7 @@
   <li>C++/CLI</li>
   <li>CURL</li>
   <li>JSON</li>
-  <li>TMDB API key</li>
+   <li><a href="https://www.themoviedb.org/documentation/api">TMDB API</a></li>
 </ul>
 
 <h3>Installing</h3>
